@@ -237,6 +237,7 @@ import GameBoardModel from '../lib/GameBoardModel.jsx'
 import ChessboardModel from '../lib/ChessboardModel.jsx'
 import PlayingCardsModel from '../lib/PlayingCardsModel.jsx'
 import CarromModel from '../lib/CarromModel.jsx'
+import RouletteModel from '../lib/RouletteModel.jsx'
 import ShuttlecockModel from '../lib/ShuttlecockModel.jsx'
 import BadmintonRacketModel from '../lib/BadmintonRacketModel.jsx'
 import TennisRacketModel from '../lib/TennisRacketModel.jsx'
@@ -267,7 +268,7 @@ import FireEmoji from '../lib/FireEmoji.jsx'
 import PleadingEmoji from '../lib/PleadingEmoji.jsx'
 
 // Raw source of every component, for the Code tab.
-const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}', '../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}', '../playingcards/*.{js,jsx}', '../carrom/*.{js,jsx}','../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
+const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}','../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}', '../playingcards/*.{js,jsx}', '../carrom/*.{js,jsx}', '../roulette/*.{js,jsx}','../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
   query: '?raw',
   import: 'default',
   eager: true,
@@ -291,7 +292,7 @@ export const UI_STYLES = ['Flat', 'Glassmorphism', 'Neumorphism', 'Liquid glass'
 export const ICON_STYLES = ['Icons', 'Emojis']
 
 // sections of the 3D & Materials category, in the order they are shown
-export const OBJECT_STYLES = ['Tech & gadgets', 'Everyday objects', 'Physics & play', 'Vehicles', 'Nature & world']
+export const OBJECT_STYLES = ['Tech & gadgets', 'Music & audio', 'Sports & fitness', 'Fashion & wear', 'Desk & stationery', 'Tools & gear', 'Everyday objects', 'Physics & play', 'Vehicles', 'Nature & world']
 
 // Basic outline icons share one set of controls; each file is standalone.
 const icon = (Comp, file, slug, name, description) => ({
@@ -2719,7 +2720,7 @@ const ALL_COMPONENTS = [
     slug: 'turntable',
     name: 'Turntable',
     category: '3D & Materials',
-    style: 'Tech & gadgets',
+    style: 'Music & audio',
     isNew: true,
     description: 'A record player you can power on, cue and scratch.',
     controls: [
@@ -2766,7 +2767,7 @@ const ALL_COMPONENTS = [
     slug: 'vinyl-record',
     name: 'Vinyl Record',
     category: '3D & Materials',
-    style: 'Tech & gadgets',
+    style: 'Music & audio',
     isNew: true,
     description: 'A spinning vinyl record with a printed label and sleeve.',
     controls: [
@@ -2803,7 +2804,7 @@ const ALL_COMPONENTS = [
     slug: 'sunglasses',
     name: 'Sunglasses',
     category: '3D & Materials',
-    style: 'Everyday objects',
+    style: 'Fashion & wear',
     isNew: true,
     description: 'Parametric sunglasses with six frame shapes and tinted lenses.',
     controls: [
@@ -2848,7 +2849,7 @@ const ALL_COMPONENTS = [
     slug: 'watch',
     name: 'Watch',
     category: '3D & Materials',
-    style: 'Tech & gadgets',
+    style: 'Fashion & wear',
     isNew: true,
     description: 'An analog or smart watch with swappable straps.',
     controls: [
@@ -2962,7 +2963,7 @@ const ALL_COMPONENTS = [
     slug: 'book',
     name: 'Book',
     category: '3D & Materials',
-    style: 'Everyday objects',
+    style: 'Desk & stationery',
     isNew: true,
     description: 'A hardback book with your own title, logo, colours and pages that bend as they turn.',
     controls: [
@@ -3086,7 +3087,7 @@ const ALL_COMPONENTS = [
     slug: 'headphones',
     name: 'Headphones',
     category: '3D & Materials',
-    style: 'Tech & gadgets',
+    style: 'Music & audio',
     isNew: true,
     description: 'Over-ear headphones with cups that slide and fold.',
     controls: [
@@ -3267,7 +3268,7 @@ const ALL_COMPONENTS = [
     slug: 'typewriter',
     name: 'Typewriter',
     category: '3D & Materials',
-    style: 'Everyday objects',
+    style: 'Desk & stationery',
     isNew: true,
     description: 'Type and a typebar swings up to strike the platen, ink lands on the paper and the carriage steps along. Bell, lever and line feed included.',
     controls: [
@@ -3300,7 +3301,7 @@ const ALL_COMPONENTS = [
     slug: 'lighter',
     name: 'Lighter',
     category: '3D & Materials',
-    style: 'Everyday objects',
+    style: 'Tools & gear',
     isNew: true,
     description: 'A flip-top lighter: the lid snaps open on its hinge, the flint wheel throws sparks, and the flame flickers and leans in the wind.',
     controls: [
@@ -3323,7 +3324,7 @@ const ALL_COMPONENTS = [
     slug: 'ink-pad',
     name: 'Ink Pad',
     category: '3D & Materials',
-    style: 'Everyday objects',
+    style: 'Desk & stationery',
     isNew: true,
     description: 'A stamp pad that latches and opens on its hinge; press the felt and ink wells up under your finger.',
     controls: [
@@ -3356,7 +3357,7 @@ const ALL_COMPONENTS = [
     slug: 'custom-stamp',
     name: 'Custom Stamp',
     category: '3D & Materials',
-    style: 'Everyday objects',
+    style: 'Desk & stationery',
     isNew: true,
     description: 'A wooden stamp with your own design. Click to print a mottled impression; drag it around or flip it to see the die.',
     controls: [
@@ -3392,7 +3393,7 @@ const ALL_COMPONENTS = [
     slug: 'cricket-wicket',
     name: 'Cricket Wicket',
     category: '3D & Materials',
-    style: 'Everyday objects',
+    style: 'Sports & fitness',
     isNew: true,
     description: 'Stumps and bails with real rigid-body physics. Bowl and the ball knocks the stumps back as the bails fly.',
     controls: [
@@ -3414,7 +3415,7 @@ const ALL_COMPONENTS = [
     slug: 'cricket-bat',
     name: 'Cricket Bat',
     category: '3D & Materials',
-    style: 'Everyday objects',
+    style: 'Sports & fitness',
     isNew: true,
     description: 'A solid English willow bat with a cane handle and grip. Pick it up and swing it, or knock it over and stand it back up.',
     controls: [
@@ -3435,7 +3436,7 @@ const ALL_COMPONENTS = [
     slug: 'cricket-pitch',
     name: 'Cricket Pitch',
     category: '3D & Materials',
-    style: 'Everyday objects',
+    style: 'Sports & fitness',
     isNew: true,
     description: 'A full-size 22-yard pitch with real grass blades, painted creases, footmarks and cracks that grow with wear. Switch between drawing views or orbit down to the turf.',
     controls: [
@@ -3626,10 +3627,45 @@ const ALL_COMPONENTS = [
     deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
   },
   {
+    slug: 'roulette-table',
+    name: 'Roulette Table',
+    category: '3D & Materials',
+    style: 'Physics & play',
+    isNew: true,
+    description: 'A full-size roulette table with a working single-zero wheel. Bet chips on the cloth and spin: the ball is simulated round the track, off the deflectors and into a pocket.',
+    controls: [
+      { name: 'view', type: 'select', options: ['Top', 'Front-L', 'Front-R', 'Front', 'Rear', 'Left', 'Right', 'Wheel', 'Pockets', 'Layout'], default: 'Front-L' },
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Casino green', values: { feltColor: '#0f6b3a', woodColor: '#6a3420', leatherColor: '#33201a', metalColor: '#c9a557' } },
+          { name: 'Royal blue', values: { feltColor: '#1b3f8f', woodColor: '#3d2416', leatherColor: '#1d1b1c', metalColor: '#c9ccd1' } },
+          { name: 'Burgundy', values: { feltColor: '#7a1626', woodColor: '#2b1a14', leatherColor: '#191616', metalColor: '#d1ad5c' } },
+          { name: 'Ebony', values: { feltColor: '#1f5a4a', woodColor: '#231c19', leatherColor: '#54301c', metalColor: '#c9ccd1' } },
+        ],
+      },
+      { name: 'feltColor', type: 'color', default: '#0f6b3a' },
+      { name: 'woodColor', type: 'color', default: '#6a3420' },
+      { name: 'leatherColor', type: 'color', default: '#33201a' },
+      { name: 'metalColor', type: 'color', default: '#c9a557' },
+      { name: 'chipColor', type: 'color', default: '#1f4fbf' },
+      { name: 'betting', type: 'toggle', default: true },
+      { name: 'sound', type: 'toggle', default: true },
+      { name: 'dimensions', type: 'toggle', default: false },
+      { name: 'ambientOcclusion', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <RouletteModel {...p} height="100%" />,
+    fill: true,
+    files: ['RouletteModel.jsx', 'roulette/RouletteScene.jsx', 'roulette/Roulette.jsx', 'roulette/Table.jsx', 'roulette/Wheel.jsx', 'roulette/physics.js', 'roulette/layout.js', 'roulette/build.js', 'roulette/textures.js', 'roulette/audio.js', 'gameboard/stage.jsx', 'gameboard/textures.js'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
+  },
+  {
     slug: 'pocket-knife',
     name: 'Pocket Knife',
     category: '3D & Materials',
-    style: 'Everyday objects',
+    style: 'Tools & gear',
     isNew: true,
     description: 'A multi-tool with blades, a bottle opener and a saw. Drag a tool to fold it out; it snaps into place.',
     controls: [
@@ -3661,7 +3697,7 @@ const ALL_COMPONENTS = [
     slug: 'pistol',
     name: 'Pistol',
     category: '3D & Materials',
-    style: 'Everyday objects',
+    style: 'Tools & gear',
     isNew: true,
     description: 'A photoreal compact pistol, unloaded: rack the slide, dry-fire the trigger and drop the magazine.',
     controls: [
@@ -3727,7 +3763,7 @@ const ALL_COMPONENTS = [
     slug: 'fountain-pen',
     name: 'Fountain Pen',
     category: '3D & Materials',
-    style: 'Everyday objects',
+    style: 'Desk & stationery',
     isNew: true,
     description: 'A piston-filling fountain pen with real physics: lift and throw it, post the cap, fill it and write.',
     controls: [
@@ -3800,7 +3836,7 @@ const ALL_COMPONENTS = [
     slug: 'alarm-clock',
     name: 'Alarm Clock',
     category: '3D & Materials',
-    style: 'Everyday objects',
+    style: 'Desk & stationery',
     isNew: true,
     description: 'A twin-bell alarm clock on the live time. Drag the hands to set it, and it rings and dances at the alarm.',
     controls: [
@@ -3834,7 +3870,7 @@ const ALL_COMPONENTS = [
     slug: 'desk-lamp',
     name: 'Desk Lamp',
     category: '3D & Materials',
-    style: 'Everyday objects',
+    style: 'Desk & stationery',
     isNew: true,
     description: 'A balanced-arm lamp with a real spotlight. Drag the arms to pose it; they swing and settle with weight.',
     controls: [
@@ -3866,7 +3902,7 @@ const ALL_COMPONENTS = [
     slug: 'tape-measure',
     name: 'Tape Measure',
     category: '3D & Materials',
-    style: 'Everyday objects',
+    style: 'Tools & gear',
     isNew: true,
     description: 'Drag the hook to draw the cupped steel blade straight out. Let go and it reels back in until the hook thunks home, unless the lock is on.',
     controls: [
@@ -4068,7 +4104,7 @@ const ALL_COMPONENTS = [
     slug: 'football',
     name: 'Football',
     category: '3D & Materials',
-    style: 'Physics & play',
+    style: 'Sports & fitness',
     isNew: true,
     description: 'A classic 32-panel football at real size with real physics. Tap to kick it (off-centre for curl), drag to throw.',
     controls: [
@@ -4076,15 +4112,17 @@ const ALL_COMPONENTS = [
         name: 'palette',
         type: 'presets',
         options: [
-          { name: 'Classic', values: { panel: '#f3f3f1', patch: '#121214', thread: '#d8d8d4' } },
-          { name: 'Retro', values: { panel: '#e9dcbc', patch: '#3b2a1c', thread: '#cbb98f' } },
-          { name: 'Winter', values: { panel: '#ffb21a', patch: '#1a1a1d', thread: '#e7a020' } },
-          { name: 'Red', values: { panel: '#f6f3ee', patch: '#c8102e', thread: '#dcd6cc' } },
+          { name: 'Classic', values: { panel: '#f3f3f1', patch: '#121214', ink: '#121214', thread: '#d8d8d4' } },
+          { name: 'Retro', values: { panel: '#e9dcbc', patch: '#3b2a1c', ink: '#3b2a1c', thread: '#cbb98f' } },
+          { name: 'Winter', values: { panel: '#ffb21a', patch: '#1a1a1d', ink: '#1a1a1d', thread: '#e7a020' } },
+          { name: 'Red', values: { panel: '#f6f3ee', patch: '#c8102e', ink: '#c8102e', thread: '#dcd6cc' } },
         ],
       },
       { name: 'panel', type: 'color', default: '#f3f3f1' },
       { name: 'patch', type: 'color', default: '#121214' },
       { name: 'thread', type: 'color', default: '#d8d8d4' },
+      { name: 'logo', type: 'toggle', default: true },
+      { name: 'ink', type: 'color', default: '#121214' },
       { name: 'pressure', type: 'range', min: 0.3, max: 1.6, step: 0.05, default: 1 },
       { name: 'kick', type: 'range', min: 4, max: 32, step: 1, default: 16, unit: 'm/s' },
       { name: 'curve', type: 'range', min: 0, max: 3, step: 0.1, default: 1 },
@@ -4105,7 +4143,7 @@ const ALL_COMPONENTS = [
     slug: 'basketball',
     name: 'Basketball',
     category: '3D & Materials',
-    style: 'Physics & play',
+    style: 'Sports & fitness',
     isNew: true,
     description: 'A regulation basketball that bounces, squashes and spins on a hardwood floor. Dribble, slap, throw or twirl it.',
     controls: [
@@ -4113,14 +4151,16 @@ const ALL_COMPONENTS = [
         name: 'palette',
         type: 'presets',
         options: [
-          { name: 'Indoor', values: { panel: '#c8582b', seam: '#1b1714', floor: '#b98d5f' } },
-          { name: 'Outdoor', values: { panel: '#a9532f', seam: '#231a15', floor: '#7d8288' } },
-          { name: 'Tan', values: { panel: '#d07a3c', seam: '#2a1d14', floor: '#c49a68' } },
-          { name: 'Street', values: { panel: '#2b3a8f', seam: '#f2f2ee', floor: '#5b5e63' } },
+          { name: 'Indoor', values: { panel: '#c8582b', seam: '#1b1714', ink: '#1b1714', floor: '#b98d5f' } },
+          { name: 'Outdoor', values: { panel: '#a9532f', seam: '#231a15', ink: '#231a15', floor: '#7d8288' } },
+          { name: 'Tan', values: { panel: '#d07a3c', seam: '#2a1d14', ink: '#2a1d14', floor: '#c49a68' } },
+          { name: 'Street', values: { panel: '#2b3a8f', seam: '#f2f2ee', ink: '#f2f2ee', floor: '#5b5e63' } },
         ],
       },
       { name: 'panel', type: 'color', default: '#c8582b' },
       { name: 'seam', type: 'color', default: '#1b1714' },
+      { name: 'logo', type: 'toggle', default: true },
+      { name: 'ink', type: 'color', default: '#1b1714' },
       { name: 'pressure', type: 'range', min: 0.3, max: 1.6, step: 0.05, default: 1 },
       { name: 'push', type: 'range', min: 2, max: 14, step: 0.5, default: 6, unit: 'm/s' },
       { name: 'backspin', type: 'range', min: 0, max: 3, step: 0.1, default: 1 },
@@ -4174,7 +4214,7 @@ const ALL_COMPONENTS = [
     slug: 'dart',
     name: 'Dart',
     category: '3D & Materials',
-    style: 'Physics & play',
+    style: 'Sports & fitness',
     isNew: true,
     description: 'A steel-tip dart at real size, thrown into a sisal target in slow motion. It fish-tails and lands with a shudder.',
     controls: [
@@ -4199,7 +4239,7 @@ const ALL_COMPONENTS = [
     slug: 'cricket-ball',
     name: 'Cricket Ball',
     category: '3D & Materials',
-    style: 'Physics & play',
+    style: 'Sports & fitness',
     isNew: true,
     description: 'A real-size cricket ball with a raised stitched seam. Toss it with backspin and it kicks back, or spin it like a top.',
     controls: [
@@ -4219,7 +4259,7 @@ const ALL_COMPONENTS = [
     slug: 'shuttlecock',
     name: 'Shuttlecock',
     category: '3D & Materials',
-    style: 'Physics & play',
+    style: 'Sports & fitness',
     isNew: true,
     description: 'A feathered shuttlecock at real size. Serve it and it flips cork-first, spins and falls, then topples onto its side.',
     controls: [
@@ -4242,7 +4282,7 @@ const ALL_COMPONENTS = [
     slug: 'badminton-racket',
     name: 'Badminton Racket',
     category: '3D & Materials',
-    style: 'Physics & play',
+    style: 'Sports & fitness',
     isNew: true,
     description: 'A regulation badminton racket with a woven string bed stencilled with the RD mark. Tap the strings to make them ping.',
     controls: [
@@ -4269,7 +4309,7 @@ const ALL_COMPONENTS = [
     slug: 'tennis-racket',
     name: 'Tennis Racket',
     category: '3D & Materials',
-    style: 'Physics & play',
+    style: 'Sports & fitness',
     isNew: true,
     description: 'A standard tennis racket with an open throat and a woven, RD-stencilled string bed. Tap the strings to make them ping.',
     controls: [
@@ -4307,7 +4347,7 @@ const ALL_COMPONENTS = [
     slug: 'tennis-ball',
     name: 'Tennis Ball',
     category: '3D & Materials',
-    style: 'Physics & play',
+    style: 'Sports & fitness',
     isNew: true,
     description: 'A regulation tennis ball with real fuzzy felt. Hit it with topspin or slice on clay, hard or grass, or run the ITF drop test.',
     controls: [
@@ -4334,7 +4374,7 @@ const ALL_COMPONENTS = [
     slug: 'dartboard',
     name: 'Dartboard',
     category: '3D & Materials',
-    style: 'Physics & play',
+    style: 'Sports & fitness',
     isNew: true,
     description: 'A regulation bristle dartboard. Click to throw from the oche; darts stick with a wobble or bounce off the wire, and score.',
     controls: [
@@ -4404,7 +4444,7 @@ const ALL_COMPONENTS = [
     slug: 'ring',
     name: 'Ring',
     category: '3D & Materials',
-    style: 'Everyday objects',
+    style: 'Fashion & wear',
     isNew: true,
     description: 'A polished metal band. Flick it and it spins like a coin, rolls round its rim and rattles down flat.',
     controls: [
@@ -4438,7 +4478,7 @@ const ALL_COMPONENTS = [
     slug: 'sneaker',
     name: 'Sneaker',
     category: '3D & Materials',
-    style: 'Everyday objects',
+    style: 'Fashion & wear',
     isNew: true,
     description: 'A low-top leather court sneaker with real laces. Drag the toe to flex it, or click to make it hop.',
     controls: [
@@ -4472,7 +4512,7 @@ const ALL_COMPONENTS = [
     slug: 'grand-piano',
     name: 'Grand Piano',
     category: '3D & Materials',
-    style: 'Physics & play',
+    style: 'Music & audio',
     isNew: true,
     description: 'A grand piano with a working action and pedals. Play it with the mouse, your keyboard or a MIDI keyboard.',
     controls: [
@@ -4503,7 +4543,7 @@ const ALL_COMPONENTS = [
     slug: 'guitar',
     name: 'Acoustic Guitar',
     category: '3D & Materials',
-    style: 'Physics & play',
+    style: 'Music & audio',
     isNew: true,
     description: 'A dreadnought acoustic with real string physics. Strum, fret chords and tune the pegs with a tuner readout.',
     controls: [
@@ -4534,7 +4574,7 @@ const ALL_COMPONENTS = [
     slug: 'dumbbells',
     name: 'Dumbbells',
     category: '3D & Materials',
-    style: 'Physics & play',
+    style: 'Sports & fitness',
     isNew: true,
     description: 'A pair of rubber dumbbells with real physics. Pick one up to swing it, drop or throw it, or click to roll it.',
     controls: [
@@ -4598,7 +4638,7 @@ const ALL_COMPONENTS = [
     slug: 'tt-bat',
     name: 'RD Table Tennis Bat',
     category: '3D & Materials',
-    style: 'Everyday objects',
+    style: 'Sports & fitness',
     isNew: true,
     description: 'A real-size table tennis bat with red and black rubbers and a flared handle. Click it to flip to the backhand.',
     controls: [
@@ -4631,7 +4671,7 @@ const ALL_COMPONENTS = [
     slug: 'gamepad',
     name: 'Gamepad',
     category: '3D & Materials',
-    style: 'Tech & gadgets',
+    style: 'Physics & play',
     isNew: true,
     description: 'A twin-stick controller with working sticks, buttons, triggers and rumble. Plug in a real gamepad to mirror it.',
     controls: [
@@ -4663,7 +4703,7 @@ const ALL_COMPONENTS = [
     slug: 'ladder',
     name: 'Ladder',
     category: '3D & Materials',
-    style: 'Physics & play',
+    style: 'Tools & gear',
     isNew: true,
     description: 'A wooden ladder on real friction physics: lean it too far and it slides down and crashes.',
     controls: [
@@ -4698,7 +4738,7 @@ const ALL_COMPONENTS = [
     slug: 'shirt',
     name: 'Shirt',
     category: '3D & Materials',
-    style: 'Everyday objects',
+    style: 'Fashion & wear',
     isNew: true,
     description: 'A button-up shirt simulated as cloth: undo a button and the front falls open. Drag the fabric to pull it.',
     controls: [
@@ -4771,7 +4811,7 @@ const ALL_COMPONENTS = [
     slug: 'earbuds',
     name: 'Earbuds',
     category: '3D & Materials',
-    style: 'Tech & gadgets',
+    style: 'Music & audio',
     isNew: true,
     description: 'Wireless earbuds in a magnetic charging case. Flip the lid, lift a bud out, or drop it back to charge.',
     controls: [
