@@ -92,6 +92,11 @@ function makeViews(layout) {
       const k = near(a)
       return { pos: p.clone().add(V(-0.03 * k, 0.2 * k, 0.15 * k)), target: p }
     },
+    Joker: (a) => {
+      const p = at(13)
+      const k = near(a)
+      return { pos: p.clone().add(V(-0.02 * k, 0.15 * k, 0.11 * k)), target: p }
+    },
   }
 }
 
@@ -116,7 +121,7 @@ export default function PlayingCardsScene({ suit = 'clubs', layout = 'rows', bac
         <OrbitControls makeDefault enablePan={false} autoRotate={autoRotate} autoRotateSpeed={0.5} minDistance={0.06} maxDistance={3} maxPolarAngle={1.45} />
         <Effects ao={ambientOcclusion} radius={0.01} />
       </Canvas>
-      <ViewTabs main={['Top', 'Table', 'Low']} detail={['Ace', 'Court']} view={view} setView={setView} />
+      <ViewTabs main={['Top', 'Table', 'Low']} detail={['Ace', 'Court', 'Joker']} view={view} setView={setView} />
       <div style={{ position: 'absolute', left: 12, bottom: 12, zIndex: 5, display: 'flex', gap: 8 }}>
         <button type="button" style={btn} onClick={() => cards.current?.deal()}>
           Deal
@@ -126,7 +131,7 @@ export default function PlayingCardsScene({ suit = 'clubs', layout = 'rows', bac
         </button>
       </div>
       <InfoHint>
-        A full suit, ace to king, on the Color Cards card: the same rounded coated stock, with traditional pips, corner indices, an ornamented ace and double-headed court cards · Deal to throw them out again · point at a card to lift it, click it to turn it over · pick a suit, a layout and the back colour in the controls
+        A full suit, ace to king, and a joker, on the Color Cards card: the same rounded coated stock, with traditional pips, corner indices, an ornamented ace and double-headed court cards · Deal to throw them out again · press and drag any card to pick it up and move it (it lands on top), click a card to turn it over · pick a suit, a layout and the back colour in the controls
       </InfoHint>
     </div>
   )
