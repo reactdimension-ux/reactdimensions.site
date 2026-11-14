@@ -185,7 +185,7 @@ export default function CricketBall({ ball = 'red', wear = 0.35, sound = false, 
   const toss = () => {
     const st = s.current
     const axis = new THREE.Vector3(0, 1, 0).applyQuaternion(st.q) // seam normal
-    st.v.set((Math.random() - 0.5) * 0.15, 1.7 + Math.random() * 0.2, (Math.random() - 0.5) * 0.1)
+    st.v.set((Math.random() - 0.5) * 0.1, 1.15 + Math.random() * 0.15, (Math.random() - 0.5) * 0.1)
     st.w.copy(axis).multiplyScalar(-(28 + Math.random() * 10))
     st.w.x += (Math.random() - 0.5) * 3
   }
@@ -265,7 +265,7 @@ export default function CricketBall({ ball = 'red', wear = 0.35, sound = false, 
     group.current.quaternion.copy(st.q)
     // the camera keeps half an eye on it
     if (follow && controls) {
-      controls.target.lerp(tmp.u.set(st.p.x, R + (st.p.y - R) * 0.55, st.p.z), 1 - Math.exp(-4 * dt))
+      controls.target.lerp(tmp.u.set(st.p.x, R + (st.p.y - R) * 0.85, st.p.z), 1 - Math.exp(-9 * dt))
       controls.update()
     }
   })

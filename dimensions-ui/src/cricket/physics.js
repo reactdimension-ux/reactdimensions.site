@@ -19,7 +19,7 @@ import * as THREE from 'three'
 export const G = 9.81
 
 // ---- dimensions (Laws of Cricket, senior) ----
-export const STUMP = { h: 0.711, r: 0.0175, spike: 0.17, m: 0.55 }
+export const STUMP = { h: 0.711, r: 0.0175, spike: 0.09, m: 0.55 }
 export const STUMP_X = [-0.0968, 0, 0.0968] // centres: 22.86 cm across the outer edges
 export const BAIL = { len: 0.1111, r: 0.0095, spigot: 0.0045, m: 0.008 }
 export const BALL = { r: 0.0361, m: 0.16 }

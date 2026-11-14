@@ -34,7 +34,7 @@ the real object does.
 19. Projector beam: the word projected through dusty air, pulled in and out of focus, with a keystone tilt
 20. Light painting: a glowing point traces the letters in the dark and leaves a fading long-exposure trail
 21. Anamorphic: floating fragments that only line up into the word from one viewing angle as you orbit
-22. Laser engraving: a beam scans the text into wood line by line, with sparks, a scorch halo and a wisp of smoke
+22. ~~Laser engraving: a beam scans the text into wood line by line, with sparks, a scorch halo and a wisp of smoke~~ **(discontinued)**
 23. Glow in the dark: shine the pointer on the text to charge it, then watch it fade the way phosphor does
 24. Prism: white text passes through a prism and fans out into its spectrum, recombining when you move it away
 25. Moiré: two fine line gratings slide over each other and the word appears in the interference bands
@@ -43,7 +43,7 @@ the real object does.
 
 26. Flip-dot sign: a bus-destination board of magnetic discs that flip black to yellow with a clatter
 27. Nixie tubes: stacked wire digits glowing orange behind a mesh inside glass, with the unlit ones faintly visible
-28. Label maker: an embossing tape that clicks out one raised white letter at a time and feeds forward
+28. ~~Label maker: an embossing tape that clicks out one raised white letter at a time and feeds forward~~ **(discontinued)**
 29. Rubber stamp: thumps down slightly crooked, inks unevenly, and fades over repeated stamps until re-inked
 30. Stencil and spray: paint builds up through a stencil with soft overspray at the edges and the odd drip
 31. Receipt printer: thermal paper feeds out line by line with a slight curl, and tears off at the serrated edge
@@ -59,7 +59,7 @@ the real object does.
 38. Knitting: the word appears row by row in knitted stitches, like a pattern in a jumper
 39. Bricks: the letters are built from toy bricks that snap on from the bottom up
 40. Origami: a flat sheet folds itself, crease by crease, into each letter
-41. Flipbook: a stack of pages riffles past and the word animates across them
+41. ~~Flipbook: a stack of pages riffles past and the word animates across them~~ **(discontinued)**
 42. Ransom note: every letter is a different clipping that slides in, slightly rotated, and gets taped down
 43. Scratch card: the text is hidden under silver foil that you scratch away, with flakes falling
 44. Fridge magnets: word tiles you can drag about that snap gently into rows and knock each other aside
@@ -80,7 +80,7 @@ the real object does.
 
 The quickest wins reuse parts the library already has: the flip-dot sign and
 Nixie tubes build on Split-Flap and Seven Segment; the rubber stamp and label
-maker on Letterpress and Emboss Plate; dominoes and fridge magnets on the
+maker (since discontinued) on Letterpress and Emboss Plate; dominoes and fridge magnets on the
 rigid-body solver in Tumble Text; the pendulum wave on the swing in Unfold
 Text. The particle ideas (sand, iron filings, murmuration, fireflies) share one
 canvas particle loop, so building one makes the next three cheap. Smoke,

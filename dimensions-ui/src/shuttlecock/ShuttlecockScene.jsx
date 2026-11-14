@@ -25,7 +25,7 @@ function Floor({ floor }) {
     const g = col.getContext('2d')
     const b = bm.getContext('2d')
     const court = floor === 'court'
-    g.fillStyle = court ? '#2c6650' : '#d2d1cd'
+    g.fillStyle = court ? '#16463a' : '#c9c8c4'
     g.fillRect(0, 0, S, S)
     b.fillStyle = '#808080'
     b.fillRect(0, 0, S, S)
