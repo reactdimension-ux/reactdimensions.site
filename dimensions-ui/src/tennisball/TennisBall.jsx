@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react'
+import { forwardRef, useEffect, useMemo, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import { createBall, stepBall } from './physics.js'
@@ -59,8 +59,8 @@ function seamPoints(n) {
 
 // the sphere, with each vertex's distance to the seam (m) baked in, and the
 // middle of a felt panel for the print
-function buildBall() {
-  const geo = new THREE.SphereGeometry(R, 192, 128)
+function buildBall(wSeg = 192, hSeg = 128) {
+  const geo = new THREE.SphereGeometry(R, wSeg, hSeg)
   const seam = seamPoints(720)
   const p = geo.attributes.position
   const dist = new Float32Array(p.count)
@@ -424,3 +424,47 @@ export default function TennisBall({
     </group>
   )
 }
+
+// ---- for other scenes ----
+// The same ball, felt, seam and print, with no physics or pointer handling,
+// to drop into another scene (a bowling machine's hopper, a court). Every
+// copy shares one geometry and one set of materials per felt colour, so a
+// dozen of them cost little more than one. `shells` thins the fuzz for
+// small-on-screen copies (every 2nd shell at 10, every one at 20), and
+// `segments` sets the sphere's detail (the hero ball uses 192).
+export const TENNIS_BALL = { r: R, m: M, k: 0.6 }
+const meshCache = new Map()
+function sharedTennis(felt, segments) {
+  const key = felt + ':' + segments
+  let c = meshCache.get(key)
+  if (c) return c
+  const model = buildBall(segments, Math.round(segments * 0.67))
+  const print = printTexture()
+  const shared = {
+    uSeamW: { value: SEAM_W },
+    uFreq: { value: 105 },
+    uSeamColor: { value: new THREE.Color('#f1f1ea') },
+    uInk: { value: new THREE.Color('#161616') },
+    uBrand: { value: 1 },
+    uPrint: { value: print },
+    uPC: { value: model.centre },
+    uPE1: { value: model.e1 },
+    uPE2: { value: model.e2 },
+  }
+  const core = patch(new THREE.MeshPhysicalMaterial({ color: felt, roughness: 1, sheen: 1, sheenRoughness: 0.55, sheenColor: new THREE.Color('#fbffd0') }), { ...shared, uLayer: { value: 0 } }, false)
+  const shells = Array.from({ length: SHELLS }, (_, i) => patch(new THREE.MeshStandardMaterial({ color: felt, roughness: 1 }), { ...shared, uLayer: { value: (i + 1) / SHELLS } }, true))
+  c = { geo: model.geo, core, shells }
+  meshCache.set(key, c)
+  return c
+}
+export const TennisBallMesh = forwardRef(function TennisBallMesh({ felt = '#d6ea2a', shells = 10, segments = 64, castShadow = true, ...props }, ref) {
+  const c = useMemo(() => sharedTennis(felt, segments), [felt, segments])
+  const every = Math.max(1, Math.round(SHELLS / Math.max(1, shells)))
+  return (
+    <group ref={ref} {...props}>
+      <mesh geometry={c.geo} material={c.core} castShadow={castShadow} receiveShadow />
+      {c.shells.map((m, i) => ((i + 1) % every === 0 ? <mesh key={i} geometry={c.geo} material={m} scale={1 + (NAP / R) * ((i + 1) / SHELLS)} /> : null))}
+    </group>
+  )
+})
+

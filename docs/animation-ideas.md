@@ -1,15 +1,15 @@
-# 50 interaction ideas
+# 50 animation ideas
 
-Interaction patterns for the library's components, pages and 3D scenes,
-grouped by the kind of input they use. Existing pieces already cover click to
-open or fold, drag to orbit, drag to spin, double-tap to bounce and keyboard
-driving; these build out from there. Each should respect reduced-motion
-settings and work with touch as well as a mouse.
+Animations for the library's components, pages and 3D scenes that respond to
+the user, grouped by the kind of input that drives them. Existing pieces
+already cover click to open or fold, drag to orbit, drag to spin, double-tap to
+bounce and keyboard driving; these build out from there. Each should respect
+reduced-motion settings and work with touch as well as a mouse.
 
 ## Status
 
-Ideas 1 to 32 are built; each is a component in the library (slug in
-brackets). 33 to 50 are still open.
+All 50 ideas are built; each is a component in the library (slug in
+brackets).
 
 | Built | Idea | Component |
 | --- | --- | --- |
@@ -45,6 +45,24 @@ brackets). 33 to 50 are still open.
 | ✓ | 30. Scroll-to-explode | Scroll Explode (`scroll-explode`) |
 | ✓ | 31. Sticky product shot that changes colour | Sticky Color (`sticky-color`) |
 | ✓ | 32. Reading progress as a 3D ring | Reading Ring (`reading-ring`) |
+| ✓ | 33. Arrow keys nudge the selected 3D part | Nudge Part (`nudge-part`) |
+| ✓ | 34. Type-to-search | Type Search (`type-search`) |
+| ✓ | 35. Keyboard-driven carousel | Key Carousel (`key-carousel`) |
+| ✓ | 36. Hotkeys shown on hover | Hotkey Hints (`hotkey-hints`) |
+| ✓ | 37. Spacebar press-and-hold to pause all motion | Space Pause (`space-pause`) |
+| ✓ | 38. Shift-drag constrains movement to one axis | Axis Lock Drag (`axis-lock-drag`) |
+| ✓ | 39. Pinch to zoom and twist to rotate | Pinch Twist (`pinch-twist`) |
+| ✓ | 40. Device tilt (gyroscope) to orbit | Tilt Orbit (`tilt-orbit`) |
+| ✓ | 41. Shake to reset | Shake Reset (`shake-reset`) |
+| ✓ | 42. Swipe up on a card to dismiss it with a throw | Swipe Throw (`swipe-throw`) |
+| ✓ | 43. Two-finger scroll to scrub a timeline | Trackpad Scrub (`trackpad-scrub`) |
+| ✓ | 44. Camera-based head tracking for parallax | Head Parallax (`head-parallax`) |
+| ✓ | 45. Idle attract loop | Idle Attract (`idle-attract`) |
+| ✓ | 46. Undo and redo with a history strip | Undo History (`undo-history`) |
+| ✓ | 47. Autosave of control values to the URL | URL State (`url-state`) |
+| ✓ | 48. Comparison slider between two presets | Compare Slider (`compare-slider`) |
+| ✓ | 49. Record and replay a sequence | Record Replay (`record-replay`) |
+| ✓ | 50. Presence: cursors of other viewers | Presence Cursors (`presence-cursors`) |
 
 ## Pointer and hover
 

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { forwardRef, useEffect, useMemo, useRef, useState } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useCursor } from '@react-three/drei'
 import * as THREE from 'three'
@@ -293,3 +293,48 @@ export default function CricketBall({ ball = 'red', wear = 0.35, sound = false, 
     </group>
   )
 }
+
+// ---- for other scenes ----
+// The same ball, leather, seam and stitches, with no physics or pointer
+// handling, to drop into another scene (a bowling machine's hopper, a
+// wicket). Copies share their maps, seam and stitch geometry per colour.
+export const CRICKET_BALL = { r: R, m: M, k: 0.4 }
+const meshCache = new Map()
+function sharedCricket(ball, wear) {
+  const key = ball + ':' + wear
+  let c = meshCache.get(key)
+  if (c) return c
+  const color = BALL_COLORS[ball] || BALL_COLORS.red
+  const thread = THREAD[ball] || THREAD.red
+  const maps = leatherMaps(color, thread, wear)
+  const proto = seamStitches(thread)
+  c = {
+    leather: new THREE.MeshPhysicalMaterial({ map: maps.map, roughnessMap: maps.rmap, roughness: 1, clearcoat: 0.55 - wear * 0.35, clearcoatRoughnessMap: maps.rmap, clearcoatRoughness: 1 }),
+    seamMat: new THREE.MeshPhysicalMaterial({ color, roughness: 0.5, clearcoat: 0.6 }),
+    sphere: new THREE.SphereGeometry(R, 48, 32),
+    seam: new THREE.TorusGeometry(R * 0.996, 0.0016, 10, 160),
+    proto,
+  }
+  meshCache.set(key, c)
+  return c
+}
+export const CricketBallMesh = forwardRef(function CricketBallMesh({ ball = 'red', wear = 0.35, stitches = true, castShadow = true, ...props }, ref) {
+  const c = useMemo(() => sharedCricket(ball, wear), [ball, wear])
+  // each copy needs its own instanced mesh object, sharing the stitch data
+  const st = useMemo(() => {
+    if (!stitches) return null
+    const m = new THREE.InstancedMesh(c.proto.geometry, c.proto.material, c.proto.count)
+    m.instanceMatrix.copy(c.proto.instanceMatrix)
+    m.castShadow = castShadow
+    return m
+  }, [c, stitches, castShadow])
+  useEffect(() => () => st?.dispose(), [st])
+  return (
+    <group ref={ref} {...props}>
+      <mesh geometry={c.sphere} material={c.leather} castShadow={castShadow} receiveShadow />
+      <mesh geometry={c.seam} material={c.seamMat} rotation-x={Math.PI / 2} castShadow={castShadow} />
+      {st && <primitive object={st} />}
+    </group>
+  )
+})
+
