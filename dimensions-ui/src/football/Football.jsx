@@ -19,6 +19,38 @@ export const R = 0.11 // metres
 const M = 0.43 // kg
 const PHI = (1 + Math.sqrt(5)) / 2
 
+// the React Dimensions mark (kept inline so the component is self-contained)
+const R_PATH =
+  'M168 320 L172 186 L130 172 C150 100 270 42 370 44 C440 46 472 80 462 120 C452 160 380 194 270 236 ' +
+  'L376 322 L378 342 L242 344 L240 302 L228 308 L226 318 Z ' +
+  'M230 198 L233 150 C254 122 300 102 346 104 C384 106 412 116 422 128 C428 136 420 142 404 147 Z'
+
+// the mark as an alpha mask, centred in a square texture
+function logoMask() {
+  const S = 512
+  const c = Object.assign(document.createElement('canvas'), { width: S, height: S })
+  const g = c.getContext('2d')
+  const s = (S * 0.92) / 352
+  g.setTransform(s, 0, 0, s, S / 2 - 298 * s, S / 2 - 193 * s)
+  g.fillStyle = '#fff'
+  g.fill(new Path2D(R_PATH), 'evenodd')
+  const t = new THREE.CanvasTexture(c)
+  t.anisotropy = 8
+  return t
+}
+
+// where the mark is printed: the middle of two opposite white hexagons,
+// each with a tangent frame so the R reads upright
+function decalFrame(dir) {
+  const n = new THREE.Vector3(...dir).normalize()
+  const up = Math.abs(n.y) > 0.95 ? new THREE.Vector3(0, 0, -1) : new THREE.Vector3(0, 1, 0)
+  const t = new THREE.Vector3().crossVectors(up, n).normalize()
+  const b = new THREE.Vector3().crossVectors(n, t)
+  return { n, t, b }
+}
+const LOGO_FACES = [decalFrame([-1, 1, 1]), decalFrame([1, -1, -1])]
+const LOGO_SIZE = 0.5 // texture width on the unit sphere; a hexagon is ~0.72 across
+
 // truncated icosahedron: vertices are the even permutations of
 // (0, ±1, ±3φ), (±1, ±(2+φ), ±2φ), (±φ, ±2, ±(2φ+1))
 function truncatedIcosahedron() {
@@ -124,10 +156,11 @@ function buildBall(colors) {
 
 // a pebbled, slightly dimpled leather grain, worked out in the shader from
 // 3D cellular noise so it has no seams or pole pinching
-function useLeather(material, bump) {
+function useLeather(material, bump, logo) {
   useEffect(() => {
     material.onBeforeCompile = (shader) => {
       shader.uniforms.uBump = { value: bump }
+      Object.assign(shader.uniforms, logo)
       shader.vertexShader = shader.vertexShader
         .replace('#include <common>', '#include <common>\nattribute float aSeam;\nvarying vec3 vObj;\nvarying float vSeam;')
         .replace('#include <begin_vertex>', '#include <begin_vertex>\nvObj = position;\nvSeam = aSeam;')
@@ -138,9 +171,37 @@ function useLeather(material, bump) {
 uniform float uBump;
 varying vec3 vObj;
 varying float vSeam;
+uniform sampler2D uLogo;
+uniform float uLogoOn;
+uniform float uLogoSize;
+uniform vec3 uInk;
+uniform vec3 uLogoN[2];
+uniform vec3 uLogoT[2];
+uniform vec3 uLogoB[2];
+// how much printed ink covers this point of the ball
+float rdLogo(vec3 q){
+  float a = 0.0;
+  for (int i = 0; i < 2; i++) {
+    if (dot(q, uLogoN[i]) < 0.6) continue;
+    vec2 uv = vec2(dot(q, uLogoT[i]), dot(q, uLogoB[i])) / uLogoSize + 0.5;
+    if (uv.x > 0.0 && uv.x < 1.0 && uv.y > 0.0 && uv.y < 1.0) a = max(a, texture2D(uLogo, uv).a);
+  }
+  return a * uLogoOn * (1.0 - vSeam);
+}
 vec3 rdHash(vec3 p){ p = vec3(dot(p,vec3(127.1,311.7,74.7)), dot(p,vec3(269.5,183.3,246.1)), dot(p,vec3(113.5,271.9,124.6))); return fract(sin(p)*43758.5453); }
 float rdCell(vec3 x){ vec3 i=floor(x); vec3 f=fract(x); float d=8.0; for(int a=-1;a<=1;a++) for(int b=-1;b<=1;b++) for(int c=-1;c<=1;c++){ vec3 g=vec3(float(a),float(b),float(c)); vec3 r=g+rdHash(i+g)-f; d=min(d,dot(r,r)); } return sqrt(d); }
 vec3 rdPerturb(vec3 sp, vec3 sn, vec2 dH, float fd){ vec3 sx=normalize(dFdx(sp)); vec3 sy=normalize(dFdy(sp)); vec3 r1=cross(sy,sn); vec3 r2=cross(sn,sx); float det=dot(sx,r1)*fd; vec3 gr=sign(det)*(dH.x*r1+dH.y*r2); return normalize(abs(det)*sn-gr); }`,
+        )
+        .replace(
+          '#include <color_fragment>',
+          `#include <color_fragment>
+float rdInk = rdLogo(normalize(vObj));
+diffuseColor.rgb = mix(diffuseColor.rgb, uInk, rdInk * 0.94);`,
+        )
+        .replace(
+          '#include <roughnessmap_fragment>',
+          `#include <roughnessmap_fragment>
+roughnessFactor = mix(roughnessFactor, roughnessFactor * 0.7, rdInk);`,
         )
         .replace(
           '#include <normal_fragment_maps>',
@@ -154,10 +215,30 @@ vec3 rdPerturb(vec3 sp, vec3 sn, vec2 dH, float fd){ vec3 sx=normalize(dFdx(sp))
         )
     }
     material.needsUpdate = true
-  }, [material, bump])
+  }, [material, bump, logo])
 }
 
-export default function Football({ panel = '#f3f3f1', patch = '#121214', thread = '#d8d8d4', pressure = 1, kick = 16, curve = 1, gravity = 1, sound = false, follow = true, resetKey = 0, kickKey = 0, onKick }) {
+// uniforms for the printed mark; colour and on/off change without a recompile
+function useLogoUniforms(on, ink) {
+  const u = useMemo(
+    () => ({
+      uLogo: { value: logoMask() },
+      uLogoOn: { value: 1 },
+      uLogoSize: { value: LOGO_SIZE },
+      uInk: { value: new THREE.Color() },
+      uLogoN: { value: LOGO_FACES.map((f) => f.n) },
+      uLogoT: { value: LOGO_FACES.map((f) => f.t) },
+      uLogoB: { value: LOGO_FACES.map((f) => f.b) },
+    }),
+    [],
+  )
+  useEffect(() => () => u.uLogo.value.dispose(), [u])
+  u.uLogoOn.value = on ? 1 : 0
+  u.uInk.value.set(ink)
+  return u
+}
+
+export default function Football({ panel = '#f3f3f1', patch = '#121214', thread = '#d8d8d4', logo = true, ink, pressure = 1, kick = 16, curve = 1, gravity = 1, sound = false, follow = true, resetKey = 0, kickKey = 0, onKick }) {
   const { camera, controls, gl } = useThree()
   const model = useMemo(() => buildBall({ panel, patch }), [panel, patch])
   const ball = useMemo(() => createBall({ r: R, m: M, y: 0.9 }), [])
@@ -166,7 +247,8 @@ export default function Football({ panel = '#f3f3f1', patch = '#121214', thread 
   const stitchMesh = useRef()
   const audio = useRef(null)
   const material = useMemo(() => new THREE.MeshPhysicalMaterial({ vertexColors: true, roughness: 0.52, clearcoat: 0.55, clearcoatRoughness: 0.32, sheen: 0.2, sheenRoughness: 0.6 }), [])
-  useLeather(material, 0.0009)
+  const logoU = useLogoUniforms(logo, ink || patch)
+  useLeather(material, 0.0009, logoU)
 
   // place the stitches
   useEffect(() => {
