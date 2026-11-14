@@ -32,7 +32,7 @@ const FLARE = 0.0007 // the tips flare out slightly
 const H = Math.sqrt(L * L - (RT - RB) * (RT - RB))
 const Y0 = 0.0246 // cork top
 const RC = 0.013 // cork radius
-const VANE0 = 0.38 // where the vane starts, as a fraction of the feather
+const VANE0 = 0.36 // where the vane starts, as a fraction of the feather
 const S0 = 0.33 * L
 const S1 = L + 0.0008
 const XL = 0.0048 // vane grid, either side of the quill
@@ -46,7 +46,7 @@ const AH = 2048
 const TILES = 8
 const THETA = Array.from({ length: N }, (_, i) => (i / N) * Math.PI * 2)
 const TILE_OF = [0, 3, 6, 1, 4, 7, 2, 5, 3, 0, 5, 2, 7, 4, 1, 6]
-const RINGS = [0.215, 0.315] // the two rows of binding thread
+const RINGS = [0.245, 0.345] // the two rows of binding thread
 
 const M_CORK = 0.0032
 const M_FEATHERS = 0.0019
@@ -54,8 +54,8 @@ const M = M_CORK + M_FEATHERS
 const G = 9.81
 const VT = 6.8 // terminal speed
 const KD = G / (VT * VT)
-const KA = 22 // weathervane stiffness
-const CA = 5 // weathervane damping
+const KA = 48 // weathervane stiffness
+const CA = 7 // weathervane damping
 const SPIN = 7 // axial spin per m/s of airspeed
 
 function rng(seed) {
@@ -95,9 +95,9 @@ function inside(x, s, P) {
   const u = (s / L - VANE0) / (P.len - VANE0)
   if (u < 0) return false
   if (x >= 0) {
-    if (x > WR * P.w * (1 - Math.pow(Math.max(0, 1 - u), 1.8))) return false
-  } else if (-x > WL * (1 - Math.pow(Math.max(0, 1 - u), 2.4))) return false
-  return s < L * P.len - (x >= 0 ? 0.95 * x : 1.3 * -x)
+    if (x > WR * P.w * (1 - Math.pow(Math.max(0, 1 - u), 2.6))) return false
+  } else if (-x > WL * (1 - Math.pow(Math.max(0, 1 - u), 3))) return false
+  return s < L * P.len - (x >= 0 ? 0.5 * x + 9 * x * x : 1.1 * -x)
 }
 
 // the vanes: colour, cut-out and bump maps for eight feathers in one atlas,
@@ -131,9 +131,9 @@ function vaneAtlas(wear, tiles) {
     g.fillRect(ox, oy, TW, TH)
     // splits in the vane, more with wear
     const splits = []
-    const ns = 1 + Math.floor(r() * (1.5 + wear * 6))
+    const ns = Math.floor(r() * (1.6 + wear * 6))
     for (let i = 0; i < ns; i++) {
-      splits.push({ side: r() < 0.75 ? 1 : -1, s: L * (0.5 + r() * 0.45), gap: 0.0001 + r() * 0.00022 * (1 + wear), open: 0.05 + r() * 0.12 * (0.5 + wear) })
+      splits.push({ side: r() < 0.75 ? 1 : -1, s: L * (0.5 + r() * 0.42), gap: 0.00006 + r() * 0.00014 * (1 + wear), open: 0.03 + r() * 0.08 * (0.5 + wear) })
     }
     for (const side of [1, -1]) {
       const ang0 = side > 0 ? 0.9 : 0.75
@@ -153,7 +153,7 @@ function vaneAtlas(wear, tiles) {
         let x = 0
         let ss = s
         let dist = 0
-        const st = 0.0003
+        const st = 0.00015
         while (dist < 0.022) {
           const aa = ang - 8 * dist
           const nx = x + side * Math.sin(aa) * st
@@ -164,8 +164,8 @@ function vaneAtlas(wear, tiles) {
           dist += st
           pts.push([x, ss])
         }
-        // frayed ends: some barbs run past the cut, some stop short
-        const extra = (r() - 0.35) * 0.0008 - (r() < wear * 0.3 ? r() * 0.004 * wear : 0)
+        // die-cut ends: clean, with only a little unevenness until wear frays them
+        const extra = (r() - 0.5) * 0.00025 + (r() < wear * 0.2 ? (r() - 0.6) * 0.004 * wear : 0)
         const more = Math.round(extra / st)
         if (more > 0) {
           for (let i = 0; i < more; i++) {
@@ -327,11 +327,11 @@ function threadGeometries() {
       const pts = []
       for (let k = 0; k < 256; k++) {
         const phi = (k / 256) * Math.PI * 2
-        const r = radiusAt(f) + (ph ? -1 : 1) * 0.0009 * Math.cos(8 * phi)
-        const y = Y0 + H * f + (ph ? 0.00034 : -0.00034) + 0.00012 * Math.sin(16 * phi + ph * Math.PI)
+        const r = radiusAt(f) + (ph ? -1 : 1) * 0.00085 * Math.cos(8 * phi)
+        const y = Y0 + H * f + (ph ? 0.00028 : -0.00028) + 0.0001 * Math.sin(16 * phi + ph * Math.PI)
         pts.push(new THREE.Vector3(r * Math.cos(phi), y, r * Math.sin(phi)))
       }
-      out.push(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts, true), 640, 0.00028, 6, true))
+      out.push(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts, true), 640, 0.0004, 7, true))
     }
   }
   return out
@@ -443,9 +443,9 @@ function corkTop() {
   const c = Object.assign(document.createElement('canvas'), { width: S, height: S })
   const g = c.getContext('2d')
   const r = rng(11)
-  g.fillStyle = '#bf9461'
+  g.fillStyle = '#a9835a'
   g.fillRect(0, 0, S, S)
-  const tones = ['#a87a45', '#d3ab72', '#8d6236', '#c9a06a', '#b5864f', '#e0bf8a']
+  const tones = ['#94704a', '#bf9a6e', '#7d5a38', '#b08b62', '#9e7a52', '#c8a67c']
   for (let i = 0; i < 5200; i++) {
     g.fillStyle = tones[Math.floor(r() * tones.length)]
     g.globalAlpha = 0.5 + r() * 0.5
@@ -629,8 +629,8 @@ export default function Shuttlecock({ band = '#0e4f38', wear = 0.15, sound = fal
   const vane = useMemo(() => {
     const maps = vaneAtlas(wear, tiles)
     const mat = translucent(
-      new THREE.MeshPhysicalMaterial({ ...maps, bumpScale: 0.35, alphaTest: 0.45, alphaToCoverage: true, side: THREE.DoubleSide, roughness: 0.62, sheen: 0.8, sheenColor: new THREE.Color('#ffffff'), sheenRoughness: 0.45 }),
-      0.55,
+      new THREE.MeshPhysicalMaterial({ ...maps, color: '#f2efe8', bumpScale: 0.7, alphaTest: 0.45, alphaToCoverage: true, side: THREE.DoubleSide, roughness: 0.55, sheen: 0.6, sheenColor: new THREE.Color('#ffffff'), sheenRoughness: 0.4 }),
+      0.32,
     )
     return { geo: vaneGeometry(), mat, maps }
   }, [wear, tiles])
@@ -778,7 +778,7 @@ export default function Shuttlecock({ band = '#0e4f38', wear = 0.15, sound = fal
     if (c.y < RC) {
       const k = tmp.contacts[nc++]
       k.r.set(c.x, c.y - RC, c.z).sub(st.p)
-      k.e = 0.42
+      k.e = 0.3
       k.mu = 0.55
       pen = Math.max(pen, RC - c.y)
     }
