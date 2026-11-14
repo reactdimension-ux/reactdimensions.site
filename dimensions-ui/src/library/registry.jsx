@@ -230,6 +230,8 @@ import TTBatModel from '../lib/TTBatModel.jsx'
 import DartModel from '../lib/DartModel.jsx'
 import CricketBallModel from '../lib/CricketBallModel.jsx'
 import CricketPitchModel from '../lib/CricketPitchModel.jsx'
+import TennisCourtModel from '../lib/TennisCourtModel.jsx'
+import BadmintonCourtModel from '../lib/BadmintonCourtModel.jsx'
 import ShuttlecockModel from '../lib/ShuttlecockModel.jsx'
 import BadmintonRacketModel from '../lib/BadmintonRacketModel.jsx'
 import TennisRacketModel from '../lib/TennisRacketModel.jsx'
@@ -260,7 +262,7 @@ import FireEmoji from '../lib/FireEmoji.jsx'
 import PleadingEmoji from '../lib/PleadingEmoji.jsx'
 
 // Raw source of every component, for the Code tab.
-const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../pitch/*.{js,jsx}','../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
+const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}','../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
   query: '?raw',
   import: 'default',
   eager: true,
@@ -3445,6 +3447,79 @@ const ALL_COMPONENTS = [
     preview: (p) => <CricketPitchModel {...p} height="100%" />,
     fill: true,
     files: ['CricketPitchModel.jsx', 'pitch/PitchScene.jsx', 'pitch/Pitch.jsx', 'pitch/textures.js'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
+  },
+  {
+    slug: 'tennis-court',
+    name: 'Tennis Court',
+    category: '3D & Materials',
+    style: 'Sports & fitness',
+    isNew: true,
+    description: 'A full-size hard court with sand-grit acrylic, razor-sharp lines and a real mesh net you can tighten with its crank. Switch between drawing views or zoom down to the paint.',
+    controls: [
+      { name: 'view', type: 'select', options: ['Plan', 'Front', 'Rear', 'Left', 'Right', 'NW', 'NE', 'SW', 'SE', 'Net', 'Post', 'Line', 'Corner'], default: 'NW' },
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Classic', values: { courtColor: '#21406f', surroundColor: '#3a6a3e', lineColor: '#f4f4f0', postColor: '#1f4a30' } },
+          { name: 'Open', values: { courtColor: '#2e5f9a', surroundColor: '#3f6e4f', lineColor: '#f6f6f2', postColor: '#1d3f2c' } },
+          { name: 'Melbourne', values: { courtColor: '#3a7cc2', surroundColor: '#2b4f86', lineColor: '#f6f6f2', postColor: '#1b2c4a' } },
+          { name: 'Club Green', values: { courtColor: '#3f6b4c', surroundColor: '#8a4a3a', lineColor: '#f2f1ea', postColor: '#21402c' } },
+        ],
+      },
+      { name: 'courtColor', type: 'color', default: '#21406f' },
+      { name: 'surroundColor', type: 'color', default: '#3a6a3e' },
+      { name: 'lineColor', type: 'color', default: '#f4f4f0' },
+      { name: 'postColor', type: 'color', default: '#1f4a30' },
+      { name: 'wear', type: 'range', min: 0, max: 1, step: 0.05, default: 0.35 },
+      { name: 'sun', type: 'range', min: 8, max: 80, step: 1, default: 40, unit: '°' },
+      { name: 'setting', type: 'select', options: ['studio', 'outdoor'], default: 'studio' },
+      { name: 'dimensions', type: 'toggle', default: true },
+      { name: 'ambientOcclusion', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <TennisCourtModel {...p} height="100%" />,
+    fill: true,
+    files: ['TennisCourtModel.jsx', 'tenniscourt/CourtScene.jsx', 'tenniscourt/Court.jsx', 'tenniscourt/textures.js'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
+  },
+  {
+    slug: 'badminton-court',
+    name: 'Badminton Court',
+    category: '3D & Materials',
+    style: 'Everyday objects',
+    isNew: true,
+    description: 'A full-size BWF court: a PVC mat with exact lines on a glossy maple floor, the net on weighted posts, shuttles on court. Switch between drawing views or zoom down to the mat.',
+    controls: [
+      { name: 'view', type: 'select', options: ['Plan', 'Front', 'Rear', 'Left', 'Right', 'Front-L', 'Front-R', 'Rear-L', 'Rear-R', 'Net', 'Junction', 'Corner', 'Surface'], default: 'Front-L' },
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Tournament', values: { matColor: '#2c7a4b', lineColor: '#f3f3ee', woodColor: '#d9a86c', postColorA: '#b3181d', postColorB: '#1c3f9c' } },
+          { name: 'Arena Blue', values: { matColor: '#1f5a8c', lineColor: '#f3f3ee', woodColor: '#c99a62', postColorA: '#1c3f9c', postColorB: '#1c3f9c' } },
+          { name: 'Club', values: { matColor: '#3d7d5a', lineColor: '#f2d54a', woodColor: '#e0b680', postColorA: '#2a6a3a', postColorB: '#2a6a3a' } },
+          { name: 'Burgundy', values: { matColor: '#7a2630', lineColor: '#f3f3ee', woodColor: '#b98451', postColorA: '#1c1c1c', postColorB: '#1c1c1c' } },
+        ],
+      },
+      { name: 'matColor', type: 'color', default: '#2c7a4b' },
+      { name: 'lineColor', type: 'color', default: '#f3f3ee' },
+      { name: 'woodColor', type: 'color', default: '#d9a86c' },
+      { name: 'postColorA', type: 'color', default: '#b3181d' },
+      { name: 'postColorB', type: 'color', default: '#1c3f9c' },
+      { name: 'netColor', type: 'color', default: '#2a1915' },
+      { name: 'wear', type: 'range', min: 0, max: 1, step: 0.05, default: 0.3 },
+      { name: 'lights', type: 'range', min: 0.4, max: 1.6, step: 0.05, default: 1 },
+      { name: 'backdrop', type: 'select', options: ['dark', 'light'], default: 'dark' },
+      { name: 'shuttles', type: 'toggle', default: true },
+      { name: 'dimensions', type: 'toggle', default: true },
+      { name: 'ambientOcclusion', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <BadmintonCourtModel {...p} height="100%" />,
+    fill: true,
+    files: ['BadmintonCourtModel.jsx', 'badmintoncourt/CourtScene.jsx', 'badmintoncourt/Court.jsx', 'badmintoncourt/textures.js'],
     deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
   },
   {
