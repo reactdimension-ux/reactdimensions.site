@@ -212,6 +212,7 @@ import PistolModel from '../lib/PistolModel.jsx'
 import ColorCardsModel from '../lib/ColorCardsModel.jsx'
 import PenModel from '../lib/PenModel.jsx'
 import LorryModel from '../lib/LorryModel.jsx'
+import AirlinerModel from '../lib/AirlinerModel.jsx'
 import ClockModel from '../lib/ClockModel.jsx'
 import LampModel from '../lib/LampModel.jsx'
 import TapeModel from '../lib/TapeModel.jsx'
@@ -268,7 +269,7 @@ import FireEmoji from '../lib/FireEmoji.jsx'
 import PleadingEmoji from '../lib/PleadingEmoji.jsx'
 
 // Raw source of every component, for the Code tab.
-const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}','../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}', '../playingcards/*.{js,jsx}', '../carrom/*.{js,jsx}', '../roulette/*.{js,jsx}','../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
+const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}','../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}', '../playingcards/*.{js,jsx}', '../carrom/*.{js,jsx}', '../roulette/*.{js,jsx}','../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../airliner/*.{js,jsx}', '../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
   query: '?raw',
   import: 'default',
   eager: true,
@@ -3830,6 +3831,45 @@ const ALL_COMPONENTS = [
     preview: (p, set) => <LorryModel {...p} onChange={set} height="100%" />,
     fill: true,
     files: ['LorryModel.jsx', 'lorry/LorryScene.jsx', 'lorry/Lorry.jsx', 'lorry/textures.js'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'airliner',
+    name: 'Airliner',
+    category: '3D & Materials',
+    style: 'Vehicles',
+    isNew: true,
+    description: 'A twin-jet airliner at real size, built from its own dimensions. Set the flaps, raise the gear, start the engines, open the door, and fly the camera round it.',
+    controls: [
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Royal blue', values: { bodyColor: '#f2f3f4', accentColor: '#1d3f9d', stripeColor: '#b3b9c2' } },
+          { name: 'Crimson', values: { bodyColor: '#f4f2ef', accentColor: '#b01f2a', stripeColor: '#c9c2b6' } },
+          { name: 'Forest', values: { bodyColor: '#f1f3ef', accentColor: '#14553a', stripeColor: '#c6b27a' } },
+          { name: 'Night', values: { bodyColor: '#eceef1', accentColor: '#14182a', stripeColor: '#c9a24a' } },
+          { name: 'Teal', values: { bodyColor: '#f3f5f5', accentColor: '#0f6f78', stripeColor: '#f0a53a' } },
+          { name: 'Graphite', values: { bodyColor: '#3a3e44', accentColor: '#16181b', stripeColor: '#e0452c' } },
+        ],
+      },
+      { name: 'view', type: 'select', options: ['three-quarter', 'front', 'rear', 'side', 'side-right', 'top', 'underside', 'rear-quarter', 'engine', 'flight-deck', 'gear', 'sharklet', 'tail', 'door'], default: 'three-quarter' },
+      { name: 'flaps', type: 'range', min: 0, max: 1, step: 0.05, default: 0 },
+      { name: 'gear', type: 'toggle', default: true },
+      { name: 'engines', type: 'toggle', default: false },
+      { name: 'door', type: 'toggle', default: false },
+      { name: 'lights', type: 'toggle', default: true },
+      { name: 'bodyColor', type: 'color', default: '#f2f3f4' },
+      { name: 'accentColor', type: 'color', default: '#1d3f9d' },
+      { name: 'stripeColor', type: 'color', default: '#b3b9c2' },
+      { name: 'registration', type: 'text', default: 'RD-AIR', maxLength: 8 },
+      { name: 'airline', type: 'text', default: '', maxLength: 18 },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    // `set` lets the scene update the controls (clicking works the door, the engines and the gear).
+    preview: (p, set) => <AirlinerModel {...p} onChange={set} height="100%" />,
+    fill: true,
+    files: ['AirlinerModel.jsx', 'airliner/AirlinerScene.jsx', 'airliner/Airliner.jsx', 'airliner/geometry.js', 'airliner/textures.js'],
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
