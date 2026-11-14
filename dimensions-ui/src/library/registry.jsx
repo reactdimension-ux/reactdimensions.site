@@ -3589,9 +3589,9 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Everyday objects',
     isNew: true,
-    description: 'A full suit, ace to king, dealt onto green baize: traditional pips and indices, an ornamented ace and double-headed court cards on the Color Cards card.',
+    description: 'A full suit, ace to king, and a joker, dealt onto green baize. Pick up any card, move it and turn it over: traditional pips, an ornamented ace and double-headed court cards.',
     controls: [
-      { name: 'view', type: 'select', options: ['Top', 'Table', 'Low', 'Ace', 'Court'], default: 'Top' },
+      { name: 'view', type: 'select', options: ['Top', 'Table', 'Low', 'Ace', 'Court', 'Joker'], default: 'Top' },
       { name: 'suit', type: 'select', options: ['clubs', 'spades', 'hearts', 'diamonds'], default: 'clubs' },
       { name: 'layout', type: 'select', options: ['rows', 'fan'], default: 'rows' },
       { name: 'backColor', type: 'color', default: '#a3202a' },
