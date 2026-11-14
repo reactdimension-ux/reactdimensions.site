@@ -213,6 +213,7 @@ import ColorCardsModel from '../lib/ColorCardsModel.jsx'
 import PenModel from '../lib/PenModel.jsx'
 import LorryModel from '../lib/LorryModel.jsx'
 import AirlinerModel from '../lib/AirlinerModel.jsx'
+import SuvModel from '../lib/SuvModel.jsx'
 import ClockModel from '../lib/ClockModel.jsx'
 import LampModel from '../lib/LampModel.jsx'
 import TapeModel from '../lib/TapeModel.jsx'
@@ -273,7 +274,7 @@ import FireEmoji from '../lib/FireEmoji.jsx'
 import PleadingEmoji from '../lib/PleadingEmoji.jsx'
 
 // Raw source of every component, for the Code tab.
-const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}','../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}', '../playingcards/*.{js,jsx}', '../carrom/*.{js,jsx}', '../arrow/*.{js,jsx}', '../archery/*.{js,jsx}', '../pokerchips/*.{js,jsx}', '../spinner/*.{js,jsx}', '../roulette/*.{js,jsx}','../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../airliner/*.{js,jsx}', '../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
+const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}','../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}', '../playingcards/*.{js,jsx}', '../carrom/*.{js,jsx}', '../arrow/*.{js,jsx}', '../archery/*.{js,jsx}', '../pokerchips/*.{js,jsx}', '../spinner/*.{js,jsx}', '../roulette/*.{js,jsx}','../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../airliner/*.{js,jsx}', '../suv/*.{js,jsx}', '../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
   query: '?raw',
   import: 'default',
   eager: true,
@@ -3956,6 +3957,42 @@ const ALL_COMPONENTS = [
     preview: (p, set) => <AirlinerModel {...p} onChange={set} height="100%" />,
     fill: true,
     files: ['AirlinerModel.jsx', 'airliner/AirlinerScene.jsx', 'airliner/Airliner.jsx', 'airliner/geometry.js', 'airliner/textures.js'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'electric-suv',
+    name: 'Electric SUV',
+    category: '3D & Materials',
+    style: 'Vehicles',
+    isNew: true,
+    description: 'A compact electric SUV at real size, of our own design. Its glass, lamps, grille and shut lines are drawn on one skin by the material, so they stay sharp up close. Repaint it, steer it, switch the lights.',
+    controls: [
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Denim blue', values: { paint: '#2b4a85' } },
+          { name: 'Garnet', values: { paint: '#8c1c22' } },
+          { name: 'Graphite', values: { paint: '#3a3d42' } },
+          { name: 'Polar white', values: { paint: '#e9eaec' } },
+          { name: 'Forest', values: { paint: '#21483a' } },
+          { name: 'Sand', values: { paint: '#b7a68b' } },
+        ],
+      },
+      { name: 'view', type: 'select', options: ['three-quarter', 'front', 'rear', 'side', 'side-right', 'top', 'underside', 'rear-quarter', 'wheel', 'headlamp', 'tail-lamp', 'door', 'mirror'], default: 'three-quarter' },
+      { name: 'lights', type: 'toggle', default: true },
+      { name: 'drive', type: 'toggle', default: false },
+      { name: 'speed', type: 'range', min: 0, max: 1, step: 0.05, default: 0.4 },
+      { name: 'steer', type: 'range', min: -1, max: 1, step: 0.05, default: 0 },
+      { name: 'roof', type: 'toggle', default: true },
+      { name: 'paint', type: 'color', default: '#2b4a85' },
+      { name: 'plate', type: 'text', default: 'RD 2026', maxLength: 9 },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    // `set` lets the scene update the controls (clicking the car switches the lights).
+    preview: (p, set) => <SuvModel {...p} onChange={set} height="100%" />,
+    fill: true,
+    files: ['SuvModel.jsx', 'suv/SuvScene.jsx', 'suv/Suv.jsx', 'suv/geometry.js', 'suv/paint.js'],
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
