@@ -24,6 +24,37 @@ const M = 0.62 // kg
 const LOOP_A = 0.74 // the curved seams: half-width of the oval...
 const LOOP_B = 0.97 // ...and half-height, on the unit sphere
 
+// the React Dimensions mark (kept inline so the component is self-contained)
+const R_PATH =
+  'M168 320 L172 186 L130 172 C150 100 270 42 370 44 C440 46 472 80 462 120 C452 160 380 194 270 236 ' +
+  'L376 322 L378 342 L242 344 L240 302 L228 308 L226 318 Z ' +
+  'M230 198 L233 150 C254 122 300 102 346 104 C384 106 412 116 422 128 C428 136 420 142 404 147 Z'
+
+// the mark as an alpha mask, centred in a square texture
+function logoMask() {
+  const S = 512
+  const c = Object.assign(document.createElement('canvas'), { width: S, height: S })
+  const g = c.getContext('2d')
+  const s = (S * 0.92) / 352
+  g.setTransform(s, 0, 0, s, S / 2 - 298 * s, S / 2 - 193 * s)
+  g.fillStyle = '#fff'
+  g.fill(new Path2D(R_PATH), 'evenodd')
+  const t = new THREE.CanvasTexture(c)
+  t.anisotropy = 8
+  return t
+}
+
+// where the mark is printed: on the two upper side panels inside the
+// curved seams, as a maker's logo is, each upright to a viewer facing it
+function decalFrame(dir) {
+  const n = new THREE.Vector3(...dir).normalize()
+  const t = new THREE.Vector3().crossVectors(new THREE.Vector3(0, 1, 0), n).normalize()
+  const b = new THREE.Vector3().crossVectors(n, t)
+  return { n, t, b }
+}
+const LOGO_FACES = [decalFrame([0.9, 0.42, 0]), decalFrame([-0.9, 0.42, 0])]
+const LOGO_SIZE = 0.58 // texture width on the unit sphere (about 7 cm)
+
 // angular-ish distance from a point on the unit sphere to the nearest seam
 function seamDistance(u) {
   const dEq = Math.abs(u.y)
@@ -72,10 +103,11 @@ function buildBall(colors) {
 
 // pebbled rubber: raised round pebbles from 3D cellular noise, none on the
 // smooth rubber channels; the channels are a touch glossier
-function usePebbles(material, bump) {
+function usePebbles(material, bump, logo) {
   useEffect(() => {
     material.onBeforeCompile = (shader) => {
       shader.uniforms.uBump = { value: bump }
+      Object.assign(shader.uniforms, logo)
       shader.vertexShader = shader.vertexShader
         .replace('#include <common>', '#include <common>\nattribute float aSeam;\nvarying vec3 vObj;\nvarying float vSeam;')
         .replace('#include <begin_vertex>', '#include <begin_vertex>\nvObj = position;\nvSeam = aSeam;')
@@ -86,14 +118,38 @@ function usePebbles(material, bump) {
 uniform float uBump;
 varying vec3 vObj;
 varying float vSeam;
+uniform sampler2D uLogo;
+uniform float uLogoOn;
+uniform float uLogoSize;
+uniform vec3 uInk;
+uniform vec3 uLogoN[2];
+uniform vec3 uLogoT[2];
+uniform vec3 uLogoB[2];
+// how much printed ink covers this point of the ball
+float rdLogo(vec3 q){
+  float a = 0.0;
+  for (int i = 0; i < 2; i++) {
+    if (dot(q, uLogoN[i]) < 0.6) continue;
+    vec2 uv = vec2(dot(q, uLogoT[i]), dot(q, uLogoB[i])) / uLogoSize + 0.5;
+    if (uv.x > 0.0 && uv.x < 1.0 && uv.y > 0.0 && uv.y < 1.0) a = max(a, texture2D(uLogo, uv).a);
+  }
+  return a * uLogoOn * (1.0 - vSeam);
+}
 vec3 rdHash(vec3 p){ p = vec3(dot(p,vec3(127.1,311.7,74.7)), dot(p,vec3(269.5,183.3,246.1)), dot(p,vec3(113.5,271.9,124.6))); return fract(sin(p)*43758.5453); }
 float rdCell(vec3 x){ vec3 i=floor(x); vec3 f=fract(x); float d=8.0; for(int a=-1;a<=1;a++) for(int b=-1;b<=1;b++) for(int c=-1;c<=1;c++){ vec3 g=vec3(float(a),float(b),float(c)); vec3 r=g+0.15+rdHash(i+g)*0.7-f; d=min(d,dot(r,r)); } return sqrt(d); }
 vec3 rdPerturb(vec3 sp, vec3 sn, vec2 dH, float fd){ vec3 sx=normalize(dFdx(sp)); vec3 sy=normalize(dFdy(sp)); vec3 r1=cross(sy,sn); vec3 r2=cross(sn,sx); float det=dot(sx,r1)*fd; vec3 gr=sign(det)*(dH.x*r1+dH.y*r2); return normalize(abs(det)*sn-gr); }`,
         )
         .replace(
+          '#include <color_fragment>',
+          `#include <color_fragment>
+float rdInk = rdLogo(normalize(vObj));
+diffuseColor.rgb = mix(diffuseColor.rgb, uInk, rdInk * 0.92);`,
+        )
+        .replace(
           '#include <roughnessmap_fragment>',
           `#include <roughnessmap_fragment>
-roughnessFactor = mix(roughnessFactor, roughnessFactor * 0.62, vSeam);`,
+roughnessFactor = mix(roughnessFactor, roughnessFactor * 0.62, vSeam);
+roughnessFactor = mix(roughnessFactor, roughnessFactor * 0.8, rdInk);`,
         )
         .replace(
           '#include <normal_fragment_maps>',
@@ -110,12 +166,34 @@ roughnessFactor = mix(roughnessFactor, roughnessFactor * 0.62, vSeam);`,
         )
     }
     material.needsUpdate = true
-  }, [material, bump])
+  }, [material, bump, logo])
+}
+
+// uniforms for the printed mark; colour and on/off change without a recompile
+function useLogoUniforms(on, ink) {
+  const u = useMemo(
+    () => ({
+      uLogo: { value: logoMask() },
+      uLogoOn: { value: 1 },
+      uLogoSize: { value: LOGO_SIZE },
+      uInk: { value: new THREE.Color() },
+      uLogoN: { value: LOGO_FACES.map((f) => f.n) },
+      uLogoT: { value: LOGO_FACES.map((f) => f.t) },
+      uLogoB: { value: LOGO_FACES.map((f) => f.b) },
+    }),
+    [],
+  )
+  useEffect(() => () => u.uLogo.value.dispose(), [u])
+  u.uLogoOn.value = on ? 1 : 0
+  u.uInk.value.set(ink)
+  return u
 }
 
 export default function Basketball({
   panel = '#c8582b',
   seam = '#1b1714',
+  logo = true,
+  ink,
   pressure = 1,
   push = 6,
   backspin = 1,
@@ -134,7 +212,8 @@ export default function Basketball({
   const inner = useRef()
   const audio = useRef(null)
   const material = useMemo(() => new THREE.MeshPhysicalMaterial({ vertexColors: true, roughness: 0.72, clearcoat: 0.12, clearcoatRoughness: 0.6, sheen: 0.35, sheenRoughness: 0.7, sheenColor: new THREE.Color('#ff9a6a') }), [])
-  usePebbles(material, 0.0011)
+  const logoU = useLogoUniforms(logo, ink || seam)
+  usePebbles(material, 0.0011, logoU)
 
   useEffect(() => () => audio.current?.dispose(), [])
   const sfx = () => {
