@@ -89,7 +89,7 @@ function upFace(q) {
 }
 
 // an orientation that puts `value` on top, turned by yaw
-function restingOn(value, yaw) {
+export function restingOn(value, yaw) {
   const f = FACES.find((x) => x.value === value)
   const q = new THREE.Quaternion().setFromUnitVectors(f.n, UP)
   return new THREE.Quaternion().setFromAxisAngle(UP, yaw).multiply(q)
@@ -229,8 +229,18 @@ const WALLS = [
 
 function Die({ body, dieColor, pipColor, onGrab, index }) {
   const group = useRef()
-  const pips = useRef()
   body.group = group
+  return (
+    <group ref={group} position={body.p} quaternion={body.q} onPointerDown={(e) => onGrab(e, index)}>
+      <DieMesh dieColor={dieColor} pipColor={pipColor} />
+    </group>
+  )
+}
+
+// The die itself, 1 unit across, for other scenes to use too (scale it to
+// size): the rounded cube and its 21 glossy pips.
+export function DieMesh({ dieColor = '#f5f5f3', pipColor = '#0b0b0c' }) {
+  const pips = useRef()
   const pipGeo = useMemo(() => new THREE.SphereGeometry(0.105, 24, 14), [])
   const pipMat = useMemo(() => new THREE.MeshPhysicalMaterial({ roughness: 0.18, clearcoat: 1, clearcoatRoughness: 0.08 }), [])
   useEffect(() => () => (pipGeo.dispose(), pipMat.dispose()), [pipGeo, pipMat])
@@ -242,12 +252,12 @@ function Die({ body, dieColor, pipColor, onGrab, index }) {
     pips.current.instanceMatrix.needsUpdate = true
   }, [])
   return (
-    <group ref={group} position={body.p} quaternion={body.q} onPointerDown={(e) => onGrab(e, index)}>
+    <>
       <RoundedBox args={[1, 1, 1]} radius={R} smoothness={5} castShadow receiveShadow>
         <meshPhysicalMaterial color={dieColor} roughness={0.32} clearcoat={0.6} clearcoatRoughness={0.25} />
       </RoundedBox>
       <instancedMesh ref={pips} args={[pipGeo, pipMat, PIP_MATRICES.length]} />
-    </group>
+    </>
   )
 }
 

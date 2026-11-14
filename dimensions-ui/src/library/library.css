@@ -359,6 +359,52 @@
 /* demo content inside the stage keeps the light theme (white stage, dark ink), whichever theme the page is in */
 .lib-stage { color: #15171a; --ink: #15171a; --ink-2: #4a4d52; --ink-3: #85878a; --stage-bg: #f7f7f8; --dim-bg: #f7f7f8; --paper: #ffffff; --paper-2: #f7f7f8; --line: rgba(21, 23, 26, 0.14); --line-strong: rgba(21, 23, 26, 0.32); --signal-ink: #d93a0b; }
 
+/* the loading state over the stage, until the component has drawn: a thin
+   arc turning on a faint track, and a small caption. It sits on the stage's
+   own backdrop, fades in after a beat (so fast components never flash it)
+   and fades out when the component is ready. */
+.stage-loader {
+  position: absolute;
+  inset: 0;
+  /* above anything a demo layers inside the stage (buttons, and 3D labels,
+     which drei stacks as high as 16777271); the stage isolates it */
+  z-index: 16777280;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 14px;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(21, 23, 26, 0.06) 1px, transparent 1px) 0 0 / 24px 24px,
+    linear-gradient(90deg, rgba(21, 23, 26, 0.06) 1px, transparent 1px) 0 0 / 24px 24px,
+    var(--stage-bg);
+  opacity: 0;
+  animation: stage-loader-in 0.3s ease 0.15s forwards;
+}
+.stage-loader.is-leaving { opacity: 1; animation: stage-loader-out 0.3s ease forwards; }
+.stage-loader-ring {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(21, 23, 26, 0.12);
+  border-top-color: var(--ink);
+  animation: stage-loader-spin 0.9s cubic-bezier(0.55, 0.15, 0.45, 0.85) infinite;
+  will-change: transform;
+}
+.stage-loader-label {
+  font: 500 10px/1 ui-monospace, Menlo, monospace;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+@keyframes stage-loader-in { to { opacity: 1; } }
+@keyframes stage-loader-out { to { opacity: 0; } }
+@keyframes stage-loader-spin { to { transform: rotate(360deg); } }
+@keyframes stage-loader-pulse { 50% { opacity: 0.35; } }
+@media (prefers-reduced-motion: reduce) {
+  .stage-loader-ring { animation: stage-loader-pulse 1.6s ease-in-out infinite; border-color: rgba(21, 23, 26, 0.3); }
+}
+
 /* sections under the stage */
 .lib-section { margin-top: 38px; scroll-margin-top: 84px; }
 .lib-section > header { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
