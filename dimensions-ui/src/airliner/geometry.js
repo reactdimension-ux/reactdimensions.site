@@ -21,7 +21,7 @@ export const smooth = (t) => {
 
 // A monotone cubic through [x, y] points, so a profile never overshoots.
 // Interpolating against the square root of x gives a round nose at x = 0.
-function profile(pts) {
+export function profile(pts) {
   const xs = pts.map((p) => Math.sqrt(p[0]))
   const ys = pts.map((p) => p[1])
   const n = pts.length
@@ -98,7 +98,7 @@ export function livery(s) {
 // ---------------------------------------------------------------- mesh helpers
 // A grid of nu x nv vertices from fn(i, j, position, uv). `flip` turns the
 // faces round; `wrap` joins the normals where the last column meets the first.
-function grid(nu, nv, fn, { flip = false, wrap = false } = {}) {
+export function grid(nu, nv, fn, { flip = false, wrap = false } = {}) {
   const pos = new Float32Array(nu * nv * 3)
   const uv = new Float32Array(nu * nv * 2)
   const P = new THREE.Vector3()
@@ -144,7 +144,7 @@ function grid(nu, nv, fn, { flip = false, wrap = false } = {}) {
 }
 
 // rows of { p, u, v } points, lofted into a skin
-const loft = (rows, opts) =>
+export const loft = (rows, opts) =>
   grid(
     rows.length,
     rows[0].length,
@@ -156,9 +156,9 @@ const loft = (rows, opts) =>
     opts,
   )
 // a flat ladder between two matching polylines, visible from both sides
-const ladder = (a, b) => [loft([a, b]), loft([a, b], { flip: true })]
+export const ladder = (a, b) => [loft([a, b]), loft([a, b], { flip: true })]
 
-const join = (list) => {
+export const join = (list) => {
   const g = mergeGeometries(list)
   list.forEach((x) => x.dispose())
   return g
@@ -417,7 +417,7 @@ function at(f, x, y, out = new THREE.Vector3()) {
 }
 
 // the skin of a rib from chord fraction xe on top, round the nose, to xe below
-function rib(f, xe = 1, N = 22, u = 0) {
+export function rib(f, xe = 1, N = 22, u = 0) {
   const row = []
   for (let k = 0; k < N; k++) {
     const x = xe * 0.5 * (1 + Math.cos((Math.PI * k) / (N - 1)))
@@ -430,7 +430,7 @@ function rib(f, xe = 1, N = 22, u = 0) {
   return row
 }
 // matching points down the top and the bottom of a rib between two chord fractions
-function chordPair(f, x0, x1, N = 10) {
+export function chordPair(f, x0, x1, N = 10) {
   const top = []
   const bot = []
   for (let k = 0; k < N; k++) {

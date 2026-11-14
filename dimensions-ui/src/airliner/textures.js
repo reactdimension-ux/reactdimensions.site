@@ -6,7 +6,7 @@ import { CY, FIN_UV, LENGTH, WING_TIP_U, livery, section, wingU } from './geomet
 // (span across, upper surface above the leading edge, lower below), the fin,
 // and the small ones for the engine and the lights.
 
-function canvasTexture(w, h, draw) {
+export function canvasTexture(w, h, draw) {
   const c = Object.assign(document.createElement('canvas'), { width: w, height: h })
   draw(c.getContext('2d'), w, h)
   const t = new THREE.CanvasTexture(c)
