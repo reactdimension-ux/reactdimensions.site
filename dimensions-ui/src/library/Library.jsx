@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
-import { CATEGORIES, COMPONENTS, UI_STYLES, ICON_STYLES, OBJECT_STYLES, defaultsFor, sourceFor, usageFor, valueControls } from './registry.jsx'
+import { CATEGORIES, COMPONENTS, UI_STYLES, ICON_STYLES, OBJECT_STYLES, defaultsFor, loadSources, sourceFor, sourcesLoaded, usageFor, valueControls } from './registry.jsx'
 import { highlight } from './highlight.js'
 import { markdownFor, openPromptFor, promptFor, sourceText, typesFor } from './ai.js'
 import { Icon } from '../Nav.jsx'
@@ -23,12 +23,13 @@ const CAT_ICON = {
 
 // Categories that are placeholders until their components land.
 // A small copy button that sits on an icon/emoji card and copies its source.
-function CopyChip({ code }) {
+function CopyChip({ comp }) {
   const [done, setDone] = useState(false)
   const copy = async (e) => {
     e.preventDefault()
     e.stopPropagation()
     try {
+      const code = (await loadSources(comp))[0]?.code ?? ''
       await navigator.clipboard.writeText(code)
       setDone(true)
       setTimeout(() => setDone(false), 1400)
@@ -43,6 +44,21 @@ function CopyChip({ code }) {
       )}
     </button>
   )
+}
+
+// The Source section: fetches the component's files on first view.
+function SourceFiles({ comp }) {
+  const [files, setFiles] = useState(() => (sourcesLoaded(comp) ? sourceFor(comp) : null))
+  useEffect(() => {
+    let live = true
+    setFiles(sourcesLoaded(comp) ? sourceFor(comp) : null)
+    loadSources(comp).then((f) => live && setFiles(f))
+    return () => {
+      live = false
+    }
+  }, [comp])
+  if (!files) return comp.files.map((f) => <CodeBlock key={f} title={f} code="// Loading source…" />)
+  return files.map((f) => <CodeBlock key={f.file} title={f.file} code={f.code} />)
 }
 
 // Categories whose pages are split into sections.
@@ -259,8 +275,14 @@ function AiMenu({ comp, props }) {
       document.removeEventListener('keydown', key)
     }
   }, [open])
-  const copy = (label, text) => {
-    navigator.clipboard?.writeText(text).catch(() => {})
+  // the source loads on demand: start fetching as the menu opens, so it is
+  // usually there by the time an item is picked
+  useEffect(() => {
+    if (open) loadSources(comp)
+  }, [open, comp])
+  const copy = async (label, make) => {
+    if (!sourcesLoaded(comp)) await loadSources(comp)
+    navigator.clipboard?.writeText(make()).catch(() => {})
     setDone(label)
     setOpen(false)
     setTimeout(() => setDone(''), 1800)
@@ -279,15 +301,15 @@ function AiMenu({ comp, props }) {
       </button>
       {open && (
         <div className="ai-pop" role="menu">
-          <button role="menuitem" onClick={() => copy('Prompt copied', promptFor(comp, props))}>
+          <button role="menuitem" onClick={() => copy('Prompt copied', () => promptFor(comp, props))}>
             <strong>Copy as prompt</strong>
             <small>Usage, props table, full source and integration steps, ready to paste into an assistant</small>
           </button>
-          <button role="menuitem" onClick={() => copy('Markdown copied', markdownFor(comp, props))}>
+          <button role="menuitem" onClick={() => copy('Markdown copied', () => markdownFor(comp, props))}>
             <strong>Copy as Markdown</strong>
             <small>This page as a .md document</small>
           </button>
-          <button role="menuitem" onClick={() => copy('Source copied', sourceText(comp))}>
+          <button role="menuitem" onClick={() => copy('Source copied', () => sourceText(comp))}>
             <strong>Copy source only</strong>
             <small>{comp.files.length} file{comp.files.length > 1 ? 's' : ''}, with file names as comments</small>
           </button>
@@ -579,7 +601,7 @@ export function CategoryPage() {
               {c.category === 'Icons & Emojis' ? (
                 <span className="browse-icon">
                   {c.preview({ ...defaultsFor(c), size: 36, color: 'currentColor' })}
-                  <CopyChip code={sourceFor(c)[0]?.code ?? ''} />
+                  <CopyChip comp={c} />
                 </span>
               ) : (
                 <img src={`/previews/${c.slug}.jpg`} alt="" loading="lazy" />
@@ -852,9 +874,7 @@ export default function Library() {
               </Section>
             )}
             <Section id="source" title="Source" note={`${comp.files.length} file${comp.files.length > 1 ? 's' : ''}`}>
-              {sourceFor(comp).map((f) => (
-                <CodeBlock key={f.file} title={f.file} code={f.code} />
-              ))}
+              <SourceFiles comp={comp} />
             </Section>
           </>
         )}
