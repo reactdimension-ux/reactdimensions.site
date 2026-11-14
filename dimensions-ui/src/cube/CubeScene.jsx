@@ -58,6 +58,9 @@ export default function CubeScene({
   const [start, setStart] = useState(null)
   const [end, setEnd] = useState(null)
   const [, tick] = useState(0)
+  // whether the cube is in its solved state right now (any turn, by anyone,
+  // can change it); Solve has nothing to do while it is
+  const [isSolved, setIsSolved] = useState(true)
   const statusRef = useRef(status)
   statusRef.current = status
 
@@ -72,6 +75,7 @@ export default function CubeScene({
     setMoves(0)
     setStart(null)
     setEnd(null)
+    setIsSolved(true)
   }, [n])
 
   // the clock only needs repainting while it runs
@@ -83,6 +87,7 @@ export default function CubeScene({
 
   const onTurn = ({ tag, turned, solved, drained }) => {
     const now = statusRef.current
+    if (turned) setIsSolved(solved)
     if (tag === 'scramble' && drained) {
       setStatus('ready')
       setMoves(0)
@@ -127,6 +132,7 @@ export default function CubeScene({
   }
   const reset = () => {
     cube.current?.reset()
+    setIsSolved(true)
     setStatus('idle')
     setMoves(0)
     setStart(null)
@@ -143,7 +149,7 @@ export default function CubeScene({
     : status === 'solved' ? `Solved in ${moves} moves · ${clock(elapsed)}`
     : ''
 
-  const btn = (primary) => ({
+  const btn = (primary, off = busy) => ({
     pointerEvents: 'auto',
     font: '600 12px/1 ui-monospace, Menlo, monospace',
     letterSpacing: '0.12em',
@@ -153,8 +159,8 @@ export default function CubeScene({
     border: primary ? 'none' : '1px solid rgba(28,26,22,.25)',
     background: primary ? '#1c1a16' : 'rgba(255,255,255,.7)',
     color: primary ? '#f4f1ea' : '#1c1a16',
-    cursor: busy ? 'default' : 'pointer',
-    opacity: busy ? 0.5 : 1,
+    cursor: off ? 'default' : 'pointer',
+    opacity: off ? 0.5 : 1,
   })
 
   return (
@@ -177,7 +183,7 @@ export default function CubeScene({
 
       <div style={{ position: 'absolute', top: 14, left: 12, right: 12, display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: 8, pointerEvents: 'none' }}>
         <button onClick={scramble} disabled={busy} style={btn(true)}>Scramble</button>
-        <button onClick={solve} disabled={busy} style={btn(false)}>Solve</button>
+        <button onClick={solve} disabled={busy || isSolved} style={btn(false, busy || isSolved)}>Solve</button>
         <button onClick={reset} disabled={busy} style={btn(false)}>Reset</button>
       </div>
       <div
