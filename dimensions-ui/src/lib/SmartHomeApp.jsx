@@ -142,6 +142,87 @@ function Tile({ a, edit, onToggle, onRemove, index }) {
   )
 }
 
+// Side scrolling for a mouse as well as touch: drag the row sideways (it
+// flicks on with the speed you let go at, then snaps), or turn the wheel.
+// A drag doesn't count as a tap on whatever it started over.
+function sideScroll(el, scale) {
+  if (!el) return
+  let down = null
+  let last = 0
+  let v = 0
+  let moved = false
+  let raf = 0
+  const snap = el.style.scrollSnapType
+  const onDown = (e) => {
+    if (e.pointerType !== 'mouse' || e.button !== 0) return
+    cancelAnimationFrame(raf)
+    down = { x: e.clientX, left: el.scrollLeft, t: performance.now() }
+    last = e.clientX
+    v = 0
+    moved = false
+  }
+  const onMove = (e) => {
+    if (!down) return
+    const k = scale.current || 1
+    if (!moved && Math.abs(e.clientX - down.x) > 5) {
+      moved = true
+      el.style.scrollSnapType = 'none'
+      el.style.cursor = 'grabbing'
+      el.setPointerCapture(e.pointerId)
+    }
+    if (!moved) return
+    const now = performance.now()
+    v = (-(e.clientX - last) / k) / Math.max(1, now - down.t)
+    down.t = now
+    last = e.clientX
+    el.scrollLeft = down.left - (e.clientX - down.x) / k
+  }
+  const onUp = () => {
+    if (!down) return
+    down = null
+    el.style.cursor = ''
+    if (!moved) return
+    // coast, then hand back to the snap
+    const coast = () => {
+      v *= 0.92
+      el.scrollLeft += v * 16
+      if (Math.abs(v) > 0.05) raf = requestAnimationFrame(coast)
+      else el.style.scrollSnapType = snap
+    }
+    raf = requestAnimationFrame(coast)
+  }
+  const onClick = (e) => {
+    if (moved) {
+      e.stopPropagation()
+      e.preventDefault()
+      moved = false
+    }
+  }
+  const onWheel = (e) => {
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return
+    const max = el.scrollWidth - el.clientWidth
+    const atEnd = (e.deltaY > 0 && el.scrollLeft >= max - 1) || (e.deltaY < 0 && el.scrollLeft <= 0)
+    if (max <= 0 || atEnd || !e.shiftKey) return
+    e.preventDefault()
+    el.scrollBy({ left: e.deltaY, behavior: 'smooth' })
+  }
+  el.addEventListener('pointerdown', onDown)
+  el.addEventListener('pointermove', onMove)
+  el.addEventListener('pointerup', onUp)
+  el.addEventListener('pointercancel', onUp)
+  el.addEventListener('click', onClick, true)
+  el.addEventListener('wheel', onWheel, { passive: false })
+  return () => {
+    cancelAnimationFrame(raf)
+    el.removeEventListener('pointerdown', onDown)
+    el.removeEventListener('pointermove', onMove)
+    el.removeEventListener('pointerup', onUp)
+    el.removeEventListener('pointercancel', onUp)
+    el.removeEventListener('click', onClick, true)
+    el.removeEventListener('wheel', onWheel)
+  }
+}
+
 export default function SmartHomeApp({
   home = "Eythan's Home",
   accent = '#2f8cff',
@@ -151,6 +232,15 @@ export default function SmartHomeApp({
 }) {
   const box = useRef()
   const [scale, setScale] = useState(1)
+  const scaleRef = useRef(1)
+  scaleRef.current = scale
+  const roomRow = useRef()
+  const tileRow = useRef()
+  useEffect(() => {
+    const a = sideScroll(roomRow.current, scaleRef)
+    const b = sideScroll(tileRow.current, scaleRef)
+    return () => { a?.(); b?.() }
+  }, [])
   const [items, setItems] = useState(ACCESSORIES)
   const [edit, setEdit] = useState(false)
   const [rooms, setRooms] = useState([
@@ -196,7 +286,7 @@ export default function SmartHomeApp({
     >
       <style>{`
         @keyframes sh-jiggle { from { transform: rotate(-1.6deg) } to { transform: rotate(1.6deg) } }
-        .sh-scroll { scrollbar-width: none; } .sh-scroll::-webkit-scrollbar { display: none; }
+        .sh-scroll { scrollbar-width: none; } .sh-drag { cursor: grab; user-select: none; -webkit-user-drag: none; } .sh-drag img { -webkit-user-drag: none; pointer-events: none; } .sh-scroll::-webkit-scrollbar { display: none; }
       `}</style>
       {/* status bar and Dynamic Island */}
       <div style={{ height: 54, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 30px 0 36px', fontSize: 16, fontWeight: 600 }}>
@@ -254,7 +344,7 @@ export default function SmartHomeApp({
         </div>
 
         {/* rooms: a snapping horizontal carousel */}
-        <div className="sh-scroll" style={{ marginTop: 26, display: 'flex', gap: 10, overflowX: 'auto', scrollSnapType: 'x mandatory', padding: '0 22px', scrollPaddingLeft: 22 }}>
+        <div ref={roomRow} className="sh-scroll sh-drag" style={{ marginTop: 26, display: 'flex', gap: 10, overflowX: 'auto', scrollSnapType: 'x mandatory', padding: '0 22px', scrollPaddingLeft: 22 }}>
           {rooms.map((r, i) => (
             <div key={r.id} style={{ position: 'relative', flex: 'none', width: 300, height: 232, scrollSnapAlign: 'start' }}>
               <div style={{ position: 'absolute', inset: '0 0 32px 0', overflow: 'hidden', borderRadius: 4 }}>
@@ -300,7 +390,7 @@ export default function SmartHomeApp({
         </div>
 
         {/* two rows of tiles that scroll sideways together */}
-        <div className="sh-scroll" style={{ marginTop: 16, overflowX: 'auto', padding: '8px 22px 8px' }}>
+        <div ref={tileRow} className="sh-scroll sh-drag" style={{ marginTop: 16, overflowX: 'auto', padding: '8px 22px 8px' }}>
           <div style={{ display: 'grid', gridTemplateRows: 'repeat(2, 108px)', gridAutoFlow: 'column', gridAutoColumns: 94, gap: 9, width: 'max-content' }}>
             {items.map((a, i) => (
               <Tile key={a.id} a={a} index={i} edit={edit} onToggle={toggle} onRemove={remove} />
@@ -316,7 +406,7 @@ export default function SmartHomeApp({
 
   return (
     <div ref={box} style={{ position: 'relative', width: '100%', height: '100%', display: 'grid', placeItems: 'center', overflow: 'hidden', background: 'radial-gradient(ellipse at 50% 30%, #3a3a3e, #121214 70%)', ...style }}>
-      <div style={{ transform: `scale(${scale})`, transformOrigin: 'center', flex: 'none' }}>
+      <div style={{ position: 'absolute', left: '50%', top: '50%', transform: `translate(-50%, -50%) scale(${scale})`, transformOrigin: 'center' }}>
         {frame ? (
           // the phone body: a titanium band round a black bezel
           <div style={{ padding: 12, borderRadius: 58, background: 'linear-gradient(145deg, #5b5b60, #2a2a2e 40%, #4a4a4f)', boxShadow: '0 40px 80px rgba(0,0,0,.55), inset 0 0 0 2px #1a1a1c' }}>
