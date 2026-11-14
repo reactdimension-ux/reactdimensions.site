@@ -17,6 +17,8 @@ const HAND = 7
 const FAN_R = 14 // the fan's pivot sits this far below the middle card
 const FAN_SPREAD = 0.13 // radians between neighbouring cards
 const PILE = new THREE.Vector3(0, -15, 6) // where dealt cards fly in from
+const LAYER = 0.06 // depth between neighbouring cards in the hand (cards are 0.04 thick)
+const HAND_DEPTH = LAYER * (HAND - 1) // how far in front the top card of the hand sits
 
 const rand = (n) => Math.floor(Math.random() * n)
 // mostly suit cards, with the odd wild like a real deal
@@ -25,7 +27,7 @@ const randomHand = () =>
 
 export function fanPose(i, n) {
   const a = (i - (n - 1) / 2) * FAN_SPREAD
-  return { x: Math.sin(a) * FAN_R, y: Math.cos(a) * FAN_R - FAN_R, z: i * 0.06, rz: -a }
+  return { x: Math.sin(a) * FAN_R, y: Math.cos(a) * FAN_R - FAN_R, z: i * LAYER, rz: -a }
 }
 // the area the cards cover, for framing the camera
 export function deckView(layout) {
@@ -157,17 +159,27 @@ function Card({ geo, faceMat, backMat, edgeMats, pose, delay, single, audio }) {
 
     const i = inner.current
     i.rotation.y = Math.PI * c.flip
-    const arc = Math.sin(Math.PI * Math.min(1, Math.max(0, c.flip))) // lift while it turns
+    // Turning about its long axis, the card's side edges swing forward and
+    // back by half its width times |sin| of the angle. Lifting it towards the
+    // viewer by at least that much (the spring can overshoot, so use the
+    // actual angle) keeps the swinging edge clear of the cards behind it.
+    const swing = Math.abs(Math.sin(Math.PI * c.flip)) * (CARD_W / 2)
     if (single) {
       // idle float and a tilt towards the pointer
-      i.position.set(0, Math.sin(now * 1.1) * 0.12, arc * 2.2)
+      i.position.set(0, Math.sin(now * 1.1) * 0.12, swing * 0.8)
       i.rotation.x = -state.pointer.y * 0.28 + Math.sin(now * 0.7) * 0.03
       i.rotation.y += state.pointer.x * 0.32
       i.rotation.z = 0
     } else {
-      // hovered cards rise out of the hand
-      i.position.set(0, c.h * 1.1 + arc * 0.6, c.h * 0.5 + arc * 2.4)
-      i.rotation.x = -0.12 * c.h
+      // a hovered card rises out of the hand and comes forward past every
+      // other card (the frontmost sits at HAND_DEPTH), with no tilt, so no
+      // corner can dip back into its neighbours
+      // A turning card also comes out in front of the hand first; the ramp
+      // reaches full height well before the edges swing far, and both terms
+      // are continuous, so nothing pops.
+      const raise = Math.max(c.h, Math.min(1, swing / 0.4))
+      i.position.set(0, c.h * 1.1 + swing * 0.15, raise * (HAND_DEPTH + 0.25) + swing)
+      i.rotation.x = 0
     }
   })
 
