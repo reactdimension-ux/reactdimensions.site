@@ -5,6 +5,7 @@ import { highlight } from './highlight.js'
 import { markdownFor, openPromptFor, promptFor, sourceText, typesFor } from './ai.js'
 import { Icon } from '../Nav.jsx'
 import ColorPicker from './ColorPicker.jsx'
+import StageLoader from './StageLoader.jsx'
 import './library.css'
 
 const CAT_ICON = {
@@ -604,6 +605,7 @@ export default function Library() {
   const [tab, setTab] = useState('preview')
   const [values, setValues] = useState(() => (comp ? defaultsFor(comp) : {}))
   const [reload, setReload] = useState(0)
+  const stageRef = useRef(null)
   const [width, setWidth] = useState('desktop')
   const [pm, setPm] = useState('npm')
   const [drawer, setDrawer] = useState(false)
@@ -756,9 +758,10 @@ export default function Library() {
           <>
             <div className="stage-shell" id="preview">
               <div className={`lib-stage${comp.fill ? ' fill' : ''}${comp.category === 'UI' || comp.category === 'Phone UI' ? ' screen' : ''}`} style={{ maxWidth: WIDTHS[width] }}>
-                <div className="lib-stage-inner" key={`${slug}-${reload}`}>
+                <div className="lib-stage-inner" key={`${slug}-${reload}`} ref={stageRef}>
                   {comp.preview(props, (patch) => setValues((s) => ({ ...s, ...patch })))}
                 </div>
+                <StageLoader key={`load-${slug}-${reload}`} target={stageRef} expectCanvas={!!comp.deps?.includes('@react-three/fiber')} />
               </div>
             </div>
 
