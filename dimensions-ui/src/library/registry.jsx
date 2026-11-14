@@ -233,6 +233,8 @@ import CricketBallModel from '../lib/CricketBallModel.jsx'
 import CricketPitchModel from '../lib/CricketPitchModel.jsx'
 import TennisCourtModel from '../lib/TennisCourtModel.jsx'
 import BadmintonCourtModel from '../lib/BadmintonCourtModel.jsx'
+import GameBoardModel from '../lib/GameBoardModel.jsx'
+import ChessboardModel from '../lib/ChessboardModel.jsx'
 import ShuttlecockModel from '../lib/ShuttlecockModel.jsx'
 import BadmintonRacketModel from '../lib/BadmintonRacketModel.jsx'
 import TennisRacketModel from '../lib/TennisRacketModel.jsx'
@@ -263,7 +265,7 @@ import FireEmoji from '../lib/FireEmoji.jsx'
 import PleadingEmoji from '../lib/PleadingEmoji.jsx'
 
 // Raw source of every component, for the Code tab.
-const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}', '../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}','../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
+const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}', '../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}','../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
   query: '?raw',
   import: 'default',
   eager: true,
@@ -3521,6 +3523,62 @@ const ALL_COMPONENTS = [
     preview: (p) => <BadmintonCourtModel {...p} height="100%" />,
     fill: true,
     files: ['BadmintonCourtModel.jsx', 'badmintoncourt/CourtScene.jsx', 'badmintoncourt/Court.jsx', 'badmintoncourt/textures.js'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
+  },
+  {
+    slug: 'game-board',
+    name: 'Game Board',
+    category: '3D & Materials',
+    style: 'Everyday objects',
+    isNew: true,
+    description: 'A 1-100 race board, printed and laminated in a mitred, lacquered wood frame. Roll the die and the pawns hop square by square; land on 100 to win.',
+    controls: [
+      { name: 'view', type: 'select', options: ['Top', 'Front', 'Rear', 'A', 'B', 'C', 'D', 'Start', 'Finish', 'Frame'], default: 'A' },
+      { name: 'theme', type: 'select', options: ['classic', 'pastel', 'retro'], default: 'classic' },
+      { name: 'woodColor', type: 'color', default: '#8c4a24' },
+      { name: 'dieColor', type: 'color', default: '#f5f5f3' },
+      { name: 'pipColor', type: 'color', default: '#0b0b0c' },
+      { name: 'players', type: 'range', min: 1, max: 4, step: 1, default: 2 },
+      { name: 'dimensions', type: 'toggle', default: true },
+      { name: 'ambientOcclusion', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <GameBoardModel {...p} height="100%" />,
+    fill: true,
+    files: ['GameBoardModel.jsx', 'gameboard/BoardScene.jsx', 'gameboard/Board.jsx', 'gameboard/stage.jsx', 'gameboard/textures.js', 'dice/Dice.jsx', 'dice/audio.js'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
+  },
+  {
+    slug: 'chessboard',
+    name: 'Chessboard',
+    category: '3D & Materials',
+    style: 'Everyday objects',
+    isNew: true,
+    description: 'An inlaid wooden chessboard: walnut and maple veneer squares, each with its own grain, a stringing line and a moulded, mitred frame under high-gloss lacquer.',
+    controls: [
+      { name: 'view', type: 'select', options: ['Top', 'Front', 'Rear', 'Side', 'Front-L', 'Front-R', 'Rear-L', 'Rear-R', 'Corner', 'Grain', 'Joinery', 'Underside'], default: 'Front-L' },
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Teak', values: { frameWood: '#a3622b', darkSquare: '#4b2a16', lightSquare: '#e9d8b6', border: '#4b2a16' } },
+          { name: 'Walnut', values: { frameWood: '#4a2a17', darkSquare: '#3f2313', lightSquare: '#ead9b8', border: '#3f2313' } },
+          { name: 'Rosewood', values: { frameWood: '#6e2a1c', darkSquare: '#5a2016', lightSquare: '#f0dcb4', border: '#5a2016' } },
+          { name: 'Ebony', values: { frameWood: '#26221f', darkSquare: '#1d1a18', lightSquare: '#efe6d2', border: '#1d1a18' } },
+        ],
+      },
+      { name: 'frameWood', type: 'color', default: '#a3622b' },
+      { name: 'darkSquare', type: 'color', default: '#4b2a16' },
+      { name: 'lightSquare', type: 'color', default: '#e9d8b6' },
+      { name: 'border', type: 'color', default: '#4b2a16' },
+      { name: 'stringing', type: 'toggle', default: true },
+      { name: 'dimensions', type: 'toggle', default: false },
+      { name: 'ambientOcclusion', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <ChessboardModel {...p} height="100%" />,
+    fill: true,
+    files: ['ChessboardModel.jsx', 'chessboard/ChessboardScene.jsx', 'chessboard/Chessboard.jsx', 'gameboard/stage.jsx', 'gameboard/textures.js'],
     deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
   },
   {
