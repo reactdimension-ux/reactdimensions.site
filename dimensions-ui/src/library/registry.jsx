@@ -152,6 +152,7 @@ import MaxDrop from '../lib/MaxDrop.jsx'
 import MaxFestival from '../lib/MaxFestival.jsx'
 import BentoSpecs from '../lib/BentoSpecs.jsx'
 import BentoHome from '../lib/BentoHome.jsx'
+import SmartHomeApp from '../lib/SmartHomeApp.jsx'
 import BentoAnalytics from '../lib/BentoAnalytics.jsx'
 import BentoPortfolio from '../lib/BentoPortfolio.jsx'
 import BentoFeatures from '../lib/BentoFeatures.jsx'
@@ -223,6 +224,10 @@ import GrandPianoModel from '../lib/GrandPianoModel.jsx'
 import GuitarModel from '../lib/GuitarModel.jsx'
 import DumbbellModel from '../lib/DumbbellModel.jsx'
 import MugModel from '../lib/MugModel.jsx'
+import TTBatModel from '../lib/TTBatModel.jsx'
+import DartModel from '../lib/DartModel.jsx'
+import CricketBallModel from '../lib/CricketBallModel.jsx'
+import ShuttlecockModel from '../lib/ShuttlecockModel.jsx'
 import GamepadModel from '../lib/GamepadModel.jsx'
 import LadderModel from '../lib/LadderModel.jsx'
 import ShirtModel from '../lib/ShirtModel.jsx'
@@ -273,7 +278,7 @@ export const UI_STYLES = ['Flat', 'Glassmorphism', 'Neumorphism', 'Liquid glass'
 export const ICON_STYLES = ['Icons', 'Emojis']
 
 // sections of the 3D & Materials category, in the order they are shown
-export const OBJECT_STYLES = ['Tech & gadgets', 'Everyday objects', 'Physics & play', 'Vehicles', 'Nature & world', 'Interactive 3D']
+export const OBJECT_STYLES = ['Tech & gadgets', 'Everyday objects', 'Physics & play', 'Vehicles', 'Nature & world']
 
 // Basic outline icons share one set of controls; each file is standalone.
 const icon = (Comp, file, slug, name, description) => ({
@@ -787,7 +792,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'scroll-rotate',
     name: 'Scroll Rotate',
-    category: '3D & Materials',
+    category: 'Animation',
     style: 'Interactive 3D',
     isNew: true,
     description: 'Scroll through the section and the bottle turns a full circle, easing to a stop, with an angle readout and progress rail.',
@@ -875,7 +880,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'scroll-explode',
     name: 'Scroll Explode',
-    category: '3D & Materials',
+    category: 'Animation',
     style: 'Interactive 3D',
     isNew: true,
     description: 'Scroll down and the phone comes apart into labelled layers without any part touching another; scroll back up and it snaps together again.',
@@ -897,7 +902,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'drag-model',
     name: 'Drag Model',
-    category: '3D & Materials',
+    category: 'Animation',
     style: 'Interactive 3D',
     isNew: true,
     description: 'Pick up a little radio and carry it across the floor: it lifts while held, leans with its speed, drops with a small bounce, and its soft shadow spreads as it rises.',
@@ -936,7 +941,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'isolate-part',
     name: 'Isolate Part',
-    category: '3D & Materials',
+    category: 'Animation',
     style: 'Interactive 3D',
     isNew: true,
     description: 'Tap any part of an exploded camera to isolate it: the rest fade to grey ghosts, the view eases in to frame it and a label names it; tap away or press Escape to restore.',
@@ -955,7 +960,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'hotspot-notes',
     name: 'Hotspot Notes',
-    category: '3D & Materials',
+    category: 'Animation',
     style: 'Interactive 3D',
     isNew: true,
     description: 'A smart speaker with pulsing hotspots: click one to open a note card beside it as the camera turns to face it, and hotspots hidden behind the speaker fade away.',
@@ -975,7 +980,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'scroll-assembly',
     name: 'Scroll Assembly',
-    category: '3D & Materials',
+    category: 'Animation',
     style: 'Interactive 3D',
     isNew: true,
     description: 'Scroll inside the box and a little robot builds itself, each part flying in from a scattered pose one after another, with captions and a progress rail for each stage.',
@@ -3862,6 +3867,74 @@ const ALL_COMPONENTS = [
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
+    slug: 'dart',
+    name: 'Dart',
+    category: '3D & Materials',
+    style: 'Physics & play',
+    isNew: true,
+    description: 'One steel-tip dart at real size, turned like the real thing: a gripped point, a ring-cut barrel, a nylon shaft and printed flights. Throw it into a sisal target in slow motion: the flights fish-tail, it goes in tail-up and shudders round the point.',
+    controls: [
+      { name: 'flight', type: 'color', default: '#1f6fd1' },
+      { name: 'pattern', type: 'select', options: ['stripes', 'chevron', 'target', 'plain'], default: 'stripes' },
+      { name: 'barrel', type: 'select', options: ['tungsten', 'brass', 'black'], default: 'tungsten' },
+      { name: 'shaft', type: 'color', default: '#18181b' },
+      { name: 'speed', type: 'range', min: 5, max: 18, step: 0.5, default: 9, unit: 'm/s' },
+      { name: 'accuracy', type: 'range', min: 0, max: 40, step: 1, default: 12, unit: 'mm' },
+      { name: 'slowMotion', type: 'range', min: 0.05, max: 1, step: 0.05, default: 0.15 },
+      { name: 'autoThrow', type: 'toggle', default: false },
+      { name: 'background', type: 'color', default: '#d9d6d2' },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    replay: true,
+    preview: (p) => <DartModel {...p} height="100%" />,
+    fill: true,
+    files: ['DartModel.jsx', 'dart/DartScene.jsx', 'dart/Dart.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'cricket-ball',
+    name: 'Cricket Ball',
+    category: '3D & Materials',
+    style: 'Physics & play',
+    isNew: true,
+    description: 'A cricket ball at real size and weight: four leather quarters, a raised seam with six rows of stitching, quarter seams and a gold stamp. Wear keeps one side shiny and scuffs the other. Toss it with backspin and it kicks back as it lands, then rolls; or spin it like a top.',
+    controls: [
+      { name: 'ball', type: 'select', options: ['red', 'white', 'pink'], default: 'red' },
+      { name: 'wear', type: 'range', min: 0, max: 1, step: 0.05, default: 0.35 },
+      { name: 'background', type: 'color', default: '#d9d6d2' },
+      { name: 'follow', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    replay: true,
+    preview: (p) => <CricketBallModel {...p} height="100%" />,
+    fill: true,
+    files: ['CricketBallModel.jsx', 'cricketball/CricketBallScene.jsx', 'cricketball/CricketBall.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'shuttlecock',
+    name: 'Shuttlecock',
+    category: '3D & Materials',
+    style: 'Physics & play',
+    isNew: true,
+    description: 'A feathered badminton shuttlecock at real size and weight: sixteen goose feathers drawn barb by barb, with frayed edges and splits, translucent vanes that overlap like shingles, two rows of glued cotton binding, and a leather-covered cork with a speed band. Serve it and it flips cork-first, spins up on its feathers and falls at terminal speed, then lands and topples onto its side.',
+    controls: [
+      { name: 'band', type: 'color', default: '#0e4f38' },
+      { name: 'wear', type: 'range', min: 0, max: 1, step: 0.05, default: 0.15 },
+      { name: 'floor', type: 'select', options: ['court', 'studio'], default: 'court' },
+      { name: 'slowMotion', type: 'range', min: 0.1, max: 1, step: 0.05, default: 1 },
+      { name: 'background', type: 'color', default: '#d9d9d6' },
+      { name: 'sound', type: 'toggle', default: false },
+      { name: 'follow', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    replay: true,
+    preview: (p) => <ShuttlecockModel {...p} height="100%" />,
+    fill: true,
+    files: ['ShuttlecockModel.jsx', 'shuttlecock/ShuttlecockScene.jsx', 'shuttlecock/Shuttlecock.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
     slug: 'dartboard',
     name: 'Dartboard',
     category: '3D & Materials',
@@ -4126,6 +4199,39 @@ const ALL_COMPONENTS = [
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
+    slug: 'tt-bat',
+    name: 'RD Table Tennis Bat',
+    category: '3D & Materials',
+    style: 'Everyday objects',
+    isNew: true,
+    description: 'A realistic shakehand table tennis bat at real size: a 5-ply blade with sloping shoulders, inverted rubbers on orange sponge with a pressed-in RD logo panel, and a lacquered flared handle with a laminated strip and badge. Click it to flip to the backhand.',
+    controls: [
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Classic', values: { forehand: '#d3121b', backhand: '#151515', handle: '#25272b', accent: '#3f7fd4' } },
+          { name: 'Blue / red', values: { forehand: '#d3121b', backhand: '#1f4fb8', handle: '#1d2533', accent: '#d3121b' } },
+          { name: 'Pink / black', values: { forehand: '#e0407e', backhand: '#151515', handle: '#2a2226', accent: '#e0407e' } },
+          { name: 'Green / red', values: { forehand: '#d3121b', backhand: '#1d8a4a', handle: '#22282a', accent: '#1d8a4a' } },
+        ],
+      },
+      { name: 'brand', type: 'text', default: 'RD' },
+      { name: 'forehand', type: 'color', default: '#d3121b' },
+      { name: 'backhand', type: 'color', default: '#151515' },
+      { name: 'sponge', type: 'color', default: '#e9a63c' },
+      { name: 'handle', type: 'color', default: '#25272b' },
+      { name: 'accent', type: 'color', default: '#3f7fd4' },
+      { name: 'wood', type: 'color', default: '#e6cc9c' },
+      { name: 'background', type: 'color', default: '#ececea' },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <TTBatModel {...p} height="100%" />,
+    fill: true,
+    files: ['TTBatModel.jsx', 'ttbat/TTBatScene.jsx', 'ttbat/TTBat.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
     slug: 'gamepad',
     name: 'Gamepad',
     category: '3D & Materials',
@@ -4228,7 +4334,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'sticky-color',
     name: 'Sticky Color',
-    category: '3D & Materials',
+    category: 'Animation',
     style: 'Interactive 3D',
     isNew: true,
     description: "Copy scrolls past while the pinned bottle takes on each block's colourway, blending smoothly as you go, with the backdrop tinted to match.",
@@ -4247,7 +4353,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'reading-ring',
     name: 'Reading Ring',
-    category: '3D & Materials',
+    category: 'Animation',
     style: 'Interactive 3D',
     isNew: true,
     description: 'A glossy 3D ring fills as you read the article, showing the percentage and minutes left, and pops when you reach the end. Click it to jump a section.',
@@ -4985,6 +5091,24 @@ const ALL_COMPONENTS = [
     fill: true,
     preview: (p) => <BentoHome {...p} style={{ position: 'absolute', inset: 0 }} />,
     files: ['BentoHome.jsx'],
+    deps: [],
+  },
+  {
+    slug: 'smart-home-app',
+    name: 'Smart Home App',
+    category: 'Phone UI',
+    style: 'Glassmorphism',
+    isNew: true,
+    description: 'A dark smart-home app on a phone: swipe the room cards, tap frosted status cards and accessory tiles to switch them, and Edit to make the tiles jiggle.',
+    controls: [
+      { name: 'home', type: 'text', default: "Eythan's Home", maxLength: 24 },
+      { name: 'accent', type: 'color', default: '#2f8cff' },
+      { name: 'photo', type: 'image', default: '' },
+      { name: 'frame', type: 'toggle', default: true },
+    ],
+    fill: true,
+    preview: (p) => <SmartHomeApp {...p} style={{ position: 'absolute', inset: 0 }} />,
+    files: ['SmartHomeApp.jsx'],
     deps: [],
   },
   {

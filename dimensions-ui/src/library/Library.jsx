@@ -45,7 +45,7 @@ function CopyChip({ code }) {
 // Categories whose pages are split into sections.
 const SECTIONS = { UI: UI_STYLES, '3D & Materials': OBJECT_STYLES, 'Icons & Emojis': ICON_STYLES }
 
-const COMING_SOON = ['Phone UI', 'Icons & Emojis']
+const COMING_SOON = ['Icons & Emojis']
 
 const PM = { npm: 'npm i', pnpm: 'pnpm add', yarn: 'yarn add', bun: 'bun add' }
 const WIDTHS = { desktop: '100%', tablet: '768px', mobile: '390px' }
@@ -672,13 +672,32 @@ export default function Library() {
   const typeOf = (c) => (c.type === 'range' ? 'number' : c.type === 'toggle' ? 'boolean' : c.type === 'select' ? c.options.map((o) => `'${o}'`).join(' | ') : 'string')
 
   return (
-    <div className={`lib${comp.category === 'UI' ? ' lib-wide' : ''}`}>
+    <div className={`lib${comp.category === 'UI' || comp.category === 'Phone UI' ? ' lib-wide' : ''}`}>
       <Sidebar active={slug} open={drawer} onClose={() => setDrawer(false)} favs={favs} />
 
       <div className="lib-main">
-        <p className="lib-crumb">
-          Library <span>/</span> {comp.category} <span>/</span> <b>{comp.name}</b>
-        </p>
+        <div className="lib-crumb-row">
+          <p className="lib-crumb">
+            Library <span>/</span> {comp.category} <span>/</span> <b>{comp.name}</b>
+          </p>
+          {/* the same previous / next as the bottom of the page, compact */}
+          <nav className="lib-pager-top" aria-label="Previous and next component (top)">
+            {prev ? (
+              <Link to={`/library/${prev.slug}`} title={`Previous: ${prev.name}`}>
+                ← <span>{prev.name}</span>
+              </Link>
+            ) : (
+              <span className="off">←</span>
+            )}
+            {next ? (
+              <Link to={`/library/${next.slug}`} title={`Next: ${next.name}`}>
+                <span>{next.name}</span> →
+              </Link>
+            ) : (
+              <span className="off">→</span>
+            )}
+          </nav>
+        </div>
         <h1 className="lib-title">
           {comp.name}
           {comp.isNew && <span className="badge badge-lg">New</span>}
@@ -734,7 +753,7 @@ export default function Library() {
         {tab === 'preview' ? (
           <>
             <div className="stage-shell" id="preview">
-              <div className={`lib-stage${comp.fill ? ' fill' : ''}${comp.category === 'UI' ? ' screen' : ''}`} style={{ maxWidth: WIDTHS[width] }}>
+              <div className={`lib-stage${comp.fill ? ' fill' : ''}${comp.category === 'UI' || comp.category === 'Phone UI' ? ' screen' : ''}`} style={{ maxWidth: WIDTHS[width] }}>
                 <div className="lib-stage-inner" key={`${slug}-${reload}`}>
                   {comp.preview(props, (patch) => setValues((s) => ({ ...s, ...patch })))}
                 </div>
@@ -852,7 +871,7 @@ export default function Library() {
           </div>
         </section>
 
-        <nav className="lib-pager">
+        <nav className="lib-pager" aria-label="Previous and next component">
           {prev ? (
             <Link to={`/library/${prev.slug}`}>
               <small>Previous</small>← {prev.name}

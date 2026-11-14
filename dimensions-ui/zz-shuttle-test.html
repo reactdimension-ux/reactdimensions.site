@@ -1,0 +1,8 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body,#r{margin:0;width:100%;height:100%}</style></head><body><div id="r"></div>
+<script type="module">
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import Scene from '/src/shuttlecock/ShuttlecockScene.jsx'
+const q = new URLSearchParams(location.search)
+createRoot(document.getElementById('r')).render(React.createElement(Scene, { floor: q.get('floor') || 'court', wear: +(q.get('wear') || 0.15), autoAct: q.get('act') }))
+</script></body></html>

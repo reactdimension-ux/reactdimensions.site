@@ -147,7 +147,9 @@ export default function Basketball({
     // drop it from shoulder height
     ball.p.set(0, 1.4, 0)
     ball.v.set(0, 0, 0)
-    ball.w.set(0, 0, 0)
+    // a little spin, as with the football, so the bounces kick and it
+    // rolls away instead of dying on the spot
+    ball.w.set(0.4, 0, 1.2)
     ball.held = null
   }, [resetKey, ball])
   useEffect(() => {
@@ -188,6 +190,9 @@ export default function Basketball({
       hist: [],
       moved: false,
     }
+    // keep receiving pointerup even if the release happens off the canvas,
+    // otherwise the ball stays "held" and hangs in the air
+    gl.domElement.setPointerCapture?.(e.pointerId)
     if (controls) controls.enabled = false
   }
   useEffect(() => {
