@@ -30,11 +30,20 @@ const PLATE_T = 0.016
 const COLLAR_H = 0.009
 const HALF = H + COLLAR_H - 0.002 // plate inner face from centre (collars overlap the glass ends)
 
-// outer radius of the glass at height t (0 = neck, 1 = end of the bulb)
+// outer radius of the glass at height t (0 = neck, 1 = end of the bulb).
+// Blown like a real hourglass: a trumpet flare out of the neck, a long
+// cone widening to the belly about two thirds of the way up, then a
+// rounded shoulder closing in onto the collar.
+const BELLY = 0.68
+const REND = 0.024
 function bulbR(t) {
   t = Math.min(1, Math.max(0, t))
-  const s = Math.sin(Math.PI * Math.pow(t, 0.78) * 0.9)
-  return NECK + (RMAX - NECK) * s
+  if (t <= BELLY) {
+    const u = t / BELLY
+    return NECK + (RMAX - NECK) * Math.pow(Math.sin((u * Math.PI) / 2), 1.6)
+  }
+  const v = (t - BELLY) / (1 - BELLY)
+  return REND + (RMAX - REND) * Math.sqrt(Math.max(0, 1 - v * v))
 }
 const innerR = (t) => Math.max(0.0008, bulbR(t) - WALL)
 
@@ -61,7 +70,7 @@ const volFromEnd = (s) => VOL[N] - volTo(H - s)
 function upperShape(V, k = 1) {
   let lo = 0
   let hi = H
-  for (let k = 0; k < 40; k++) {
+  for (let it = 0; it < 40; it++) {
     const h = (lo + hi) / 2
     const R = innerR(h / H)
     const d = Math.min(h, R * REPOSE * k)

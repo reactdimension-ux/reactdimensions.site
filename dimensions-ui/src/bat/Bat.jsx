@@ -64,19 +64,27 @@ function bladeGeometry() {
   const uv = []
   const idx = []
   const rows = []
+  // Up through the shoulders the flat, edged section rounds off into the
+  // handle's circle, so the blade meets the handle (and the twine over the
+  // joint) as one smooth neck instead of a thin slab with fins for edges.
+  const R = HANDLE_R * 1.03 + 0.0004
+  const round = (x, z, phi, b) => [x + (R * Math.cos(phi) - x) * b, z + (HANDLE_Z + R * Math.sin(phi) - z) * b]
   for (let i = 0; i <= N; i++) {
     const y = (i / N) * BLADE_L
     const { hw, ts, te, z0 } = section(y)
+    const b = sm(BLADE_L - 0.07, BLADE_L, y) ** 1.6
     const ring = []
     for (let k = 0; k <= M; k++) {
       const s = -1 + (2 * k) / M
       const roll = Math.sqrt(Math.max(0, 1 - Math.abs(s) ** 9))
       const zb = z0 + (te + (ts - te) * (1 - s * s) ** 0.8) * roll
-      ring.push([s * hw, y, zb, 0.5 + s * 0.25])
+      const [x, z] = round(s * hw, zb, (Math.PI * (1 - s)) / 2, b)
+      ring.push([x, y, z, 0.5 + s * 0.25])
     }
     for (let k = 1; k < F; k++) {
       const s = 1 - (2 * k) / F
-      ring.push([s * hw, y, z0 - 0.0016 * (1 - s * s), 0.5 + s * 0.25 + 0.5])
+      const [x, z] = round(s * hw, z0 - 0.0016 * (1 - s * s), (-Math.PI * (1 - s)) / 2, b)
+      ring.push([x, y, z, 0.5 + s * 0.25 + 0.5])
     }
     rows.push(ring)
   }
@@ -310,7 +318,8 @@ export default function Bat({ wood = '#e6cfa3', grains = 10, gripColor = '#f4f4f
   const geo = useMemo(
     () => ({
       blade: bladeGeometry(),
-      handle: new THREE.CylinderGeometry(HANDLE_R, HANDLE_R * 1.03, BAT_L - BLADE_L + 0.012, 28),
+      // from just inside the top of the blade to just under the grip's cap
+      handle: new THREE.CylinderGeometry(HANDLE_R, HANDLE_R * 1.03, BAT_L - BLADE_L - 0.01, 28),
       grip: new THREE.CylinderGeometry(GRIP_R, GRIP_R * 1.01, BAT_L - BLADE_L - 0.045, 48, 1, true),
       gripEnd: new THREE.SphereGeometry(GRIP_R, 32, 10, 0, Math.PI * 2, 0, Math.PI / 2),
       twine: new THREE.CylinderGeometry(HANDLE_R + 0.0018, HANDLE_R + 0.0034, 0.032, 36),
@@ -583,7 +592,7 @@ export default function Bat({ wood = '#e6cfa3', grains = 10, gripColor = '#f4f4f
         <group position={[-COM.x, -COM.y, -COM.z]}>
           <mesh geometry={geo.blade} material={mats.blade} castShadow receiveShadow />
           <mesh geometry={geo.splice} material={mats.splice} position={[0, BLADE_L - 0.055, FACE_Z - 0.0022]} rotation={[0, Math.PI, 0]} />
-          <mesh geometry={geo.handle} material={mats.handle} position={[0, BLADE_L + (BAT_L - BLADE_L) / 2 - 0.02, HANDLE_Z]} castShadow />
+          <mesh geometry={geo.handle} material={mats.handle} position={[0, (BLADE_L - 0.004 + BAT_L - 0.014) / 2, HANDLE_Z]} castShadow />
           <mesh geometry={geo.twine} material={mats.twine} position={[0, BLADE_L + 0.008, HANDLE_Z]} castShadow />
           <mesh geometry={geo.grip} material={mats.grip} position={[0, BLADE_L + 0.024 + gripLen / 2, HANDLE_Z]} castShadow />
           <mesh geometry={geo.gripEnd} material={mats.grip} position={[0, BLADE_L + 0.024 + gripLen, HANDLE_Z]} scale={[1, 0.55, 1]} castShadow />
