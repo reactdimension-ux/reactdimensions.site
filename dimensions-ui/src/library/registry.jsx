@@ -235,6 +235,8 @@ import TennisCourtModel from '../lib/TennisCourtModel.jsx'
 import BadmintonCourtModel from '../lib/BadmintonCourtModel.jsx'
 import GameBoardModel from '../lib/GameBoardModel.jsx'
 import ChessboardModel from '../lib/ChessboardModel.jsx'
+import PlayingCardsModel from '../lib/PlayingCardsModel.jsx'
+import CarromModel from '../lib/CarromModel.jsx'
 import ShuttlecockModel from '../lib/ShuttlecockModel.jsx'
 import BadmintonRacketModel from '../lib/BadmintonRacketModel.jsx'
 import TennisRacketModel from '../lib/TennisRacketModel.jsx'
@@ -265,7 +267,7 @@ import FireEmoji from '../lib/FireEmoji.jsx'
 import PleadingEmoji from '../lib/PleadingEmoji.jsx'
 
 // Raw source of every component, for the Code tab.
-const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}', '../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}','../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
+const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}', '../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}', '../playingcards/*.{js,jsx}', '../carrom/*.{js,jsx}','../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
   query: '?raw',
   import: 'default',
   eager: true,
@@ -3579,6 +3581,48 @@ const ALL_COMPONENTS = [
     preview: (p) => <ChessboardModel {...p} height="100%" />,
     fill: true,
     files: ['ChessboardModel.jsx', 'chessboard/ChessboardScene.jsx', 'chessboard/Chessboard.jsx', 'gameboard/stage.jsx', 'gameboard/textures.js'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
+  },
+  {
+    slug: 'playing-cards',
+    name: 'Playing Cards',
+    category: '3D & Materials',
+    style: 'Everyday objects',
+    isNew: true,
+    description: 'A full suit, ace to king, dealt onto green baize: traditional pips and indices, an ornamented ace and double-headed court cards on the Color Cards card.',
+    controls: [
+      { name: 'view', type: 'select', options: ['Top', 'Table', 'Low', 'Ace', 'Court'], default: 'Top' },
+      { name: 'suit', type: 'select', options: ['clubs', 'spades', 'hearts', 'diamonds'], default: 'clubs' },
+      { name: 'layout', type: 'select', options: ['rows', 'fan'], default: 'rows' },
+      { name: 'backColor', type: 'color', default: '#a3202a' },
+      { name: 'feltColor', type: 'color', default: '#14572f' },
+      { name: 'ambientOcclusion', type: 'toggle', default: false },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <PlayingCardsModel {...p} height="100%" />,
+    fill: true,
+    files: ['PlayingCardsModel.jsx', 'playingcards/PlayingCardsScene.jsx', 'playingcards/PlayingCards.jsx', 'playingcards/faces.js', 'deck/faces.js', 'gameboard/stage.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
+  },
+  {
+    slug: 'carrom-board',
+    name: 'Carrom Board',
+    category: '3D & Materials',
+    style: 'Everyday objects',
+    isNew: true,
+    description: 'A tournament carrom board: a lacquered birch surface with the standard markings, net-bag pockets it stands on, and a deep rounded walnut frame.',
+    controls: [
+      { name: 'view', type: 'select', options: ['Top', '3/4', 'Front', 'Rear', 'Left', 'Right', 'Pocket', 'Centre', 'Baseline', 'Frame'], default: '3/4' },
+      { name: 'frameWood', type: 'color', default: '#6b3820' },
+      { name: 'surface', type: 'color', default: '#e4c999' },
+      { name: 'netColor', type: 'color', default: '#dcd6c9' },
+      { name: 'dimensions', type: 'toggle', default: false },
+      { name: 'ambientOcclusion', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <CarromModel {...p} height="100%" />,
+    fill: true,
+    files: ['CarromModel.jsx', 'carrom/CarromScene.jsx', 'carrom/Carrom.jsx', 'gameboard/stage.jsx', 'gameboard/textures.js'],
     deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
   },
   {
