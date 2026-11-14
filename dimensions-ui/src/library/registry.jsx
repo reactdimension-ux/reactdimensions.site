@@ -246,6 +246,7 @@ import ArcheryTargetModel from '../lib/ArcheryTargetModel.jsx'
 import PokerChipsModel from '../lib/PokerChipsModel.jsx'
 import FidgetSpinnerModel from '../lib/FidgetSpinnerModel.jsx'
 import ElectricGuitarModel from '../lib/ElectricGuitarModel.jsx'
+import WineGlassModel from '../lib/WineGlassModel.jsx'
 import RouletteModel from '../lib/RouletteModel.jsx'
 import PokerTableModel from '../lib/PokerTableModel.jsx'
 import ShuttlecockModel from '../lib/ShuttlecockModel.jsx'
@@ -281,7 +282,7 @@ import PleadingEmoji from '../lib/PleadingEmoji.jsx'
 // Loaded on demand: each file is its own small chunk, fetched the first time
 // a page needs it (the eager version put 3.5 MB of source text in the
 // main bundle that every visit downloaded).
-const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}','../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}', '../playingcards/*.{js,jsx}', '../carrom/*.{js,jsx}', '../arrow/*.{js,jsx}', '../archery/*.{js,jsx}', '../pokerchips/*.{js,jsx}', '../spinner/*.{js,jsx}', '../electric/*.{js,jsx}', '../roulette/*.{js,jsx}', '../poker/*.{js,jsx}', '../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../airliner/*.{js,jsx}', '../suv/*.{js,jsx}', '../helicopter/*.{js,jsx}','../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
+const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}','../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}', '../playingcards/*.{js,jsx}', '../carrom/*.{js,jsx}', '../arrow/*.{js,jsx}', '../archery/*.{js,jsx}', '../pokerchips/*.{js,jsx}', '../spinner/*.{js,jsx}', '../electric/*.{js,jsx}', '../wineglass/*.{js,jsx}', '../roulette/*.{js,jsx}', '../poker/*.{js,jsx}', '../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../airliner/*.{js,jsx}', '../suv/*.{js,jsx}', '../helicopter/*.{js,jsx}','../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
   query: '?raw',
   import: 'default',
 })
@@ -3742,6 +3743,28 @@ const ALL_COMPONENTS = [
     preview: (p) => <ElectricGuitarModel {...p} height="100%" />,
     fill: true,
     files: ['ElectricGuitarModel.jsx', 'electric/ElectricScene.jsx', 'electric/Electric.jsx', 'electric/geometry.js', 'electric/shapes.js', 'electric/strings.js', 'electric/textures.js', 'electric/audio.js', 'gameboard/stage.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
+  },
+  {
+    slug: 'wine-glass',
+    name: 'Wine Glass',
+    category: '3D & Materials',
+    style: 'Everyday objects',
+    isNew: true,
+    description: 'A classic stemmed wine glass in real refracting glass, with a thin rolled rim and a drawn stem. Slide or swirl it and the wine sloshes round the bowl; strike it and it rings lower the fuller it is.',
+    controls: [
+      { name: 'view', type: 'select', options: ['Front', 'Back', 'Left', 'Right', 'Top', 'Bottom', 'Front-L', 'Front-R', 'Back-L', 'Back-R', 'A · Rim', 'B · Bowl', 'C · Stem joint', 'D · Stem', 'E · Foot'], default: 'Front-L' },
+      { name: 'wine', type: 'select', options: ['red', 'rosé', 'white', 'water', 'empty'], default: 'red' },
+      { name: 'fill', type: 'range', min: 0, max: 1.6, step: 0.05, default: 0.9 },
+      { name: 'pitch', type: 'range', min: 500, max: 1100, step: 10, default: 760, unit: 'Hz' },
+      { name: 'sound', type: 'toggle', default: true },
+      { name: 'dimensions', type: 'toggle', default: false },
+      { name: 'ambientOcclusion', type: 'toggle', default: false },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <WineGlassModel {...p} height="100%" />,
+    fill: true,
+    files: ['WineGlassModel.jsx', 'wineglass/WineGlassScene.jsx', 'wineglass/WineGlass.jsx', 'wineglass/geometry.js', 'wineglass/audio.js', 'gameboard/stage.jsx'],
     deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
   },
   {
