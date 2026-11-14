@@ -154,6 +154,7 @@ import MaxFestival from '../lib/MaxFestival.jsx'
 import BentoSpecs from '../lib/BentoSpecs.jsx'
 import BentoHome from '../lib/BentoHome.jsx'
 import SmartHomeApp from '../lib/SmartHomeApp.jsx'
+import FoodTrackerApp from '../lib/FoodTrackerApp.jsx'
 import BentoAnalytics from '../lib/BentoAnalytics.jsx'
 import BentoPortfolio from '../lib/BentoPortfolio.jsx'
 import BentoFeatures from '../lib/BentoFeatures.jsx'
@@ -276,14 +277,17 @@ import CryEmoji from '../lib/CryEmoji.jsx'
 import FireEmoji from '../lib/FireEmoji.jsx'
 import PleadingEmoji from '../lib/PleadingEmoji.jsx'
 
-// Raw source of every component, for the Code tab.
+// Raw source of every component, for the Code tab and the copy menus.
+// Loaded on demand: each file is its own small chunk, fetched the first time
+// a page needs it (the eager version put 3.5 MB of source text in the
+// main bundle that every visit downloaded).
 const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}','../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}', '../playingcards/*.{js,jsx}', '../carrom/*.{js,jsx}', '../arrow/*.{js,jsx}', '../archery/*.{js,jsx}', '../pokerchips/*.{js,jsx}', '../spinner/*.{js,jsx}', '../electric/*.{js,jsx}', '../roulette/*.{js,jsx}', '../poker/*.{js,jsx}', '../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../airliner/*.{js,jsx}', '../suv/*.{js,jsx}', '../helicopter/*.{js,jsx}','../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
   query: '?raw',
   import: 'default',
-  eager: true,
 })
 // Files are named 'X.jsx' (in lib/ or src/) or 'pickup/X.jsx'.
-const src = (file) => SOURCES[`../lib/${file}`] ?? SOURCES[`../${file}`] ?? ''
+const loaderFor = (file) => SOURCES[`../lib/${file}`] ?? SOURCES[`../${file}`]
+const SOURCE_CACHE = new Map()
 
 // Categories kept in the code but not shown on the site. Their components and
 // files stay as they are; take a category out of this list to show it again.
@@ -5807,6 +5811,25 @@ const ALL_COMPONENTS = [
     deps: [],
   },
   {
+    slug: 'food-tracker-app',
+    name: 'Food Tracker App',
+    category: 'Phone UI',
+    style: 'Flat',
+    isNew: true,
+    description: 'An AI calorie-tracker phone app: a welcome screen with calorie tags, a dashboard ring that fills as meals add up, filterable recipes and a plate scanner that logs what it finds.',
+    controls: [
+      { name: 'startScreen', type: 'select', options: ['welcome', 'home', 'recipes', 'scan', 'saved', 'settings'], default: 'welcome' },
+      { name: 'accent', type: 'color', default: '#f2763a' },
+      { name: 'goal', type: 'range', min: 1200, max: 3600, step: 50, default: 2000 },
+      { name: 'name', type: 'text', default: 'NutriLens', maxLength: 20 },
+      { name: 'frame', type: 'toggle', default: true },
+    ],
+    fill: true,
+    preview: (p) => <FoodTrackerApp {...p} style={{ position: 'absolute', inset: 0 }} />,
+    files: ['FoodTrackerApp.jsx'],
+    deps: [],
+  },
+  {
     slug: 'bento-specs',
     name: 'Bento Specs',
     category: 'UI',
@@ -6115,7 +6138,20 @@ export const COMPONENTS = ALL_COMPONENTS.filter((c) => !HIDDEN_CATEGORIES.includ
 // Components that take children, so usage shows them as wrappers.
 export const WRAPPERS = ['TiltCard', 'DraftingGrid', 'LightSweep', 'Cyclorama', 'GradientSweep', 'SoftHorizon', 'SpringButton', 'MagneticButton']
 
-export const sourceFor = (c) => c.files.map((f) => ({ file: f, code: src(f) }))
+// A component's files, from the cache ('' for any not loaded yet): call
+// loadSources(c) first, or use its result.
+export const sourceFor = (c) => c.files.map((f) => ({ file: f, code: SOURCE_CACHE.get(f) ?? '' }))
+export const sourcesLoaded = (c) => c.files.every((f) => SOURCE_CACHE.has(f))
+export async function loadSources(c) {
+  await Promise.all(
+    c.files.map(async (f) => {
+      if (SOURCE_CACHE.has(f)) return
+      const load = loaderFor(f)
+      SOURCE_CACHE.set(f, load ? await load() : '')
+    }),
+  )
+  return sourceFor(c)
+}
 
 // Preset rows only set other controls, so they have no value of their own.
 export const valueControls = (c) => c.controls.filter((k) => k.type !== 'presets')
