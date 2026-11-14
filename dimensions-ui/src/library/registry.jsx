@@ -238,6 +238,8 @@ import GameBoardModel from '../lib/GameBoardModel.jsx'
 import ChessboardModel from '../lib/ChessboardModel.jsx'
 import PlayingCardsModel from '../lib/PlayingCardsModel.jsx'
 import CarromModel from '../lib/CarromModel.jsx'
+import ArrowModel from '../lib/ArrowModel.jsx'
+import ArcheryTargetModel from '../lib/ArcheryTargetModel.jsx'
 import RouletteModel from '../lib/RouletteModel.jsx'
 import ShuttlecockModel from '../lib/ShuttlecockModel.jsx'
 import BadmintonRacketModel from '../lib/BadmintonRacketModel.jsx'
@@ -269,7 +271,7 @@ import FireEmoji from '../lib/FireEmoji.jsx'
 import PleadingEmoji from '../lib/PleadingEmoji.jsx'
 
 // Raw source of every component, for the Code tab.
-const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}','../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}', '../playingcards/*.{js,jsx}', '../carrom/*.{js,jsx}', '../roulette/*.{js,jsx}','../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../airliner/*.{js,jsx}', '../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
+const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}','../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}', '../playingcards/*.{js,jsx}', '../carrom/*.{js,jsx}', '../arrow/*.{js,jsx}', '../archery/*.{js,jsx}', '../roulette/*.{js,jsx}','../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../airliner/*.{js,jsx}', '../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
   query: '?raw',
   import: 'default',
   eager: true,
@@ -3625,6 +3627,48 @@ const ALL_COMPONENTS = [
     preview: (p) => <CarromModel {...p} height="100%" />,
     fill: true,
     files: ['CarromModel.jsx', 'carrom/CarromScene.jsx', 'carrom/Carrom.jsx', 'gameboard/stage.jsx', 'gameboard/textures.js'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
+  },
+  {
+    slug: 'arrow',
+    name: 'Arrow',
+    category: '3D & Materials',
+    style: 'Sports & fitness',
+    isNew: true,
+    description: 'A carbon target arrow at real size: twill-weave shaft, grooved steel field point, three vanes with a helical offset and a translucent nock.',
+    controls: [
+      { name: 'view', type: 'select', options: ['Side', '3/4', 'Point', 'Fletching'], default: 'Side' },
+      { name: 'vaneColor', type: 'color', default: '#f2641c' },
+      { name: 'cockColor', type: 'color', default: '#f1f1ee' },
+      { name: 'nockColor', type: 'color', default: '#ff7a1a' },
+      { name: 'point', type: 'select', options: ['steel', 'brass', 'black'], default: 'steel' },
+      { name: 'ambientOcclusion', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <ArrowModel {...p} height="100%" />,
+    fill: true,
+    files: ['ArrowModel.jsx', 'arrow/ArrowScene.jsx', 'arrow/Arrow.jsx', 'gameboard/stage.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
+  },
+  {
+    slug: 'archery-target',
+    name: 'Archery Target',
+    category: '3D & Materials',
+    style: 'Sports & fitness',
+    isNew: true,
+    description: 'A ten-ring face on a straw boss, leaning on a wooden tripod. Shoot carbon arrows into it: they stick, quiver and score by ring.',
+    controls: [
+      { name: 'view', type: 'select', options: ['Front', '3/4', 'Side', 'Face', 'Arrows', 'Stand'], default: '3/4' },
+      { name: 'spread', type: 'range', min: 0.02, max: 0.2, step: 0.01, default: 0.07, unit: 'm' },
+      { name: 'standColor', type: 'color', default: '#d8ae72' },
+      { name: 'vaneColor', type: 'color', default: '#f2641c' },
+      { name: 'nockColor', type: 'color', default: '#ff7a1a' },
+      { name: 'ambientOcclusion', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <ArcheryTargetModel {...p} height="100%" />,
+    fill: true,
+    files: ['ArcheryTargetModel.jsx', 'archery/TargetScene.jsx', 'archery/Target.jsx', 'arrow/Arrow.jsx', 'gameboard/stage.jsx', 'gameboard/textures.js'],
     deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
   },
   {
