@@ -74,6 +74,7 @@ import GlowInDark from '../lib/GlowInDark.jsx'
 import PrismText from '../lib/PrismText.jsx'
 import MoireText from '../lib/MoireText.jsx'
 import FrostText from '../lib/FrostText.jsx'
+import TuringText from '../lib/TuringText.jsx'
 import FoggedGlass from '../lib/FoggedGlass.jsx'
 import BurningPaper from '../lib/BurningPaper.jsx'
 import RainWindow from '../lib/RainWindow.jsx'
@@ -228,6 +229,8 @@ import TTBatModel from '../lib/TTBatModel.jsx'
 import DartModel from '../lib/DartModel.jsx'
 import CricketBallModel from '../lib/CricketBallModel.jsx'
 import ShuttlecockModel from '../lib/ShuttlecockModel.jsx'
+import BadmintonRacketModel from '../lib/BadmintonRacketModel.jsx'
+import TennisRacketModel from '../lib/TennisRacketModel.jsx'
 import GamepadModel from '../lib/GamepadModel.jsx'
 import LadderModel from '../lib/LadderModel.jsx'
 import ShirtModel from '../lib/ShirtModel.jsx'
@@ -269,7 +272,7 @@ export const HIDDEN_CATEGORIES = ['Icons & Emojis']
 // sidebar, the section pages, search and the generated registry files).
 export const HIDDEN_COMPONENTS = ['shirt', 'earbuds', 'gamepad']
 
-const ALL_CATEGORIES = ['Text', 'Animation', 'UI', 'Phone UI', '3D & Materials', 'Backgrounds', 'Icons & Emojis']
+const ALL_CATEGORIES = ['Text', 'Animation', 'UI', 'Phone UI', '3D & Materials', 'Backgrounds', 'Motion Graphics', 'Icons & Emojis']
 export const CATEGORIES = ALL_CATEGORIES.filter((c) => !HIDDEN_CATEGORIES.includes(c))
 
 // The UI section is grouped by visual style, in this order.
@@ -2365,6 +2368,37 @@ const ALL_COMPONENTS = [
     deps: [],
   },
   {
+    slug: 'turing-text',
+    name: 'Turing Pattern',
+    category: 'Text',
+    isNew: true,
+    description: 'Animal markings grow into the letters from a real reaction-diffusion simulation, the mechanism Turing proposed for spots and stripes. Seeds divide and spread until they fill each shape. Click or drag to plant more.',
+    controls: [
+      { name: 'text', type: 'text', default: 'WILD', maxLength: 10 },
+      { name: 'pattern', type: 'select', options: ['spots', 'stripes', 'coral', 'holes'], default: 'spots' },
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Leopard', values: { pattern: 'spots', background: '#efe7da', skin: '#e3b260', marking: '#2b1b12' } },
+          { name: 'Zebra', values: { pattern: 'stripes', background: '#e9e6df', skin: '#f6f4ee', marking: '#141414' } },
+          { name: 'Giraffe', values: { pattern: 'holes', background: '#efe9dc', skin: '#a9622b', marking: '#f1e3c6' } },
+          { name: 'Coral', values: { pattern: 'coral', background: '#dff0f0', skin: '#f6d7c6', marking: '#d9533a' } },
+        ],
+      },
+      { name: 'speed', type: 'range', min: 0.25, max: 3, step: 0.25, default: 1 },
+      { name: 'scale', type: 'range', min: 2, max: 5, step: 0.5, default: 3, unit: 'px' },
+      { name: 'background', type: 'color', default: '#efe7da' },
+      { name: 'skin', type: 'color', default: '#e3b260' },
+      { name: 'marking', type: 'color', default: '#2b1b12' },
+    ],
+    replay: true,
+    fill: true,
+    preview: (p) => <TuringText {...p} style={{ position: 'absolute', inset: 0 }} />,
+    files: ['TuringText.jsx'],
+    deps: [],
+  },
+  {
     slug: 'fogged-glass',
     name: 'Fogged Glass',
     category: 'Text',
@@ -3917,7 +3951,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Physics & play',
     isNew: true,
-    description: 'A feathered badminton shuttlecock at real size and weight: sixteen goose feathers drawn barb by barb, with frayed edges and splits, translucent vanes that overlap like shingles, two rows of glued cotton binding, and a leather-covered cork with a speed band. Serve it and it flips cork-first, spins up on its feathers and falls at terminal speed, then lands and topples onto its side.',
+    description: 'A feathered badminton shuttlecock at real size and weight: sixteen goose feathers drawn barb by barb, die-cut tips that split and fray with wear, translucent vanes that overlap like shingles, two rows of glued cotton binding, and a leather-covered cork with a speed band. Serve it and it flips cork-first, spins up on its feathers and falls at terminal speed, then lands and topples onto its side.',
     controls: [
       { name: 'band', type: 'color', default: '#0e4f38' },
       { name: 'wear', type: 'range', min: 0, max: 1, step: 0.05, default: 0.15 },
@@ -3932,6 +3966,71 @@ const ALL_COMPONENTS = [
     preview: (p) => <ShuttlecockModel {...p} height="100%" />,
     fill: true,
     files: ['ShuttlecockModel.jsx', 'shuttlecock/ShuttlecockScene.jsx', 'shuttlecock/Shuttlecock.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'badminton-racket',
+    name: 'Badminton Racket',
+    category: '3D & Materials',
+    style: 'Physics & play',
+    isNew: true,
+    description: 'A badminton racket at regulation size: a glossy box-section isometric frame with a string groove and grommets, a T-joint and throat, a properly woven 22 x 24 string bed with the React Dimensions mark stencilled across it, a decalled graphite shaft and a towel-gripped octagonal handle. Tap the strings and they dent and trampoline where you hit, pinging at the pitch of the tension.',
+    controls: [
+      { name: 'frame', type: 'color', default: '#f2f2ef' },
+      { name: 'accent', type: 'color', default: '#1f2f6b' },
+      { name: 'strings', type: 'color', default: '#f3f1ea' },
+      { name: 'ink', type: 'color', default: '#ff4d1a' },
+      { name: 'stencil', type: 'toggle', default: true },
+      { name: 'grip', type: 'color', default: '#161616' },
+      { name: 'length', type: 'range', min: 580, max: 700, step: 5, default: 665, unit: 'mm' },
+      { name: 'tension', type: 'range', min: 18, max: 30, step: 1, default: 24, unit: 'lbs' },
+      { name: 'slowMotion', type: 'range', min: 0.1, max: 1, step: 0.05, default: 1 },
+      { name: 'background', type: 'color', default: '#ecebe8' },
+      { name: 'sound', type: 'toggle', default: false },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    replay: true,
+    preview: (p) => <BadmintonRacketModel {...p} height="100%" />,
+    fill: true,
+    files: ['BadmintonRacketModel.jsx', 'racket/RacketScene.jsx', 'racket/Racket.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'tennis-racket',
+    name: 'Tennis Racket',
+    category: '3D & Materials',
+    style: 'Physics & play',
+    isNew: true,
+    description: 'A tennis racket at standard size: a deep box-beam frame swept in one piece through an open throat and round a 105 sq in head, a bridge across the throat, grommets in a channel, a woven 16 x 19 string bed with the React Dimensions mark stencilled across it, a blue fade paint job and a white-gripped octagonal handle. Tap the strings and they dent and trampoline where the ball lands.',
+    controls: [
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Sky fade', values: { frame: '#1d2a7a', frameTop: '#5cc4f2', lettering: '#ffffff', grip: '#f2f1ec' } },
+          { name: 'Stealth', values: { frame: '#141416', frameTop: '#3a3d44', lettering: '#ff4d1a', grip: '#1a1a1a' } },
+          { name: 'Ember', values: { frame: '#5a0f12', frameTop: '#ff4d1a', lettering: '#ffffff', grip: '#f2f1ec' } },
+          { name: 'Court', values: { frame: '#0f3d2e', frameTop: '#c9e45a', lettering: '#ffffff', grip: '#f2f1ec' } },
+        ],
+      },
+      { name: 'frame', type: 'color', default: '#1d2a7a' },
+      { name: 'frameTop', type: 'color', default: '#5cc4f2' },
+      { name: 'lettering', type: 'color', default: '#ffffff' },
+      { name: 'strings', type: 'color', default: '#f3f2ed' },
+      { name: 'ink', type: 'color', default: '#ff4d1a' },
+      { name: 'stencil', type: 'toggle', default: true },
+      { name: 'grip', type: 'color', default: '#f2f1ec' },
+      { name: 'length', type: 'range', min: 480, max: 737, step: 5, default: 686, unit: 'mm' },
+      { name: 'tension', type: 'range', min: 40, max: 65, step: 1, default: 55, unit: 'lbs' },
+      { name: 'slowMotion', type: 'range', min: 0.1, max: 1, step: 0.05, default: 1 },
+      { name: 'background', type: 'color', default: '#ecebe8' },
+      { name: 'sound', type: 'toggle', default: false },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    replay: true,
+    preview: (p) => <TennisRacketModel {...p} height="100%" />,
+    fill: true,
+    files: ['TennisRacketModel.jsx', 'tennis/TennisRacketScene.jsx', 'tennis/TennisRacket.jsx'],
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {

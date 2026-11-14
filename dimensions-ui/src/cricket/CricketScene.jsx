@@ -90,7 +90,7 @@ export default function CricketScene({ autoRotate = false, ...props }) {
           Reset
         </button>
       </div>
-      <InfoHint>Bowl (or click the stumps, or press B) · the ball takes the stumps and the bails fly · raise the pace to uproot one · Reset (R) puts the wicket back</InfoHint>
+      <InfoHint>Bowl (or click the stumps, or press B) · the ball takes the stumps and the bails fly · raise the pace to uproot one · drag a stump to pull it out of the ground and look at its spike · Reset (R) puts the wicket back</InfoHint>
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { useFrame } from '@react-three/fiber'
+import { useFrame, useThree } from '@react-three/fiber'
 import { useCursor } from '@react-three/drei'
 import * as THREE from 'three'
 import { createCricketAudio } from './audio.js'
@@ -175,21 +175,57 @@ function pitchTexture() {
 function lathe(profile, segs = 40) {
   return new THREE.LatheGeometry(profile.map(([r, y]) => new THREE.Vector2(r, y)), segs)
 }
-// a stump: pointed spike, round shaft, domed top. Origin at the ground line.
+// a stump: round shaft, domed top, and a sharpened-pencil spike: the shaft
+// ends in a small chamfer, then a straight cone about two and a half
+// diameters long runs down to a rounded, blunt tip. Origin at the ground line.
 function stumpGeometry() {
   const R = STUMP.r
+  const S = STUMP.spike
   return lathe([
-    [0, -STUMP.spike],
-    [0.003, -STUMP.spike + 0.012],
-    [0.009, -0.11],
-    [0.0155, -0.045],
-    [R, -0.012],
+    [0, -S],
+    [R * 0.12, -S + 0.0012],
+    [R * 0.2, -S + 0.0045],
+    [R * 0.88, -0.021],
+    [R * 0.9, -0.0195],
+    [R, -0.0165],
     [R, STUMP.h - 0.016],
     [R * 0.96, STUMP.h - 0.008],
     [R * 0.8, STUMP.h - 0.003],
     [R * 0.45, STUMP.h],
     [0, STUMP.h + 0.0008],
   ])
+}
+// the loosened soil heaped round a stump where it was driven in: a low,
+// crumbly collar rising to a lip at the hole. Origin at the ground line.
+function collarGeometry() {
+  const R = STUMP.r
+  const g = lathe(
+    [
+      [R * 1.01, -0.006],
+      [R * 1.04, 0.0032],
+      [R * 1.3, 0.0052],
+      [0.032, 0.0034],
+      [0.044, 0.0012],
+      [0.056, 0.0001],
+      [0.062, -0.0004],
+    ],
+    64,
+  )
+  // crumble it: lumps and dips round the ring (whole-number frequencies,
+  // so the lathe's seam lines up)
+  const p = g.attributes.position
+  for (let i = 0; i < p.count; i++) {
+    const y = p.getY(i)
+    if (y <= 0) continue
+    const x = p.getX(i)
+    const z = p.getZ(i)
+    const a = Math.atan2(z, x)
+    const r = Math.hypot(x, z)
+    const n = 0.5 + 0.28 * Math.sin(a * 7 + 1.3) + 0.22 * Math.sin(a * 13 + r * 420)
+    p.setY(i, y * (0.55 + 0.9 * n))
+  }
+  g.computeVertexNormals()
+  return g
 }
 // a bail: two turned barrels with rings, a waist, spigots at each end. Axis x.
 function bailGeometry() {
@@ -245,6 +281,8 @@ export default function Cricket({
       ball: new THREE.SphereGeometry(BALL.r, 48, 32),
       pitch: new THREE.PlaneGeometry(3.05, 12),
       crease: new THREE.PlaneGeometry(1, 1),
+      collar: collarGeometry(),
+      hole: new THREE.CircleGeometry(1, 40),
     }),
     [],
   )
@@ -273,6 +311,9 @@ export default function Cricket({
       ball: new THREE.MeshPhysicalMaterial({ roughness: 0.38, clearcoat: 0.7, clearcoatRoughness: 0.2 }),
       pitch: new THREE.MeshStandardMaterial({ roughness: 0.95 }),
       crease: new THREE.MeshStandardMaterial({ color: '#fbfaf6', roughness: 0.9, polygonOffset: true, polygonOffsetFactor: -1 }),
+      // loosened soil, darker and damper than the rolled surface
+      soil: new THREE.MeshStandardMaterial({ color: '#9a7b52', roughness: 1 }),
+      hole: new THREE.MeshStandardMaterial({ color: '#2a1d12', roughness: 1 }),
     }
   }, [])
   useEffect(() => () => Object.values(mats).forEach((m) => m.dispose()), [mats])
@@ -529,6 +570,30 @@ export default function Cricket({
         w.free[i] = f
       }
     })
+    // a stump in the hand: the grabbed point is pulled toward the pointer by
+    // a stiff, damped hand (its velocity relaxes toward one that closes the
+    // gap, over about 1/60 s), applied as an impulse at that point. Gravity
+    // still acts on the whole stump, so it hangs from where you hold it and
+    // swings like a real one would.
+    const H = grab.current
+    if (H?.body) {
+      const f = H.body
+      const p = H.p.copy(H.local).applyQuaternion(f.quat).add(f.pos)
+      const dv = H.dv.subVectors(H.target, p).multiplyScalar(40).sub(f.pointVel(p, H.pv))
+      const mag = dv.length()
+      if (mag > 1e-6) {
+        dv.divideScalar(mag)
+        f.invInertia(H.invIw)
+        const k = f.kAt(p, dv, H.invIw)
+        f.applyImpulse(dv.multiplyScalar((mag / k) * Math.min(1, h * 60)), p, H.invIw)
+      }
+      // the grip: fingers round the stump soak up its swing (with less, a
+      // shake sends it whirling over the hand; with this it swings and
+      // settles to hang straight in about half a second)
+      f.ang.multiplyScalar(1 - Math.min(1, h * 10))
+      f.active = true
+      f.still = 0
+    }
     w.free.forEach((f) => f?.step(h, (_, s) => play('stump', s / 12)))
 
     // the bails: they stay seated while the stumps under them stay put
@@ -566,21 +631,103 @@ export default function Cricket({
   // ---- render ----
   const ballRef = useRef()
   const stumpRefs = [useRef(), useRef(), useRef()]
+  const holeRefs = [useRef(), useRef(), useRef()]
   const bailRefs = [useRef(), useRef()]
   const autoT = useRef(0)
+
+  // ---- grabbing a stump ----
+  // Press on a stump and drag: the first movement pulls it out of the soil
+  // (leaving its socket empty) and you hold it by the point you pressed. A
+  // tap without dragging still bowls.
+  const { camera, gl, controls } = useThree()
+  const grab = useRef(null)
+  const startHold = (H) => {
+    const w = world
+    const s = w.stumps[H.i]
+    let f = w.free[H.i]
+    if (!f) {
+      // pull it out as it stands
+      s.planted = false
+      f = stumpBody()
+      f.pos.copy(s.base).addScaledVector(s.up(new THREE.Vector3()), STUMP_COM)
+      f.quat.copy(s.quat)
+      f.active = true
+      w.free[H.i] = f
+      play('stump', 0.25)
+    }
+    w.disturbed = true
+    H.body = f
+    // the grabbed point, in the stump's own frame
+    H.local = H.hit.clone().sub(f.pos).applyQuaternion(f.quat.clone().invert())
+    H.target = H.hit.clone()
+  }
+  const onStumpDown = (i) => (e) => {
+    e.stopPropagation()
+    const n = new THREE.Vector3()
+    camera.getWorldDirection(n)
+    grab.current = {
+      i,
+      x: e.clientX,
+      y: e.clientY,
+      hit: e.point.clone(),
+      plane: new THREE.Plane().setFromNormalAndCoplanarPoint(n.negate(), e.point),
+      body: null,
+      p: new THREE.Vector3(),
+      dv: new THREE.Vector3(),
+      pv: new THREE.Vector3(),
+      invIw: new THREE.Matrix3(),
+    }
+    gl.domElement.setPointerCapture?.(e.pointerId)
+    if (controls) controls.enabled = false
+  }
+  useEffect(() => {
+    const el = gl.domElement
+    const ray = new THREE.Raycaster()
+    const ndc = new THREE.Vector2()
+    const hit = new THREE.Vector3()
+    const move = (e) => {
+      const H = grab.current
+      if (!H) return
+      if (!H.body) {
+        if (Math.hypot(e.clientX - H.x, e.clientY - H.y) < 6) return
+        startHold(H)
+      }
+      const r = el.getBoundingClientRect()
+      ndc.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1)
+      ray.setFromCamera(ndc, camera)
+      if (ray.ray.intersectPlane(H.plane, hit)) H.target.copy(hit)
+    }
+    const up = () => {
+      const H = grab.current
+      if (!H) return
+      grab.current = null
+      if (controls) controls.enabled = true
+      // a tap: bowl, as a click on the stumps always did
+      if (!H.body) doBowl()
+    }
+    el.addEventListener('pointermove', move)
+    el.addEventListener('pointerup', up)
+    el.addEventListener('pointercancel', up)
+    return () => {
+      el.removeEventListener('pointermove', move)
+      el.removeEventListener('pointerup', up)
+      el.removeEventListener('pointercancel', up)
+    }
+  })
 
   useFrame((_, delta) => {
     const real = Math.min(delta, 1 / 20)
     if (!(real > 0)) return
     const L = live.current
-    const sim = real * THREE.MathUtils.clamp(L.slowMotion, 0.05, 1)
+    // in real time while a stump is in the hand, so it keeps up with you
+    const sim = grab.current?.body ? real : real * THREE.MathUtils.clamp(L.slowMotion, 0.05, 1)
     const n = Math.max(1, Math.ceil(sim / SUB))
     for (let i = 0; i < n; i++) substep(sim / n)
 
     const w = world
     // bowl again by itself once everything has come to rest
     if (L.autoBowl) {
-      const busy = w.ball.active || w.free.some((f) => f?.active) || w.bails.some((b) => b.body.active)
+      const busy = !!grab.current || w.ball.active || w.free.some((f) => f?.active) || w.bails.some((b) => b.body.active)
       autoT.current = busy ? 0 : autoT.current + real
       if (autoT.current > (w.bowledAt < 0 ? 0.8 : 1.6)) {
         autoT.current = 0
@@ -603,6 +750,31 @@ export default function Cricket({
       } else {
         g.position.copy(s.base).addScaledVector(s.up(tmp.v), STUMP_COM)
         g.quaternion.copy(s.quat)
+      }
+      // the hole in the soil. Upright, the stump fills it. Driven back, the
+      // stump turns about its base: the spike shoves forward underground and
+      // the shaft pulls away from the front of the hole, opening a gap there
+      // that widens with the lean. Uprooted, the empty round socket is left.
+      const hg = holeRefs[i].current
+      if (hg) {
+        const R = STUMP.r
+        hg.position.set(s.base.x, 0.0018, s.base.z)
+        hg.rotation.y = 0
+        if (f) hg.scale.set(R * 1.06, 1, R * 1.06)
+        else {
+          const u = s.up(tmp.v)
+          const hl = Math.hypot(u.x, u.z)
+          if (hl < 1e-4) hg.scale.set(R * 0.97, 1, R * 0.97)
+          else {
+            const dx = u.x / hl
+            const dz = u.z / hl
+            const gap = Math.min(0.02, hl * 0.06)
+            hg.position.x -= (dx * gap) / 2
+            hg.position.z -= (dz * gap) / 2
+            hg.rotation.y = Math.atan2(-dz, dx)
+            hg.scale.set(R + gap / 2, 1, R * 1.04)
+          }
+        }
       }
     })
     // bails
@@ -640,9 +812,29 @@ export default function Cricket({
         <mesh key={x} geometry={geo.crease} material={mats.crease} rotation={[-Math.PI / 2, 0, 0]} position={[x, 0.001, -0.6]} scale={[0.05, 2.44, 1]} receiveShadow />
       ))}
 
+      {/* the soil round each stump: a crumbly collar and the hole the spike
+          sits in (the spike itself is modelled, below the ground line) */}
+      {STUMP_X.map((x, i) => (
+        <group key={x}>
+          <mesh geometry={geo.collar} material={mats.soil} position={[x, 0, 0]} castShadow receiveShadow />
+          <group ref={holeRefs[i]} position={[x, 0.0018, 0]}>
+            <mesh geometry={geo.hole} material={mats.hole} rotation={[-Math.PI / 2, 0, 0]} />
+          </group>
+        </group>
+      ))}
+
       {/* the stumps */}
       {STUMP_X.map((x, i) => (
-        <group key={x} ref={stumpRefs[i]} {...clickable(doBowl)}>
+        <group
+          key={x}
+          ref={stumpRefs[i]}
+          onPointerDown={onStumpDown(i)}
+          onPointerOver={(e) => {
+            e.stopPropagation()
+            setHover(true)
+          }}
+          onPointerOut={() => setHover(false)}
+        >
           <group position={[0, -STUMP_COM, 0]}>
             <mesh geometry={geo.stump} material={mats.stump} castShadow receiveShadow />
             {/* the groove the bails sit in */}
