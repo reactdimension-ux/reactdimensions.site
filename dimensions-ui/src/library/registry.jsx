@@ -228,6 +228,7 @@ import MugModel from '../lib/MugModel.jsx'
 import TTBatModel from '../lib/TTBatModel.jsx'
 import DartModel from '../lib/DartModel.jsx'
 import CricketBallModel from '../lib/CricketBallModel.jsx'
+import CricketPitchModel from '../lib/CricketPitchModel.jsx'
 import ShuttlecockModel from '../lib/ShuttlecockModel.jsx'
 import BadmintonRacketModel from '../lib/BadmintonRacketModel.jsx'
 import TennisRacketModel from '../lib/TennisRacketModel.jsx'
@@ -258,7 +259,7 @@ import FireEmoji from '../lib/FireEmoji.jsx'
 import PleadingEmoji from '../lib/PleadingEmoji.jsx'
 
 // Raw source of every component, for the Code tab.
-const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
+const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pitch/*.{js,jsx}', '../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
   query: '?raw',
   import: 'default',
   eager: true,
@@ -3421,6 +3422,29 @@ const ALL_COMPONENTS = [
     fill: true,
     files: ['CricketBatModel.jsx', 'bat/BatScene.jsx', 'bat/Bat.jsx', 'bat/physics.js', 'bat/audio.js'],
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'cricket-pitch',
+    name: 'Cricket Pitch',
+    category: '3D & Materials',
+    style: 'Everyday objects',
+    isNew: true,
+    description: 'A full-size 22-yard pitch with real grass blades, painted creases, footmarks and cracks that grow with wear. Switch between drawing views or orbit down to the turf.',
+    controls: [
+      { name: 'view', type: 'select', options: ['3D', 'Top', 'Side', 'End', 'Stumps', 'Surface'], default: '3D' },
+      { name: 'wear', type: 'range', min: 0, max: 1, step: 0.05, default: 0.45 },
+      { name: 'grass', type: 'range', min: 0, max: 1, step: 0.05, default: 0.6 },
+      { name: 'sun', type: 'range', min: 8, max: 80, step: 1, default: 34, unit: '°' },
+      { name: 'setting', type: 'select', options: ['studio', 'field'], default: 'studio' },
+      { name: 'stumpWood', type: 'color', default: '#dcb98a' },
+      { name: 'dimensions', type: 'toggle', default: true },
+      { name: 'ambientOcclusion', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <CricketPitchModel {...p} height="100%" />,
+    fill: true,
+    files: ['CricketPitchModel.jsx', 'pitch/PitchScene.jsx', 'pitch/Pitch.jsx', 'pitch/textures.js'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
   },
   {
     slug: 'pocket-knife',
