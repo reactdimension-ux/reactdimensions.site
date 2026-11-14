@@ -209,6 +209,7 @@ import CricketModel from '../lib/CricketModel.jsx'
 import CricketBatModel from '../lib/CricketBatModel.jsx'
 import KnifeModel from '../lib/KnifeModel.jsx'
 import PistolModel from '../lib/PistolModel.jsx'
+import ColorCardsModel from '../lib/ColorCardsModel.jsx'
 import PenModel from '../lib/PenModel.jsx'
 import LorryModel from '../lib/LorryModel.jsx'
 import ClockModel from '../lib/ClockModel.jsx'
@@ -262,7 +263,7 @@ import FireEmoji from '../lib/FireEmoji.jsx'
 import PleadingEmoji from '../lib/PleadingEmoji.jsx'
 
 // Raw source of every component, for the Code tab.
-const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}','../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
+const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}', '../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}','../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
   query: '?raw',
   import: 'default',
   eager: true,
@@ -3584,6 +3585,41 @@ const ALL_COMPONENTS = [
     fill: true,
     files: ['PistolModel.jsx', 'pistol/PistolScene.jsx', 'pistol/Pistol.jsx', 'pistol/parts.js', 'pistol/audio.js'],
     deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
+  },
+  {
+    slug: 'color-cards',
+    name: 'Color Cards',
+    category: '3D & Materials',
+    style: 'Physics & play',
+    isNew: true,
+    description: 'A deck of game cards in four suits you colour yourself, with 0–9, skip, reverse, +2 and black wild and +4 cards. Deal a hand and flip cards over.',
+    controls: [
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Classic', values: { color1: '#d8262b', color2: '#f2c418', color3: '#2f9a3a', color4: '#1f7fd1' } },
+          { name: 'Pastel', values: { color1: '#ef8a8a', color2: '#f3d77a', color3: '#8fcf9b', color4: '#86b6ea' } },
+          { name: 'Neon', values: { color1: '#ff2d6f', color2: '#ffe600', color3: '#00e08a', color4: '#2f6bff' } },
+          { name: 'Earth', values: { color1: '#a8432a', color2: '#d49a2a', color3: '#5b7a3a', color4: '#2f5d74' } },
+        ],
+      },
+      { name: 'layout', type: 'select', options: ['hand', 'single'], default: 'hand' },
+      { name: 'card', type: 'select', options: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'skip', 'reverse', '+2', 'wild', '+4'], default: '7' },
+      { name: 'suit', type: 'select', options: ['1', '2', '3', '4'], default: '4' },
+      { name: 'brand', type: 'text', default: 'RD' },
+      { name: 'color1', type: 'color', default: '#d8262b' },
+      { name: 'color2', type: 'color', default: '#f2c418' },
+      { name: 'color3', type: 'color', default: '#2f9a3a' },
+      { name: 'color4', type: 'color', default: '#1f7fd1' },
+      { name: 'background', type: 'color', default: '#26282b' },
+      { name: 'sound', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <ColorCardsModel {...p} height="100%" />,
+    fill: true,
+    files: ['ColorCardsModel.jsx', 'deck/DeckScene.jsx', 'deck/Deck.jsx', 'deck/faces.js', 'deck/audio.js'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
     slug: 'fountain-pen',
