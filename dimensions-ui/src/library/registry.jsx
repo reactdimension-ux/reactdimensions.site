@@ -208,6 +208,7 @@ import StampModel from '../lib/StampModel.jsx'
 import CricketModel from '../lib/CricketModel.jsx'
 import CricketBatModel from '../lib/CricketBatModel.jsx'
 import KnifeModel from '../lib/KnifeModel.jsx'
+import PistolModel from '../lib/PistolModel.jsx'
 import PenModel from '../lib/PenModel.jsx'
 import LorryModel from '../lib/LorryModel.jsx'
 import ClockModel from '../lib/ClockModel.jsx'
@@ -259,7 +260,7 @@ import FireEmoji from '../lib/FireEmoji.jsx'
 import PleadingEmoji from '../lib/PleadingEmoji.jsx'
 
 // Raw source of every component, for the Code tab.
-const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pitch/*.{js,jsx}', '../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
+const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../pitch/*.{js,jsx}','../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
   query: '?raw',
   import: 'default',
   eager: true,
@@ -3477,6 +3478,37 @@ const ALL_COMPONENTS = [
     fill: true,
     files: ['KnifeModel.jsx', 'knife/KnifeScene.jsx', 'knife/Knife.jsx', 'knife/audio.js'],
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'pistol',
+    name: 'Pistol',
+    category: '3D & Materials',
+    style: 'Everyday objects',
+    isNew: true,
+    description: 'A photoreal compact pistol, unloaded: rack the slide, dry-fire the trigger and drop the magazine.',
+    controls: [
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Two-tone', values: { slideColor: '#56595e', frameColor: '#1b1c1e', barrelFinish: 'nitride', sights: 'white' } },
+          { name: 'Blackout', values: { slideColor: '#232427', frameColor: '#161718', barrelFinish: 'nitride', sights: 'black' } },
+          { name: 'Desert', values: { slideColor: '#2a2b2e', frameColor: '#8a7457', barrelFinish: 'gold', sights: 'tritium' } },
+          { name: 'Ranger', values: { slideColor: '#3a3c3f', frameColor: '#4a5240', barrelFinish: 'stainless', sights: 'tritium' } },
+        ],
+      },
+      { name: 'slideColor', type: 'color', default: '#56595e' },
+      { name: 'frameColor', type: 'color', default: '#1b1c1e' },
+      { name: 'barrelFinish', type: 'select', options: ['nitride', 'stainless', 'gold'], default: 'nitride' },
+      { name: 'sights', type: 'select', options: ['white', 'tritium', 'black'], default: 'white' },
+      { name: 'background', type: 'color', default: '#e6e6e4' },
+      { name: 'sound', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <PistolModel {...p} height="100%" />,
+    fill: true,
+    files: ['PistolModel.jsx', 'pistol/PistolScene.jsx', 'pistol/Pistol.jsx', 'pistol/parts.js', 'pistol/audio.js'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
   },
   {
     slug: 'fountain-pen',
