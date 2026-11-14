@@ -231,6 +231,7 @@ import CricketBallModel from '../lib/CricketBallModel.jsx'
 import ShuttlecockModel from '../lib/ShuttlecockModel.jsx'
 import BadmintonRacketModel from '../lib/BadmintonRacketModel.jsx'
 import TennisRacketModel from '../lib/TennisRacketModel.jsx'
+import TennisBallModel from '../lib/TennisBallModel.jsx'
 import GamepadModel from '../lib/GamepadModel.jsx'
 import LadderModel from '../lib/LadderModel.jsx'
 import ShirtModel from '../lib/ShirtModel.jsx'
@@ -908,7 +909,7 @@ const ALL_COMPONENTS = [
     category: 'Animation',
     style: 'Interactive 3D',
     isNew: true,
-    description: 'Pick up a little radio and carry it across the floor: it lifts while held, leans with its speed, drops with a small bounce, and its soft shadow spreads as it rises.',
+    description: 'Pick up a little radio and carry it: it lifts, leans with speed and drops with a bounce, its shadow spreading as it rises.',
     controls: [
       { name: 'bodyColor', type: 'color', default: '#e2573f' },
       { name: 'accentColor', type: 'color', default: '#2b2c30' },
@@ -927,7 +928,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Physics & play',
     isNew: true,
-    description: 'A cable hangs from a hook with a plug on its end; drag the plug anywhere and the whole cable follows, then swings and settles when you let go, never stretching past its length.',
+    description: 'A cable hangs from a hook; drag its plug anywhere and the cable follows, then swings and settles without stretching.',
     controls: [
       { name: 'cableColor', type: 'color', default: '#e8a33d' },
       { name: 'plugColor', type: 'color', default: '#f2efe8' },
@@ -947,7 +948,7 @@ const ALL_COMPONENTS = [
     category: 'Animation',
     style: 'Interactive 3D',
     isNew: true,
-    description: 'Tap any part of an exploded camera to isolate it: the rest fade to grey ghosts, the view eases in to frame it and a label names it; tap away or press Escape to restore.',
+    description: 'Tap any part of an exploded camera to isolate and label it while the rest fade to ghosts. Press Escape to restore.',
     controls: [
       { name: 'bodyColor', type: 'color', default: '#e9e4da' },
       { name: 'accentColor', type: 'color', default: '#26272b' },
@@ -966,7 +967,7 @@ const ALL_COMPONENTS = [
     category: 'Animation',
     style: 'Interactive 3D',
     isNew: true,
-    description: 'A smart speaker with pulsing hotspots: click one to open a note card beside it as the camera turns to face it, and hotspots hidden behind the speaker fade away.',
+    description: 'A smart speaker with pulsing hotspots: click one to open its note as the camera turns to face it.',
     controls: [
       { name: 'fabricColor', type: 'color', default: '#7d8a96' },
       { name: 'accentColor', type: 'color', default: '#e9e5dd' },
@@ -986,7 +987,7 @@ const ALL_COMPONENTS = [
     category: 'Animation',
     style: 'Interactive 3D',
     isNew: true,
-    description: 'Scroll inside the box and a little robot builds itself, each part flying in from a scattered pose one after another, with captions and a progress rail for each stage.',
+    description: 'Scroll and a little robot builds itself part by part, with captions and a progress rail for each stage.',
     controls: [
       { name: 'bodyColor', type: 'color', default: '#f0ece4' },
       { name: 'accentColor', type: 'color', default: '#3d6f8f' },
@@ -1124,7 +1125,7 @@ const ALL_COMPONENTS = [
     name: 'Count-up Text',
     category: 'Text',
     isNew: true,
-    description: 'A number that rolls up to its target on odometer wheels: the units blur past while each wheel to the left only turns as its neighbour rolls over.',
+    description: 'A number rolls up to its target on odometer wheels, each wheel turning only as its neighbour rolls over.',
     controls: [
       { name: 'value', type: 'text', default: '$12,480.50', maxLength: 18 },
       { name: 'from', type: 'range', min: 0, max: 100000, step: 100, default: 0 },
@@ -1185,7 +1186,7 @@ const ALL_COMPONENTS = [
     name: 'Dot-Matrix Text',
     category: 'Text',
     isNew: true,
-    description: 'A pin print head sweeps across the paper firing pins column by column, printing each line in one pass, both directions. Separate lines with |.',
+    description: 'A print head sweeps across the paper firing pins column by column, printing each line. Separate lines with |.',
     controls: [
       { name: 'text', type: 'text', default: 'DOT MATRIX|PRINTING...', maxLength: 60 },
       { name: 'pins', type: 'range', min: 7, max: 24, step: 1, default: 12 },
@@ -1363,7 +1364,7 @@ const ALL_COMPONENTS = [
     name: 'Parallax Lines',
     category: 'Text',
     isNew: true,
-    description: 'Lines of type at different depths scroll past at different rates: near ones big, sharp and fast, far ones small, soft and slow. Separate lines with |.',
+    description: 'Lines of type at different depths scroll at different rates: near ones big and fast, far ones small and slow. Separate lines with |.',
     controls: [
       { name: 'text', type: 'text', default: 'Near things rush past|Middle ground drifts|Far away barely moves|The horizon holds still', maxLength: 140 },
       { name: 'depth', type: 'range', min: 0, max: 2, step: 0.05, default: 1 },
@@ -1469,7 +1470,7 @@ const ALL_COMPONENTS = [
     name: 'Cylinder Text',
     category: 'Text',
     isNew: true,
-    description: 'Text printed round a clear drum. Drag to spin it; it keeps your speed and slows under friction to an idle drift, the far side showing through.',
+    description: 'Text printed round a clear drum. Drag to spin it; it coasts to an idle drift with the far side showing through.',
     controls: [
       { name: 'text', type: 'text', default: 'ROUND AND ROUND', maxLength: 40 },
       { name: 'color', type: 'color', default: '#1c1a16' },
@@ -1508,7 +1509,7 @@ const ALL_COMPONENTS = [
     name: 'Neon Text',
     category: 'Text',
     isNew: true,
-    description: 'A neon sign on a brick wall: each tube stutters before it catches, the glow spills onto the wall, and a worn tube flickers now and then. Click to switch it.',
+    description: 'A neon sign on brick: tubes stutter on, the glow spills onto the wall and a worn tube flickers. Click to switch it.',
     controls: [
       { name: 'text', type: 'text', default: 'Open late', maxLength: 24 },
       { name: 'color', type: 'color', default: '#ff3d7f' },
@@ -1527,7 +1528,7 @@ const ALL_COMPONENTS = [
     name: 'Emboss Plate',
     category: 'Text',
     isNew: true,
-    description: 'Lettering raised from and sunk into a brushed metal plate, lit by a light that follows the pointer, so highlights and shadows swap sides as you move.',
+    description: 'Lettering raised from and sunk into brushed metal, lit by a light that follows the pointer.',
     controls: [
       { name: 'top', type: 'text', default: 'EMBOSSED', maxLength: 12 },
       { name: 'bottom', type: 'text', default: 'debossed', maxLength: 14 },
@@ -1620,7 +1621,7 @@ const ALL_COMPONENTS = [
     name: 'Cutout Slab',
     category: 'Text',
     isNew: true,
-    description: 'Letters cut through a dark slab with a lamp behind: light pours through and lands on the floor as stretched shapes that swing as you move the light.',
+    description: 'Letters cut through a dark slab with a lamp behind, casting stretched light shapes that swing as you move it.',
     controls: [
       { name: 'text', type: 'text', default: 'LIGHT', maxLength: 10 },
       { name: 'light', type: 'color', default: '#ffd27a' },
@@ -1636,7 +1637,7 @@ const ALL_COMPONENTS = [
     name: 'Terminal Text',
     category: 'Text',
     isNew: true,
-    description: 'A terminal that plays itself: commands typed key by key, then output streaming in with progress bars, and a block cursor that blinks while it waits.',
+    description: 'A terminal that plays itself: commands typed key by key, output streaming in and a blinking block cursor.',
     controls: [
       { name: 'script', type: 'select', options: ['install', 'git', 'deploy'], default: 'install' },
       { name: 'prompt', type: 'text', default: '~/site $', maxLength: 24 },
@@ -1702,7 +1703,7 @@ const ALL_COMPONENTS = [
     name: 'Log Stream',
     category: 'Text',
     isNew: true,
-    description: 'Timestamped log lines arriving in bursts, coloured by level and pinned to the newest. Scroll up to read back; it pauses until you jump to latest.',
+    description: 'Timestamped log lines arriving in bursts, coloured by level. Scroll up to read back; it pauses until you jump to latest.',
     controls: [{ name: 'rate', type: 'range', min: 0.3, max: 10, step: 0.1, default: 2.5, unit: '/s' }],
     preview: (p) => <LogStream {...p} />,
     files: ['LogStream.jsx'],
@@ -1748,7 +1749,7 @@ const ALL_COMPONENTS = [
     name: 'CRT Text',
     category: 'Text',
     isNew: true,
-    description: 'Text on an old monitor: phosphor glow, scanlines, a rolling refresh bar, flicker and a real barrel bulge from the curved glass. Separate lines with |.',
+    description: 'Text on an old monitor with phosphor glow, scanlines, flicker and a curved-glass bulge. Separate lines with |.',
     controls: [
       { name: 'text', type: 'text', default: 'SYSTEM READY|> LOADING DIMENSIONS..._', maxLength: 80 },
       { name: 'color', type: 'color', default: '#62ff9b' },
@@ -1832,7 +1833,7 @@ const ALL_COMPONENTS = [
     name: 'Kinetic Poster',
     category: 'Text',
     isNew: true,
-    description: 'Every line sized to run exactly edge to edge, like a Swiss poster; the words regroup every few seconds and each line springs to its new size.',
+    description: 'Every line sized to run edge to edge like a Swiss poster, regrouping every few seconds with a springy resize.',
     controls: [
       { name: 'text', type: 'text', default: 'Type that fills the frame from edge to edge every time', maxLength: 120 },
       { name: 'interval', type: 'range', min: 1, max: 10, step: 0.5, default: 3, unit: 's' },
@@ -1868,7 +1869,7 @@ const ALL_COMPONENTS = [
     name: 'Flip-Dot Sign',
     category: 'Text',
     isNew: true,
-    description: 'A flip-dot destination sign in a screwed metal housing: a sweep runs across it and every disc that needs to change flips from black to lime, edge-on halfway, with a clatter. Separate messages with |; click to skip ahead.',
+    description: 'A flip-dot sign where every disc flips from black to lime with a clatter. Separate messages with |; click to skip ahead.',
     controls: [
       { name: 'text', type: 'text', default: 'Flipdots|Route 24 Central|Not in service', maxLength: 80 },
       { name: 'rows', type: 'range', min: 9, max: 24, step: 1, default: 16 },
@@ -1892,7 +1893,7 @@ const ALL_COMPONENTS = [
     name: 'Nixie Tubes',
     category: 'Text',
     isNew: true,
-    description: 'Glowing wire digits stacked inside glass tubes behind an anode mesh. The unlit cathodes stay faintly visible, the ones in front cross over the lit digit, and each change cycles through every cathode before it strikes.',
+    description: 'Glowing wire digits in glass tubes, cycling through every cathode before each new digit strikes.',
     controls: [
       { name: 'mode', type: 'select', options: ['clock', 'counter', 'text'], default: 'clock' },
       { name: 'text', type: 'text', default: '2026', maxLength: 10 },
@@ -1909,7 +1910,7 @@ const ALL_COMPONENTS = [
     name: 'Rubber Stamp',
     category: 'Text',
     isNew: true,
-    description: 'Click to stamp: it thumps down slightly crooked and prints a mottled, uneven impression that fades with every stamp until you re-ink it on the pad.',
+    description: 'Click to stamp a slightly crooked, mottled impression that fades with each stamp until you re-ink it.',
     controls: [
       { name: 'text', type: 'text', default: 'APPROVED', maxLength: 12 },
       { name: 'ink', type: 'color', default: '#c8322b' },
@@ -1930,7 +1931,7 @@ const ALL_COMPONENTS = [
     name: 'Domino Text',
     category: 'Text',
     isNew: true,
-    description: 'Letters standing as dominoes. Tip one and the chain topples with real pivot physics, each one coming to rest leaning on the next. Click any domino to start from there.',
+    description: 'Letters standing as dominoes. Click one and the chain topples with real pivot physics.',
     controls: [
       { name: 'text', type: 'text', default: 'DOMINOES', maxLength: 14 },
       { name: 'spacing', type: 'range', min: 0.25, max: 0.9, step: 0.05, default: 0.55 },
@@ -1969,7 +1970,7 @@ const ALL_COMPONENTS = [
     name: 'Pendulum Wave',
     category: 'Text',
     isNew: true,
-    description: 'Each letter hangs on a string of a different length, so they swing at slightly different rates: in line, into travelling waves, apart, and back in line at the end of every cycle. Click to release them again.',
+    description: 'Letters swing on strings of different lengths, drifting into travelling waves and back in line. Click to release them again.',
     controls: [
       { name: 'text', type: 'text', default: 'PENDULUM WAVE', maxLength: 18 },
       { name: 'cycle', type: 'range', min: 10, max: 90, step: 1, default: 30, unit: 's' },
@@ -1989,7 +1990,7 @@ const ALL_COMPONENTS = [
     name: 'Stencil Spray',
     category: 'Text',
     isNew: true,
-    description: 'Spray paint through a card stencil: droplets build up in passes, mist creeps under the edges, heavy spots run in drips, then the card peels away. Hold the pointer down to spray it yourself.',
+    description: 'Spray paint through a card stencil, with mist under the edges and drips, then the card peels away. Hold to spray.',
     controls: [
       { name: 'text', type: 'text', default: 'SPRAY', maxLength: 10 },
       { name: 'paint', type: 'color', default: '#ff4d1a' },
@@ -2008,7 +2009,7 @@ const ALL_COMPONENTS = [
     name: 'Receipt Printer',
     category: 'Text',
     isNew: true,
-    description: 'A thermal printer feeds a receipt out line by line, each line darkening as the print head heats it, the paper curling from the roll, then tears it off against the serrated edge.',
+    description: 'A thermal printer feeds out a receipt line by line, then tears it off against the serrated edge.',
     controls: [
       { name: 'text', type: 'text', default: 'REACT DIMENSIONS|12 Motion Lane|--------------------------------|Flip-dot sign $24.00|Nixie tubes x6 $68.50|Rubber stamp $9.90|Spring (extra) $1.20|--------------------------------|TOTAL $103.60|CARD **** 4417|================================|Thank you, come again', maxLength: 600 },
       { name: 'speed', type: 'range', min: 40, max: 400, step: 10, default: 140, unit: 'ms' },
@@ -2026,7 +2027,7 @@ const ALL_COMPONENTS = [
     name: 'Pin Art',
     category: 'Text',
     isNew: true,
-    description: 'A bed of steel pins pushed out from behind into the word, rippling out from the middle. Press and drag to push pins out with your hand; they slide back slowly.',
+    description: 'A bed of steel pins pushed out into the word. Press and drag to push pins out yourself; they slide back slowly.',
     controls: [
       { name: 'text', type: 'text', default: 'PRESS', maxLength: 10 },
       { name: 'pitch', type: 'range', min: 7, max: 20, step: 1, default: 11, unit: 'px' },
@@ -2044,7 +2045,7 @@ const ALL_COMPONENTS = [
     name: 'Peg Lights',
     category: 'Text',
     isNew: true,
-    description: 'Glowing coloured pegs plugged into a black board one by one to spell the word, each clicking home and lighting up. Click a hole to add a peg, click a peg to pull it out.',
+    description: 'Glowing pegs plug into a black board one by one to spell the word. Click a hole to add a peg, a peg to pull it.',
     controls: [
       { name: 'text', type: 'text', default: 'GLOW', maxLength: 10 },
       { name: 'pitch', type: 'range', min: 10, max: 28, step: 1, default: 16, unit: 'px' },
@@ -2062,7 +2063,7 @@ const ALL_COMPONENTS = [
     name: 'Combination Lock',
     category: 'Text',
     isNew: true,
-    description: 'Brass letter rings spin at different speeds, then stop one at a time, coasting into the detent with a click until the word lines up. Drag a ring to turn it.',
+    description: 'Brass letter rings spin and click into place one at a time until the word lines up. Drag a ring to turn it.',
     controls: [
       { name: 'text', type: 'text', default: 'SECRET', maxLength: 10 },
       { name: 'spin', type: 'range', min: 0.3, max: 2, step: 0.1, default: 1 },
@@ -2080,7 +2081,7 @@ const ALL_COMPONENTS = [
     name: 'Punched Tape',
     category: 'Text',
     isNew: true,
-    description: 'Paper tape with each character punched as an 8-bit row of holes runs past an optical reader; light shines through the holes and the decoded text appears below.',
+    description: 'Paper tape punched with 8-bit rows of holes runs past a reader, and the decoded text appears below.',
     controls: [
       { name: 'text', type: 'text', default: 'HELLO, WORLD', maxLength: 30 },
       { name: 'speed', type: 'range', min: 20, max: 300, step: 5, default: 70, unit: 'px/s' },
@@ -2152,7 +2153,7 @@ const ALL_COMPONENTS = [
     name: 'Brick Text',
     category: 'Text',
     isNew: true,
-    description: 'The word built from toy bricks, bottom row first: each one drops onto the studs below and presses home with a squash. Click to knock it down and rebuild.',
+    description: 'The word built from toy bricks, each dropping onto the studs below. Click to knock it down and rebuild.',
     controls: [
       { name: 'text', type: 'text', default: 'BUILD', maxLength: 10 },
       { name: 'stagger', type: 'range', min: 10, max: 200, step: 5, default: 45, unit: 'ms' },
@@ -2168,7 +2169,7 @@ const ALL_COMPONENTS = [
     name: 'Origami Text',
     category: 'Text',
     isNew: true,
-    description: 'Each letter starts as a small folded square of paper and unfolds itself crease by crease, every panel swinging open on its hinge and carrying the folds still on it. Click to fold and unfold again.',
+    description: 'Each letter unfolds from a folded paper square, crease by crease. Click to fold and unfold again.',
     controls: [
       { name: 'text', type: 'text', default: 'FOLD', maxLength: 8 },
       { name: 'paper', type: 'color', default: '#f3efe6' },
@@ -2203,7 +2204,7 @@ const ALL_COMPONENTS = [
     name: 'Scratch Card',
     category: 'Text',
     isNew: true,
-    description: 'The message hides under silver foil: drag to scratch it off in ragged chips that fall away. Clear most of it and the rest flakes off on its own.',
+    description: 'The message hides under silver foil: drag to scratch it off, and the rest flakes away once most is clear.',
     controls: [
       { name: 'text', type: 'text', default: 'YOU WIN!', maxLength: 14 },
       { name: 'prize', type: 'color', default: '#ff4d1a' },
@@ -2221,7 +2222,7 @@ const ALL_COMPONENTS = [
     name: 'Shadow Type',
     category: 'Text',
     isNew: true,
-    description: 'Clear glass letters you can barely see; you read them from the shadow they cast. Move the pointer to move the lamp, and the shadow slides, grows and softens.',
+    description: 'Clear glass letters you read from their shadow. Move the pointer to move the lamp and the shadow shifts.',
     controls: [
       { name: 'text', type: 'text', default: 'SHADOW', maxLength: 10 },
       { name: 'wall', type: 'color', default: '#e8e2d6' },
@@ -2238,7 +2239,7 @@ const ALL_COMPONENTS = [
     name: 'Hologram Foil',
     category: 'Text',
     isNew: true,
-    description: 'Holographic foil lettering: tilt it with the pointer and the rainbow slides through the letters with a bright streak where the light catches.',
+    description: 'Holographic foil lettering: tilt it with the pointer and a rainbow slides through the letters.',
     controls: [
       { name: 'text', type: 'text', default: 'HOLO', maxLength: 10 },
       { name: 'base', type: 'color', default: '#c9ccd6' },
@@ -2253,7 +2254,7 @@ const ALL_COMPONENTS = [
     name: 'Projector Beam',
     category: 'Text',
     isNew: true,
-    description: 'A projector in a dark room: dust lights up in the beam, the word lands keystoned on the screen, and the lens hunts for focus before it settles. Click to refocus.',
+    description: 'A projector in a dark room throws the word onto a screen, dust glowing in the beam. Click to refocus.',
     controls: [
       { name: 'text', type: 'text', default: 'NOW SHOWING', maxLength: 20 },
       { name: 'light', type: 'color', default: '#fff4dc' },
@@ -2270,7 +2271,7 @@ const ALL_COMPONENTS = [
     name: 'Light Painting',
     category: 'Text',
     isNew: true,
-    description: 'A long exposure of a sparkler writing in the dark: the glowing tip traces each letter and leaves a streak of light behind it, sparks spitting off.',
+    description: 'A sparkler writes each letter in a long-exposure streak of light, sparks spitting off.',
     controls: [
       { name: 'text', type: 'text', default: 'Light', maxLength: 10 },
       { name: 'color', type: 'color', default: '#ffb347' },
@@ -2288,7 +2289,7 @@ const ALL_COMPONENTS = [
     name: 'Anamorphic Text',
     category: 'Text',
     isNew: true,
-    description: 'Fragments hung at different depths that only line up into the word from one viewpoint. The view orbits away and swings back into alignment; drag to orbit.',
+    description: 'Fragments at different depths that only line up into the word from one viewpoint. Drag to orbit.',
     controls: [
       { name: 'text', type: 'text', default: 'ALIGN', maxLength: 10 },
       { name: 'pieces', type: 'range', min: 3, max: 14, step: 1, default: 7 },
@@ -2305,7 +2306,7 @@ const ALL_COMPONENTS = [
     name: 'Glow in the Dark',
     category: 'Text',
     isNew: true,
-    description: 'Phosphor paint in a dark room: shine the pointer torch over it to charge it, and it glows on after the light moves off, fading quickly then lingering.',
+    description: 'Phosphor paint in the dark: shine the pointer torch over it and it glows on, slowly fading.',
     controls: [
       { name: 'text', type: 'text', default: 'AFTERGLOW', maxLength: 12 },
       { name: 'glow', type: 'color', default: '#9dff7a' },
@@ -2322,7 +2323,7 @@ const ALL_COMPONENTS = [
     name: 'Prism Text',
     category: 'Text',
     isNew: true,
-    description: 'White letters seen through a glass prism split into their spectrum where the prism covers them, and recombine to white outside it. Drag the prism across.',
+    description: 'White letters split into a spectrum where a glass prism covers them. Drag the prism across.',
     controls: [
       { name: 'text', type: 'text', default: 'SPECTRUM', maxLength: 12 },
       { name: 'spread', type: 'range', min: 4, max: 50, step: 1, default: 18, unit: 'px' },
@@ -2355,7 +2356,7 @@ const ALL_COMPONENTS = [
     name: 'Frost Text',
     category: 'Text',
     isNew: true,
-    description: 'Fern frost grows across cold glass into the letters, needles branching at the 60 degree angles of ice. Drag your warm pointer across to melt a path through it.',
+    description: 'Fern frost grows across cold glass into the letters. Drag your warm pointer to melt a path through it.',
     controls: [
       { name: 'text', type: 'text', default: 'FROST', maxLength: 10 },
       { name: 'growth', type: 'range', min: 0.2, max: 3, step: 0.1, default: 1 },
@@ -2372,7 +2373,7 @@ const ALL_COMPONENTS = [
     name: 'Turing Pattern',
     category: 'Text',
     isNew: true,
-    description: 'Animal markings grow into the letters from a real reaction-diffusion simulation, the mechanism Turing proposed for spots and stripes. Seeds divide and spread until they fill each shape. Click or drag to plant more.',
+    description: 'Animal markings grow into the letters from a real reaction-diffusion simulation. Click or drag to plant more.',
     controls: [
       { name: 'text', type: 'text', default: 'WILD', maxLength: 10 },
       { name: 'pattern', type: 'select', options: ['spots', 'stripes', 'coral', 'holes'], default: 'spots' },
@@ -2403,7 +2404,7 @@ const ALL_COMPONENTS = [
     name: 'Fogged Glass',
     category: 'Text',
     isNew: true,
-    description: 'A fingertip writes through a steamed-up window to the lit street outside; beads of condensation run down from the strokes and the fog slowly creeps back. Drag to write.',
+    description: 'Write with a fingertip on a steamed-up window; condensation runs from the strokes and the fog creeps back.',
     controls: [
       { name: 'text', type: 'text', default: 'hello', maxLength: 10 },
       { name: 'fog', type: 'range', min: 0.4, max: 0.95, step: 0.01, default: 0.82 },
@@ -2420,7 +2421,7 @@ const ALL_COMPONENTS = [
     name: 'Burning Paper',
     category: 'Text',
     isNew: true,
-    description: 'A ragged ember edge eats across the sheet with scorch ahead of it; the printed letters burn last, standing as charred shapes outlined in embers. Click to light it from there.',
+    description: 'An ember edge eats across the sheet, leaving the letters as charred shapes. Click to light it from there.',
     controls: [
       { name: 'text', type: 'text', default: 'BURN AFTER READING', maxLength: 30 },
       { name: 'speed', type: 'range', min: 0.2, max: 3, step: 0.1, default: 1 },
@@ -2438,7 +2439,7 @@ const ALL_COMPONENTS = [
     name: 'Rain on a Window',
     category: 'Text',
     isNew: true,
-    description: 'A neon sign blurred behind wet glass, sharp only inside the raindrops, each a tiny lens showing it upside down. Big drops slide, swallow small ones and leave clear trails.',
+    description: 'A neon sign blurred behind wet glass, sharp only inside the raindrops that slide and merge.',
     controls: [
       { name: 'text', type: 'text', default: 'OPEN', maxLength: 10 },
       { name: 'sign', type: 'color', default: '#ff3d6e' },
@@ -2463,7 +2464,7 @@ const ALL_COMPONENTS = [
     name: 'Thermal Text',
     category: 'Text',
     isNew: true,
-    description: 'A thermal camera view: the word is invisible until your pointer warms it, then the heat spreads through the panel and the metal letters glow on as they cool.',
+    description: 'A thermal camera view: the word appears only where your pointer warms it, then cools away.',
     controls: [
       { name: 'text', type: 'text', default: 'WARM', maxLength: 10 },
       { name: 'spread', type: 'range', min: 0.2, max: 2, step: 0.1, default: 1 },
@@ -2497,7 +2498,7 @@ const ALL_COMPONENTS = [
     name: 'Wet Ink in Rain',
     category: 'Text',
     isNew: true,
-    description: 'Raindrops land on fresh lettering: where they hit ink it blooms out soft-edged, dries darker at the rim and runs down the page. Click to drop rain.',
+    description: 'Raindrops land on fresh lettering and the ink blooms and runs down the page. Click to drop rain.',
     controls: [
       { name: 'text', type: 'text', default: 'Rain', maxLength: 10 },
       { name: 'ink', type: 'color', default: '#1f3a8a' },
@@ -2515,7 +2516,7 @@ const ALL_COMPONENTS = [
     name: 'Shatter Text',
     category: 'Text',
     isNew: true,
-    description: 'Click and the word cracks from that point into Voronoi shards, small near the impact and big at the edges, that fall and bounce, then fly back together.',
+    description: 'Click and the word cracks into shards from that point, which fall, bounce and fly back together.',
     controls: [
       { name: 'text', type: 'text', default: 'SHATTER', maxLength: 12 },
       { name: 'pieces', type: 'range', min: 8, max: 90, step: 1, default: 36 },
@@ -2533,7 +2534,7 @@ const ALL_COMPONENTS = [
     name: 'Soap Bubbles',
     category: 'Text',
     isNew: true,
-    description: 'Each letter floats in its own shimmering soap bubble, wobbling and drifting on the air. Touch one and it pops, the letter drops, and a new bubble rises to replace it.',
+    description: 'Each letter floats in its own soap bubble. Touch one to pop it and a new bubble rises to replace it.',
     controls: [
       { name: 'text', type: 'text', default: 'BUBBLES', maxLength: 10 },
       { name: 'size', type: 'range', min: 0.5, max: 1.4, step: 0.05, default: 1 },
@@ -2567,7 +2568,7 @@ const ALL_COMPONENTS = [
     name: 'Autumn Leaves',
     category: 'Text',
     isNew: true,
-    description: 'A gust lifts a pile of leaves into the shape of the word; the next scatters them, see-sawing down into a new pile. Click to call the next gust.',
+    description: 'A gust lifts a pile of leaves into the word, then scatters them again. Click to call the next gust.',
     controls: [
       { name: 'text', type: 'text', default: 'AUTUMN', maxLength: 10 },
       { name: 'leaves', type: 'range', min: 200, max: 2000, step: 20, default: 900 },
@@ -2584,7 +2585,7 @@ const ALL_COMPONENTS = [
     name: 'Vine Text',
     category: 'Text',
     isNew: true,
-    description: 'The letters grow as climbing vines: stems creep along each outline, thickening with age, putting out leaves, curling tendrils and opening the odd flower.',
+    description: 'The letters grow as climbing vines, putting out leaves, tendrils and the odd flower.',
     controls: [
       { name: 'text', type: 'text', default: 'Grow', maxLength: 10 },
       { name: 'stem', type: 'color', default: '#3f6b2a' },
@@ -2603,7 +2604,7 @@ const ALL_COMPONENTS = [
     name: 'Constellation Text',
     category: 'Text',
     isNew: true,
-    description: 'Stars fade in at the corners of each letter and lines join them into a constellation, while the sky slowly turns, small stars twinkle and the odd meteor streaks past.',
+    description: 'Stars fade in at each letter\'s corners and join into constellations while the sky slowly turns.',
     controls: [
       { name: 'text', type: 'text', default: 'ORION', maxLength: 10 },
       { name: 'star', type: 'color', default: '#eaf2ff' },
@@ -3315,7 +3316,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Everyday objects',
     isNew: true,
-    description: 'A stamp pad in a moulded case: the latch flexes off its catch, the lid swings up on a pinned hinge and clicks shut, and the felt gives under your finger with ink welling up where you press.',
+    description: 'A stamp pad that latches and opens on its hinge; press the felt and ink wells up under your finger.',
     controls: [
       {
         name: 'palette',
@@ -3348,7 +3349,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Everyday objects',
     isNew: true,
-    description: 'A wooden rubber stamp with your own design cut into the die. Click to print: it lifts, lands, the foam cushion squashes and leaves a mottled impression that fades as the ink runs low. Drag it around the sheet, or turn it over to see the mirrored die.',
+    description: 'A wooden stamp with your own design. Click to print a mottled impression; drag it around or flip it to see the die.',
     controls: [
       {
         name: 'palette',
@@ -3384,7 +3385,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Everyday objects',
     isNew: true,
-    description: 'Three stumps and two bails with real rigid-body physics. Bowl and the ball pitches and comes on to the stumps: the struck stump is driven back in the soil or uprooted at pace, and the bails jump their grooves and tumble.',
+    description: 'Stumps and bails with real rigid-body physics. Bowl and the ball knocks the stumps back as the bails fly.',
     controls: [
       { name: 'line', type: 'select', options: ['middle', 'off', 'leg', 'random'], default: 'middle' },
       { name: 'pace', type: 'range', min: 60, max: 160, step: 5, default: 110, unit: 'km/h' },
@@ -3406,7 +3407,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Everyday objects',
     isNew: true,
-    description: 'A solid English willow bat: cambered face, spine, rolled edges, spliced cane handle and rubber grip. Pick it up and swing it through the ball, drop it and it lands on an edge and rocks to rest, or knock it over and stand it back up.',
+    description: 'A solid English willow bat with a cane handle and grip. Pick it up and swing it, or knock it over and stand it back up.',
     controls: [
       { name: 'wood', type: 'color', default: '#e6cfa3' },
       { name: 'grains', type: 'range', min: 4, max: 16, step: 1, default: 10 },
@@ -3427,7 +3428,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Everyday objects',
     isNew: true,
-    description: 'A multi-tool with a blade, small blade, bottle opener and saw on two rivets. Drag a tool to fold it out; it snaps to closed, half open or open.',
+    description: 'A multi-tool with blades, a bottle opener and a saw. Drag a tool to fold it out; it snaps into place.',
     controls: [
       {
         name: 'palette',
@@ -3459,7 +3460,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Everyday objects',
     isNew: true,
-    description: 'A piston-filling fountain pen with rigid-body physics: lift it, drop it, throw it, and the clip stops it rolling. Unscrew and post the cap, turn the knob to fill, and write on the paper.',
+    description: 'A piston-filling fountain pen with real physics: lift and throw it, post the cap, fill it and write.',
     controls: [
       {
         name: 'palette',
@@ -3532,7 +3533,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Everyday objects',
     isNew: true,
-    description: 'A twin-bell alarm clock on the live time. Drag the hands to set it; at the alarm the hammer beats the bells and the clock dances on its feet.',
+    description: 'A twin-bell alarm clock on the live time. Drag the hands to set it, and it rings and dances at the alarm.',
     controls: [
       {
         name: 'palette',
@@ -3566,7 +3567,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Everyday objects',
     isNew: true,
-    description: 'A balanced-arm lamp, plugged into a power strip, with a real spotlight. Drag the arms to pose it: the joints swing and settle with weight, the springs stretch, and the shade stops at the desk, the base and its own arm instead of passing through.',
+    description: 'A balanced-arm lamp with a real spotlight. Drag the arms to pose it; they swing and settle with weight.',
     controls: [
       {
         name: 'palette',
@@ -3630,7 +3631,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Nature & world',
     isNew: true,
-    description: 'A butterfly basking on a coneflower. Click it to take off and it flutters round, following the pointer; click the flower and it settles back down.',
+    description: 'A butterfly on a coneflower. Click it to fly round after the pointer; click the flower to land it.',
     controls: [
       { name: 'species', type: 'select', options: ['monarch', 'morpho', 'swallowtail', 'peacock', 'cabbage white', 'glasswing'], default: 'monarch' },
       {
@@ -3663,7 +3664,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Nature & world',
     isNew: true,
-    description: 'An open sea of Gerstner waves under a physical sky, with reflections, light through the crests and whitecaps. A buoy rides the waves; click the water to send it there.',
+    description: 'An open sea of Gerstner waves under a physical sky. Click the water to send the buoy there.',
     controls: [
       {
         name: 'palette',
@@ -3698,7 +3699,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Nature & world',
     isNew: true,
-    description: 'A single cumulus raymarched as a true volume under a physical sky: Perlin-Worley billows, sunlight marched through the vapour with multiple scattering and a silver lining. It drifts and churns; fly around it or right into it.',
+    description: 'A single cumulus raymarched as a true volume with sunlit billows and a silver lining. Fly around or into it.',
     controls: [
       {
         name: 'palette',
@@ -3733,7 +3734,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Nature & world',
     isNew: true,
-    description: 'The view from above the clouds: an endless cumulus deck rolling past below, a thin high overcast above and the sun breaking through between them. Raymarched with the same volume lighting as Cloud.',
+    description: 'The view above the clouds: an endless cumulus deck rolling past below, the sun breaking through.',
     controls: [
       {
         name: 'palette',
@@ -3768,7 +3769,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Physics & play',
     isNew: true,
-    description: 'Roll a pair of dice into the tray: they tumble, bounce off the rim and each other, settle flat and add up. Drag one to fling it, click one to flip it.',
+    description: 'Roll a pair of dice into the tray: they tumble, settle and add up. Drag one to fling it, click to flip it.',
     controls: [
       { name: 'count', type: 'range', min: 1, max: 6, step: 1, default: 2 },
       {
@@ -3800,7 +3801,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Physics & play',
     isNew: true,
-    description: 'A classic 32-panel football at real size and weight, with stitched seams and grained leather. Real ball physics: it bounces and squashes, rolls to a stop, and bends in the air from its spin. Tap it to kick it (off-centre for curl), drag it to throw it.',
+    description: 'A classic 32-panel football at real size with real physics. Tap to kick it (off-centre for curl), drag to throw.',
     controls: [
       {
         name: 'palette',
@@ -3837,7 +3838,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Physics & play',
     isNew: true,
-    description: 'An 8-panel basketball at real size and weight: pebbled rubber, grooved channels and a valve. It bounces to a regulation height on a hardwood floor, squashes, rolls and spins. Dribble it, slap it, throw it with backspin, or twirl it.',
+    description: 'A regulation basketball that bounces, squashes and spins on a hardwood floor. Dribble, slap, throw or twirl it.',
     controls: [
       {
         name: 'palette',
@@ -3874,7 +3875,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Physics & play',
     isNew: true,
-    description: 'A turned-walnut hourglass with blown glass and real sand behaviour: a constant flow rate, a crater above and a cone below at the angle of repose, and a falling stream. Click it to turn it over.',
+    description: 'A walnut hourglass with real sand flow, a crater above and a cone below. Click to turn it over.',
     controls: [
       { name: 'duration', type: 'range', min: 10, max: 300, step: 5, default: 60, unit: 's' },
       {
@@ -3906,7 +3907,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Physics & play',
     isNew: true,
-    description: 'One steel-tip dart at real size, turned like the real thing: a gripped point, a ring-cut barrel, a nylon shaft and printed flights. Throw it into a sisal target in slow motion: the flights fish-tail, it goes in tail-up and shudders round the point.',
+    description: 'A steel-tip dart at real size, thrown into a sisal target in slow motion. It fish-tails and lands with a shudder.',
     controls: [
       { name: 'flight', type: 'color', default: '#1f6fd1' },
       { name: 'pattern', type: 'select', options: ['stripes', 'chevron', 'target', 'plain'], default: 'stripes' },
@@ -3931,7 +3932,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Physics & play',
     isNew: true,
-    description: 'A cricket ball at real size and weight: four leather quarters, a raised seam with six rows of stitching, quarter seams and a gold stamp. Wear keeps one side shiny and scuffs the other. Toss it with backspin and it kicks back as it lands, then rolls; or spin it like a top.',
+    description: 'A real-size cricket ball with a raised stitched seam. Toss it with backspin and it kicks back, or spin it like a top.',
     controls: [
       { name: 'ball', type: 'select', options: ['red', 'white', 'pink'], default: 'red' },
       { name: 'wear', type: 'range', min: 0, max: 1, step: 0.05, default: 0.35 },
@@ -3951,7 +3952,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Physics & play',
     isNew: true,
-    description: 'A feathered badminton shuttlecock at real size and weight: sixteen goose feathers drawn barb by barb, die-cut tips that split and fray with wear, translucent vanes that overlap like shingles, two rows of glued cotton binding, and a leather-covered cork with a speed band. Serve it and it flips cork-first, spins up on its feathers and falls at terminal speed, then lands and topples onto its side.',
+    description: 'A feathered shuttlecock at real size. Serve it and it flips cork-first, spins and falls, then topples onto its side.',
     controls: [
       { name: 'band', type: 'color', default: '#0e4f38' },
       { name: 'wear', type: 'range', min: 0, max: 1, step: 0.05, default: 0.15 },
@@ -3974,7 +3975,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Physics & play',
     isNew: true,
-    description: 'A badminton racket at regulation size: a glossy box-section isometric frame with a string groove and grommets, a T-joint and throat, a properly woven 22 x 24 string bed with the React Dimensions mark stencilled across it, a decalled graphite shaft and a towel-gripped octagonal handle. Tap the strings and they dent and trampoline where you hit, pinging at the pitch of the tension.',
+    description: 'A regulation badminton racket with a woven string bed stencilled with the RD mark. Tap the strings to make them ping.',
     controls: [
       { name: 'frame', type: 'color', default: '#f2f2ef' },
       { name: 'accent', type: 'color', default: '#1f2f6b' },
@@ -4001,7 +4002,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Physics & play',
     isNew: true,
-    description: 'A tennis racket at standard size: a deep box-beam frame swept in one piece through an open throat and round a 105 sq in head, a bridge across the throat, grommets in a channel, a woven 16 x 19 string bed with the React Dimensions mark stencilled across it, a blue fade paint job and a white-gripped octagonal handle. Tap the strings and they dent and trampoline where the ball lands.',
+    description: 'A standard tennis racket with an open throat and a woven, RD-stencilled string bed. Tap the strings to make them ping.',
     controls: [
       {
         name: 'palette',
@@ -4034,12 +4035,39 @@ const ALL_COMPONENTS = [
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
+    slug: 'tennis-ball',
+    name: 'Tennis Ball',
+    category: '3D & Materials',
+    style: 'Physics & play',
+    isNew: true,
+    description: 'A regulation tennis ball with real fuzzy felt. Hit it with topspin or slice on clay, hard or grass, or run the ITF drop test.',
+    controls: [
+      { name: 'felt', type: 'color', default: '#d6ea2a' },
+      { name: 'seam', type: 'color', default: '#f1f1ea' },
+      { name: 'ink', type: 'color', default: '#161616' },
+      { name: 'brand', type: 'toggle', default: true },
+      { name: 'surface', type: 'select', options: ['hard', 'clay', 'grass'], default: 'hard' },
+      { name: 'spin', type: 'select', options: ['topspin', 'flat', 'slice'], default: 'topspin' },
+      { name: 'power', type: 'range', min: 3, max: 18, step: 0.5, default: 9, unit: 'm/s' },
+      { name: 'pressure', type: 'range', min: 0.3, max: 1.2, step: 0.05, default: 1 },
+      { name: 'background', type: 'color', default: '#d9d8d4' },
+      { name: 'sound', type: 'toggle', default: false },
+      { name: 'follow', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    replay: true,
+    preview: (p) => <TennisBallModel {...p} height="100%" />,
+    fill: true,
+    files: ['TennisBallModel.jsx', 'tennisball/TennisBallScene.jsx', 'tennisball/TennisBall.jsx', 'tennisball/physics.js', 'tennisball/audio.js'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
     slug: 'dartboard',
     name: 'Dartboard',
     category: '3D & Materials',
     style: 'Physics & play',
     isNew: true,
-    description: 'A regulation bristle dartboard with a wire spider and three steel-tip darts. Click to throw from the oche: real flight, darts landing nose-up and sticking with a wobble or bouncing off the wire, and every dart scored.',
+    description: 'A regulation bristle dartboard. Click to throw from the oche; darts stick with a wobble or bounce off the wire, and score.',
     controls: [
       { name: 'accuracy', type: 'range', min: 0, max: 60, step: 1, default: 18, unit: 'mm' },
       { name: 'speed', type: 'range', min: 8, max: 22, step: 0.5, default: 14, unit: 'm/s' },
@@ -4073,7 +4101,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Physics & play',
     isNew: true,
-    description: 'A playable twisty puzzle cube, 2×2 to 5×5. Drag a face to turn its layer: it follows the pointer, carries its momentum and springs into place with a click. Scramble, solve against the clock, or let Solve undo every move.',
+    description: 'A playable puzzle cube, 2×2 to 5×5. Drag a face to turn it, scramble, race the clock, or let Solve undo every move.',
     controls: [
       { name: 'size', type: 'select', options: ['2', '3', '4', '5'], default: '3' },
       {
@@ -4109,7 +4137,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Everyday objects',
     isNew: true,
-    description: 'A polished metal band standing on its edge, in four classic profiles. Click or flick it and it spins like a coin on a table, tips, rolls round its rim faster and faster and rattles down flat. Scroll in for a close-up.',
+    description: 'A polished metal band. Flick it and it spins like a coin, rolls round its rim and rattles down flat.',
     controls: [
       {
         name: 'palette',
@@ -4143,7 +4171,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Everyday objects',
     isNew: true,
-    description: 'A low-top leather court sneaker: a moulded upper with suede toe and heel overlays, a perforated toe box, mesh quarters, stitching, a padded tongue and real laces, on a cupsole with a full tread underneath. Drag the toe up and the forefoot flexes at the ball and springs back; click the shoe and it hops, lands with a thud and rocks to rest on its curved sole.',
+    description: 'A low-top leather court sneaker with real laces. Drag the toe to flex it, or click to make it hop.',
     controls: [
       {
         name: 'palette',
@@ -4177,7 +4205,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Physics & play',
     isNew: true,
-    description: 'A grand piano with a working action: hammers strike as hard as you play, dampers lift and fall, strings ring and all three pedals work. Play it with the mouse, your keyboard or a MIDI keyboard; click the lid to close it.',
+    description: 'A grand piano with a working action and pedals. Play it with the mouse, your keyboard or a MIDI keyboard.',
     controls: [
       {
         name: 'palette',
@@ -4208,7 +4236,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Physics & play',
     isNew: true,
-    description: 'A dreadnought acoustic on a floor stand, with real string physics. Strum across the strings and watch each pluck run as Helmholtz motion; press frets or pick a chord; turn the open-gear 18:1 tuners and the tension and pitch follow, with a tuner readout. Knock the body and it rocks in its stand.',
+    description: 'A dreadnought acoustic with real string physics. Strum, fret chords and tune the pegs with a tuner readout.',
     controls: [
       {
         name: 'palette',
@@ -4239,7 +4267,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Physics & play',
     isNew: true,
-    description: 'A pair of round rubber dumbbells with real rigid-body physics: true mass and inertia for the weight, rubber that grips, barely bounces and rolls to a stop. Pick one up anywhere and it hangs and swings from that point; drop it, throw it at the other, or click to roll it.',
+    description: 'A pair of rubber dumbbells with real physics. Pick one up to swing it, drop or throw it, or click to roll it.',
     controls: [
       {
         name: 'palette',
@@ -4271,7 +4299,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Everyday objects',
     isNew: true,
-    description: 'A matte glazed mug of something hot. Slide it and the drink sloshes in its real first mode; push too hard and it slops over the rim into puddles. Pour from a stream that stays put, hear the pitch rise as it fills, and watch the steam fade as it cools.',
+    description: 'A mug of something hot. Slide it to slosh the drink, pour to fill it and watch the steam fade as it cools.',
     controls: [
       {
         name: 'palette',
@@ -4303,7 +4331,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Everyday objects',
     isNew: true,
-    description: 'A realistic shakehand table tennis bat at real size: a 5-ply blade with sloping shoulders, inverted rubbers on orange sponge with a pressed-in RD logo panel, and a lacquered flared handle with a laminated strip and badge. Click it to flip to the backhand.',
+    description: 'A real-size table tennis bat with red and black rubbers and a flared handle. Click it to flip to the backhand.',
     controls: [
       {
         name: 'palette',
@@ -4336,7 +4364,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Tech & gadgets',
     isNew: true,
-    description: 'A twin-stick game controller with working parts: sticks that tilt and spring back, buttons with travel, a rocking d-pad, analog triggers with adjustable resistance, rumble and a light bar. Plug in a real gamepad and it mirrors every input.',
+    description: 'A twin-stick controller with working sticks, buttons, triggers and rumble. Plug in a real gamepad to mirror it.',
     controls: [
       {
         name: 'palette',
@@ -4368,7 +4396,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Physics & play',
     isNew: true,
-    description: 'A wooden ladder against a wall on real friction physics: lean it too far and it slides down and crashes. Hang the paint can higher and it slips sooner.',
+    description: 'A wooden ladder on real friction physics: lean it too far and it slides down and crashes.',
     controls: [
       { name: 'floorFriction', type: 'range', min: 0.05, max: 1, step: 0.05, default: 0.4 },
       { name: 'wallFriction', type: 'range', min: 0, max: 1, step: 0.05, default: 0.25 },
@@ -4403,7 +4431,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Everyday objects',
     isNew: true,
-    description: 'A button-up shirt simulated as real cloth: undo a button and that part of the front falls open, do it up and it pulls closed. Drag the fabric to pull it.',
+    description: 'A button-up shirt simulated as cloth: undo a button and the front falls open. Drag the fabric to pull it.',
     controls: [
       { name: 'buttoned', type: 'toggle', default: true },
       { name: 'fabric', type: 'select', options: ['oxford', 'poplin', 'linen', 'denim'], default: 'oxford' },
@@ -4455,7 +4483,7 @@ const ALL_COMPONENTS = [
     category: 'Animation',
     style: 'Interactive 3D',
     isNew: true,
-    description: 'A glossy 3D ring fills as you read the article, showing the percentage and minutes left, and pops when you reach the end. Click it to jump a section.',
+    description: 'A 3D ring fills as you read, showing progress and minutes left. Click it to jump a section.',
     controls: [
       { name: 'accent', type: 'color', default: '#ff4d1a' },
       { name: 'done', type: 'color', default: '#2f9e62' },
@@ -4476,7 +4504,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Tech & gadgets',
     isNew: true,
-    description: 'Wireless earbuds in a charging case: the lid snaps shut on a magnet and flips open past its detent. Lift a bud out and drop it, or put it back and the magnet pulls it in to charge.',
+    description: 'Wireless earbuds in a magnetic charging case. Flip the lid, lift a bud out, or drop it back to charge.',
     controls: [
       { name: 'open', type: 'toggle', default: false },
       {
@@ -5198,7 +5226,7 @@ const ALL_COMPONENTS = [
     category: 'Phone UI',
     style: 'Glassmorphism',
     isNew: true,
-    description: 'A dark smart-home app on a phone: swipe the room cards, tap frosted status cards and accessory tiles to switch them, and Edit to make the tiles jiggle.',
+    description: 'A dark smart-home phone app: swipe the room cards, tap tiles to switch them, and Edit to jiggle them.',
     controls: [
       { name: 'home', type: 'text', default: "Eythan's Home", maxLength: 24 },
       { name: 'accent', type: 'color', default: '#2f8cff' },
