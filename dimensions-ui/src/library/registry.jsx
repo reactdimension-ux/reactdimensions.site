@@ -214,6 +214,7 @@ import PenModel from '../lib/PenModel.jsx'
 import LorryModel from '../lib/LorryModel.jsx'
 import AirlinerModel from '../lib/AirlinerModel.jsx'
 import SuvModel from '../lib/SuvModel.jsx'
+import HelicopterModel from '../lib/HelicopterModel.jsx'
 import ClockModel from '../lib/ClockModel.jsx'
 import LampModel from '../lib/LampModel.jsx'
 import TapeModel from '../lib/TapeModel.jsx'
@@ -243,7 +244,9 @@ import ArrowModel from '../lib/ArrowModel.jsx'
 import ArcheryTargetModel from '../lib/ArcheryTargetModel.jsx'
 import PokerChipsModel from '../lib/PokerChipsModel.jsx'
 import FidgetSpinnerModel from '../lib/FidgetSpinnerModel.jsx'
+import ElectricGuitarModel from '../lib/ElectricGuitarModel.jsx'
 import RouletteModel from '../lib/RouletteModel.jsx'
+import PokerTableModel from '../lib/PokerTableModel.jsx'
 import ShuttlecockModel from '../lib/ShuttlecockModel.jsx'
 import BadmintonRacketModel from '../lib/BadmintonRacketModel.jsx'
 import TennisRacketModel from '../lib/TennisRacketModel.jsx'
@@ -274,7 +277,7 @@ import FireEmoji from '../lib/FireEmoji.jsx'
 import PleadingEmoji from '../lib/PleadingEmoji.jsx'
 
 // Raw source of every component, for the Code tab.
-const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}','../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}', '../playingcards/*.{js,jsx}', '../carrom/*.{js,jsx}', '../arrow/*.{js,jsx}', '../archery/*.{js,jsx}', '../pokerchips/*.{js,jsx}', '../spinner/*.{js,jsx}', '../roulette/*.{js,jsx}','../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../airliner/*.{js,jsx}', '../suv/*.{js,jsx}', '../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
+const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}','../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}', '../playingcards/*.{js,jsx}', '../carrom/*.{js,jsx}', '../arrow/*.{js,jsx}', '../archery/*.{js,jsx}', '../pokerchips/*.{js,jsx}', '../spinner/*.{js,jsx}', '../electric/*.{js,jsx}', '../roulette/*.{js,jsx}', '../poker/*.{js,jsx}', '../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../airliner/*.{js,jsx}', '../suv/*.{js,jsx}', '../helicopter/*.{js,jsx}','../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
   query: '?raw',
   import: 'default',
   eager: true,
@@ -3715,6 +3718,29 @@ const ALL_COMPONENTS = [
     deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
   },
   {
+    slug: 'electric-guitar',
+    name: 'Electric Guitar',
+    category: '3D & Materials',
+    style: 'Music & audio',
+    isNew: true,
+    description: 'A classic solid-body electric of our own design, playable: real string physics, a floating vibrato, three single coils, a five-way switch, volume and tone, and sound shaped by the pickups.',
+    controls: [
+      { name: 'view', type: 'select', options: ['Front', 'Back', 'Left', 'Right', 'Top', 'Front-L', 'Front-R', 'Back-L', 'Back-R', 'A · Head', 'B · Neck', 'C · Pickups', 'D · Bridge', 'E · Controls', 'F · Jack'], default: 'Front-L' },
+      { name: 'finish', type: 'select', options: ['sunburst', 'black', 'white', 'red', 'blue'], default: 'sunburst' },
+      { name: 'guard', type: 'color', default: '#f1eee4' },
+      { name: 'sound', type: 'toggle', default: true },
+      { name: 'drive', type: 'range', min: 0, max: 1, step: 0.05, default: 0.2 },
+      { name: 'vibration', type: 'select', options: ['slow-motion', 'real-time'], default: 'slow-motion' },
+      { name: 'dimensions', type: 'toggle', default: false },
+      { name: 'ambientOcclusion', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <ElectricGuitarModel {...p} height="100%" />,
+    fill: true,
+    files: ['ElectricGuitarModel.jsx', 'electric/ElectricScene.jsx', 'electric/Electric.jsx', 'electric/geometry.js', 'electric/shapes.js', 'electric/strings.js', 'electric/textures.js', 'electric/audio.js', 'gameboard/stage.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
+  },
+  {
     slug: 'roulette-table',
     name: 'Roulette Table',
     category: '3D & Materials',
@@ -3747,6 +3773,40 @@ const ALL_COMPONENTS = [
     preview: (p) => <RouletteModel {...p} height="100%" />,
     fill: true,
     files: ['RouletteModel.jsx', 'roulette/RouletteScene.jsx', 'roulette/Roulette.jsx', 'roulette/Table.jsx', 'roulette/Wheel.jsx', 'roulette/physics.js', 'roulette/layout.js', 'roulette/build.js', 'roulette/textures.js', 'roulette/audio.js', 'gameboard/stage.jsx', 'gameboard/textures.js'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
+  },
+  {
+    slug: 'poker-table',
+    name: 'Poker Table',
+    category: '3D & Materials',
+    style: 'Physics & play',
+    isNew: true,
+    description: 'A full-size ten-seat poker table: a padded leather rail with steel cup holders, a polished racetrack, a chip tray and drop slot for the dealer, octagonal pedestals and a brass foot rail.',
+    controls: [
+      { name: 'view', type: 'select', options: ['Top', 'Front-L', 'Front-R', 'Front', 'Rear', 'Left', 'Right', 'Rail', 'Dealer', 'Base'], default: 'Front-L' },
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Casino green', values: { feltColor: '#0c6a34', woodColor: '#74301c', leatherColor: '#17171a', metalColor: '#c9a557', lineColor: '#d8b24a' } },
+          { name: 'Royal blue', values: { feltColor: '#1b3f8f', woodColor: '#3d2416', leatherColor: '#1d1b1c', metalColor: '#c9ccd1', lineColor: '#e6e2d6' } },
+          { name: 'Burgundy', values: { feltColor: '#7a1626', woodColor: '#2b1a14', leatherColor: '#191616', metalColor: '#d1ad5c', lineColor: '#e0bd62' } },
+          { name: 'Tan leather', values: { feltColor: '#1f5a4a', woodColor: '#231c19', leatherColor: '#6b3d22', metalColor: '#c9ccd1', lineColor: '#e6e2d6' } },
+        ],
+      },
+      { name: 'feltColor', type: 'color', default: '#0c6a34' },
+      { name: 'woodColor', type: 'color', default: '#74301c' },
+      { name: 'leatherColor', type: 'color', default: '#17171a' },
+      { name: 'metalColor', type: 'color', default: '#c9a557' },
+      { name: 'lineColor', type: 'color', default: '#d8b24a' },
+      { name: 'chips', type: 'toggle', default: false },
+      { name: 'dimensions', type: 'toggle', default: false },
+      { name: 'ambientOcclusion', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <PokerTableModel {...p} height="100%" />,
+    fill: true,
+    files: ['PokerTableModel.jsx', 'poker/PokerScene.jsx', 'poker/Table.jsx', 'poker/layout.js', 'roulette/build.js', 'roulette/textures.js', 'roulette/layout.js', 'gameboard/stage.jsx', 'gameboard/textures.js'],
     deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
   },
   {
@@ -3956,7 +4016,7 @@ const ALL_COMPONENTS = [
     // `set` lets the scene update the controls (clicking works the door, the engines and the gear).
     preview: (p, set) => <AirlinerModel {...p} onChange={set} height="100%" />,
     fill: true,
-    files: ['AirlinerModel.jsx', 'airliner/AirlinerScene.jsx', 'airliner/Airliner.jsx', 'airliner/geometry.js', 'airliner/textures.js'],
+    files: ['AirlinerModel.jsx', 'airliner/AirlinerScene.jsx', 'airliner/Airliner.jsx', 'airliner/geometry.js', 'airliner/textures.js', 'airliner/stage.jsx'],
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
@@ -3993,6 +4053,42 @@ const ALL_COMPONENTS = [
     preview: (p, set) => <SuvModel {...p} onChange={set} height="100%" />,
     fill: true,
     files: ['SuvModel.jsx', 'suv/SuvScene.jsx', 'suv/Suv.jsx', 'suv/geometry.js', 'suv/paint.js'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'helicopter',
+    name: 'Helicopter',
+    category: '3D & Materials',
+    style: 'Vehicles',
+    isNew: true,
+    description: 'A twin-engine helicopter at real size, built from its own dimensions. Start the engines and the drooping blades spin up into a blur; lift it into the hover and fly the camera round it.',
+    controls: [
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Navy', values: { bodyColor: '#1b2a6b', stripeColor: '#f1f2f4' } },
+          { name: 'Rescue', values: { bodyColor: '#c8201c', stripeColor: '#f4f2ee' } },
+          { name: 'Air ambulance', values: { bodyColor: '#f0c21a', stripeColor: '#16181b' } },
+          { name: 'Forest', values: { bodyColor: '#17533a', stripeColor: '#d9c58a' } },
+          { name: 'Graphite', values: { bodyColor: '#2b2e33', stripeColor: '#e0452c' } },
+          { name: 'White', values: { bodyColor: '#eef0f2', stripeColor: '#1d3f9d' } },
+        ],
+      },
+      { name: 'view', type: 'select', options: ['three-quarter', 'front-right', 'front', 'rear', 'side', 'side-right', 'top', 'underside', 'rear-quarter', 'rear-right', 'rotor-head', 'tail-fan', 'cockpit', 'skids', 'cowling'], default: 'three-quarter' },
+      { name: 'engines', type: 'toggle', default: false },
+      { name: 'hover', type: 'toggle', default: false },
+      { name: 'lights', type: 'toggle', default: true },
+      { name: 'blades', type: 'range', min: 3, max: 5, step: 1, default: 4 },
+      { name: 'bodyColor', type: 'color', default: '#1b2a6b' },
+      { name: 'stripeColor', type: 'color', default: '#f1f2f4' },
+      { name: 'registration', type: 'text', default: 'RD-HELI', maxLength: 8 },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    // `set` lets the scene update the controls (clicking works the engines and the hover).
+    preview: (p, set) => <HelicopterModel {...p} onChange={set} height="100%" />,
+    fill: true,
+    files: ['HelicopterModel.jsx', 'helicopter/HelicopterScene.jsx', 'helicopter/Helicopter.jsx', 'helicopter/geometry.js', 'helicopter/textures.js', 'airliner/geometry.js', 'airliner/textures.js', 'airliner/stage.jsx'],
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
