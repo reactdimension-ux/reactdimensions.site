@@ -389,6 +389,8 @@ import CloudSeaModel from '../lib/CloudSeaModel.jsx'
 import DesertModel from '../lib/DesertModel.jsx'
 import ForestValleyModel from '../lib/ForestValleyModel.jsx'
 import RiverValleyModel from '../lib/RiverValleyModel.jsx'
+import DowntownModel from '../lib/DowntownModel.jsx'
+import CountrysideModel from '../lib/CountrysideModel.jsx'
 import DiceModel from '../lib/DiceModel.jsx'
 import PuzzleCubeModel from '../lib/PuzzleCubeModel.jsx'
 import RingModel from '../lib/RingModel.jsx'
@@ -449,7 +451,7 @@ import PleadingEmoji from '../lib/PleadingEmoji.jsx'
 // Loaded on demand: each file is its own small chunk, fetched the first time
 // a page needs it (the eager version put 3.5 MB of source text in the
 // main bundle that every visit downloaded).
-const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../lion/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../cd/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}','../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}', '../playingcards/*.{js,jsx}', '../carrom/*.{js,jsx}', '../arrow/*.{js,jsx}', '../archery/*.{js,jsx}', '../pokerchips/*.{js,jsx}', '../spinner/*.{js,jsx}', '../electric/*.{js,jsx}', '../inkpad/*.{js,jsx}', '../stamp/*.{js,jsx}', '../cricket/*.{js,jsx}', '../bat/*.{js,jsx}', '../bowler/*.{js,jsx}', '../pin/*.{js,jsx}', '../bowlingball/*.{js,jsx}', '../lowpoly/*.{js,jsx}','../faceboard/*.{js,jsx}', '../steering/*.{js,jsx}', '../sword/*.{js,jsx}', '../tennisball/*.{js,jsx}', '../cricketball/*.{js,jsx}', '../wineglass/*.{js,jsx}', '../roulette/*.{js,jsx}', '../poker/*.{js,jsx}', '../snooker/*.{js,jsx}', '../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../airliner/*.{js,jsx}', '../suv/*.{js,jsx}', '../helicopter/*.{js,jsx}', '../fighter/*.{js,jsx}', '../bus/*.{js,jsx}', '../etrike/*.{js,jsx}', '../stadiumseat/*.{js,jsx}', '../can/*.{js,jsx}','../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../desert/*.{js,jsx}', '../valley/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
+const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../lion/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../cd/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}','../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}', '../playingcards/*.{js,jsx}', '../carrom/*.{js,jsx}', '../arrow/*.{js,jsx}', '../archery/*.{js,jsx}', '../pokerchips/*.{js,jsx}', '../spinner/*.{js,jsx}', '../electric/*.{js,jsx}', '../inkpad/*.{js,jsx}', '../stamp/*.{js,jsx}', '../cricket/*.{js,jsx}', '../bat/*.{js,jsx}', '../bowler/*.{js,jsx}', '../pin/*.{js,jsx}', '../bowlingball/*.{js,jsx}', '../lowpoly/*.{js,jsx}','../faceboard/*.{js,jsx}', '../steering/*.{js,jsx}', '../sword/*.{js,jsx}', '../tennisball/*.{js,jsx}', '../cricketball/*.{js,jsx}', '../wineglass/*.{js,jsx}', '../roulette/*.{js,jsx}', '../poker/*.{js,jsx}', '../snooker/*.{js,jsx}', '../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../airliner/*.{js,jsx}', '../suv/*.{js,jsx}', '../helicopter/*.{js,jsx}', '../fighter/*.{js,jsx}', '../bus/*.{js,jsx}', '../etrike/*.{js,jsx}', '../stadiumseat/*.{js,jsx}', '../can/*.{js,jsx}','../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../desert/*.{js,jsx}', '../valley/*.{js,jsx}', '../city/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
   query: '?raw',
   import: 'default',
 })
@@ -6571,6 +6573,74 @@ const ALL_COMPONENTS = [
     preview: (p) => <RiverValleyModel {...p} height="100%" />,
     fill: true,
     files: ['RiverValleyModel.jsx', 'valley/ValleyScene.jsx', 'valley/Valley.jsx', 'valley/land.js', 'valley/shaders.js', 'valley/trees.js', 'cloud/sun.js', 'airliner/stage.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
+  },
+  {
+    slug: 'downtown',
+    name: 'Downtown',
+    category: '3D & Materials',
+    style: 'Scenes',
+    isNew: true,
+    description: 'A photoreal city on a Manhattan-style grid: avenues and cross streets between brick walk-ups with fire escapes, limestone prewar blocks crowned with water tanks, stepped deco towers with spires and glass towers that mirror the sky, with a room behind every window. Signals cycle on every corner and the traffic obeys them, cabs, buses and trucks queueing at the reds and rolling up the avenues on a green wave, with people on the sidewalks. As the sun sets, the windows, shopfronts, street lamps and headlights come on.',
+    controls: [
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Morning', values: { elevation: 32, azimuth: 140, exposure: 0.6, haze: 1 } },
+          { name: 'Noon', values: { elevation: 68, azimuth: 175, exposure: 0.48, haze: 0.8 } },
+          { name: 'Golden hour', values: { elevation: 7, azimuth: -118, exposure: 0.8, haze: 1.4 } },
+          { name: 'Dusk', values: { elevation: -1.5, azimuth: -112, exposure: 1.3, haze: 1.3 } },
+          { name: 'Night', values: { elevation: -14, azimuth: -100, exposure: 1.8, haze: 1.1 } },
+        ],
+      },
+      { name: 'elevation', type: 'range', min: -20, max: 90, step: 0.5, default: 32, unit: '°' },
+      { name: 'azimuth', type: 'range', min: -180, max: 180, step: 1, default: 140, unit: '°' },
+      { name: 'exposure', type: 'range', min: 0.1, max: 3, step: 0.01, default: 0.6 },
+      { name: 'haze', type: 'range', min: 0, max: 4, step: 0.05, default: 1 },
+      { name: 'traffic', type: 'range', min: 0, max: 2, step: 0.05, default: 1 },
+      { name: 'people', type: 'toggle', default: true },
+      { name: 'trees', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <DowntownModel {...p} height="100%" />,
+    fill: true,
+    files: ['DowntownModel.jsx', 'city/CityScene.jsx', 'city/City.jsx', 'city/layout.js', 'city/buildings.js', 'city/shaders.js', 'city/cars.js', 'city/traffic.js', 'valley/trees.js', 'valley/shaders.js', 'valley/land.js', 'cloud/sun.js', 'airliner/stage.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
+  },
+  {
+    slug: 'countryside',
+    name: 'Countryside',
+    category: '3D & Materials',
+    style: 'Scenes',
+    isNew: true,
+    description: 'Photoreal rolling farmland seen from a hay meadow full of wild flowers: a patchwork of hedged fields (ripe wheat with tramlines, barley, oilseed rape, furrowed plough, mown hay with round bales, young crops, pasture with grazing sheep and woods) falls away to a vale and climbs to wooded hills and far downs. A gravel lane runs past a stone farmhouse and a tarred barn with smoke rising from the chimney. The wind runs through the wheat and grass; a physical sky lights it all and hazes the distance blue. Presets set the time of day.',
+    controls: [
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Afternoon', values: { elevation: 30, azimuth: -62, exposure: 0.55, haze: 1 } },
+          { name: 'Noon', values: { elevation: 62, azimuth: -20, exposure: 0.42, haze: 0.8 } },
+          { name: 'Golden hour', values: { elevation: 7, azimuth: -78, exposure: 0.8, haze: 1.4 } },
+          { name: 'Evening glow', values: { elevation: 4, azimuth: 160, exposure: 0.9, haze: 1.5 } },
+          { name: 'Morning mist', values: { elevation: 9, azimuth: 70, exposure: 0.75, haze: 3.2 } },
+        ],
+      },
+      { name: 'elevation', type: 'range', min: 0, max: 90, step: 0.5, default: 30, unit: '°' },
+      { name: 'azimuth', type: 'range', min: -180, max: 180, step: 1, default: -62, unit: '°' },
+      { name: 'exposure', type: 'range', min: 0.1, max: 1.5, step: 0.01, default: 0.55 },
+      { name: 'haze', type: 'range', min: 0, max: 4, step: 0.05, default: 1 },
+      { name: 'trees', type: 'range', min: 0, max: 1.6, step: 0.05, default: 1 },
+      { name: 'grass', type: 'range', min: 0, max: 1.5, step: 0.05, default: 1 },
+      { name: 'wind', type: 'range', min: 0, max: 3, step: 0.05, default: 1 },
+      { name: 'sheep', type: 'toggle', default: true },
+      { name: 'clouds', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <CountrysideModel {...p} height="100%" />,
+    fill: true,
+    files: ['CountrysideModel.jsx', 'country/CountryScene.jsx', 'country/Country.jsx', 'country/land.js', 'country/shaders.js', 'country/props.js', 'valley/land.js', 'valley/shaders.js', 'valley/trees.js', 'cloud/sun.js', 'airliner/stage.jsx'],
     deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
   },
   {
