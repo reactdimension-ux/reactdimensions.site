@@ -33,6 +33,7 @@ const PIN_FINISHES = {
 }
 export const PIN_FINISH_NAMES = Object.keys(PIN_FINISHES)
 const BALL_STYLES = {
+  sapphire: ['#061040', '#0d2384', '#2a4cc4', '#8fa8f2'],
   cosmic: ['#0e1a4a', '#3b1d73', '#6a5ad8', '#c9c2ff'],
   ruby: ['#3a0610', '#8a1024', '#d23a46', '#ffc2b8'],
   pearl: ['#0b0b0e', '#2a2a31', '#6a6a78', '#e6e6ee'],
@@ -154,8 +155,39 @@ function pinMaps(finish, wear) {
   return { map, rough }
 }
 
-// A reactive-resin ball: swirled pearl and solid colours, with the finger
-// and thumb holes drilled into it.
+// The grip, drilled into the ball: two finger holes side by side and the
+// thumb hole below them. dir is the hole's axis from the ball's centre, a its
+// bore radius, depth how far it goes in, lip the radius of the rounded,
+// slightly raised edge round its mouth. The surface is cut away inside each
+// mouth in the shader (see holeCut), so the holes are real openings.
+const HOLES = [
+  { dir: [-0.19, 0.5, 0.845], a: 0.0115, depth: 0.062, lip: 0.0026 },
+  { dir: [0.19, 0.5, 0.845], a: 0.0115, depth: 0.062, lip: 0.0026 },
+  { dir: [0, -0.56, 0.83], a: 0.0145, depth: 0.07, lip: 0.003 },
+].map((h) => {
+  const dir = new THREE.Vector3(...h.dir).normalize()
+  // where the bore meets the sphere, measured along the axis
+  const mouth = Math.sqrt(BALL_R * BALL_R - h.a * h.a)
+  return { ...h, dir, mouth, q: new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir) }
+})
+
+// Discard the ball's skin inside each hole's mouth, worked out per pixel from
+// the position on the sphere, so the openings stay perfectly round.
+function holeCut(mat) {
+  const uHoles = { value: HOLES.map((h) => new THREE.Vector4(h.dir.x, h.dir.y, h.dir.z, h.mouth / BALL_R)) }
+  mat.onBeforeCompile = (s) => {
+    s.uniforms.uHoles = uHoles
+    s.vertexShader = s.vertexShader.replace('#include <common>', '#include <common>\nvarying vec3 vBallLocal;').replace('#include <begin_vertex>', '#include <begin_vertex>\nvBallLocal = position;')
+    s.fragmentShader = s.fragmentShader
+      .replace('#include <common>', `#include <common>\nvarying vec3 vBallLocal;\nuniform vec4 uHoles[${HOLES.length}];`)
+      .replace('#include <clipping_planes_fragment>', `#include <clipping_planes_fragment>\nvec3 bl = normalize(vBallLocal);\nfor (int i = 0; i < ${HOLES.length}; i++) if (dot(bl, uHoles[i].xyz) > uHoles[i].w) discard;`)
+  }
+  mat.customProgramCacheKey = () => 'ball-holes'
+  return mat
+}
+
+// A reactive-resin ball: a swirled pearl coverstock with a fine glitter of
+// metallic flake in it. (The holes are geometry, not paint.)
 function ballMaps(cols) {
   const W = 1024
   const H = 512
@@ -184,20 +216,11 @@ function ballMaps(cols) {
     }
   }
   g.putImageData(img, 0, 0)
-  // the holes: two fingers side by side, the thumb below them
-  for (const [x, y, rx, ry] of [
-    [W * 0.24, H * 0.42, 22, 26],
-    [W * 0.26, H * 0.42, 22, 26],
-    [W * 0.25, H * 0.56, 26, 30],
-  ]) {
-    const hx = x === W * 0.24 ? x - 6 : x === W * 0.26 ? x + 6 : x
-    g.fillStyle = '#050505'
-    g.beginPath()
-    g.ellipse(hx, y, rx * 0.55, ry * 0.95, 0, 0, Math.PI * 2)
-    g.fill()
-    g.strokeStyle = 'rgba(255,255,255,0.18)'
-    g.lineWidth = 2
-    g.stroke()
+  // flake: tiny bright specks scattered through the resin
+  const r = rng(5)
+  for (let i = 0; i < 2600; i++) {
+    g.fillStyle = `rgba(${r() < 0.5 ? '210,225,255' : '255,255,255'},${0.25 + r() * 0.5})`
+    g.fillRect(r() * W, r() * H, 1, 1)
   }
   const map = new THREE.CanvasTexture(c)
   map.colorSpace = THREE.SRGBColorSpace
@@ -251,7 +274,7 @@ const tilt = (q) => Math.acos(THREE.MathUtils.clamp(new THREE.Vector3(0, 1, 0).a
 // used. ball: the ball's swirl. speed: how hard it is bowled, m/s.
 // reflections: the oiled lane mirrors the pins. sound.
 // bowl, reset: bump these numbers to do it.
-export default function BowlingPin({ pins: pinCount = 1, finish = 'classic', wear = 0.25, ball: ballStyle = 'cosmic', speed = 8, reflections = true, sound = false, bowl = 0, reset = 0 }) {
+export default function BowlingPin({ pins: pinCount = 1, finish = 'classic', wear = 0.25, ball: ballStyle = 'sapphire', speed = 8, reflections = true, sound = false, bowl = 0, reset = 0 }) {
   const n = Number(pinCount) === 10 ? 10 : 1
   const [hover, setHover] = useState(false)
   const [held, setHeld] = useState(false)
@@ -266,13 +289,27 @@ export default function BowlingPin({ pins: pinCount = 1, finish = 'classic', wea
     const uv = g.attributes.uv
     for (let i = 0; i < p.count; i++) uv.setY(i, p.getY(i) / PIN_H)
     g.computeVertexNormals()
-    return { pin: g, ball: new THREE.SphereGeometry(BALL_R, 64, 44) }
+    // each hole: an open bore, its floor, and the rounded lip round its mouth
+    const holes = HOLES.map((h) => ({
+      bore: new THREE.CylinderGeometry(h.a, h.a, h.depth, 40, 1, true),
+      floor: new THREE.CircleGeometry(h.a, 40).rotateX(-Math.PI / 2),
+      lip: new THREE.TorusGeometry(h.a + h.lip, h.lip, 16, 64).rotateX(Math.PI / 2),
+    }))
+    return { pin: g, ball: new THREE.SphereGeometry(BALL_R, 128, 96), holes }
   }, [])
-  useEffect(() => () => Object.values(geo).forEach((g) => g.dispose()), [geo])
+  useEffect(
+    () => () => {
+      geo.pin.dispose()
+      geo.ball.dispose()
+      geo.holes.forEach((h) => Object.values(h).forEach((x) => x.dispose()))
+    },
+    [geo],
+  )
   const F = PIN_FINISHES[finish] || PIN_FINISHES.classic
   const maps = useMemo(() => pinMaps(F, wear), [F, wear])
   useEffect(() => () => (maps.map.dispose(), maps.rough.dispose()), [maps])
-  const ballMap = useMemo(() => ballMaps(BALL_STYLES[ballStyle] || BALL_STYLES.cosmic), [ballStyle])
+  const ballCols = BALL_STYLES[ballStyle] || BALL_STYLES.sapphire
+  const ballMap = useMemo(() => ballMaps(ballCols), [ballCols])
   useEffect(() => () => ballMap.dispose(), [ballMap])
   const lane = useMemo(() => laneTexture(), [])
   useEffect(() => () => lane.dispose(), [lane])
@@ -280,7 +317,12 @@ export default function BowlingPin({ pins: pinCount = 1, finish = 'classic', wea
     () => ({
       // Surlyn over maple: a deep, wet gloss
       pin: new THREE.MeshPhysicalMaterial({ roughness: 0.42, clearcoat: 1, clearcoatRoughness: 0.04, sheen: 0.2, sheenRoughness: 0.4, sheenColor: new THREE.Color('#ffffff') }),
-      ball: new THREE.MeshPhysicalMaterial({ roughness: 0.18, clearcoat: 1, clearcoatRoughness: 0.03, iridescence: 0.25, iridescenceIOR: 1.4 }),
+      ball: holeCut(new THREE.MeshPhysicalMaterial({ roughness: 0.18, clearcoat: 1, clearcoatRoughness: 0.03, iridescence: 0.15, iridescenceIOR: 1.4 })),
+      // the polished lip of each hole: the same resin, its colour averaged
+      lip: new THREE.MeshPhysicalMaterial({ roughness: 0.2, clearcoat: 1, clearcoatRoughness: 0.03 }),
+      // inside the holes: a dull, shadowed bore
+      bore: new THREE.MeshStandardMaterial({ color: '#0a0c14', roughness: 0.7, side: THREE.BackSide }),
+      boreFloor: new THREE.MeshStandardMaterial({ color: '#030308', roughness: 0.9 }),
       kick: new THREE.MeshStandardMaterial({ color: '#1b1714', roughness: 0.6 }),
       pit: new THREE.MeshStandardMaterial({ color: '#070707', roughness: 1 }),
       gutter: new THREE.MeshStandardMaterial({ color: '#2a2b2e', metalness: 0.3, roughness: 0.4, side: THREE.DoubleSide }),
@@ -297,7 +339,8 @@ export default function BowlingPin({ pins: pinCount = 1, finish = 'classic', wea
   useEffect(() => {
     mats.ball.map = ballMap
     mats.ball.needsUpdate = true
-  }, [mats, ballMap])
+    mats.lip.color.set(ballCols[1]).lerp(new THREE.Color(ballCols[2]), 0.35)
+  }, [mats, ballMap, ballCols])
 
   // ---- sound ----
   const audio = useRef(null)
@@ -572,7 +615,16 @@ export default function BowlingPin({ pins: pinCount = 1, finish = 'classic', wea
         </group>
       ))}
       {/* the ball */}
-      <mesh ref={ballRef} geometry={geo.ball} material={mats.ball} castShadow />
+      <group ref={ballRef}>
+        <mesh geometry={geo.ball} material={mats.ball} castShadow />
+        {HOLES.map((h, i) => (
+          <group key={i} quaternion={h.q}>
+            <mesh geometry={geo.holes[i].bore} material={mats.bore} position-y={h.mouth - h.depth / 2} />
+            <mesh geometry={geo.holes[i].floor} material={mats.boreFloor} position-y={h.mouth - h.depth} />
+            <mesh geometry={geo.holes[i].lip} material={mats.lip} position-y={Math.sqrt(BALL_R * BALL_R - (h.a + h.lip) ** 2) - h.lip * 0.35} />
+          </group>
+        ))}
+      </group>
     </group>
   )
 }

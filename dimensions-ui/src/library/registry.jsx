@@ -277,6 +277,14 @@ import CricketModel from '../lib/CricketModel.jsx'
 import CricketBatModel from '../lib/CricketBatModel.jsx'
 import BowlingMachineModel from '../lib/BowlingMachineModel.jsx'
 import BowlingPinModel from '../lib/BowlingPinModel.jsx'
+import BowlingBallModel from '../lib/BowlingBallModel.jsx'
+import LowPolyTreeModel from '../lib/LowPolyTreeModel.jsx'
+import LowPolyFoxModel from '../lib/LowPolyFoxModel.jsx'
+import LowPolyChestModel from '../lib/LowPolyChestModel.jsx'
+import LowPolyGrassTileModel from '../lib/LowPolyGrassTileModel.jsx'
+import LowPolyCrystalRockModel from '../lib/LowPolyCrystalRockModel.jsx'
+import LowPolyRunnerModel from '../lib/LowPolyRunnerModel.jsx'
+import LowPolyTigerModel from '../lib/LowPolyTigerModel.jsx'
 import FaceBoardModel from '../lib/FaceBoardModel.jsx'
 import SteeringWheelModel from '../lib/SteeringWheelModel.jsx'
 import SwordModel from '../lib/SwordModel.jsx'
@@ -288,6 +296,10 @@ import LorryModel from '../lib/LorryModel.jsx'
 import AirlinerModel from '../lib/AirlinerModel.jsx'
 import SuvModel from '../lib/SuvModel.jsx'
 import HelicopterModel from '../lib/HelicopterModel.jsx'
+import FighterModel from '../lib/FighterModel.jsx'
+import ETrikeModel from '../lib/ETrikeModel.jsx'
+import StadiumSeatModel from '../lib/StadiumSeatModel.jsx'
+import DrinksCanModel from '../lib/DrinksCanModel.jsx'
 import ClockModel from '../lib/ClockModel.jsx'
 import LampModel from '../lib/LampModel.jsx'
 import TapeModel from '../lib/TapeModel.jsx'
@@ -295,6 +307,7 @@ import ButterflyModel from '../lib/ButterflyModel.jsx'
 import OceanModel from '../lib/OceanModel.jsx'
 import CloudModel from '../lib/CloudModel.jsx'
 import CloudSeaModel from '../lib/CloudSeaModel.jsx'
+import DesertModel from '../lib/DesertModel.jsx'
 import DiceModel from '../lib/DiceModel.jsx'
 import PuzzleCubeModel from '../lib/PuzzleCubeModel.jsx'
 import RingModel from '../lib/RingModel.jsx'
@@ -321,6 +334,7 @@ import ElectricGuitarModel from '../lib/ElectricGuitarModel.jsx'
 import WineGlassModel from '../lib/WineGlassModel.jsx'
 import RouletteModel from '../lib/RouletteModel.jsx'
 import PokerTableModel from '../lib/PokerTableModel.jsx'
+import SnookerTableModel from '../lib/SnookerTableModel.jsx'
 import ShuttlecockModel from '../lib/ShuttlecockModel.jsx'
 import BadmintonRacketModel from '../lib/BadmintonRacketModel.jsx'
 import TennisRacketModel from '../lib/TennisRacketModel.jsx'
@@ -354,7 +368,7 @@ import PleadingEmoji from '../lib/PleadingEmoji.jsx'
 // Loaded on demand: each file is its own small chunk, fetched the first time
 // a page needs it (the eager version put 3.5 MB of source text in the
 // main bundle that every visit downloaded).
-const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../cd/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}','../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}', '../playingcards/*.{js,jsx}', '../carrom/*.{js,jsx}', '../arrow/*.{js,jsx}', '../archery/*.{js,jsx}', '../pokerchips/*.{js,jsx}', '../spinner/*.{js,jsx}', '../electric/*.{js,jsx}', '../inkpad/*.{js,jsx}', '../stamp/*.{js,jsx}', '../cricket/*.{js,jsx}', '../bat/*.{js,jsx}', '../bowler/*.{js,jsx}', '../pin/*.{js,jsx}', '../faceboard/*.{js,jsx}', '../steering/*.{js,jsx}', '../sword/*.{js,jsx}', '../tennisball/*.{js,jsx}', '../cricketball/*.{js,jsx}', '../wineglass/*.{js,jsx}', '../roulette/*.{js,jsx}', '../poker/*.{js,jsx}', '../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../airliner/*.{js,jsx}', '../suv/*.{js,jsx}', '../helicopter/*.{js,jsx}','../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
+const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../cd/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}','../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}', '../playingcards/*.{js,jsx}', '../carrom/*.{js,jsx}', '../arrow/*.{js,jsx}', '../archery/*.{js,jsx}', '../pokerchips/*.{js,jsx}', '../spinner/*.{js,jsx}', '../electric/*.{js,jsx}', '../inkpad/*.{js,jsx}', '../stamp/*.{js,jsx}', '../cricket/*.{js,jsx}', '../bat/*.{js,jsx}', '../bowler/*.{js,jsx}', '../pin/*.{js,jsx}', '../bowlingball/*.{js,jsx}', '../lowpoly/*.{js,jsx}','../faceboard/*.{js,jsx}', '../steering/*.{js,jsx}', '../sword/*.{js,jsx}', '../tennisball/*.{js,jsx}', '../cricketball/*.{js,jsx}', '../wineglass/*.{js,jsx}', '../roulette/*.{js,jsx}', '../poker/*.{js,jsx}', '../snooker/*.{js,jsx}', '../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../airliner/*.{js,jsx}', '../suv/*.{js,jsx}', '../helicopter/*.{js,jsx}', '../fighter/*.{js,jsx}', '../etrike/*.{js,jsx}', '../stadiumseat/*.{js,jsx}', '../can/*.{js,jsx}','../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../desert/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
   query: '?raw',
   import: 'default',
 })
@@ -367,7 +381,7 @@ const SOURCE_CACHE = new Map()
 export const HIDDEN_CATEGORIES = ['Icons & Emojis']
 // Individual components kept in the code but left out of the site (the
 // sidebar, the section pages, search and the generated registry files).
-export const HIDDEN_COMPONENTS = ['shirt', 'earbuds', 'gamepad']
+export const HIDDEN_COMPONENTS = ['shirt', 'earbuds', 'gamepad', 'low-poly-runner', 'low-poly-tiger']
 
 const ALL_CATEGORIES = ['Text', 'Animation', 'UI', 'Phone UI', '3D & Materials', 'Backgrounds', 'Motion Graphics', 'Icons & Emojis']
 export const CATEGORIES = ALL_CATEGORIES.filter((c) => !HIDDEN_CATEGORIES.includes(c))
@@ -3581,7 +3595,7 @@ const ALL_COMPONENTS = [
       { name: 'pins', type: 'select', options: ['1', '10'], default: '1' },
       { name: 'finish', type: 'select', options: ['classic', 'black', 'gold', 'blue'], default: 'classic' },
       { name: 'wear', type: 'range', min: 0, max: 1, step: 0.05, default: 0.25 },
-      { name: 'ball', type: 'select', options: ['cosmic', 'ruby', 'pearl', 'emerald'], default: 'cosmic' },
+      { name: 'ball', type: 'select', options: ['sapphire', 'cosmic', 'ruby', 'pearl', 'emerald'], default: 'sapphire' },
       { name: 'speed', type: 'range', min: 4, max: 10, step: 0.25, default: 8, unit: 'm/s' },
       { name: 'reflections', type: 'toggle', default: true },
       { name: 'sound', type: 'toggle', default: false },
@@ -3590,6 +3604,171 @@ const ALL_COMPONENTS = [
     preview: (p) => <BowlingPinModel {...p} height="100%" />,
     fill: true,
     files: ['BowlingPinModel.jsx', 'pin/BowlingPinScene.jsx', 'pin/BowlingPin.jsx', 'pin/shape.js', 'pin/physics.js', 'pin/audio.js'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'bowling-ball',
+    name: 'Bowling Ball',
+    category: '3D & Materials',
+    style: 'Sports & fitness',
+    isNew: true,
+    description: 'A drilled tenpin ball at real size in a swirled pearl coverstock with metallic flake and real finger and thumb holes. Roll it and it hooks as the floor grips it, or spin it on the spot.',
+    controls: [
+      { name: 'ball', type: 'select', options: ['sapphire', 'cosmic', 'ruby', 'onyx', 'emerald', 'amber'], default: 'sapphire' },
+      { name: 'flake', type: 'range', min: 0, max: 1, step: 0.05, default: 0.5 },
+      { name: 'drilled', type: 'toggle', default: true },
+      { name: 'reflections', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#e2e0dc' },
+      { name: 'follow', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    replay: true,
+    preview: (p) => <BowlingBallModel {...p} height="100%" />,
+    fill: true,
+    files: ['BowlingBallModel.jsx', 'bowlingball/BowlingBallScene.jsx', 'bowlingball/BowlingBall.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  // ---- Motion Graphics: a low-poly set, sharing lowpoly/kit.jsx ----
+  {
+    slug: 'low-poly-pine',
+    name: 'Low Poly Pine',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A faceted low-poly pine that springs in and sways in the wind, each tier a beat behind the one below. Tap it to give it a shake.',
+    controls: [
+      { name: 'season', type: 'select', options: ['summer', 'autumn', 'winter'], default: 'summer' },
+      { name: 'wind', type: 'range', min: 0, max: 1, step: 0.05, default: 0.5 },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyTreeModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyTreeModel.jsx', 'lowpoly/Tree.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-fox',
+    name: 'Low Poly Fox',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A faceted low-poly fox, sitting. It breathes, blinks, glances about, twitches its ears and swishes its tail. Tap it and it cocks its head and wags.',
+    controls: [
+      { name: 'coat', type: 'select', options: ['red', 'arctic', 'silver'], default: 'red' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyFoxModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyFoxModel.jsx', 'lowpoly/Fox.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-chest',
+    name: 'Low Poly Treasure Chest',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A gold-bound low-poly treasure chest. The lid springs open on its hinge, gold light spills out and coins burst up and tumble back in.',
+    controls: [
+      { name: 'color', type: 'select', options: ['purple', 'red', 'blue', 'green'], default: 'purple' },
+      { name: 'loop', type: 'toggle', default: true },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyChestModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyChestModel.jsx', 'lowpoly/Chest.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-grass-tile',
+    name: 'Low Poly Grass Tile',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly ground tile of layered soil and lumpy turf with pebbles and swaying grass. Tap it and it squashes, springs back and the pebbles hop.',
+    controls: [
+      { name: 'grass', type: 'select', options: ['spring', 'summer', 'autumn'], default: 'spring' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyGrassTileModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyGrassTileModel.jsx', 'lowpoly/GrassTile.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-crystal-rock',
+    name: 'Low Poly Crystal Rock',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly boulder with glowing crystals at its foot, each pulsing on its own beat, and a shard floating above. Tap it and the crystals flare.',
+    controls: [
+      { name: 'crystal', type: 'select', options: ['aqua', 'amethyst', 'ruby', 'citrine'], default: 'aqua' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyCrystalRockModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyCrystalRockModel.jsx', 'lowpoly/CrystalRock.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-runner',
+    name: 'Low Poly Runner',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A faceted low-poly man at full sprint in a red, orange and yellow top, blue and violet legs and bright trainers. He runs on a procedural cycle: legs drive, arms pump, hips bob and shoulders twist. Tap him and he leaps; turn Run off and he freezes in a hero lunge.',
+    controls: [
+      { name: 'outfit', type: 'select', options: ['classic', 'cool', 'mono'], default: 'classic' },
+      { name: 'speed', type: 'range', min: 0.4, max: 3, step: 0.1, default: 1.4 },
+      { name: 'run', type: 'toggle', default: true },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyRunnerModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyRunnerModel.jsx', 'lowpoly/Runner.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-tiger',
+    name: 'Low Poly Tiger',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A faceted, striped tiger at real size that you drive with the keys or a pad. It walks on a real mechanism: a gait clock, feet planted on the ground, IK legs and a body that bobs, leans and turns. Skeleton shows the joints and footfalls.',
+    controls: [
+      { name: 'gait', type: 'select', options: ['walk', 'trot'], default: 'walk' },
+      { name: 'speed', type: 'range', min: 0.4, max: 3.5, step: 0.1, default: 1.4, unit: 'm/s' },
+      { name: 'stride', type: 'range', min: 0.6, max: 1.6, step: 0.05, default: 1.1, unit: 'm' },
+      { name: 'stepHeight', type: 'range', min: 0.04, max: 0.3, step: 0.01, default: 0.12, unit: 'm' },
+      { name: 'bounce', type: 'range', min: 0, max: 1, step: 0.05, default: 0.6 },
+      { name: 'auto', type: 'toggle', default: true },
+      { name: 'skeleton', type: 'toggle', default: false },
+      { name: 'follow', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyTigerModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyTigerModel.jsx', 'lowpoly/Tiger.jsx', 'lowpoly/kit.jsx'],
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
@@ -4045,6 +4224,41 @@ const ALL_COMPONENTS = [
     deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
   },
   {
+    slug: 'snooker-table',
+    name: 'Snooker Table',
+    category: '3D & Materials',
+    style: 'Physics & play',
+    isNew: true,
+    description: 'A full-size 12 ft snooker table built from the roulette and poker tables’ parts: baize with the rule-book markings, cushions cut into the pocket jaws, leather pockets on brass irons, a mitred mahogany rail and eight fluted legs.',
+    controls: [
+      { name: 'view', type: 'select', options: ['Top', 'Front-L', 'Front-R', 'Front', 'Rear', 'Left', 'Right', 'Pocket', 'Leg'], default: 'Front-L' },
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Tournament', values: { feltColor: '#1a7a2e', woodColor: '#6e3419', leatherColor: '#b98a5a', metalColor: '#c9a557', lineColor: '#e9e6dc' } },
+          { name: 'Club blue', values: { feltColor: '#1d4f9c', woodColor: '#3a1f12', leatherColor: '#2a211c', metalColor: '#c9ccd1', lineColor: '#e9e6dc' } },
+          { name: 'Burgundy', values: { feltColor: '#7a1a28', woodColor: '#2b1a14', leatherColor: '#1e1a18', metalColor: '#d1ad5c', lineColor: '#e9e6dc' } },
+          { name: 'Oak & tan', values: { feltColor: '#1f7a40', woodColor: '#9a6a3a', leatherColor: '#8a5a32', metalColor: '#c9a557', lineColor: '#f2eee2' } },
+          { name: 'Black lacquer', values: { feltColor: '#2f3b45', woodColor: '#17161a', leatherColor: '#171516', metalColor: '#c9ccd1', lineColor: '#e9e6dc' } },
+        ],
+      },
+      { name: 'feltColor', type: 'color', default: '#1a7a2e' },
+      { name: 'woodColor', type: 'color', default: '#6e3419' },
+      { name: 'leatherColor', type: 'color', default: '#b98a5a' },
+      { name: 'metalColor', type: 'color', default: '#c9a557' },
+      { name: 'lineColor', type: 'color', default: '#e9e6dc' },
+      { name: 'balls', type: 'toggle', default: true },
+      { name: 'dimensions', type: 'toggle', default: false },
+      { name: 'ambientOcclusion', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <SnookerTableModel {...p} height="100%" />,
+    fill: true,
+    files: ['SnookerTableModel.jsx', 'snooker/SnookerScene.jsx', 'snooker/Table.jsx', 'snooker/layout.js', 'roulette/build.js', 'roulette/textures.js', 'roulette/layout.js', 'gameboard/stage.jsx', 'gameboard/textures.js', 'airliner/geometry.js'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
+  },
+  {
     slug: 'pocket-knife',
     name: 'Pocket Knife',
     category: '3D & Materials',
@@ -4327,6 +4541,140 @@ const ALL_COMPONENTS = [
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
+    slug: 'stealth-fighter',
+    name: 'Stealth Fighter',
+    category: '3D & Materials',
+    style: 'Vehicles',
+    isNew: true,
+    description: 'A twin-engine stealth fighter at real size, built from its own dimensions on the airliner and helicopter parts. Open the canopy and the weapon bays, raise the gear, light the afterburners and fly the camera round the views of a reference sheet.',
+    controls: [
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Air superiority', values: { paint: '#8b9197', accent: '#5e656c' } },
+          { name: 'Ghost', values: { paint: '#a9aeb3', accent: '#7a8087' } },
+          { name: 'Gunship', values: { paint: '#5b6168', accent: '#3a3f45' } },
+          { name: 'Splinter', values: { paint: '#6f7f8f', accent: '#3d4a58' } },
+          { name: 'Aggressor', values: { paint: '#7c8c7b', accent: '#4b5a4e' } },
+          { name: 'Desert', values: { paint: '#b6a98c', accent: '#7d7259' } },
+        ],
+      },
+      { name: 'view', type: 'select', options: ['front-left', 'front-right', 'front', 'rear', 'side', 'side-right', 'top', 'underside', 'rear-left', 'rear-right', 'cockpit', 'landing-gear', 'wing-surface', 'air-intakes', 'tail-fins', 'exhaust-nozzles'], default: 'front-left' },
+      { name: 'canopy', type: 'toggle', default: false },
+      { name: 'bays', type: 'toggle', default: false },
+      { name: 'gear', type: 'toggle', default: true },
+      { name: 'engines', type: 'toggle', default: false },
+      { name: 'lights', type: 'toggle', default: true },
+      { name: 'paint', type: 'color', default: '#8b9197' },
+      { name: 'accent', type: 'color', default: '#5e656c' },
+      { name: 'tailCode', type: 'text', default: 'RD', maxLength: 2 },
+      { name: 'serial', type: 'text', default: 'AF 26-001', maxLength: 9 },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    // `set` lets the scene update the controls (clicking works the canopy, the bays, the gear and the engines).
+    preview: (p, set) => <FighterModel {...p} onChange={set} height="100%" />,
+    fill: true,
+    files: ['FighterModel.jsx', 'fighter/FighterScene.jsx', 'fighter/Fighter.jsx', 'fighter/geometry.js', 'fighter/textures.js', 'airliner/geometry.js', 'airliner/textures.js', 'airliner/stage.jsx', 'helicopter/geometry.js'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'electric-tuk-tuk',
+    name: 'Electric Tuk-Tuk',
+    category: '3D & Materials',
+    style: 'Vehicles',
+    isNew: true,
+    description: 'An electric auto rickshaw at real size, of our own design: a rounded cowl over one front wheel, a canvas soft top, an open cab with pleated seats. Fly round the views of its reference sheet, steer and drive it, lift the bench off the battery, plug in to charge.',
+    controls: [
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Teal', values: { paint: '#11727a', band: '#eef0ee', canopy: '#1b1d20' } },
+          { name: 'Marigold', values: { paint: '#e0a412', band: '#1f5a36', canopy: '#1b1d20' } },
+          { name: 'Leaf', values: { paint: '#2f8a3c', band: '#f1e9c8', canopy: '#2a2b26' } },
+          { name: 'Sky', values: { paint: '#2c78c4', band: '#eef0ee', canopy: '#1d2633' } },
+          { name: 'Crimson', values: { paint: '#a81e24', band: '#f0ece4', canopy: '#1b1d20' } },
+          { name: 'Graphite', values: { paint: '#3a3e44', band: '#d9dce0', canopy: '#141518' } },
+        ],
+      },
+      { name: 'view', type: 'select', options: ['front-left', 'front-right', 'front', 'rear', 'side', 'side-right', 'top', 'underside', 'rear-left', 'rear-right', 'cockpit', 'battery', 'charging-port', 'headlamp', 'wheel', 'seating'], default: 'front-left' },
+      { name: 'lights', type: 'toggle', default: true },
+      { name: 'drive', type: 'toggle', default: false },
+      { name: 'speed', type: 'range', min: 0, max: 1, step: 0.05, default: 0.4 },
+      { name: 'steer', type: 'range', min: -1, max: 1, step: 0.05, default: 0 },
+      { name: 'battery', type: 'toggle', default: false },
+      { name: 'charging', type: 'toggle', default: false },
+      { name: 'paint', type: 'color', default: '#11727a' },
+      { name: 'band', type: 'color', default: '#eef0ee' },
+      { name: 'canopy', type: 'color', default: '#1b1d20' },
+      { name: 'plate', type: 'text', default: 'RD 2026', maxLength: 9 },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    // `set` lets the scene update the controls (clicking works the lights, the drive, the bench and the charging flap).
+    preview: (p, set) => <ETrikeModel {...p} onChange={set} height="100%" />,
+    fill: true,
+    files: ['ETrikeModel.jsx', 'etrike/ETrikeScene.jsx', 'etrike/ETrike.jsx', 'etrike/geometry.js', 'etrike/textures.js', 'airliner/stage.jsx', 'airliner/geometry.js', 'airliner/textures.js', 'suv/geometry.js'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'stadium-seat',
+    name: 'Stadium Seat',
+    category: '3D & Materials',
+    style: 'Sports & fitness',
+    isNew: true,
+    description: 'A one-piece moulded stadium seat on steel brackets, built from its real dimensions down to the ribs underneath. Line up a row, or click a seat to lift the shell off its brackets.',
+    controls: [
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Royal', values: { color: '#1e3fc0', bracketColor: '#2a2c30' } },
+          { name: 'Red', values: { color: '#c21d26', bracketColor: '#2a2c30' } },
+          { name: 'Green', values: { color: '#14803d', bracketColor: '#2a2c30' } },
+          { name: 'Yellow', values: { color: '#f0bd12', bracketColor: '#2a2c30' } },
+          { name: 'Sky', values: { color: '#3b98dc', bracketColor: '#8c9197' } },
+          { name: 'White', values: { color: '#e8e9ea', bracketColor: '#8c9197' } },
+          { name: 'Black', values: { color: '#1f2124', bracketColor: '#5b5f64' } },
+        ],
+      },
+      { name: 'view', type: 'select', options: ['three-quarter', 'front', 'back', 'side', 'side-right', 'top', 'underside', 'rear-quarter', 'seat-edge', 'backrest', 'ribs', 'bracket'], default: 'three-quarter' },
+      { name: 'explode', type: 'range', min: 0, max: 1, step: 0.05, default: 0 },
+      { name: 'seats', type: 'range', min: 1, max: 5, step: 1, default: 1 },
+      { name: 'finish', type: 'select', options: ['matte', 'satin', 'gloss'], default: 'satin' },
+      { name: 'color', type: 'color', default: '#1e3fc0' },
+      { name: 'bracketColor', type: 'color', default: '#2a2c30' },
+      { name: 'ambientOcclusion', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    // `set` lets the scene update the controls (clicking a seat works `explode`).
+    preview: (p, set) => <StadiumSeatModel {...p} onChange={set} height="100%" />,
+    fill: true,
+    files: ['StadiumSeatModel.jsx', 'stadiumseat/StadiumSeatScene.jsx', 'stadiumseat/StadiumSeat.jsx', 'stadiumseat/geometry.js', 'airliner/geometry.js', 'airliner/textures.js', 'airliner/stage.jsx', 'gameboard/stage.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
+  },
+  {
+    slug: 'drinks-can',
+    name: 'Drinks Can',
+    category: '3D & Materials',
+    style: 'Everyday objects',
+    isNew: true,
+    description: 'A 330 ml aluminium can built from its real dimensions: domed base, double seam, scored opening panel and a stay-on pull tab that opens when you click it. Brushed, polished or painted.',
+    controls: [
+      { name: 'view', type: 'select', options: ['front', 'back', 'left', 'right', 'top', 'bottom', 'front-left', 'front-right', 'rear-left', 'rear-right', 'pull-tab', 'opening-panel', 'top-rim', 'body', 'base'], default: 'front-left' },
+      { name: 'open', type: 'toggle', default: false },
+      { name: 'finish', type: 'select', options: ['brushed', 'polished', 'matte'], default: 'brushed' },
+      { name: 'painted', type: 'toggle', default: false },
+      { name: 'bodyColor', type: 'color', default: '#c8102e' },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    // `set` lets the scene update the controls (clicking the tab works `open`).
+    preview: (p, set) => <DrinksCanModel {...p} onChange={set} height="100%" />,
+    fill: true,
+    files: ['DrinksCanModel.jsx', 'can/CanScene.jsx', 'can/Can.jsx', 'can/geometry.js', 'airliner/stage.jsx', 'airliner/textures.js', 'airliner/geometry.js', 'roulette/build.js'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
     slug: 'alarm-clock',
     name: 'Alarm Clock',
     category: '3D & Materials',
@@ -4560,6 +4908,45 @@ const ALL_COMPONENTS = [
     preview: (p) => <CloudSeaModel {...p} height="100%" />,
     fill: true,
     files: ['CloudSeaModel.jsx', 'cloud/CloudSeaScene.jsx', 'cloud/CloudSea.jsx', 'cloud/cloudSeaShader.js', 'cloud/noise.js', 'cloud/sun.js'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'desert',
+    name: 'Desert',
+    category: '3D & Materials',
+    style: 'Nature & world',
+    isNew: true,
+    description: 'A sand sea of transverse dunes to the horizon under a physical sky: wind ripples, glittering grains, long shadows in the lee of every dune and sand streaming off the crests.',
+    controls: [
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Morning', values: { elevation: 14, azimuth: -120, exposure: 0.55, sandColor: '#d9a86c', dustColor: '#e0b68a', haze: 1 } },
+          { name: 'Noon', values: { elevation: 62, azimuth: -150, exposure: 0.34, sandColor: '#e2b67a', dustColor: '#e6cfae', haze: 0.7 } },
+          { name: 'Golden hour', values: { elevation: 5, azimuth: 30, exposure: 0.65, sandColor: '#d49a5c', dustColor: '#e3a46e', haze: 1.4 } },
+          { name: 'Dusk', values: { elevation: 2.5, azimuth: 60, exposure: 1.0, sandColor: '#c08a6a', dustColor: '#d59a92', haze: 1.6 } },
+          { name: 'White sands', values: { elevation: 40, azimuth: -100, exposure: 0.4, sandColor: '#ece6da', dustColor: '#efe8dc', haze: 0.6 } },
+          { name: 'Namib', values: { elevation: 9, azimuth: -60, exposure: 0.55, sandColor: '#c8683a', dustColor: '#dba27c', haze: 1.1 } },
+        ],
+      },
+      { name: 'elevation', type: 'range', min: 0, max: 90, step: 0.5, default: 14, unit: '°' },
+      { name: 'azimuth', type: 'range', min: -180, max: 180, step: 1, default: -120, unit: '°' },
+      { name: 'exposure', type: 'range', min: 0.1, max: 1.5, step: 0.01, default: 0.55 },
+      { name: 'wind', type: 'range', min: 0, max: 10, step: 0.1, default: 3 },
+      { name: 'windDirection', type: 'range', min: -180, max: 180, step: 1, default: 25, unit: '°' },
+      { name: 'duneHeight', type: 'range', min: 3, max: 40, step: 0.5, default: 14, unit: 'm' },
+      { name: 'duneSpacing', type: 'range', min: 40, max: 300, step: 5, default: 120, unit: 'm' },
+      { name: 'haze', type: 'range', min: 0, max: 3, step: 0.05, default: 1 },
+      { name: 'sparkle', type: 'range', min: 0, max: 3, step: 0.05, default: 1 },
+      { name: 'sandColor', type: 'color', default: '#d9a86c' },
+      { name: 'dustColor', type: 'color', default: '#e0b68a' },
+      { name: 'streamers', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <DesertModel {...p} height="100%" />,
+    fill: true,
+    files: ['DesertModel.jsx', 'desert/DesertScene.jsx', 'desert/Desert.jsx', 'desert/desertShader.js', 'desert/dunes.js', 'cloud/sun.js', 'airliner/stage.jsx'],
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {

@@ -401,13 +401,13 @@ export function doorGeometry() {
 // thickness and camber of a section of unit chord
 const thick = (x, tc) => 5 * tc * (0.2969 * Math.sqrt(x) - 0.126 * x - 0.3516 * x * x + 0.2843 * x ** 3 - 0.1036 * x ** 4)
 const camber = (x, m, p = 0.45) => (m === 0 ? 0 : x < p ? (m / (p * p)) * (2 * p * x - x * x) : (m / ((1 - p) * (1 - p))) * (1 - 2 * p + 2 * p * x - x * x))
-const upper = (f, x) => camber(x, f.m) + thick(x, f.tc)
-const lower = (f, x) => camber(x, f.m) - thick(x, f.tc)
+export const upper = (f, x) => camber(x, f.m) + thick(x, f.tc)
+export const lower = (f, x) => camber(x, f.m) - thick(x, f.tc)
 
 // A frame is one rib: leading-edge point O, the direction n its thickness
 // runs, chord c, thickness ratio tc, camber m, twist tw and distance q along
 // the span. at() places a point given in chord fractions.
-function at(f, x, y, out = new THREE.Vector3()) {
+export function at(f, x, y, out = new THREE.Vector3()) {
   const X = x * f.c
   const Y = y * f.c
   const cs = Math.cos(f.tw)

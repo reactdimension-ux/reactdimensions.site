@@ -25,19 +25,22 @@ const spow = (c, p) => Math.sign(c) * Math.abs(c) ** p
 // A hull is a skin lofted through superelliptic sections: along its length
 // run the crown line, the keel line, the height of its widest point, its half
 // width, and how square the section is (2 is an ellipse, 4 nearly a box).
-function hull({ top, bot, waist, beam, sq, s0 = 0 }) {
+// The half below the waist can have its own squareness (`sqLo`, for a flat
+// belly under a chined top) and the whole section can sit off the centreline
+// (`zc`, for an engine nacelle). Shared with the fighter.
+export function hull({ top, bot, waist, beam, sq, sqLo = sq, zc = () => 0, s0 = 0 }) {
   const section = (s) => {
     const x = s - s0
     const t = top(x)
     const b = bot(x)
     const cy = clamp(waist(x), b + 1e-4, t - 1e-4)
-    return { cy, up: Math.max(1e-4, t - cy), dn: Math.max(1e-4, cy - b), w: Math.max(1e-4, beam(x)), n: sq(x) }
+    return { cy, up: Math.max(1e-4, t - cy), dn: Math.max(1e-4, cy - b), w: Math.max(1e-4, beam(x)), n: sq(x), nLo: sqLo(x), z0: zc(x) }
   }
   const bare = (s, th, out) => {
     const k = section(s)
     const cs = Math.cos(th)
-    const p = 2 / k.n
-    return out.set(s, k.cy - (cs > 0 ? k.dn : k.up) * spow(cs, p), k.w * spow(Math.sin(th), p))
+    const p = 2 / (cs > 0 ? k.nLo : k.n)
+    return out.set(s, k.cy - (cs > 0 ? k.dn : k.up) * spow(cs, p), k.z0 + k.w * spow(Math.sin(th), p))
   }
   const A = new THREE.Vector3()
   const B = new THREE.Vector3()
@@ -50,7 +53,8 @@ function hull({ top, bot, waist, beam, sq, s0 = 0 }) {
       bare(s + 2e-3, th, A).sub(bare(s - 2e-3, th, C))
       bare(s, th + 2e-3, B).sub(bare(s, th - 2e-3, C))
       A.cross(B).normalize()
-      C.set(-0.02, out.y - section(s).cy, out.z)
+      const k = section(s)
+      C.set(-0.02, out.y - k.cy, out.z - k.z0)
       out.addScaledVector(A, A.dot(C) < 0 ? -lift : lift)
     }
     return out
@@ -59,7 +63,7 @@ function hull({ top, bot, waist, beam, sq, s0 = 0 }) {
   const thetaAt = (s, y) => {
     const k = section(s)
     const d = y - k.cy
-    return Math.acos(-spow(clamp(d / (d > 0 ? k.up : k.dn), -1, 1), k.n / 2))
+    return Math.acos(-spow(clamp(d / (d > 0 ? k.up : k.dn), -1, 1), (d > 0 ? k.n : k.nLo) / 2))
   }
   // Seen from dead ahead: the station and angle of the skin at height y and
   // offset z, for anything laid out in the front view (the windscreen).
@@ -67,7 +71,8 @@ function hull({ top, bot, waist, beam, sq, s0 = 0 }) {
     const g = (s) => {
       const k = section(s)
       const d = y - k.cy
-      return Math.abs(d / (d > 0 ? k.up : k.dn)) ** k.n + Math.abs(z / k.w) ** k.n
+      const n = d > 0 ? k.n : k.nLo
+      return Math.abs(d / (d > 0 ? k.up : k.dn)) ** n + Math.abs((z - k.z0) / k.w) ** n
     }
     let a = s0
     let b = sMax
@@ -79,8 +84,9 @@ function hull({ top, bot, waist, beam, sq, s0 = 0 }) {
       }
     const k = section(b)
     const d = y - k.cy
-    const sc = g(b) ** (-1 / k.n)
-    return [b, Math.atan2(spow((z / k.w) * sc, k.n / 2), -spow((d / (d > 0 ? k.up : k.dn)) * sc, k.n / 2))]
+    const n = d > 0 ? k.n : k.nLo
+    const sc = g(b) ** (-1 / n)
+    return [b, Math.atan2(spow(((z - k.z0) / k.w) * sc, n / 2), -spow((d / (d > 0 ? k.up : k.dn)) * sc, n / 2))]
   }
   // where a point of a drawing lands on the skin, as [s, th]: drawn in the side view (s, y) or the front view (z, y)
   const side = (s, y) => [s, thetaAt(s, y)]

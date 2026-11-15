@@ -64,7 +64,7 @@ function SourceFiles({ comp }) {
 // Categories whose pages are split into sections.
 const SECTIONS = { UI: UI_STYLES, '3D & Materials': OBJECT_STYLES, 'Icons & Emojis': ICON_STYLES }
 
-const COMING_SOON = ['Icons & Emojis', 'Motion Graphics']
+const COMING_SOON = ['Icons & Emojis']
 
 const PM = { npm: 'npm i', pnpm: 'pnpm add', yarn: 'yarn add', bun: 'bun add' }
 const WIDTHS = { desktop: '100%', tablet: '768px', mobile: '390px' }
