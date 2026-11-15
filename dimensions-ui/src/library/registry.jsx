@@ -357,6 +357,11 @@ import CatModel from '../lib/CatModel.jsx'
 import HamsterModel from '../lib/HamsterModel.jsx'
 import FerretModel from '../lib/FerretModel.jsx'
 import TurtleModel from '../lib/TurtleModel.jsx'
+import PenguinModel from '../lib/PenguinModel.jsx'
+import BlockyPolarBearModel from '../lib/BlockyPolarBearModel.jsx'
+import BlockyPandaModel from '../lib/BlockyPandaModel.jsx'
+import ChickenModel from '../lib/ChickenModel.jsx'
+import BlockyPantherModel from '../lib/BlockyPantherModel.jsx'
 import FaceBoardModel from '../lib/FaceBoardModel.jsx'
 import SteeringWheelModel from '../lib/SteeringWheelModel.jsx'
 import SwordModel from '../lib/SwordModel.jsx'
@@ -369,6 +374,7 @@ import AirlinerModel from '../lib/AirlinerModel.jsx'
 import SuvModel from '../lib/SuvModel.jsx'
 import HelicopterModel from '../lib/HelicopterModel.jsx'
 import FighterModel from '../lib/FighterModel.jsx'
+import BusModel from '../lib/BusModel.jsx'
 import ETrikeModel from '../lib/ETrikeModel.jsx'
 import StadiumSeatModel from '../lib/StadiumSeatModel.jsx'
 import DrinksCanModel from '../lib/DrinksCanModel.jsx'
@@ -440,7 +446,7 @@ import PleadingEmoji from '../lib/PleadingEmoji.jsx'
 // Loaded on demand: each file is its own small chunk, fetched the first time
 // a page needs it (the eager version put 3.5 MB of source text in the
 // main bundle that every visit downloaded).
-const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../lion/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../cd/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}','../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}', '../playingcards/*.{js,jsx}', '../carrom/*.{js,jsx}', '../arrow/*.{js,jsx}', '../archery/*.{js,jsx}', '../pokerchips/*.{js,jsx}', '../spinner/*.{js,jsx}', '../electric/*.{js,jsx}', '../inkpad/*.{js,jsx}', '../stamp/*.{js,jsx}', '../cricket/*.{js,jsx}', '../bat/*.{js,jsx}', '../bowler/*.{js,jsx}', '../pin/*.{js,jsx}', '../bowlingball/*.{js,jsx}', '../lowpoly/*.{js,jsx}','../faceboard/*.{js,jsx}', '../steering/*.{js,jsx}', '../sword/*.{js,jsx}', '../tennisball/*.{js,jsx}', '../cricketball/*.{js,jsx}', '../wineglass/*.{js,jsx}', '../roulette/*.{js,jsx}', '../poker/*.{js,jsx}', '../snooker/*.{js,jsx}', '../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../airliner/*.{js,jsx}', '../suv/*.{js,jsx}', '../helicopter/*.{js,jsx}', '../fighter/*.{js,jsx}', '../etrike/*.{js,jsx}', '../stadiumseat/*.{js,jsx}', '../can/*.{js,jsx}','../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../desert/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
+const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../lion/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../cd/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}','../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}', '../playingcards/*.{js,jsx}', '../carrom/*.{js,jsx}', '../arrow/*.{js,jsx}', '../archery/*.{js,jsx}', '../pokerchips/*.{js,jsx}', '../spinner/*.{js,jsx}', '../electric/*.{js,jsx}', '../inkpad/*.{js,jsx}', '../stamp/*.{js,jsx}', '../cricket/*.{js,jsx}', '../bat/*.{js,jsx}', '../bowler/*.{js,jsx}', '../pin/*.{js,jsx}', '../bowlingball/*.{js,jsx}', '../lowpoly/*.{js,jsx}','../faceboard/*.{js,jsx}', '../steering/*.{js,jsx}', '../sword/*.{js,jsx}', '../tennisball/*.{js,jsx}', '../cricketball/*.{js,jsx}', '../wineglass/*.{js,jsx}', '../roulette/*.{js,jsx}', '../poker/*.{js,jsx}', '../snooker/*.{js,jsx}', '../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../airliner/*.{js,jsx}', '../suv/*.{js,jsx}', '../helicopter/*.{js,jsx}', '../fighter/*.{js,jsx}', '../bus/*.{js,jsx}', '../etrike/*.{js,jsx}', '../stadiumseat/*.{js,jsx}', '../can/*.{js,jsx}','../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../desert/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
   query: '?raw',
   import: 'default',
 })
@@ -5169,6 +5175,91 @@ const ALL_COMPONENTS = [
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
+    slug: 'penguin',
+    name: 'Penguin',
+    category: 'Characters',
+    isNew: true,
+    description: 'A clay-toy penguin: one tall rounded egg of a body in glossy black, a big white face-and-belly oval, two bead eyes, a small orange cone beak, flat paddle flippers held out at the sides and two orange oval feet. It breathes, waddles side to side, blinks and flaps its flippers. Tap it and it does a happy hop with both flippers flapping.',
+    controls: [
+      { name: 'kind', type: 'select', options: ['classic', 'blue', 'emperor', 'pink'], default: 'classic' },
+      { name: 'background', type: 'color', default: '#f6f4ef' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <PenguinModel {...p} height="100%" />,
+    fill: true,
+    files: ['PenguinModel.jsx', 'penguin/Penguin.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'blocky-polar-bear',
+    name: 'Blocky Polar Bear',
+    category: 'Characters',
+    isNew: true,
+    description: 'A blocky toy polar bear in matt white: a big pillowy box of a body on four round stubby legs, a soft cube head with a slate-grey snout and a dark nose, bead eyes, little open-loop ears and a tab of a tail. It breathes, looks around, blinks, twitches its ears, shifts its weight and wags its tail. Tap it and it does a chunky hop with a squashy landing and a head shake.',
+    controls: [
+      { name: 'kind', type: 'select', options: ['polar', 'honey', 'mint', 'blush'], default: 'polar' },
+      { name: 'background', type: 'color', default: '#f6f4ef' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <BlockyPolarBearModel {...p} height="100%" />,
+    fill: true,
+    files: ['BlockyPolarBearModel.jsx', 'blocky/PolarBear.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'blocky-panda',
+    name: 'Blocky Panda',
+    category: 'Characters',
+    isNew: true,
+    description: 'A blocky toy panda in matt cream and black: a big soft box of a body with a black band round the shoulders, four stout black legs with rounded feet, a large cube head with slanted black eye patches and bright eye dots, a little muzzle with a black nose, two black ears and a stub of a tail. It breathes, looks around, blinks, twitches its ears, shifts its paws and wags its tail. Tap it and it does a heavy hop with a squashy landing and a head shake.',
+    controls: [
+      { name: 'kind', type: 'select', options: ['panda', 'mocha', 'sky', 'berry'], default: 'panda' },
+      { name: 'background', type: 'color', default: '#f6f4ef' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <BlockyPandaModel {...p} height="100%" />,
+    fill: true,
+    files: ['BlockyPandaModel.jsx', 'blocky/Panda.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'chicken',
+    name: 'Chicken',
+    category: 'Characters',
+    isNew: true,
+    description: 'A clay-toy chicken in soft cream: a plump egg of a body, a round head with a glossy red comb of four bobbles, bead eyes, an orange cone beak and two red wattles, little teardrop wings, a fan of red, orange and yellow tail feathers and orange legs with three rounded toes. It breathes, bobs and pecks, blinks, shrugs its wings and wiggles its tail. Tap it and it flusters: a hop with fast flapping wings and a head shake.',
+    controls: [
+      { name: 'kind', type: 'select', options: ['cream', 'brown', 'snow', 'black'], default: 'cream' },
+      { name: 'background', type: 'color', default: '#f6f4ef' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <ChickenModel {...p} height="100%" />,
+    fill: true,
+    files: ['ChickenModel.jsx', 'chicken/Chicken.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'blocky-panther',
+    name: 'Blocky Panther',
+    category: 'Characters',
+    isNew: true,
+    description: 'A blocky toy black panther: a long matt-black box of a body on four round cylinder legs, a faceted wedge head with amber eyes and a pointed muzzle, two triangular ears, a spiked collar at the neck and a long segmented tail curling up over its back. It breathes, looks around, blinks, flicks its ears, shifts its paws and sways its tail. Tap it and it crouches, pounces forward with a squashy landing and lashes its tail.',
+    controls: [
+      { name: 'kind', type: 'select', options: ['panther', 'graphite', 'midnight', 'plum'], default: 'panther' },
+      { name: 'background', type: 'color', default: '#f6f4ef' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <BlockyPantherModel {...p} height="100%" />,
+    fill: true,
+    files: ['BlockyPantherModel.jsx', 'blocky/Panther.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
     slug: 'low-poly-runner',
     name: 'Low Poly Runner',
     category: 'Motion Graphics',
@@ -6018,6 +6109,41 @@ const ALL_COMPONENTS = [
     preview: (p, set) => <FighterModel {...p} onChange={set} height="100%" />,
     fill: true,
     files: ['FighterModel.jsx', 'fighter/FighterScene.jsx', 'fighter/Fighter.jsx', 'fighter/geometry.js', 'fighter/textures.js', 'airliner/geometry.js', 'airliner/textures.js', 'airliner/stage.jsx', 'helicopter/geometry.js'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'city-bus',
+    name: 'City Bus',
+    category: '3D & Materials',
+    style: 'Vehicles',
+    isNew: true,
+    description: 'A 12 m low-floor city bus at real size, built from its own dimensions with real glass over a furnished saloon. Open the plug doors, switch the lights and displays, and fly the camera round the views of a reference sheet.',
+    controls: [
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Navy', values: { paint: '#1e3a8a', trim: '#f2f3f4' } },
+          { name: 'Red', values: { paint: '#b4261f', trim: '#f4f2ee' } },
+          { name: 'Green', values: { paint: '#1f7a4a', trim: '#eef0ea' } },
+          { name: 'Yellow', values: { paint: '#e8b413', trim: '#1c1e22' } },
+          { name: 'Teal', values: { paint: '#17707a', trim: '#e9eef0' } },
+          { name: 'Graphite', values: { paint: '#2e3238', trim: '#e04a2e' } },
+        ],
+      },
+      { name: 'view', type: 'select', options: ['front-left', 'front-right', 'front', 'rear', 'side', 'side-right', 'roof', 'underside', 'rear-left', 'rear-right', 'front-wheel', 'rear-wheel', 'headlights', 'tail-lights', 'doors', 'mirror', 'windscreen', 'roof-grille'], default: 'front-left' },
+      { name: 'doors', type: 'toggle', default: false },
+      { name: 'lights', type: 'toggle', default: true },
+      { name: 'paint', type: 'color', default: '#1e3a8a' },
+      { name: 'trim', type: 'color', default: '#f2f3f4' },
+      { name: 'route', type: 'text', default: '12  CENTRAL STATION', maxLength: 24 },
+      { name: 'plate', type: 'text', default: 'RD 2026', maxLength: 10 },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    // `set` lets the scene update the controls (clicking works the doors and the lights).
+    preview: (p, set) => <BusModel {...p} onChange={set} height="100%" />,
+    fill: true,
+    files: ['BusModel.jsx', 'bus/BusScene.jsx', 'bus/Bus.jsx', 'bus/geometry.js', 'bus/textures.js', 'airliner/geometry.js', 'airliner/textures.js', 'airliner/stage.jsx', 'helicopter/geometry.js', 'lorry/textures.js'],
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
