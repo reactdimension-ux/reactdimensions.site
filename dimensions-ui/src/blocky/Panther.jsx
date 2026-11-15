@@ -80,19 +80,20 @@ function fin(w, h, th) {
   return g
 }
 
-const BODY = [0, 1.1, 0] // 0.84 × 1.0 × 1.3: underside at 0.6, top at 1.6, front at 0.65, rump at -0.65
-const HIP_Y = 1.05 // the domed leg tops rise 0.45 up the flanks
+const BODY = [0, 1.175, 0] // 0.8 × 0.85 × 1.5: underside at 0.75, top at 1.6, front at 0.75, rump at -0.75
+const HIP_Y = 0.85 // the domed leg tops only just show above the belly line
 const LEGS = [
-  [-0.43, 0.45],
-  [0.43, 0.45],
-  [-0.43, -0.46],
-  [0.43, -0.46],
+  [-0.41, 0.5],
+  [0.41, 0.5],
+  [-0.41, -0.5],
+  [0.41, -0.5],
 ]
-const NECK = [0, 1.36, 0.5] // the head turns about this point, inside the chest
-const TAIL = [0, 1.22, -0.6] // the tail root, on the rump below the top edge
-const TAIL_BEND = [0.1, 0.25, 0.45, 0.55, 0.55, 0.55, 0.55, 0.55, 0.5] // joint angles: back, up and over, tip hooked forward and down
-const TAIL_PITCH = 0.26
-const TAIL_TAPER = 0.97
+const NECK = [0, 1.4, 0.6] // the head turns about this point, inside the chest
+const TAIL = [0, 1.3, -0.75] // the tail root, on the rump at about 65 % of the body height
+// joint angles: two segments back, a rise, then a broad open hook forward with the tip pointing down
+const TAIL_BEND = [0.05, 0.15, 0.35, 0.4, 0.3, 0.25, 0.35, 0.45, 0.45, 0.4]
+const TAIL_PITCH = 0.17
+const TAIL_TAPER = 0.975
 const SPIKES = [-90, -60, -120, -30, -150, 0, 180, 30, 150] // degrees round the collar, from the bottom
 // The skull is one wedge: 0.7 wide × 0.66 tall at the back, tapering to half the width and 0.72 of the height at the front, flat jaw.
 const SKULL = { w: 0.7, h: 0.66, d: 0.5, r: 0.12, tx: 0.6, ty: 0.75, z: 0.43, y: 0.1 } // local to the head group
@@ -104,7 +105,7 @@ const EYE_Y = SKULL.y - SKULL.h / 2 + 0.32
 function usePantherGeometry() {
   const geo = useMemo(
     () => ({
-      body: block(0.84, 1.0, 1.3, { r: 0.035, edge: 'chamfer' }),
+      body: block(0.8, 0.85, 1.5, { r: 0.035, edge: 'chamfer' }),
       leg: pantherLeg(0.18, HIP_Y, [0.216, 0.05]).translate(0, -HIP_Y, 0),
       neck: block(0.44, 0.52, 0.4, { r: 0.03, edge: 'chamfer' }),
       collar: block(0.6, 0.6, 0.05, { r: 0.012, edge: 'chamfer' }),
@@ -116,7 +117,7 @@ function usePantherGeometry() {
       pupil: block(0.032, 0.05, 0.012, { r: 0.003, edge: 'chamfer' }),
       brow: block(0.16, 0.04, 0.07, { r: 0.01, edge: 'chamfer' }),
       ear: fin(0.2, 0.2, 0.06),
-      tailSeg: block(0.18, 0.18, 0.26, { r: 0.03, edge: 'chamfer' }).translate(0, 0, -0.12),
+      tailSeg: block(0.17, 0.17, 0.19, { r: 0.028, edge: 'chamfer' }).translate(0, 0, -0.085),
     }),
     [],
   )
@@ -343,7 +344,7 @@ function InfoHint({ children }) {
 export default function PantherScene({ background = '#f6f4ef', autoRotate = true, ...props }) {
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%', touchAction: 'none', background }}>
-      <Canvas shadows dpr={[1, 1.75]} camera={{ position: [4.9, 2.9, 2.6], fov: 30, near: 0.05, far: 60 }} gl={{ antialias: true, toneMapping: THREE.NeutralToneMapping, toneMappingExposure: 1 }}>
+      <Canvas shadows dpr={[1, 1.75]} camera={{ position: [6.6, 3.2, 2.55], fov: 30, near: 0.05, far: 60 }} gl={{ antialias: true, toneMapping: THREE.NeutralToneMapping, toneMappingExposure: 1 }}>
         <color attach="background" args={[background]} />
         <hemisphereLight args={['#ffffff', '#d8d8e4', 3.6]} />
         <directionalLight position={[3, 6, 5]} intensity={2.0} castShadow shadow-mapSize={[1024, 1024]} shadow-bias={-0.0004} shadow-normalBias={0.03} shadow-radius={6}>
@@ -355,7 +356,7 @@ export default function PantherScene({ background = '#f6f4ef', autoRotate = true
           <Panther {...props} />
         </PopIn>
         <ContactShadows position={[0, 0, 0]} opacity={0.34} scale={8} blur={2.8} far={2.6} resolution={512} color="#2a2a38" />
-        <OrbitControls makeDefault enablePan={false} target={[0, 0.95, 0]} autoRotate={autoRotate} autoRotateSpeed={0.7} minDistance={3} maxDistance={14} maxPolarAngle={1.5} />
+        <OrbitControls makeDefault enablePan={false} target={[0, 1.05, 0]} autoRotate={autoRotate} autoRotateSpeed={0.7} minDistance={3} maxDistance={14} maxPolarAngle={1.5} />
       </Canvas>
       <InfoHint>It breathes, looks around, blinks, flicks its ears, shifts its paws and sways its tail on its own · tap it and it crouches, pounces forward with a squashy landing and lashes its tail · Kind swaps panther, graphite, midnight and plum · drag to orbit</InfoHint>
     </div>
