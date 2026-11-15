@@ -279,6 +279,7 @@ import BowlingMachineModel from '../lib/BowlingMachineModel.jsx'
 import BowlingPinModel from '../lib/BowlingPinModel.jsx'
 import FaceBoardModel from '../lib/FaceBoardModel.jsx'
 import SteeringWheelModel from '../lib/SteeringWheelModel.jsx'
+import SwordModel from '../lib/SwordModel.jsx'
 import KnifeModel from '../lib/KnifeModel.jsx'
 import PistolModel from '../lib/PistolModel.jsx'
 import ColorCardsModel from '../lib/ColorCardsModel.jsx'
@@ -353,7 +354,7 @@ import PleadingEmoji from '../lib/PleadingEmoji.jsx'
 // Loaded on demand: each file is its own small chunk, fetched the first time
 // a page needs it (the eager version put 3.5 MB of source text in the
 // main bundle that every visit downloaded).
-const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../cd/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}','../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}', '../playingcards/*.{js,jsx}', '../carrom/*.{js,jsx}', '../arrow/*.{js,jsx}', '../archery/*.{js,jsx}', '../pokerchips/*.{js,jsx}', '../spinner/*.{js,jsx}', '../electric/*.{js,jsx}', '../inkpad/*.{js,jsx}', '../stamp/*.{js,jsx}', '../cricket/*.{js,jsx}', '../bat/*.{js,jsx}', '../bowler/*.{js,jsx}', '../pin/*.{js,jsx}', '../faceboard/*.{js,jsx}', '../steering/*.{js,jsx}', '../tennisball/*.{js,jsx}', '../cricketball/*.{js,jsx}', '../wineglass/*.{js,jsx}', '../roulette/*.{js,jsx}', '../poker/*.{js,jsx}', '../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../airliner/*.{js,jsx}', '../suv/*.{js,jsx}', '../helicopter/*.{js,jsx}','../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
+const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../cd/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}','../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}', '../playingcards/*.{js,jsx}', '../carrom/*.{js,jsx}', '../arrow/*.{js,jsx}', '../archery/*.{js,jsx}', '../pokerchips/*.{js,jsx}', '../spinner/*.{js,jsx}', '../electric/*.{js,jsx}', '../inkpad/*.{js,jsx}', '../stamp/*.{js,jsx}', '../cricket/*.{js,jsx}', '../bat/*.{js,jsx}', '../bowler/*.{js,jsx}', '../pin/*.{js,jsx}', '../faceboard/*.{js,jsx}', '../steering/*.{js,jsx}', '../sword/*.{js,jsx}', '../tennisball/*.{js,jsx}', '../cricketball/*.{js,jsx}', '../wineglass/*.{js,jsx}', '../roulette/*.{js,jsx}', '../poker/*.{js,jsx}', '../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../airliner/*.{js,jsx}', '../suv/*.{js,jsx}', '../helicopter/*.{js,jsx}','../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
   query: '?raw',
   import: 'default',
 })
@@ -3632,6 +3633,25 @@ const ALL_COMPONENTS = [
     preview: (p, set) => <SteeringWheelModel {...p} onChange={set} height="100%" />,
     fill: true,
     files: ['SteeringWheelModel.jsx', 'steering/SteeringScene.jsx', 'steering/SteeringWheel.jsx', 'steering/audio.js'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'sword',
+    name: 'Ornate Sword',
+    category: '3D & Materials',
+    style: 'Physics & play',
+    isNew: true,
+    description: 'A 1.15 m longsword: a forged blade with a fuller, bright ground edges and etched knotwork and runes, under an aged-bronze guard with down-swept quillons. Take hold and swing it with its real weight and balance; tap the blade and it rings.',
+    controls: [
+      { name: 'steel', type: 'select', options: ['dark', 'polished', 'damascus'], default: 'dark' },
+      { name: 'fittings', type: 'select', options: ['bronze', 'gold', 'blackened'], default: 'bronze' },
+      { name: 'etched', type: 'toggle', default: true },
+      { name: 'sound', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <SwordModel {...p} height="100%" />,
+    fill: true,
+    files: ['SwordModel.jsx', 'sword/SwordScene.jsx', 'sword/Sword.jsx', 'sword/geometry.js', 'sword/textures.js', 'sword/audio.js'],
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
