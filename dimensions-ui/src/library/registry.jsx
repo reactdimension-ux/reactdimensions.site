@@ -319,6 +319,7 @@ import LowPolyPaperPlaneModel from '../lib/LowPolyPaperPlaneModel.jsx'
 import LowPolyFerrisWheelModel from '../lib/LowPolyFerrisWheelModel.jsx'
 import LowPolyVolcanoModel from '../lib/LowPolyVolcanoModel.jsx'
 import LowPolyWaterfallModel from '../lib/LowPolyWaterfallModel.jsx'
+import LowPolyDioramaModel from '../lib/LowPolyDioramaModel.jsx'
 import LowPolyBalloonModel from '../lib/LowPolyBalloonModel.jsx'
 import LowPolySailboatModel from '../lib/LowPolySailboatModel.jsx'
 import LowPolyHourglassModel from '../lib/LowPolyHourglassModel.jsx'
@@ -386,6 +387,8 @@ import OceanModel from '../lib/OceanModel.jsx'
 import CloudModel from '../lib/CloudModel.jsx'
 import CloudSeaModel from '../lib/CloudSeaModel.jsx'
 import DesertModel from '../lib/DesertModel.jsx'
+import ForestValleyModel from '../lib/ForestValleyModel.jsx'
+import RiverValleyModel from '../lib/RiverValleyModel.jsx'
 import DiceModel from '../lib/DiceModel.jsx'
 import PuzzleCubeModel from '../lib/PuzzleCubeModel.jsx'
 import RingModel from '../lib/RingModel.jsx'
@@ -446,7 +449,7 @@ import PleadingEmoji from '../lib/PleadingEmoji.jsx'
 // Loaded on demand: each file is its own small chunk, fetched the first time
 // a page needs it (the eager version put 3.5 MB of source text in the
 // main bundle that every visit downloaded).
-const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../lion/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../cd/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}','../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}', '../playingcards/*.{js,jsx}', '../carrom/*.{js,jsx}', '../arrow/*.{js,jsx}', '../archery/*.{js,jsx}', '../pokerchips/*.{js,jsx}', '../spinner/*.{js,jsx}', '../electric/*.{js,jsx}', '../inkpad/*.{js,jsx}', '../stamp/*.{js,jsx}', '../cricket/*.{js,jsx}', '../bat/*.{js,jsx}', '../bowler/*.{js,jsx}', '../pin/*.{js,jsx}', '../bowlingball/*.{js,jsx}', '../lowpoly/*.{js,jsx}','../faceboard/*.{js,jsx}', '../steering/*.{js,jsx}', '../sword/*.{js,jsx}', '../tennisball/*.{js,jsx}', '../cricketball/*.{js,jsx}', '../wineglass/*.{js,jsx}', '../roulette/*.{js,jsx}', '../poker/*.{js,jsx}', '../snooker/*.{js,jsx}', '../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../airliner/*.{js,jsx}', '../suv/*.{js,jsx}', '../helicopter/*.{js,jsx}', '../fighter/*.{js,jsx}', '../bus/*.{js,jsx}', '../etrike/*.{js,jsx}', '../stadiumseat/*.{js,jsx}', '../can/*.{js,jsx}','../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../desert/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
+const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../lion/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../cd/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}','../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}', '../playingcards/*.{js,jsx}', '../carrom/*.{js,jsx}', '../arrow/*.{js,jsx}', '../archery/*.{js,jsx}', '../pokerchips/*.{js,jsx}', '../spinner/*.{js,jsx}', '../electric/*.{js,jsx}', '../inkpad/*.{js,jsx}', '../stamp/*.{js,jsx}', '../cricket/*.{js,jsx}', '../bat/*.{js,jsx}', '../bowler/*.{js,jsx}', '../pin/*.{js,jsx}', '../bowlingball/*.{js,jsx}', '../lowpoly/*.{js,jsx}','../faceboard/*.{js,jsx}', '../steering/*.{js,jsx}', '../sword/*.{js,jsx}', '../tennisball/*.{js,jsx}', '../cricketball/*.{js,jsx}', '../wineglass/*.{js,jsx}', '../roulette/*.{js,jsx}', '../poker/*.{js,jsx}', '../snooker/*.{js,jsx}', '../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../airliner/*.{js,jsx}', '../suv/*.{js,jsx}', '../helicopter/*.{js,jsx}', '../fighter/*.{js,jsx}', '../bus/*.{js,jsx}', '../etrike/*.{js,jsx}', '../stadiumseat/*.{js,jsx}', '../can/*.{js,jsx}','../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../desert/*.{js,jsx}', '../valley/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
   query: '?raw',
   import: 'default',
 })
@@ -470,7 +473,7 @@ export const UI_STYLES = ['Flat', 'Glassmorphism', 'Neumorphism', 'Liquid glass'
 export const ICON_STYLES = ['Icons', 'Emojis']
 
 // sections of the 3D & Materials category, in the order they are shown
-export const OBJECT_STYLES = ['Tech & gadgets', 'Music & audio', 'Sports & fitness', 'Fashion & wear', 'Desk & stationery', 'Tools & gear', 'Everyday objects', 'Physics & play', 'Vehicles', 'Nature & world']
+export const OBJECT_STYLES = ['Tech & gadgets', 'Music & audio', 'Sports & fitness', 'Fashion & wear', 'Desk & stationery', 'Tools & gear', 'Everyday objects', 'Physics & play', 'Vehicles', 'Nature & world', 'Scenes']
 
 // Basic outline icons share one set of controls; each file is standalone.
 const icon = (Comp, file, slug, name, description) => ({
@@ -4485,6 +4488,26 @@ const ALL_COMPONENTS = [
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
+    slug: 'low-poly-diorama',
+    name: 'Low Poly Diorama',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A floating slab of meadow on a block of earth: a river wells up under a white crag, winds past a bear and a campsite and spills off the edge as a waterfall. A goat watches from the crag, birds circle it, the fire flickers and a fish leaps every few seconds. Tap it to make the fish jump and the fire flare.',
+    controls: [
+      { name: 'look', type: 'select', options: ['summer', 'autumn', 'winter', 'spring'], default: 'summer' },
+      { name: 'flow', type: 'range', min: 0, max: 1, step: 0.05, default: 0.6 },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyDioramaModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyDioramaModel.jsx', 'lowpoly/Diorama.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
     slug: 'low-poly-balloon',
     name: 'Low Poly Hot Air Balloon',
     category: 'Motion Graphics',
@@ -5370,7 +5393,7 @@ const ALL_COMPONENTS = [
     slug: 'cricket-pitch',
     name: 'Cricket Pitch',
     category: '3D & Materials',
-    style: 'Sports & fitness',
+    style: 'Scenes',
     isNew: true,
     description: 'A full-size 22-yard pitch with real grass blades, painted creases, footmarks and cracks that grow with wear. Switch between drawing views or orbit down to the turf.',
     controls: [
@@ -5393,7 +5416,7 @@ const ALL_COMPONENTS = [
     slug: 'tennis-court',
     name: 'Tennis Court',
     category: '3D & Materials',
-    style: 'Sports & fitness',
+    style: 'Scenes',
     isNew: true,
     description: 'A full-size hard court with sand-grit acrylic, razor-sharp lines and a real mesh net you can tighten with its crank. Switch between drawing views or zoom down to the paint.',
     controls: [
@@ -5428,7 +5451,7 @@ const ALL_COMPONENTS = [
     slug: 'badminton-court',
     name: 'Badminton Court',
     category: '3D & Materials',
-    style: 'Everyday objects',
+    style: 'Scenes',
     isNew: true,
     description: 'A full-size BWF court: a PVC mat with exact lines on a glossy maple floor, the net on weighted posts, shuttles on court. Switch between drawing views or zoom down to the mat.',
     controls: [
@@ -6189,7 +6212,7 @@ const ALL_COMPONENTS = [
     slug: 'stadium-seat',
     name: 'Stadium Seat',
     category: '3D & Materials',
-    style: 'Sports & fitness',
+    style: 'Scenes',
     isNew: true,
     description: 'A one-piece moulded stadium seat on steel brackets, built from its real dimensions down to the ribs underneath. Line up a row, or click a seat to lift the shell off its brackets.',
     controls: [
@@ -6377,7 +6400,7 @@ const ALL_COMPONENTS = [
     slug: 'ocean',
     name: 'Ocean',
     category: '3D & Materials',
-    style: 'Nature & world',
+    style: 'Scenes',
     isNew: true,
     description: 'An open sea of Gerstner waves under a physical sky. Click the water to send the buoy there.',
     controls: [
@@ -6412,7 +6435,7 @@ const ALL_COMPONENTS = [
     slug: 'cloud',
     name: 'Cloud',
     category: '3D & Materials',
-    style: 'Nature & world',
+    style: 'Scenes',
     isNew: true,
     description: 'A single cumulus raymarched as a true volume with sunlit billows and a silver lining. Fly around or into it.',
     controls: [
@@ -6447,7 +6470,7 @@ const ALL_COMPONENTS = [
     slug: 'cloud-sea',
     name: 'Cloud Sea',
     category: '3D & Materials',
-    style: 'Nature & world',
+    style: 'Scenes',
     isNew: true,
     description: 'The view above the clouds: an endless cumulus deck rolling past below, the sun breaking through.',
     controls: [
@@ -6479,10 +6502,82 @@ const ALL_COMPONENTS = [
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
+    slug: 'forest-valley',
+    name: 'Forest Valley',
+    category: '3D & Materials',
+    style: 'Scenes',
+    isNew: true,
+    description: 'A low-poly valley under a physical sky: a river winding between forested banks, mountains climbing on both sides to snow, rocks on the shore, clouds drifting over and shadowing the ground, a flock circling overhead and haze thickening to the far ridges. The river flows and mirrors the sky; the trees sway in the wind. Seasons change the woods, the water and the snowline; presets set the time of day.',
+    controls: [
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Morning', values: { elevation: 22, azimuth: -115, exposure: 0.6, haze: 1 } },
+          { name: 'Noon', values: { elevation: 62, azimuth: -150, exposure: 0.42, haze: 0.7 } },
+          { name: 'Golden hour', values: { elevation: 7, azimuth: 35, exposure: 0.75, haze: 1.3 } },
+          { name: 'Dusk', values: { elevation: 2.5, azimuth: 65, exposure: 1.1, haze: 1.6 } },
+          { name: 'Misty dawn', values: { elevation: 10, azimuth: -95, exposure: 0.7, haze: 2.2 } },
+        ],
+      },
+      { name: 'season', type: 'select', options: ['summer', 'autumn', 'winter'], default: 'summer' },
+      { name: 'elevation', type: 'range', min: 0, max: 90, step: 0.5, default: 22, unit: '°' },
+      { name: 'azimuth', type: 'range', min: -180, max: 180, step: 1, default: -115, unit: '°' },
+      { name: 'exposure', type: 'range', min: 0.1, max: 1.5, step: 0.01, default: 0.6 },
+      { name: 'trees', type: 'range', min: 0, max: 1.6, step: 0.05, default: 1 },
+      { name: 'wind', type: 'range', min: 0, max: 3, step: 0.05, default: 1 },
+      { name: 'flow', type: 'range', min: 0, max: 3, step: 0.05, default: 1 },
+      { name: 'haze', type: 'range', min: 0, max: 3, step: 0.05, default: 1 },
+      { name: 'clouds', type: 'toggle', default: true },
+      { name: 'birds', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <ForestValleyModel {...p} height="100%" />,
+    fill: true,
+    files: ['ForestValleyModel.jsx', 'forest/ForestScene.jsx', 'forest/Forest.jsx', 'forest/terrain.js', 'forest/waterShader.js', 'cloud/sun.js', 'lowpoly/kit.jsx', 'airliner/stage.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
+  },
+  {
+    slug: 'river-valley',
+    name: 'River Valley',
+    category: '3D & Materials',
+    style: 'Scenes',
+    isNew: true,
+    description: 'A photoreal river valley seen from the water’s edge: a clear river running upstream between grassy banks and boulders, broadleaf woods and firs climbing the hills, and snowy peaks closing the valley under fair-weather cumulus. The river mirrors the world and shows its pebbled bed in the shallows, breaking white round the rocks; the grass and trees move in the wind; a physical sky lights everything and hazes the far range blue. Presets set the time of day.',
+    controls: [
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Morning', values: { elevation: 38, azimuth: -40, exposure: 0.55, haze: 1 } },
+          { name: 'Noon', values: { elevation: 66, azimuth: -10, exposure: 0.45, haze: 0.8 } },
+          { name: 'Golden hour', values: { elevation: 8, azimuth: -70, exposure: 0.8, haze: 1.4 } },
+          { name: 'Backlit', values: { elevation: 20, azimuth: 165, exposure: 0.6, haze: 1.3 } },
+          { name: 'Misty', values: { elevation: 14, azimuth: -95, exposure: 0.7, haze: 3 } },
+        ],
+      },
+      { name: 'elevation', type: 'range', min: 0, max: 90, step: 0.5, default: 38, unit: '°' },
+      { name: 'azimuth', type: 'range', min: -180, max: 180, step: 1, default: -40, unit: '°' },
+      { name: 'exposure', type: 'range', min: 0.1, max: 1.5, step: 0.01, default: 0.55 },
+      { name: 'haze', type: 'range', min: 0, max: 4, step: 0.05, default: 1 },
+      { name: 'snowline', type: 'range', min: 120, max: 600, step: 5, default: 300, unit: 'm' },
+      { name: 'trees', type: 'range', min: 0, max: 1.6, step: 0.05, default: 1 },
+      { name: 'grass', type: 'range', min: 0, max: 1.5, step: 0.05, default: 1 },
+      { name: 'wind', type: 'range', min: 0, max: 3, step: 0.05, default: 1 },
+      { name: 'flow', type: 'range', min: 0, max: 3, step: 0.05, default: 1 },
+      { name: 'clouds', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <RiverValleyModel {...p} height="100%" />,
+    fill: true,
+    files: ['RiverValleyModel.jsx', 'valley/ValleyScene.jsx', 'valley/Valley.jsx', 'valley/land.js', 'valley/shaders.js', 'valley/trees.js', 'cloud/sun.js', 'airliner/stage.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
+  },
+  {
     slug: 'desert',
     name: 'Desert',
     category: '3D & Materials',
-    style: 'Nature & world',
+    style: 'Scenes',
     isNew: true,
     description: 'A sand sea of transverse dunes to the horizon under a physical sky: wind ripples, glittering grains, long shadows in the lee of every dune and sand streaming off the crests.',
     controls: [
