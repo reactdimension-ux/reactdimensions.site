@@ -51,3 +51,25 @@ simple version of this; the hidden Tiger.jsx (525 lines) and Runner.jsx
 Build level 1 first and finish the five shared parts it lists. Each later
 level then adds its own shared parts on top, so by level 5 an animal is a
 body list, a palette and a few hooks.
+
+## Status
+
+All ten animals are built, in `dimensions-ui/src/lowpoly/` (the fish is
+`Fishbowl.jsx`, the dinosaur `Dino.jsx`). The shared parts added to
+`kit.jsx` for this level:
+
+| Part | Kit export | Used by |
+| --- | --- | --- |
+| Tapering lag-chain tail, trunk or body, with an optional tip | `Tail` | Whale (body and flukes), Elephant (trunk and tail), Dino (tail) |
+| Hinged wing with flap angle and fold | `Wing` | Owl, Bee |
+| Two- and four-legged walk cycle | `walk` | Turtle |
+| Glancing head motion | `lookAround` | Owl, Dino |
+| Blink timing | `blinkAt` | Owl |
+
+Earlier parts reused: `Face`, `Sway`, `squash`, `Hinge` (the dinosaur's
+jaw), `followPath` (fish, bee), `Liquid` (the fishbowl water), `Water` and
+`waveAt` (whale, frog, elephant), `Particles` (spout, spray, bubbles),
+`Trail` (bee).
+
+A separate `Rig` bone-tree builder turned out not to be needed: nested
+groups with refs, plus `Tail` for every chain, covered all ten.

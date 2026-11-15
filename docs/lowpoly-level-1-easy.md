@@ -43,3 +43,20 @@ reuses.
    island, iceberg and whale.
 5. **`Spin`.** A group that turns at an eased rate and speeds up on a tap.
    Reused by windmill, star, trophy and gem.
+
+## Status
+
+All ten items are built, in `dimensions-ui/src/lowpoly/`. The shared parts
+now live in `kit.jsx`:
+
+| Part | Kit export | Used by |
+| --- | --- | --- |
+| Faceted icosphere and cone | `blob`, `cone` | Heart, Map Pin, Rainbow, Lantern, Stump, Mushrooms |
+| Pulse | `pulse` | Gem, Star, Lantern |
+| Tap plumbing (kick, cursor, handlers) | `useTap` | All ten |
+| Burst | `Burst` | Gem, Heart, Star, Flower, Map Pin, Trophy, Stump, Mushrooms |
+| Ripple (on tap or looping) | `Ripple` | Gem, Heart, Star, Rainbow, Map Pin, Trophy |
+| Spin | `Spin` | Gem, Star, Trophy |
+
+The Pine, Fox, Chest, Grass Tile and Crystal Rock still define their own
+versions of some of these; they can move to the kit later.

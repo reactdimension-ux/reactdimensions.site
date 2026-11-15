@@ -102,5 +102,11 @@ level should add for the next:
 | ✓ | Low Poly Treasure Chest |
 | ✓ | Low Poly Grass Tile |
 | ✓ | Low Poly Crystal Rock |
+| ✓ | Level 1: Gem, Heart, Star, Flower, Rainbow, Lantern, Map Pin, Trophy, Tree Stump, Mushrooms |
+| ✓ | Level 2: Palm Tree, Cactus, Sunflower, Bonsai, Windmill, Lighthouse, Street Lamp, Snowman, Pumpkin, Gift Box |
+| ✓ | Level 3: Campfire, Cloud, Mountain, Island, Iceberg, Castle Tower, Campsite, Cottage, Rocket, Paper Plane |
+| ✓ | Level 4: Volcano, Waterfall, Hot Air Balloon, Sailboat, Hourglass, Potion, Instant Camera, Headphones, Coin Stack, Cube Buddy |
+| ✓ | Level 5: Penguin, Owl, Bunny, Fishbowl, Tortoise, Bee, Whale, Frog, Elephant, Dinosaur |
+| ✓ | Extra: Ferris Wheel (real rotor, drive, brake and gondola-pendulum physics) |
 | hidden | Low Poly Runner (a man at full sprint) |
 | hidden | Low Poly Tiger |

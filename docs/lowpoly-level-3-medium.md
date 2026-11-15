@@ -41,3 +41,19 @@ geometry. About 150-250 lines each. Needs the level 1 and 2 parts.
    Reused by island, iceberg, sailboat, whale, fish and waterfall.
 5. **`Trail`.** A short fading ribbon behind a moving part. Reused by paper
    plane, rocket, bee and fish.
+
+## Status
+
+All ten items are built, in `dimensions-ui/src/lowpoly/`. The shared parts
+added to `kit.jsx` for this level:
+
+| Part | Kit export | Used by |
+| --- | --- | --- |
+| Particle stream (embers, smoke, rain, snow, glints) | `Particles` | Campfire, Cloud, Mountain, Castle Tower, Campsite, Cottage, Rocket |
+| Flickering flame with light | `Flame` | Campfire, Campsite, Rocket |
+| Polar grid and banded terrain | `polarGrid`, `terrainGeo` | Mountain, Island, Iceberg (and Water) |
+| Rolling water | `Water` | Island, Iceberg |
+| Trail of puffs | `Trail` | Rocket, Paper Plane |
+| Path following with banking | `followPath` | Paper Plane |
+
+The terrain and water parts are ready for the level 4 volcano and waterfall.

@@ -40,3 +40,20 @@ About 90-150 lines each. Needs the level 1 parts.
    lighthouse, lantern, street lamp and camera flash.
 5. **`Face`.** Two eyes, an optional blink and a mouth. Reused by snowman,
    pumpkin, cube character and every animal.
+
+## Status
+
+All ten items are built, in `dimensions-ui/src/lowpoly/`. The shared parts
+added to `kit.jsx` for this level:
+
+| Part | Kit export | Used by |
+| --- | --- | --- |
+| Sway chain | `Sway`, `swayAngle` | Palm, Sunflower, Bonsai, Snowman |
+| Spring hinge | `Hinge` | Gift Box |
+| Squash and wobble | `squash`, `wobble` | Cactus, Sunflower, Snowman, Pumpkin, Gift Box |
+| Light beam (fades along its length) | `Beam` | Lighthouse, Street Lamp |
+| Blinking face | `Face` | Cactus, Snowman |
+
+Level 1 parts reused here: `Burst` (bonsai petals, windmill leaves, gift
+confetti), `Ripple` (lighthouse sea), `Spin` (windmill sails) and `useTap`
+in all ten.

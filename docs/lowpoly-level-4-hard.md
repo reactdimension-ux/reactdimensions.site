@@ -43,3 +43,23 @@ Needs the level 1 to 3 parts.
    headphones, speaker, drum and every rhythm item.
 5. **`Cloth(w, h)`.** A grid of vertices pinned at one edge with a sine
    travelling wave. Reused by sail, flag, cape, scarf and banner.
+
+## Status
+
+All ten items are built, in `dimensions-ui/src/lowpoly/` (the camera is
+`InstantCamera.jsx`, the cube character `CubeBuddy.jsx`). The shared parts
+added to `kit.jsx` for this level:
+
+| Part | Kit export | Used by |
+| --- | --- | --- |
+| Liquid that stays level, fills by volume and sloshes | `Liquid`, `fillHeight` | Hourglass (sand), Potion |
+| Bits flowing along a path, and a strip along it | `Flow`, `ribbonGeo` | Volcano (lava), Waterfall |
+| Cloth pinned on one edge, flag or sail | `Cloth` | Sailboat (sails and pennant) |
+| Beat clock | `beat` | Headphones |
+| Wave height of the Water surface | `waveAt` | Sailboat (riding the waves) |
+| Crater terrain and its height profile | `terrainShape` | Volcano, Waterfall |
+| Live readout over the canvas | `Readout` | Hot Air Balloon |
+
+The hot air balloon flies on real buoyancy (lift from the air temperature
+difference, cooling, drag and an autopilot burner), and the sailboat's
+height, pitch and roll come from the water surface it floats on.
