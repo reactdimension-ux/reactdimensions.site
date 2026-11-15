@@ -18,6 +18,8 @@ const CAT_ICON = {
   Backgrounds: <path d="M3.500 3.500h13v13h-13zM3.500 8h13M3.500 12h13M8 3.500v13M12 3.500v13" />,
   // a ball moving with speed lines trailing behind it
   'Motion Graphics': <path d="M11.5 10a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0-7 0zM2.5 7h6M4.5 10h4.5M2.5 13h6" />,
+  // a person: head and shoulders
+  Characters: <path d="M6.8 6.5a3.2 3.2 0 1 0 6.4 0a3.2 3.2 0 1 0-6.4 0zM3.5 17c0-3.400 2.900-5.600 6.500-5.600s6.500 2.200 6.500 5.600" />,
   'Icons & Emojis': <path d="M3.2 6.2a2.8 2.8 0 1 0 5.6 0a2.8 2.8 0 1 0-5.6 0zM11.5 3.4h5v5h-5zM10 11l4.5 6h-9z" />,
 }
 
@@ -64,7 +66,7 @@ function SourceFiles({ comp }) {
 // Categories whose pages are split into sections.
 const SECTIONS = { UI: UI_STYLES, '3D & Materials': OBJECT_STYLES, 'Icons & Emojis': ICON_STYLES }
 
-const COMING_SOON = ['Icons & Emojis', 'Motion Graphics']
+const COMING_SOON = ['Characters', 'Icons & Emojis']
 
 const PM = { npm: 'npm i', pnpm: 'pnpm add', yarn: 'yarn add', bun: 'bun add' }
 const WIDTHS = { desktop: '100%', tablet: '768px', mobile: '390px' }

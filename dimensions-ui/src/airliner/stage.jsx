@@ -41,7 +41,7 @@ export function CameraRig({ view, views, fallback = 'three-quarter' }) {
   const first = useRef(true)
   useEffect(() => {
     if (!controls) return
-    const v = (views[view] || views[fallback])(size.width / size.height)
+    const v = (typeof view === 'function' ? view : views[view] || views[fallback])(size.width / size.height)
     if (first.current) {
       first.current = false
       camera.position.copy(v.pos)
