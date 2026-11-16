@@ -284,8 +284,12 @@ function AiMenu({ comp, props }) {
   }, [open, comp])
   const copy = async (label, make) => {
     if (!sourcesLoaded(comp)) await loadSources(comp)
-    navigator.clipboard?.writeText(make()).catch(() => {})
-    setDone(label)
+    let ok = false
+    try {
+      await navigator.clipboard.writeText(make())
+      ok = true
+    } catch {}
+    setDone(ok ? label : 'Copy failed')
     setOpen(false)
     setTimeout(() => setDone(''), 1800)
   }
@@ -299,7 +303,7 @@ function AiMenu({ comp, props }) {
   return (
     <div className="ai-menu" ref={box}>
       <button className="tool-btn" aria-haspopup="menu" aria-expanded={open} onClick={() => setOpen((o) => !o)}>
-        {done ? `✓ ${done}` : '✦ Copy for AI ▾'}
+        {done ? `${done === 'Copy failed' ? '✕' : '✓'} ${done}` : '✦ Copy for AI ▾'}
       </button>
       {open && (
         <div className="ai-pop" role="menu">

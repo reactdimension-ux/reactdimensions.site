@@ -59,7 +59,11 @@ ${sections.filter(Boolean).join('\n\n')}
 async function generate(root, load) {
   const reg = await load(REGISTRY)
   const out = { 'llms.txt': llms(reg) }
-  for (const c of reg.COMPONENTS) out[`r/${c.slug}.json`] = JSON.stringify(itemFor(root, reg, c), null, 2)
+  for (const c of reg.COMPONENTS) {
+    // sources load on demand in the registry; fetch them before reading
+    await reg.loadSources(c)
+    out[`r/${c.slug}.json`] = JSON.stringify(itemFor(root, reg, c), null, 2)
+  }
   return out
 }
 

@@ -381,6 +381,7 @@ import StadiumSeatModel from '../lib/StadiumSeatModel.jsx'
 import DrinksCanModel from '../lib/DrinksCanModel.jsx'
 import ClockModel from '../lib/ClockModel.jsx'
 import LampModel from '../lib/LampModel.jsx'
+import CompanionRobotModel from '../lib/CompanionRobotModel.jsx'
 import TapeModel from '../lib/TapeModel.jsx'
 import ButterflyModel from '../lib/ButterflyModel.jsx'
 import OceanModel from '../lib/OceanModel.jsx'
@@ -450,8 +451,9 @@ import PleadingEmoji from '../lib/PleadingEmoji.jsx'
 // Raw source of every component, for the Code tab and the copy menus.
 // Loaded on demand: each file is its own small chunk, fetched the first time
 // a page needs it (the eager version put 3.5 MB of source text in the
-// main bundle that every visit downloaded).
-const SOURCES = import.meta.glob(['../lib/*.jsx', '../Card.jsx', '../Hero3D.jsx', '../pickup/*.{js,jsx}', '../snake/*.{js,jsx}', '../lion/*.{js,jsx}', '../turntable/*.{js,jsx}', '../vinyl/*.{js,jsx}', '../cd/*.{js,jsx}', '../sunglasses/*.{js,jsx}', '../watch/*.{js,jsx}', '../laptop/*.{js,jsx}', '../bottle/*.{js,jsx}', '../book/*.{js,jsx}','../tv/*.{js,jsx}', '../phone/*.{js,jsx}', '../headphones/*.{js,jsx}', '../ipad/*.{js,jsx}', '../tablet/*.{js,jsx}', '../cradle/*.{js,jsx}', '../keyboard/*.{js,jsx}', '../typewriter/*.{js,jsx}', '../lighter/*.{js,jsx}', '../knife/*.{js,jsx}', '../pistol/*.{js,jsx}', '../deck/*.{js,jsx}','../pitch/*.{js,jsx}', '../tenniscourt/*.{js,jsx}', '../badmintoncourt/*.{js,jsx}', '../gameboard/*.{js,jsx}', '../chessboard/*.{js,jsx}', '../playingcards/*.{js,jsx}', '../carrom/*.{js,jsx}', '../arrow/*.{js,jsx}', '../archery/*.{js,jsx}', '../pokerchips/*.{js,jsx}', '../spinner/*.{js,jsx}', '../electric/*.{js,jsx}', '../inkpad/*.{js,jsx}', '../stamp/*.{js,jsx}', '../cricket/*.{js,jsx}', '../bat/*.{js,jsx}', '../bowler/*.{js,jsx}', '../pin/*.{js,jsx}', '../bowlingball/*.{js,jsx}', '../lowpoly/*.{js,jsx}','../faceboard/*.{js,jsx}', '../steering/*.{js,jsx}', '../sword/*.{js,jsx}', '../tennisball/*.{js,jsx}', '../cricketball/*.{js,jsx}', '../wineglass/*.{js,jsx}', '../roulette/*.{js,jsx}', '../poker/*.{js,jsx}', '../snooker/*.{js,jsx}', '../pen/*.{js,jsx}', '../lorry/*.{js,jsx}', '../airliner/*.{js,jsx}', '../suv/*.{js,jsx}', '../helicopter/*.{js,jsx}', '../fighter/*.{js,jsx}', '../bus/*.{js,jsx}', '../etrike/*.{js,jsx}', '../stadiumseat/*.{js,jsx}', '../can/*.{js,jsx}','../clock/*.{js,jsx}', '../lamp/*.{js,jsx}', '../tape/*.{js,jsx}', '../butterfly/*.{js,jsx}', '../ocean/*.{js,jsx}', '../cloud/*.{js,jsx}', '../desert/*.{js,jsx}', '../valley/*.{js,jsx}', '../city/*.{js,jsx}', '../dice/*.{js,jsx}', '../cube/*.{js,jsx}', '../ring/*.{js,jsx}', '../sneaker/*.{js,jsx}', '../piano/*.{js,jsx}', '../guitar/*.{js,jsx}', '../dumbbell/*.{js,jsx}', '../mug/*.{js,jsx}', '../gamepad/*.{js,jsx}', '../ladder/*.{js,jsx}', '../shirt/*.{js,jsx}', '../earbuds/*.{js,jsx}', '../ix/*.{js,jsx}', '../liquid/*.{js,jsx}', '../ui/*.{js,jsx}'], {
+// main bundle that every visit downloaded). Every component folder is
+// covered, so a new one needs no entry here.
+const SOURCES = import.meta.glob(['../*.jsx', '../*/*.{js,jsx}', '!../library/**', '!../main.jsx', '!../scene-test.jsx'], {
   query: '?raw',
   import: 'default',
 })
@@ -6331,6 +6333,38 @@ const ALL_COMPONENTS = [
     preview: (p, set) => <LampModel {...p} onChange={set} height="100%" />,
     fill: true,
     files: ['LampModel.jsx', 'lamp/LampScene.jsx', 'lamp/Lamp.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'companion-robot',
+    name: 'Companion Robot',
+    category: '3D & Materials',
+    style: 'Tech & gadgets',
+    isNew: true,
+    description: 'A tabletop companion robot: a fabric speaker base, a glossy bell-shaped body and a tablet head on a pan-and-tilt neck. The head turns to follow the pointer and eases into place like a geared motor; drag it to pose it, and tap the screen to change the face (weather, clock, eyes, heart, music), each drawn live.',
+    controls: [
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'White', values: { shellColor: '#f4f4f1', fabricColor: '#d9d9d6', accentColor: '#e8411f' } },
+          { name: 'Charcoal', values: { shellColor: '#2a2b2e', fabricColor: '#5b5d61', accentColor: '#ff8a2a' } },
+          { name: 'Sand', values: { shellColor: '#efe6d8', fabricColor: '#c9b9a0', accentColor: '#d9572b' } },
+          { name: 'Mint', values: { shellColor: '#eef4f0', fabricColor: '#b9cfc4', accentColor: '#1f9e7a' } },
+        ],
+      },
+      { name: 'face', type: 'select', options: ['weather', 'clock', 'smile', 'heart', 'music'], default: 'weather' },
+      { name: 'follow', type: 'toggle', default: true },
+      { name: 'shellColor', type: 'color', default: '#f4f4f1' },
+      { name: 'fabricColor', type: 'color', default: '#d9d9d6' },
+      { name: 'accentColor', type: 'color', default: '#e8411f' },
+      { name: 'background', type: 'color', default: '#dcdcda' },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    // `set` lets the scene update the controls (tapping the screen changes the face).
+    preview: (p, set) => <CompanionRobotModel {...p} onChange={set} height="100%" />,
+    fill: true,
+    files: ['CompanionRobotModel.jsx', 'robot/RobotScene.jsx', 'robot/Robot.jsx', 'airliner/stage.jsx'],
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
