@@ -107,6 +107,12 @@ import HotkeyHints from '../lib/HotkeyHints.jsx'
 import IdleAttract from '../lib/IdleAttract.jsx'
 import KeyCarousel from '../lib/KeyCarousel.jsx'
 import HaloCarousel from '../lib/HaloCarousel.jsx'
+import MeltingGlow from '../lib/MeltingGlow.jsx'
+import FocusHeadline from '../lib/FocusHeadline.jsx'
+import DepthGallery from '../lib/DepthGallery.jsx'
+import DragCards from '../lib/DragCards.jsx'
+import BenchmarkBars from '../lib/BenchmarkBars.jsx'
+import TestimonialSlider from '../lib/TestimonialSlider.jsx'
 import NudgePart from '../lib/NudgePart.jsx'
 import PinchTwist from '../lib/PinchTwist.jsx'
 import PresenceCursors from '../lib/PresenceCursors.jsx'
@@ -149,18 +155,10 @@ import HoldButton from '../lib/HoldButton.jsx'
 import MeasureText from '../lib/MeasureText.jsx'
 import DecodeText from '../lib/DecodeText.jsx'
 import DraftingGrid from '../lib/DraftingGrid.jsx'
-import LightSweep from '../lib/LightSweep.jsx'
-import Cyclorama from '../lib/Cyclorama.jsx'
-import GradientSweep from '../lib/GradientSweep.jsx'
-import SoftHorizon from '../lib/SoftHorizon.jsx'
-import SkeuConsole from '../lib/SkeuConsole.jsx'
+import FluidLogin from '../lib/FluidLogin.jsx'
 import SkeuCalendar from '../lib/SkeuCalendar.jsx'
-import SkeuHifi from '../lib/SkeuHifi.jsx'
-import SkeuCamera from '../lib/SkeuCamera.jsx'
-import SkeuJournal from '../lib/SkeuJournal.jsx'
 import SkeuDelay from '../lib/SkeuDelay.jsx'
 import MinDashboard from '../lib/MinDashboard.jsx'
-import MinSettings from '../lib/MinSettings.jsx'
 import MinCheckout from '../lib/MinCheckout.jsx'
 import MinPortfolio from '../lib/MinPortfolio.jsx'
 import MinTodo from '../lib/MinTodo.jsx'
@@ -172,6 +170,7 @@ import MaxDrop from '../lib/MaxDrop.jsx'
 import MaxFestival from '../lib/MaxFestival.jsx'
 import BentoSpecs from '../lib/BentoSpecs.jsx'
 import BentoHome from '../lib/BentoHome.jsx'
+import AiLanding from '../lib/AiLanding.jsx'
 import SmartHomeApp from '../lib/SmartHomeApp.jsx'
 import FoodTrackerApp from '../lib/FoodTrackerApp.jsx'
 import BankingApp from '../lib/BankingApp.jsx'
@@ -227,7 +226,6 @@ import BentoPortfolio from '../lib/BentoPortfolio.jsx'
 import BentoFeatures from '../lib/BentoFeatures.jsx'
 import LiquidHero from '../lib/LiquidHero.jsx'
 import LiquidMedia from '../lib/LiquidMedia.jsx'
-import LiquidControl from '../lib/LiquidControl.jsx'
 import LiquidLens from '../lib/LiquidLens.jsx'
 import LiquidTabBar from '../lib/LiquidTabBar.jsx'
 import NeuSettings from '../lib/NeuSettings.jsx'
@@ -239,13 +237,8 @@ import GlassDashboard from '../lib/GlassDashboard.jsx'
 import GlassDesktop from '../lib/GlassDesktop.jsx'
 import GlassFinance from '../lib/GlassFinance.jsx'
 import GlassLogin from '../lib/GlassLogin.jsx'
-import GlassWeather from '../lib/GlassWeather.jsx'
 import GlassPlayer from '../lib/GlassPlayer.jsx'
-import FlatKit from '../lib/FlatKit.jsx'
 import FlatDocs from '../lib/FlatDocs.jsx'
-import FlatShop from '../lib/FlatShop.jsx'
-import FlatUtility from '../lib/FlatUtility.jsx'
-import FlatOnboarding from '../lib/FlatOnboarding.jsx'
 import FlatDashboard from '../lib/FlatDashboard.jsx'
 import FlatDashboardCards from '../lib/FlatDashboardCards.jsx'
 import FlatDashboardPanels from '../lib/FlatDashboardPanels.jsx'
@@ -396,6 +389,56 @@ import LowPolyWhaleModel from '../lib/LowPolyWhaleModel.jsx'
 import LowPolyFrogModel from '../lib/LowPolyFrogModel.jsx'
 import LowPolyElephantModel from '../lib/LowPolyElephantModel.jsx'
 import LowPolyDinoModel from '../lib/LowPolyDinoModel.jsx'
+import LowPolyChameleonModel from '../lib/LowPolyChameleonModel.jsx'
+import LowPolySlothModel from '../lib/LowPolySlothModel.jsx'
+import LowPolyPeacockModel from '../lib/LowPolyPeacockModel.jsx'
+import LowPolyRedPandaModel from '../lib/LowPolyRedPandaModel.jsx'
+import LowPolyMechWalkerModel from '../lib/LowPolyMechWalkerModel.jsx'
+import LowPolySeaStackModel from '../lib/LowPolySeaStackModel.jsx'
+import LowPolyRiceTerracesModel from '../lib/LowPolyRiceTerracesModel.jsx'
+import LowPolyMantaRayModel from '../lib/LowPolyMantaRayModel.jsx'
+import LowPolyAxolotlModel from '../lib/LowPolyAxolotlModel.jsx'
+import LowPolyRamenBowlModel from '../lib/LowPolyRamenBowlModel.jsx'
+import LowPolyPopcornMachineModel from '../lib/LowPolyPopcornMachineModel.jsx'
+import LowPolyMonsterTruckModel from '../lib/LowPolyMonsterTruckModel.jsx'
+import LowPolyPaddleSteamerModel from '../lib/LowPolyPaddleSteamerModel.jsx'
+import LowPolyLunarRoverModel from '../lib/LowPolyLunarRoverModel.jsx'
+import LowPolyObservatoryModel from '../lib/LowPolyObservatoryModel.jsx'
+import LowPolyStoneBridgeModel from '../lib/LowPolyStoneBridgeModel.jsx'
+import LowPolyDriveInCinemaModel from '../lib/LowPolyDriveInCinemaModel.jsx'
+import LowPolySewingMachineModel from '../lib/LowPolySewingMachineModel.jsx'
+import LowPolyWizardTowerModel from '../lib/LowPolyWizardTowerModel.jsx'
+import LowPolyBlackHoleModel from '../lib/LowPolyBlackHoleModel.jsx'
+import LowPolyVenusFlytrapModel from '../lib/LowPolyVenusFlytrapModel.jsx'
+import LowPolySnowyPinesModel from '../lib/LowPolySnowyPinesModel.jsx'
+import LowPolyMangroveModel from '../lib/LowPolyMangroveModel.jsx'
+import LowPolyPufferfishModel from '../lib/LowPolyPufferfishModel.jsx'
+import LowPolySeahorseModel from '../lib/LowPolySeahorseModel.jsx'
+import LowPolyStagBeetleModel from '../lib/LowPolyStagBeetleModel.jsx'
+import LowPolyToasterModel from '../lib/LowPolyToasterModel.jsx'
+import LowPolyTeapotModel from '../lib/LowPolyTeapotModel.jsx'
+import LowPolyGramophoneModel from '../lib/LowPolyGramophoneModel.jsx'
+import LowPolyScooterModel from '../lib/LowPolyScooterModel.jsx'
+import LowPolyHovercraftModel from '../lib/LowPolyHovercraftModel.jsx'
+import LowPolyBulletTrainModel from '../lib/LowPolyBulletTrainModel.jsx'
+import LowPolyCableCarModel from '../lib/LowPolyCableCarModel.jsx'
+import LowPolyCanalGondolaModel from '../lib/LowPolyCanalGondolaModel.jsx'
+import LowPolyMusicBoxModel from '../lib/LowPolyMusicBoxModel.jsx'
+import LowPolyClockTowerModel from '../lib/LowPolyClockTowerModel.jsx'
+import LowPolyBakeryModel from '../lib/LowPolyBakeryModel.jsx'
+import LowPolyDragonEggModel from '../lib/LowPolyDragonEggModel.jsx'
+import LowPolyFernModel from '../lib/LowPolyFernModel.jsx'
+import LowPolyRockArchModel from '../lib/LowPolyRockArchModel.jsx'
+import LowPolyLadybugModel from '../lib/LowPolyLadybugModel.jsx'
+import LowPolyPancakeStackModel from '../lib/LowPolyPancakeStackModel.jsx'
+import LowPolySushiPlateModel from '../lib/LowPolySushiPlateModel.jsx'
+import LowPolyDeskFanModel from '../lib/LowPolyDeskFanModel.jsx'
+import LowPolyWaterTowerModel from '../lib/LowPolyWaterTowerModel.jsx'
+import LowPolyBeachHutsModel from '../lib/LowPolyBeachHutsModel.jsx'
+import LowPolyCometModel from '../lib/LowPolyCometModel.jsx'
+import LowPolyDandelionModel from '../lib/LowPolyDandelionModel.jsx'
+import LowPolyWatermelonModel from '../lib/LowPolyWatermelonModel.jsx'
+import LowPolyMetronomeModel from '../lib/LowPolyMetronomeModel.jsx'
 import GiraffeModel from '../lib/GiraffeModel.jsx'
 import HippoModel from '../lib/HippoModel.jsx'
 import ToyLionModel from '../lib/ToyLionModel.jsx'
@@ -526,11 +569,11 @@ export const HIDDEN_CATEGORIES = ['Icons & Emojis']
 // sidebar, the section pages, search and the generated registry files).
 export const HIDDEN_COMPONENTS = ['shirt', 'earbuds', 'gamepad', 'low-poly-runner', 'low-poly-tiger']
 
-const ALL_CATEGORIES = ['Text', 'Animation', 'UI', 'Phone UI', '3D & Materials', 'Backgrounds', 'Motion Graphics', 'Characters', 'Icons & Emojis']
+const ALL_CATEGORIES = ['Text', 'Animation', 'UI and Backgrounds', 'Phone UI', '3D & Materials', 'Motion Graphics', 'Characters', 'Icons & Emojis']
 export const CATEGORIES = ALL_CATEGORIES.filter((c) => !HIDDEN_CATEGORIES.includes(c))
 
-// The UI section is grouped by visual style, in this order.
-export const UI_STYLES = ['Flat', 'Glassmorphism', 'Neumorphism', 'Liquid glass', 'Bento', 'Minimalism', 'Maximalism', 'Skeuomorphism']
+// The UI and Backgrounds section is grouped by style, in this order.
+export const UI_STYLES = ['Backgrounds', 'Flat', 'Glassmorphism', 'Neumorphism', 'Liquid glass', 'Bento', 'Minimalism', 'Maximalism', 'Skeuomorphism']
 
 export const ICON_STYLES = ['Icons', 'Emojis']
 
@@ -6473,6 +6516,956 @@ const ALL_COMPONENTS = [
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
+    slug: 'low-poly-chameleon',
+    name: 'Low Poly Chameleon',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly chameleon gripping a branch, its turret eyes rolling about each on its own and its curled tail breathing as it rocks and takes the odd slow step; tap it and both eyes lock on a fly, the tongue shoots out to snatch it and its skin flushes another colour before easing back.',
+    controls: [
+      { name: 'look', type: 'select', options: ['jade', 'panther', 'veiled', 'sunset'], default: 'jade' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyChameleonModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyChameleonModel.jsx', 'lowpoly/Chameleon.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-sloth',
+    name: 'Low Poly Sloth',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly sloth hanging under a leafy branch by its hooked claws, swaying, blinking and turning its head very slowly to look at you; tap it and it lets go with one arm to wave, then grips back on as a few leaves drift down.',
+    controls: [
+      { name: 'look', type: 'select', options: ['three-toed', 'two-toed', 'pale'], default: 'three-toed' },
+      { name: 'float', type: 'toggle', default: false },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolySlothModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolySlothModel.jsx', 'lowpoly/Sloth.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-peacock',
+    name: 'Low Poly Peacock',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly peacock on a grass patch that walks, pecks at seed and bobs its crested head, its long train trailing; tap it and it turns to you as the train lifts and fans into a full semicircle of eyed feathers that rattle and shimmer before folding away.',
+    controls: [
+      { name: 'look', type: 'select', options: ['indian', 'green', 'white'], default: 'indian' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyPeacockModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyPeacockModel.jsx', 'lowpoly/Peacock.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-red-panda',
+    name: 'Low Poly Red Panda',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly red panda on a mossy log that shuffles about, sniffs the moss, flicks its ears and curls its ringed tail; tap it and it rears up on its hind legs with its arms flung wide, then drops back down with a bounce.',
+    controls: [
+      { name: 'look', type: 'select', options: ['ginger', 'russet', 'pale'], default: 'ginger' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyRedPandaModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyRedPandaModel.jsx', 'lowpoly/RedPanda.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-mech-walker',
+    name: 'Low Poly Mech Walker',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly two-legged mech walker on a rocky patch that shifts its weight from leg to leg while its cockpit swivels to scan; tap it and it stomps three heavy steps out and three back, each footfall kicking up dust and thumping the ground.',
+    controls: [
+      { name: 'look', type: 'select', options: ['scout', 'heavy', 'desert', 'arctic'], default: 'scout' },
+      { name: 'float', type: 'toggle', default: false },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyMechWalkerModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyMechWalkerModel.jsx', 'lowpoly/MechWalker.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-sea-stack',
+    name: 'Low Poly Sea Stack',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly tall sea stack in the surf where waves break at its base and gulls circle overhead; tap it and the gulls scatter, then settle back on the ledges.',
+    controls: [
+      { name: 'look', type: 'select', options: ['granite', 'sandstone', 'chalk'], default: 'granite' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolySeaStackModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolySeaStackModel.jsx', 'lowpoly/SeaStack.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-rice-terraces',
+    name: 'Low Poly Rice Terraces',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'Low-poly rice paddies curving and stepping down a hillside, ripples drifting across each one; tap it and water spills down the steps one terrace at a time.',
+    controls: [
+      { name: 'look', type: 'select', options: ['spring', 'summer', 'harvest'], default: 'spring' },
+      { name: 'float', type: 'toggle', default: false },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyRiceTerracesModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyRiceTerracesModel.jsx', 'lowpoly/RiceTerraces.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-manta-ray',
+    name: 'Low Poly Manta Ray',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly manta ray gliding over a patch of reef, slow waves rolling out along its wide wings; tap it and it does a barrel roll.',
+    controls: [
+      { name: 'look', type: 'select', options: ['reef', 'midnight', 'sand'], default: 'reef' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyMantaRayModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyMantaRayModel.jsx', 'lowpoly/MantaRay.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-axolotl',
+    name: 'Low Poly Axolotl',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly axolotl in a little pebble tank, its frilly gills waving as its tail sways; tap it and it grins and swims a little loop.',
+    controls: [
+      { name: 'look', type: 'select', options: ['pink', 'wild', 'gold', 'melanoid'], default: 'pink' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyAxolotlModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyAxolotlModel.jsx', 'lowpoly/Axolotl.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-ramen-bowl',
+    name: 'Low Poly Ramen Bowl',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly steaming bowl of ramen on a tray, with egg, chashu, nori and noodles; tap it and the chopsticks lift a stretching pull of noodles and drop it back with a splash.',
+    controls: [
+      { name: 'look', type: 'select', options: ['shoyu', 'miso', 'tonkotsu'], default: 'shoyu' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyRamenBowlModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyRamenBowlModel.jsx', 'lowpoly/RamenBowl.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-popcorn-machine',
+    name: 'Low Poly Popcorn Machine',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly glass popcorn cart where kernels pop now and then; tap it and the kettle tips, popcorn overflows onto the heap and spills out of the door.',
+    controls: [
+      { name: 'look', type: 'select', options: ['red', 'retro', 'mint'], default: 'red' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyPopcornMachineModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyPopcornMachineModel.jsx', 'lowpoly/PopcornMachine.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-monster-truck',
+    name: 'Low Poly Monster Truck',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly monster truck on huge treaded tyres and coil-over shocks in a dirt arena; it revs and bounces on its springs, and a tap sends it up the ramp to jump, land with a squash and a cloud of dust, then reverse home.',
+    controls: [
+      { name: 'look', type: 'select', options: ['flame', 'toxic', 'sky'], default: 'flame' },
+      { name: 'float', type: 'toggle', default: false },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyMonsterTruckModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyMonsterTruckModel.jsx', 'lowpoly/MonsterTruck.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-paddle-steamer',
+    name: 'Low Poly Paddle Steamer',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly paddle steamer with twin chimneys and churning side wheels, bobbing on the swell; tap it to sound the horn with a steam jet and a big smoke ring from each chimney.',
+    controls: [
+      { name: 'look', type: 'select', options: ['classic', 'river', 'royal'], default: 'classic' },
+      { name: 'float', type: 'toggle', default: false },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyPaddleSteamerModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyPaddleSteamerModel.jsx', 'lowpoly/PaddleSteamer.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-lunar-rover',
+    name: 'Low Poly Lunar Rover',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly lunar rover creeping over a cratered patch, each mesh wheel riding the bumps on its own strut; tap it and the dish swings round to the Earth and beams a pulsing signal home.',
+    controls: [
+      { name: 'look', type: 'select', options: ['apollo', 'modern', 'mars'], default: 'apollo' },
+      { name: 'float', type: 'toggle', default: false },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyLunarRoverModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyLunarRoverModel.jsx', 'lowpoly/LunarRover.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-observatory',
+    name: 'Low Poly Observatory',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly hilltop observatory whose dome slowly turns under twinkling stars; tap it and the shutter slides back, the telescope tilts out and a shooting star streaks past.',
+    controls: [
+      { name: 'look', type: 'select', options: ['night', 'dusk', 'snow'], default: 'night' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#151a33' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyObservatoryModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyObservatoryModel.jsx', 'lowpoly/Observatory.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-stone-bridge',
+    name: 'Low Poly Stone Bridge',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly hump-backed stone bridge over a flowing stream between grassy banks, with petals, leaves or snow drifting down; tap it and a little boat floats in, slips under the arch and drifts away downstream.',
+    controls: [
+      { name: 'look', type: 'select', options: ['spring', 'autumn', 'winter'], default: 'spring' },
+      { name: 'float', type: 'toggle', default: false },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyStoneBridgeModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyStoneBridgeModel.jsx', 'lowpoly/StoneBridge.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-drive-in-cinema',
+    name: 'Low Poly Drive-in Cinema',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly drive-in with a flickering cartoon on the big screen, a shimmering projector beam and a few parked cars; tap it and headlights flash, the cars hop as they honk and the film changes.',
+    controls: [
+      { name: 'look', type: 'select', options: ['retro', 'neon', 'dusk'], default: 'retro' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#262a45' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyDriveInCinemaModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyDriveInCinemaModel.jsx', 'lowpoly/DriveInCinema.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-sewing-machine',
+    name: 'Low Poly Sewing Machine',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly sewing machine with its needle bobbing, wheel turning and thread wiggling; tap it and the fabric feeds through, leaving a stitched seam.',
+    controls: [
+      { name: 'look', type: 'select', options: ['vintage', 'cream', 'mint'], default: 'vintage' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolySewingMachineModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolySewingMachineModel.jsx', 'lowpoly/SewingMachine.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-wizard-tower',
+    name: 'Low Poly Wizard Tower',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly crooked wizard tower on a floating island, its windows pulsing and a crystal turning beside it; tap it and sparks spiral up into fireworks.',
+    controls: [
+      { name: 'look', type: 'select', options: ['arcane', 'emerald', 'ember'], default: 'arcane' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#1d1836' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyWizardTowerModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyWizardTowerModel.jsx', 'lowpoly/WizardTower.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-black-hole',
+    name: 'Low Poly Black Hole',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly black hole whose swirling accretion disk bends up over it, the inner edge racing fastest; tap it and a passing asteroid spirals in, stretches and vanishes in a flare.',
+    controls: [
+      { name: 'look', type: 'select', options: ['amber', 'blue', 'violet'], default: 'amber' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#0b0c16' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyBlackHoleModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyBlackHoleModel.jsx', 'lowpoly/BlackHole.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-venus-flytrap',
+    name: 'Low Poly Venus Flytrap',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly Venus flytrap in a pot, three toothed traps slowly breathing open and closed; tap it and a fly buzzes into the nearest trap, which snaps shut on it and reopens after a moment.',
+    controls: [
+      { name: 'look', type: 'select', options: ['classic', 'red', 'night'], default: 'classic' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyVenusFlytrapModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyVenusFlytrapModel.jsx', 'lowpoly/VenusFlytrap.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-snowy-pines',
+    name: 'Low Poly Snowy Pine Patch',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly patch of three snow-capped pines under light snowfall; tap a tree and snow slides off a branch in a puff, the branch springs up and the snow slowly settles back.',
+    controls: [
+      { name: 'look', type: 'select', options: ['day', 'dusk', 'blizzard'], default: 'day' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolySnowyPinesModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolySnowyPinesModel.jsx', 'lowpoly/SnowyPines.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-mangrove',
+    name: 'Low Poly Mangrove',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly mangrove on arched prop roots, water lapping in rings around them and the canopy swaying; tap it and a fish leaps between the roots with a splash.',
+    controls: [
+      { name: 'look', type: 'select', options: ['tropic', 'dawn', 'murky'], default: 'tropic' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyMangroveModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyMangroveModel.jsx', 'lowpoly/Mangrove.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-pufferfish',
+    name: 'Low Poly Pufferfish',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly pufferfish hovering over a sandy patch with fluttering fins; tap it and it gulps water and puffs into a spiky ball, then slowly deflates.',
+    controls: [
+      { name: 'look', type: 'select', options: ['yellow', 'spotted', 'blue'], default: 'yellow' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyPufferfishModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyPufferfishModel.jsx', 'lowpoly/Pufferfish.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-seahorse',
+    name: 'Low Poly Seahorse',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly seahorse bobbing beside its seagrass, tail curling and uncurling and dorsal fin fluttering; tap it and it spirals round the strand, then settles.',
+    controls: [
+      { name: 'look', type: 'select', options: ['orange', 'yellow', 'purple'], default: 'orange' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolySeahorseModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolySeahorseModel.jsx', 'lowpoly/Seahorse.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-stag-beetle',
+    name: 'Low Poly Stag Beetle',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly stag beetle on a mossy log, antennae twitching, mandibles opening slowly and a step now and then; tap it and it rears up and clacks its mandibles twice.',
+    controls: [
+      { name: 'look', type: 'select', options: ['bronze', 'black', 'rainbow'], default: 'bronze' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyStagBeetleModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyStagBeetleModel.jsx', 'lowpoly/StagBeetle.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-toaster',
+    name: 'Low Poly Toaster',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly toaster on a cutting board, its slots glowing and heat shimmering up; tap it and the lever snaps up, the toast pops high, tumbles and drops back in.',
+    controls: [
+      { name: 'look', type: 'select', options: ['chrome', 'mint', 'red'], default: 'chrome' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyToasterModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyToasterModel.jsx', 'lowpoly/Toaster.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-teapot',
+    name: 'Low Poly Teapot',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly teapot on a tray with a cup and saucer, steam curling from its spout; tap it and it lifts, tilts and pours a stream of tea into the cup, then sets back down with a rattle of its lid.',
+    controls: [
+      { name: 'look', type: 'select', options: ['porcelain', 'cast-iron', 'floral'], default: 'porcelain' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyTeapotModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyTeapotModel.jsx', 'lowpoly/Teapot.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-gramophone',
+    name: 'Low Poly Gramophone',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly gramophone with its record spinning and music notes floating out of the flared horn; tap it and the needle lifts and drops back onto the record with a sparkle and a burst of notes.',
+    controls: [
+      { name: 'look', type: 'select', options: ['brass', 'mahogany', 'mint'], default: 'brass' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyGramophoneModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyGramophoneModel.jsx', 'lowpoly/Gramophone.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-scooter',
+    name: 'Low Poly Scooter',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly retro scooter idling on a cobbled street with a little shake and exhaust puffs; tap it and it pulls a wheelie, rolls forward and rolls back to its spot.',
+    controls: [
+      { name: 'look', type: 'select', options: ['mint', 'red', 'cream'], default: 'mint' },
+      { name: 'float', type: 'toggle', default: false },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyScooterModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyScooterModel.jsx', 'lowpoly/Scooter.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-hovercraft',
+    name: 'Low Poly Hovercraft',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly hovercraft riding on its air skirt with spray and spinning fans; tap it and it spins on the spot.',
+    controls: [
+      { name: 'look', type: 'select', options: ['rescue', 'military', 'tourist'], default: 'rescue' },
+      { name: 'float', type: 'toggle', default: false },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyHovercraftModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyHovercraftModel.jsx', 'lowpoly/Hovercraft.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-bullet-train',
+    name: 'Low Poly Bullet Train',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly bullet train humming at a platform between two tunnels, its lights pulsing and pantograph sparking; tap it and it shoots off in a blur into the far tunnel and glides back out of the near one.',
+    controls: [
+      { name: 'look', type: 'select', options: ['white', 'red', 'midnight'], default: 'white' },
+      { name: 'float', type: 'toggle', default: false },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyBulletTrainModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyBulletTrainModel.jsx', 'lowpoly/BulletTrain.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-cable-car',
+    name: 'Low Poly Cable Car',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly cable car gliding between two lattice towers over a little alpine valley, its cabin swinging gently on the hanger arm; tap it and it brakes mid-span, the cabin swings like a pendulum, then carries on.',
+    controls: [
+      { name: 'look', type: 'select', options: ['red', 'alpine', 'gold'], default: 'red' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyCableCarModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyCableCarModel.jsx', 'lowpoly/CableCar.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-canal-gondola',
+    name: 'Low Poly Canal Gondola',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly Venetian canal: a gondolier in a striped shirt rows a long black gondola as it rocks on the swell; tap it and the gondola straightens up and glides under the little stone bridge (he ducks) and back. The night look reads best on a dark background.',
+    controls: [
+      { name: 'look', type: 'select', options: ['classic', 'sunset', 'night'], default: 'classic' },
+      { name: 'float', type: 'toggle', default: false },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyCanalGondolaModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyCanalGondolaModel.jsx', 'lowpoly/CanalGondola.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-music-box',
+    name: 'Low Poly Music Box',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly music box with its lid open a crack and a tiny ballerina turning on her spring; tap it and the lid swings back, she springs up and spins in a flurry of notes, then the tune winds down.',
+    controls: [
+      { name: 'look', type: 'select', options: ['rose', 'walnut', 'mint'], default: 'rose' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyMusicBoxModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyMusicBoxModel.jsx', 'lowpoly/MusicBox.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-clock-tower',
+    name: 'Low Poly Clock Tower',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly clock tower on a little town square, with four clock faces whose hands tick round, an open belfry, a weather vane and pigeons on the ledges; tap it and the bell swings and rings out in rings of sound while the pigeons flutter up and circle.',
+    controls: [
+      { name: 'look', type: 'select', options: ['stone', 'brick', 'snow'], default: 'stone' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyClockTowerModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyClockTowerModel.jsx', 'lowpoly/ClockTower.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-bakery',
+    name: 'Low Poly Bakery',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly bakery shopfront with a striped awning, a window of bread and cakes, warm smoke from the chimney and glowing windows; tap it and the door opens and a fresh loaf slides out on a peel and hops in a puff of flour.',
+    controls: [
+      { name: 'look', type: 'select', options: ['classic', 'pastel', 'evening'], default: 'classic' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyBakeryModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyBakeryModel.jsx', 'lowpoly/Bakery.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-dragon-egg',
+    name: 'Low Poly Dragon Egg Nest',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly spotted dragon egg in a twig nest on a crystal ledge that rocks and glows from within; tap it and it cracks open, the shell lifts away and a tiny dragon pops out, blinks and puffs sparks, then tucks back in.',
+    controls: [
+      { name: 'look', type: 'select', options: ['ember', 'frost', 'jade'], default: 'ember' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyDragonEggModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyDragonEggModel.jsx', 'lowpoly/DragonEgg.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-fern',
+    name: 'Low Poly Fern',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly fern on a mossy mound, its young frond slowly unrolling from a fiddlehead while the others sway; tap it and every frond curls into a spiral, then opens again.',
+    controls: [
+      { name: 'look', type: 'select', options: ['forest', 'spring', 'autumn'], default: 'forest' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyFernModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyFernModel.jsx', 'lowpoly/Fern.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-rock-arch',
+    name: 'Low Poly Desert Rock Arch',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly desert rock arch of stacked boulders and a bowed slab, its shadow sweeping across the sand as the sun swings overhead; tap it and a tumbleweed bounces through the gap, kicking up dust.',
+    controls: [
+      { name: 'look', type: 'select', options: ['sandstone', 'red', 'dusk'], default: 'sandstone' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyRockArchModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyRockArchModel.jsx', 'lowpoly/RockArch.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-ladybug',
+    name: 'Low Poly Ladybug',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly ladybug crawling in a slow circle on a big leaf; tap it and its spotted shell opens, its wings buzz, and it flies a loop before landing back.',
+    controls: [
+      { name: 'look', type: 'select', options: ['red', 'orange', 'yellow'], default: 'red' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyLadybugModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyLadybugModel.jsx', 'lowpoly/Ladybug.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-pancake-stack',
+    name: 'Low Poly Pancake Stack',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly pancake stack on a plate with butter melting on top and syrup dripping down the side; tap it and the top pancake flips high with a spin and lands back with a squash.',
+    controls: [
+      { name: 'look', type: 'select', options: ['maple', 'berry', 'chocolate'], default: 'maple' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyPancakeStackModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyPancakeStackModel.jsx', 'lowpoly/PancakeStack.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-sushi-plate',
+    name: 'Low Poly Sushi Plate',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly sushi plate of nigiri, maki rolls, wasabi, ginger and a soy dish that turns slowly; tap it and the chopsticks pick up a piece, dip it in the soy and put it back.',
+    controls: [
+      { name: 'look', type: 'select', options: ['classic', 'salmon', 'veggie'], default: 'classic' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolySushiPlateModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolySushiPlateModel.jsx', 'lowpoly/SushiPlate.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-desk-fan',
+    name: 'Low Poly Desk Fan',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly desk fan with spinning blades and a sweeping head beside a stack of papers that ruffle in its breeze; tap it and it kicks up to full speed and the top sheet flies off and flutters back down.',
+    controls: [
+      { name: 'look', type: 'select', options: ['mint', 'chrome', 'cream'], default: 'mint' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyDeskFanModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyDeskFanModel.jsx', 'lowpoly/DeskFan.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-water-tower',
+    name: 'Low Poly Water Tower',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly water tower on four braced legs with a ladder and a slow drip into a puddle; tap it and the tank sloshes while a leak sprays out in an arc.',
+    controls: [
+      { name: 'look', type: 'select', options: ['classic', 'rust', 'painted'], default: 'classic' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyWaterTowerModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyWaterTowerModel.jsx', 'lowpoly/WaterTower.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-beach-huts',
+    name: 'Low Poly Beach Huts',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly row of three striped beach huts on the sand by a lapping sea edge, pennants fluttering on their roofs; tap a hut and its door swings open on its hinges, then closes.',
+    controls: [
+      { name: 'look', type: 'select', options: ['pastel', 'bright', 'stripes'], default: 'pastel' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyBeachHutsModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyBeachHutsModel.jsx', 'lowpoly/BeachHuts.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-comet',
+    name: 'Low Poly Comet',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly comet with a faceted icy head and glowing coma, looping slowly through the stars with curving dust and ion tails; tap it and the tails flare bright and long with a burst of sparkles.',
+    controls: [
+      { name: 'look', type: 'select', options: ['ice', 'fire', 'aurora'], default: 'ice' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#10131f' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyCometModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyCometModel.jsx', 'lowpoly/Comet.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-dandelion',
+    name: 'Low Poly Dandelion',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly dandelion clock swaying in a light breeze; tap it and its seeds blow off and drift away on the wind, then a new seed head grows back. The night look glows best on a dark background.',
+    controls: [
+      { name: 'look', type: 'select', options: ['meadow', 'golden', 'night'], default: 'meadow' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyDandelionModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyDandelionModel.jsx', 'lowpoly/Dandelion.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-watermelon',
+    name: 'Low Poly Watermelon Slice',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly watermelon slice gently rocking on its rind on a plate; tap it and a scalloped bite vanishes with a squash and a few drops of juice, then it fills back in.',
+    controls: [
+      { name: 'look', type: 'select', options: ['classic', 'yellow', 'mini'], default: 'classic' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyWatermelonModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyWatermelonModel.jsx', 'lowpoly/Watermelon.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-metronome',
+    name: 'Low Poly Metronome',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly metronome whose arm ticks side to side with a little flash at each end; tap it and the weight slides down to quicken the beat, then slides back and settles.',
+    controls: [
+      { name: 'look', type: 'select', options: ['walnut', 'black', 'mint'], default: 'walnut' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyMetronomeModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyMetronomeModel.jsx', 'lowpoly/Metronome.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
     slug: 'face-board',
     name: 'Face Board',
     category: '3D & Materials',
@@ -8632,7 +9625,8 @@ const ALL_COMPONENTS = [
   {
     slug: 'drafting-grid',
     name: 'Drafting Grid',
-    category: 'Backgrounds',
+    category: 'UI and Backgrounds',
+    style: 'Backgrounds',
     description: 'A drafting-paper grid background with a cursor crosshair.',
     controls: [
       { name: 'cell', type: 'range', min: 8, max: 64, step: 2, default: 24, unit: 'px' },
@@ -8652,110 +9646,43 @@ const ALL_COMPONENTS = [
     deps: [],
   },
   {
-    slug: 'light-sweep',
-    name: 'Light Sweep',
-    category: 'Backgrounds',
-    description: 'A band of light that sweeps across a surface on a loop.',
-    controls: [
-      { name: 'speed', type: 'range', min: 1, max: 8, step: 0.5, default: 3.5, unit: 's' },
-      { name: 'pause', type: 'range', min: 0, max: 4, step: 0.2, default: 1.2, unit: 's' },
-      { name: 'angle', type: 'range', min: 0, max: 180, step: 5, default: 115, unit: '°' },
-      { name: 'intensity', type: 'range', min: 0.1, max: 1, step: 0.05, default: 0.55 },
-      { name: 'width', type: 'range', min: 5, max: 50, step: 1, default: 22, unit: '%' },
-      { name: 'base', type: 'color', default: '#15171a' },
-    ],
-    fill: true,
-    preview: (p) => (
-      <LightSweep {...p} style={{ position: 'absolute', inset: 0 }}>
-        <div className="demo-center">
-          <span className="demo-bg-title light">Brushed steel</span>
-        </div>
-      </LightSweep>
-    ),
-    files: ['LightSweep.jsx'],
-    deps: [],
-  },
-  {
-    slug: 'cyclorama',
-    name: 'Cyclorama',
-    category: 'Backgrounds',
+    slug: 'fluid-gradient',
+    name: 'Fluid Gradient',
+    category: 'UI and Backgrounds',
+    style: 'Backgrounds',
     isNew: true,
-    description: 'A seamless curved studio backdrop in a single tinted colour.',
+    description: 'Four colours that drift and fold into each other like poured paint, drawn with one WebGL shader.',
     controls: [
-      { name: 'tint', type: 'color', default: '#d9d4ca' },
-      { name: 'horizon', type: 'range', min: 30, max: 85, step: 1, default: 62, unit: '%' },
-      { name: 'curve', type: 'range', min: 2, max: 40, step: 1, default: 18, unit: '%' },
-      { name: 'light', type: 'range', min: 0, max: 1, step: 0.05, default: 0.45 },
-      { name: 'vignette', type: 'range', min: 0, max: 0.8, step: 0.05, default: 0.35 },
-      { name: 'shadow', type: 'toggle', default: true },
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Sorbet', values: { color1: '#f0517a', color2: '#fdd36b', color3: '#b9dccb', color4: '#f7849a' } },
+          { name: 'Lagoon', values: { color1: '#1fb5c9', color2: '#c6f0e4', color3: '#3d5bd9', color4: '#8de0c1' } },
+          { name: 'Dusk', values: { color1: '#2b1e5c', color2: '#f2765a', color3: '#8a3fa8', color4: '#ffc78a' } },
+          { name: 'Citrus', values: { color1: '#ff8a3d', color2: '#ffe066', color3: '#9be15d', color4: '#ffd1a6' } },
+          { name: 'Mist', values: { color1: '#e6e1f5', color2: '#cfe3f2', color3: '#f5dfe6', color4: '#ffffff' } },
+        ],
+      },
+      { name: 'color1', type: 'color', default: '#f0517a' },
+      { name: 'color2', type: 'color', default: '#fdd36b' },
+      { name: 'color3', type: 'color', default: '#b9dccb' },
+      { name: 'color4', type: 'color', default: '#f7849a' },
+      { name: 'accent', type: 'color', default: '#6f8579' },
+      { name: 'speed', type: 'range', min: 0, max: 3, step: 0.1, default: 1 },
+      { name: 'warp', type: 'range', min: 0, max: 2.5, step: 0.05, default: 1 },
+      { name: 'scale', type: 'range', min: 0.4, max: 2.5, step: 0.05, default: 1 },
+      { name: 'grain', type: 'range', min: 0, max: 0.15, step: 0.01, default: 0.04 },
     ],
     fill: true,
-    preview: (p) => (
-      <Cyclorama {...p} style={{ position: 'absolute', inset: 0 }}>
-        <div className="demo-center">
-          <span className="demo-bg-title">Studio sweep</span>
-        </div>
-      </Cyclorama>
-    ),
-    files: ['Cyclorama.jsx'],
-    deps: [],
-  },
-  {
-    slug: 'gradient-sweep',
-    name: 'Gradient Sweep',
-    category: 'Backgrounds',
-    isNew: true,
-    description: "A studio sweep that shifts hue to match the product's main colour.",
-    controls: [
-      { name: 'color', type: 'color', default: '#ff4d1a' },
-      { name: 'base', type: 'color', default: '#121316' },
-      { name: 'shift', type: 'range', min: 0, max: 180, step: 5, default: 40, unit: '°' },
-      { name: 'strength', type: 'range', min: 0.1, max: 1, step: 0.05, default: 0.55 },
-      { name: 'drift', type: 'range', min: 0, max: 120, step: 5, default: 0, unit: '°' },
-      { name: 'speed', type: 'range', min: 2, max: 20, step: 1, default: 8, unit: 's' },
-      { name: 'transition', type: 'range', min: 0, max: 3, step: 0.1, default: 0.9, unit: 's' },
-    ],
-    fill: true,
-    preview: (p) => (
-      <GradientSweep {...p} style={{ position: 'absolute', inset: 0 }}>
-        <div className="demo-center">
-          <span className="demo-bg-title light">Colour matched</span>
-        </div>
-      </GradientSweep>
-    ),
-    files: ['GradientSweep.jsx'],
-    deps: [],
-  },
-  {
-    slug: 'soft-horizon',
-    name: 'Soft Horizon',
-    category: 'Backgrounds',
-    isNew: true,
-    description: 'A wall and floor that meet at a soft, blurred band of light.',
-    controls: [
-      { name: 'wall', type: 'color', default: '#1b1d22' },
-      { name: 'floor', type: 'color', default: '#2a2c31' },
-      { name: 'band', type: 'color', default: '#f3efe6' },
-      { name: 'horizon', type: 'range', min: 30, max: 85, step: 1, default: 60, unit: '%' },
-      { name: 'softness', type: 'range', min: 4, max: 120, step: 2, default: 40, unit: 'px' },
-      { name: 'glow', type: 'range', min: 0, max: 1, step: 0.05, default: 0.35 },
-      { name: 'spread', type: 'range', min: 20, max: 140, step: 5, default: 70, unit: '%' },
-    ],
-    fill: true,
-    preview: (p) => (
-      <SoftHorizon {...p} style={{ position: 'absolute', inset: 0 }}>
-        <div className="demo-center">
-          <span className="demo-bg-title light">Horizon</span>
-        </div>
-      </SoftHorizon>
-    ),
-    files: ['SoftHorizon.jsx'],
+    preview: (p) => <FluidLogin {...p} style={{ position: 'absolute', inset: 0 }} />,
+    files: ['FluidGradient.jsx', 'FluidLogin.jsx'],
     deps: [],
   },
   {
     slug: 'flat-dashboard',
     name: 'Flat Dashboard',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Flat',
     isNew: true,
     description: 'A flat commerce dashboard with a light sidebar, paired-bar sales chart, stat chips and an activity rail.',
@@ -8772,10 +9699,10 @@ const ALL_COMPONENTS = [
   {
     slug: 'flat-dashboard-cards',
     name: 'Flat Card Dashboard',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Flat',
     isNew: true,
-    description: 'A colourful flat card-grid dashboard with an icon rail, line chart, donut and calendar.',
+    description: "A colourful flat studio workspace: today's tasks, tasks per month, hours by project, team counters, shared files and a deadline calendar.",
     controls: [
       { name: 'coral', type: 'color', default: '#ff8068' },
       { name: 'teal', type: 'color', default: '#0fcfa0' },
@@ -8791,10 +9718,10 @@ const ALL_COMPONENTS = [
   {
     slug: 'flat-dashboard-panels',
     name: 'Flat Panel Dashboard',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Flat',
     isNew: true,
-    description: 'A full-size flat admin dashboard: top tabs, colour KPI tiles, gauges, bar and area charts, and a calendar rail.',
+    description: 'A flat shop admin for a small coffee roaster: revenue and order tiles, fulfilment and stock gauges, monthly revenue, daily orders, top products and a promotions calendar.',
     controls: [
       { name: 'orange', type: 'color', default: '#f5a04a' },
       { name: 'blue', type: 'color', default: '#5aa9d6' },
@@ -8810,10 +9737,10 @@ const ALL_COMPONENTS = [
   {
     slug: 'flat-dashboard-widgets',
     name: 'Flat Widget Dashboard',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Flat',
     isNew: true,
-    description: 'A full-size flat widget grid: line, area and dot charts, donuts, grouped bars and a step timeline.',
+    description: 'A flat marketing analytics dashboard for an online store: daily visitors, device split, campaign revenue by channel, a clickable checkout funnel, traffic sources and an ad-spend tracker.',
     controls: [
       { name: 'teal', type: 'color', default: '#1fb5a5' },
       { name: 'purple', type: 'color', default: '#922b7e' },
@@ -8829,10 +9756,10 @@ const ALL_COMPONENTS = [
   {
     slug: 'flat-dashboard-profiles',
     name: 'Flat Profile Dashboard',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Flat',
     isNew: true,
-    description: 'A full-size flat dashboard with chart widgets and a paging column of rated profile cards.',
+    description: 'A flat sales team dashboard: quota attainment by rep, closed revenue per rep, bookings vs last year, win rates, call activity, top open deals and a leaderboard of rep cards.',
     controls: [
       { name: 'blue', type: 'color', default: '#1aa3e0' },
       { name: 'lime', type: 'color', default: '#9ccc3a' },
@@ -8846,60 +9773,9 @@ const ALL_COMPONENTS = [
     deps: [],
   },
   {
-    slug: 'flat-onboarding',
-    name: 'Flat Onboarding',
-    category: 'UI',
-    style: 'Flat',
-    isNew: true,
-    description: 'Two-tone flat onboarding screens with a stretching progress pill.',
-    controls: [
-      { name: 'autoplay', type: 'toggle', default: false },
-      { name: 'interval', type: 'range', min: 1, max: 8, step: 0.5, default: 3, unit: 's' },
-      { name: 'buttonShape', type: 'select', options: ['pill', 'square'], default: 'pill' },
-    ],
-    fill: true,
-    preview: (p) => <FlatOnboarding {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['FlatOnboarding.jsx'],
-    deps: [],
-  },
-  {
-    slug: 'flat-utility',
-    name: 'Flat Utility',
-    category: 'UI',
-    style: 'Flat',
-    isNew: true,
-    description: 'An icon-first flat tool launcher with category chips and a tab bar.',
-    controls: [
-      { name: 'accent', type: 'color', default: '#3b82f6' },
-      { name: 'tileRadius', type: 'range', min: 0, max: 32, step: 1, default: 14, unit: 'px' },
-      { name: 'showLabels', type: 'toggle', default: true },
-    ],
-    fill: true,
-    preview: (p) => <FlatUtility {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['FlatUtility.jsx'],
-    deps: [],
-  },
-  {
-    slug: 'flat-shop',
-    name: 'Flat Shop',
-    category: 'UI',
-    style: 'Flat',
-    isNew: true,
-    description: 'A flat product catalogue with category pills, filters and add-to-bag.',
-    controls: [
-      { name: 'buttonColor', type: 'color', default: '#111111' },
-      { name: 'radius', type: 'range', min: 0, max: 20, step: 1, default: 4, unit: 'px' },
-      { name: 'showFilters', type: 'toggle', default: true },
-    ],
-    fill: true,
-    preview: (p) => <FlatShop {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['FlatShop.jsx'],
-    deps: [],
-  },
-  {
     slug: 'flat-docs',
     name: 'Flat Docs',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Flat',
     isNew: true,
     description: 'A flat documentation page with a framework switcher and accent sidebar.',
@@ -8914,25 +9790,9 @@ const ALL_COMPONENTS = [
     deps: [],
   },
   {
-    slug: 'flat-kit',
-    name: 'Flat UI Kit',
-    category: 'UI',
-    style: 'Flat',
-    isNew: true,
-    description: 'A board of flat widgets: profile, calendar, player, controls and more.',
-    controls: [
-      { name: 'theme', type: 'select', options: ['warm', 'coral'], default: 'warm' },
-      { name: 'radius', type: 'range', min: 0, max: 16, step: 1, default: 6, unit: 'px' },
-    ],
-    fill: true,
-    preview: (p) => <FlatKit {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['FlatKit.jsx'],
-    deps: [],
-  },
-  {
     slug: 'glass-player',
     name: 'Glass Player',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Glassmorphism',
     isNew: true,
     description: 'A frosted music player over its own blurred album art, with a glass queue.',
@@ -8947,26 +9807,9 @@ const ALL_COMPONENTS = [
     deps: [],
   },
   {
-    slug: 'glass-weather',
-    name: 'Glass Weather',
-    category: 'UI',
-    style: 'Glassmorphism',
-    isNew: true,
-    description: 'Frosted weather cards over a live sky: sun, snow, rain or stars.',
-    controls: [
-      { name: 'blur', type: 'range', min: 4, max: 40, step: 1, default: 16, unit: 'px' },
-      { name: 'frost', type: 'range', min: 0.04, max: 0.4, step: 0.02, default: 0.18 },
-      { name: 'unit', type: 'select', options: ['C', 'F'], default: 'C' },
-    ],
-    fill: true,
-    preview: (p) => <GlassWeather {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['GlassWeather.jsx', 'ui/onscreen.js'],
-    deps: [],
-  },
-  {
     slug: 'glass-login',
     name: 'Glass Login',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Glassmorphism',
     isNew: true,
     description: 'A frosted sign-in card over a drifting Swiss-style poster.',
@@ -8983,7 +9826,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'glass-finance',
     name: 'Glass Finance',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Glassmorphism',
     isNew: true,
     description: 'A dark glass banking app lit by amber and teal light leaks.',
@@ -9001,11 +9844,13 @@ const ALL_COMPONENTS = [
   {
     slug: 'glass-desktop',
     name: 'Glass Desktop',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Glassmorphism',
     isNew: true,
-    description: 'Frosted desktop widgets over a dusk landscape, with a dock and notifications.',
+    description: 'A type designer’s working screen: draggable glass windows over a sunlit plaster wall with swaying fern shadows.',
     controls: [
+      { name: 'light', type: 'select', options: ['morning', 'golden', 'dusk'], default: 'morning' },
+      { name: 'accent', type: 'color', default: '#d9643a' },
       { name: 'blur', type: 'range', min: 4, max: 40, step: 1, default: 18, unit: 'px' },
       { name: 'frost', type: 'range', min: 0.04, max: 0.4, step: 0.02, default: 0.16 },
     ],
@@ -9017,7 +9862,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'glass-dashboard',
     name: 'Glass Dashboard',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Glassmorphism',
     isNew: true,
     description: 'A dark glass finance dashboard floating in a warm, dim room.',
@@ -9034,7 +9879,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'neu-home',
     name: 'Neu Home Remote',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Neumorphism',
     isNew: true,
     description: 'A soft smart-home remote: rooms, a draggable thermostat dial and device keys.',
@@ -9062,7 +9907,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'neu-calc',
     name: 'Neu Calculator',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Neumorphism',
     isNew: true,
     description: 'A working soft-UI calculator with scientific mode, history and keyboard input.',
@@ -9091,7 +9936,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'neu-fitness',
     name: 'Neu Fitness',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Neumorphism',
     isNew: true,
     description: 'A soft activity tracker with a progress ring, workout timer and week view.',
@@ -9120,7 +9965,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'neu-mixer',
     name: 'Neu Mixer',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Neumorphism',
     isNew: true,
     description: 'A soft audio mixer with draggable faders, live meters, mute/solo and EQ knobs.',
@@ -9148,7 +9993,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'neu-settings',
     name: 'Neu Settings',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Neumorphism',
     isNew: true,
     description: 'A soft settings panel with real toggles, a live light/dark switch and save state.',
@@ -9176,7 +10021,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'liquid-tab-bar',
     name: 'Liquid Tab Bar',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Liquid glass',
     isNew: true,
     description: 'A thick-glass tab bar that bends the feed beneath it, with a stretching droplet.',
@@ -9192,7 +10037,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'liquid-lens',
     name: 'Liquid Lens',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Liquid glass',
     isNew: true,
     description: 'A product viewer with a draggable glass lens, glass colour beads and a thick glass spec panel.',
@@ -9207,25 +10052,9 @@ const ALL_COMPONENTS = [
     deps: [],
   },
   {
-    slug: 'liquid-control',
-    name: 'Liquid Control Centre',
-    category: 'UI',
-    style: 'Liquid glass',
-    isNew: true,
-    description: 'Glass control tiles that bend the wallpaper, with rippling toggles and glass-tube sliders.',
-    controls: [
-      { name: 'strength', type: 'range', min: 0, max: 140, step: 5, default: 60 },
-      { name: 'accent', type: 'color', default: '#2f80ff' },
-    ],
-    fill: true,
-    preview: (p) => <LiquidControl {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['LiquidControl.jsx', 'liquid/lens.js'],
-    deps: [],
-  },
-  {
     slug: 'liquid-media',
     name: 'Liquid Media Controls',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Liquid glass',
     isNew: true,
     description: 'Glass bubble video controls with a droplet scrubber over a living scene.',
@@ -9241,7 +10070,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'liquid-hero',
     name: 'Liquid Hero',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Liquid glass',
     isNew: true,
     description: 'A landing hero where a drifting glass orb bends a giant headline.',
@@ -9260,7 +10089,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'bento-features',
     name: 'Bento Features',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Bento',
     isNew: true,
     description: 'A bento feature section with live mini demos in each tile and a sticky nav pill.',
@@ -9276,7 +10105,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'bento-portfolio',
     name: 'Bento Portfolio',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Bento',
     isNew: true,
     description: 'A link-in-bio bento: portrait, bio, project, now playing, map and socials.',
@@ -9292,7 +10121,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'bento-analytics',
     name: 'Bento Analytics',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Bento',
     isNew: true,
     description: 'An analytics bento with a date-range pill, expandable tiles and export.',
@@ -9307,7 +10136,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'bento-home',
     name: 'Bento Home',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Bento',
     isNew: true,
     description: 'An app home screen of pressable tiles with pinned items and a tab pill.',
@@ -9318,6 +10147,43 @@ const ALL_COMPONENTS = [
     fill: true,
     preview: (p) => <BentoHome {...p} style={{ position: 'absolute', inset: 0 }} />,
     files: ['BentoHome.jsx'],
+    deps: [],
+  },
+  {
+    slug: 'ai-landing',
+    name: 'AI Landing Page',
+    category: 'UI and Backgrounds',
+    style: 'Glassmorphism',
+    isNew: true,
+    description: 'A complete landing page for a fictional AI studio, in one scrolling component: a melting glow behind a headline that sharpens out of blur, a glass prompt box that types out ideas and "generates" artwork, a statement that lights up as you scroll, a depth gallery whose cards drift and blur in and out of focus, draggable steps, benchmark bars that count up, a testimonial slider, pricing with a monthly/yearly switch, an FAQ and a waitlist form.',
+    controls: [
+      { name: 'brand', type: 'text', default: 'Lumo' },
+      { name: 'theme', type: 'select', options: ['dark', 'light'], default: 'dark' },
+      { name: 'accent', type: 'color', default: '#7c5cff' },
+    ],
+    fill: true,
+    // the demo's gallery shows the library's own scenes; by default the page draws its own artwork
+    preview: (p) => (
+      <AiLanding
+        {...p}
+        images={[
+          ['river-valley', 'Valley'],
+          ['downtown', 'Downtown'],
+          ['low-poly-aurora-hills', 'Aurora'],
+          ['companion-robot', 'Companion'],
+          ['low-poly-tiny-planet', 'Tiny Planet'],
+          ['low-poly-homestead', 'Homestead'],
+          ['low-poly-space-station', 'Orbit'],
+          ['forest-valley', 'Forest'],
+          ['low-poly-haunted-house', 'Haunted'],
+          ['low-poly-jellyfish', 'Jellyfish'],
+          ['low-poly-steam-train', 'Steam Train'],
+          ['low-poly-lion', 'Lion'],
+        ].map(([slug, title]) => ({ src: `/previews/${slug}.jpg`, alt: `${title}, a React Dimensions scene`, title }))}
+        style={{ position: 'absolute', inset: 0 }}
+      />
+    ),
+    files: ['AiLanding.jsx'],
     deps: [],
   },
   {
@@ -9567,6 +10433,140 @@ const ALL_COMPONENTS = [
       />
     ),
     files: ['HaloCarousel.jsx'],
+    deps: [],
+  },
+  {
+    slug: 'melting-glow',
+    name: 'Melting Glow',
+    category: 'Animation',
+    isNew: true,
+    description: 'Soft blobs of colour drift on slow loops and melt into one another, like light through frosted glass, leaning toward the pointer as it moves. Drawn small on a canvas and smeared by a CSS blur, so it stays cheap at any size, with a fine grain on top. Put anything inside it as a hero background.',
+    controls: [
+      { name: 'palette', type: 'select', options: ['dusk', 'ocean', 'ember', 'aurora', 'mono'], default: 'dusk' },
+      { name: 'speed', type: 'range', min: 0, max: 3, step: 0.1, default: 1 },
+      { name: 'blur', type: 'range', min: 20, max: 120, step: 2, default: 64, unit: 'px' },
+      { name: 'size', type: 'range', min: 0.5, max: 1.6, step: 0.05, default: 1 },
+      { name: 'follow', type: 'range', min: 0, max: 1, step: 0.05, default: 0.4, description: 'How far the blobs lean toward the pointer.' },
+      { name: 'grain', type: 'toggle', default: true },
+    ],
+    fill: true,
+    preview: (p) => (
+      <MeltingGlow {...p} style={{ position: 'absolute', inset: 0 }}>
+        <div style={{ color: '#fff', fontFamily: '"Segoe UI Variable Display", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", sans-serif', fontWeight: 600, fontSize: 'clamp(32px, 6vw, 64px)', letterSpacing: '-0.03em', textAlign: 'center', lineHeight: 1.08, padding: '0 8%' }}>Shape ideas in light</div>
+      </MeltingGlow>
+    ),
+    files: ['MeltingGlow.jsx'],
+    deps: [],
+  },
+  {
+    slug: 'focus-headline',
+    name: 'Focus Headline',
+    category: 'Animation',
+    isNew: true,
+    description: 'A headline that comes into focus word by word. In intro mode each word rises and sharpens out of a blur as it arrives; in scroll mode the words wait pale and light up one by one as you scroll the line through the view. Wrap a word in *asterisks* to set it in the accent colour.',
+    controls: [
+      { name: 'text', type: 'text', default: 'Shape ideas in light — the *next* dimension of design', maxLength: 140 },
+      { name: 'label', type: 'text', default: 'The approach', maxLength: 30 },
+      { name: 'mode', type: 'select', options: ['intro', 'scroll'], default: 'intro' },
+      { name: 'stagger', type: 'range', min: 30, max: 300, step: 10, default: 110, unit: 'ms' },
+      { name: 'blur', type: 'range', min: 0, max: 30, step: 1, default: 14, unit: 'px' },
+      { name: 'size', type: 'range', min: 28, max: 96, step: 2, default: 64, unit: 'px' },
+      { name: 'accent', type: 'color', default: '#7c5cff' },
+      { name: 'color', type: 'color', default: '#eef0f6' },
+      { name: 'background', type: 'color', default: '#05060c' },
+    ],
+    replay: true,
+    fill: true,
+    preview: (p) => <FocusHeadline {...p} style={{ position: 'absolute', inset: 0 }} />,
+    files: ['FocusHeadline.jsx'],
+    deps: [],
+  },
+  {
+    slug: 'depth-gallery',
+    name: 'Depth Gallery',
+    category: 'Animation',
+    isNew: true,
+    description: 'A wall of pictures with depth: as you scroll, the columns drift past each other at different speeds, and each card is sharp only near the middle of the view, softening, dimming and shrinking as it moves away, like passing out of the focus of a lens.',
+    controls: [
+      { name: 'columns', type: 'range', min: 2, max: 4, step: 1, default: 3 },
+      { name: 'drift', type: 'range', min: 0, max: 2, step: 0.1, default: 1, description: 'How far the columns slide against each other.' },
+      { name: 'focus', type: 'range', min: 0, max: 2, step: 0.1, default: 1, description: 'How strongly cards blur away from the middle.' },
+      { name: 'gap', type: 'range', min: 8, max: 40, step: 2, default: 22, unit: 'px' },
+      { name: 'radius', type: 'range', min: 0, max: 32, step: 1, default: 18, unit: 'px' },
+      { name: 'captions', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#05060c' },
+    ],
+    fill: true,
+    // the demo shows the library's own scenes; by default it draws its own artwork
+    preview: (p) => (
+      <DepthGallery
+        {...p}
+        images={[
+          ['river-valley', 'Valley'], ['downtown', 'Downtown'], ['low-poly-aurora-hills', 'Aurora'], ['companion-robot', 'Companion'],
+          ['low-poly-tiny-planet', 'Tiny Planet'], ['low-poly-homestead', 'Homestead'], ['low-poly-space-station', 'Orbit'], ['forest-valley', 'Forest'],
+          ['low-poly-haunted-house', 'Haunted'], ['low-poly-jellyfish', 'Jellyfish'], ['low-poly-steam-train', 'Steam Train'], ['low-poly-lion', 'Lion'],
+          ['low-poly-pagoda', 'Pagoda'], ['low-poly-ufo', 'UFO'], ['low-poly-octopus', 'Octopus'], ['low-poly-fountain', 'Fountain'],
+        ].map(([slug, title]) => ({ src: `/previews/${slug}.jpg`, alt: `${title}, a React Dimensions scene`, title }))}
+        style={{ position: 'absolute', inset: 0 }}
+      />
+    ),
+    files: ['DepthGallery.jsx'],
+    deps: [],
+  },
+  {
+    slug: 'drag-cards',
+    name: 'Drag Cards',
+    category: 'Animation',
+    isNew: true,
+    description: 'A row of cards you grab and throw sideways: let go mid-swipe and it glides on with friction, then settles with a card lined up; pull past either end and it stretches and springs back. With arrow buttons, arrow keys, a progress bar and icons that lift under the pointer.',
+    controls: [
+      { name: 'cardWidth', type: 'range', min: 220, max: 420, step: 10, default: 320, unit: 'px' },
+      { name: 'gap', type: 'range', min: 8, max: 40, step: 2, default: 16, unit: 'px' },
+      { name: 'friction', type: 'range', min: 0.85, max: 0.98, step: 0.01, default: 0.94, description: 'How long a throw keeps gliding: higher glides further.' },
+      { name: 'snap', type: 'toggle', default: true },
+      { name: 'theme', type: 'select', options: ['dark', 'light'], default: 'dark' },
+      { name: 'accent', type: 'color', default: '#7c5cff' },
+    ],
+    fill: true,
+    preview: (p) => <DragCards {...p} style={{ position: 'absolute', inset: 0 }} />,
+    files: ['DragCards.jsx'],
+    deps: [],
+  },
+  {
+    slug: 'benchmark-bars',
+    name: 'Benchmark Bars',
+    category: 'Animation',
+    isNew: true,
+    description: 'Benchmark bars that race to their values the first time they scroll into view, one after another, while the numbers count up; the leader is drawn in the accent gradient and hovering a row dims the rest. A card per group, or a compact list.',
+    controls: [
+      { name: 'layout', type: 'select', options: ['cards', 'compact'], default: 'cards' },
+      { name: 'duration', type: 'range', min: 400, max: 3000, step: 100, default: 1400, unit: 'ms' },
+      { name: 'stagger', type: 'range', min: 0, max: 400, step: 20, default: 120, unit: 'ms' },
+      { name: 'theme', type: 'select', options: ['dark', 'light'], default: 'dark' },
+      { name: 'accent', type: 'color', default: '#7c5cff' },
+      { name: 'accent2', type: 'color', default: '#ff8fb3' },
+    ],
+    replay: true,
+    fill: true,
+    preview: (p) => <BenchmarkBars {...p} style={{ position: 'absolute', inset: 0 }} />,
+    files: ['BenchmarkBars.jsx'],
+    deps: [],
+  },
+  {
+    slug: 'testimonial-slider',
+    name: 'Testimonial Slider',
+    category: 'Animation',
+    isNew: true,
+    description: 'Large testimonial cards (company, quote, person, an initials portrait and results) that change with a soft blur cross-fade. Advances on its own with a progress line, pauses on hover or focus, and can be swiped, clicked through or driven with the arrow keys.',
+    controls: [
+      { name: 'interval', type: 'range', min: 3, max: 15, step: 1, default: 7, unit: 's' },
+      { name: 'autoplay', type: 'toggle', default: true },
+      { name: 'theme', type: 'select', options: ['dark', 'light'], default: 'dark' },
+      { name: 'accent', type: 'color', default: '#7c5cff' },
+    ],
+    fill: true,
+    preview: (p) => <TestimonialSlider {...p} style={{ position: 'absolute', inset: 0 }} />,
+    files: ['TestimonialSlider.jsx'],
     deps: [],
   },
   {
@@ -10556,7 +11556,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'bento-specs',
     name: 'Bento Specs',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Bento',
     isNew: true,
     description: 'A product spec bento with animated numbers, model switcher and compare drawer.',
@@ -10572,7 +11572,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'max-festival',
     name: 'Max Festival',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Maximalism',
     isNew: true,
     description: 'A loud festival site: neon clash, collage, marquee nav and a readable line-up.',
@@ -10590,7 +11590,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'max-drop',
     name: 'Max Drop',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Maximalism',
     isNew: true,
     description: 'A streetwear drop page with a countdown, loud size grid and a shaking cop button.',
@@ -10607,7 +11607,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'max-editorial',
     name: 'Max Editorial',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Maximalism',
     isNew: true,
     description: 'A maximalist magazine page: mixed type, a pull quote over art, stamp buttons.',
@@ -10623,7 +11623,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'max-kids',
     name: 'Max Kids',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Maximalism',
     isNew: true,
     description: 'A bright counting game for kids with big answers, a buddy and a star trail.',
@@ -10638,7 +11638,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'max-profile',
     name: 'Max Profile',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Maximalism',
     isNew: true,
     description: 'An early-web style creator page with links, guestbook, top friends and a visitor counter.',
@@ -10654,7 +11654,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'min-reader',
     name: 'Min Reader',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Minimalism',
     isNew: true,
     description: 'A calm reading view: one serif, a 65-character measure and a pill that appears on scroll up.',
@@ -10670,7 +11670,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'min-todo',
     name: 'Min To-do',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Minimalism',
     isNew: true,
     description: 'A single-column to-do list with one accent, inline add and a quiet progress line.',
@@ -10685,7 +11685,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'min-portfolio',
     name: 'Min Portfolio',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Minimalism',
     isNew: true,
     description: 'A monochrome portfolio with big images, thin captions and an index view.',
@@ -10701,7 +11701,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'min-checkout',
     name: 'Min Checkout',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Minimalism',
     isNew: true,
     description: 'A one-step-per-screen guest checkout with inline errors and the total always in view.',
@@ -10714,24 +11714,9 @@ const ALL_COMPONENTS = [
     deps: [],
   },
   {
-    slug: 'min-settings',
-    name: 'Min Settings',
-    category: 'UI',
-    style: 'Minimalism',
-    isNew: true,
-    description: 'Plain grouped settings rows with instant toggles and a confirmed destructive action.',
-    controls: [
-      { name: 'accent', type: 'color', default: '#111111' },
-    ],
-    fill: true,
-    preview: (p) => <MinSettings {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['MinSettings.jsx'],
-    deps: [],
-  },
-  {
     slug: 'min-dashboard',
     name: 'Min Dashboard',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Minimalism',
     isNew: true,
     description: 'A quiet greyscale sales dashboard: KPIs, channel gauge, revenue vs target, heatmap.',
@@ -10747,7 +11732,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'skeu-delay',
     name: 'Skeu Delay',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Skeuomorphism',
     isNew: true,
     description: 'A stereo delay plugin with glossy knobs, physical faders and raised keys, in light, dark or split.',
@@ -10760,54 +11745,9 @@ const ALL_COMPONENTS = [
     deps: [],
   },
   {
-    slug: 'skeu-journal',
-    name: 'Skeu Journal',
-    category: 'UI',
-    style: 'Skeuomorphism',
-    isNew: true,
-    description: 'A stitched leather journal with a brass clasp, lined pages you can write on, a ribbon, section tabs and an index-card drawer.',
-    controls: [
-      { name: 'owner', type: 'text', default: 'June' },
-    ],
-    fill: true,
-    preview: (p) => <SkeuJournal {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['SkeuJournal.jsx'],
-    deps: [],
-  },
-  {
-    slug: 'skeu-camera',
-    name: 'Skeu Camera',
-    category: 'UI',
-    style: 'Skeuomorphism',
-    isNew: true,
-    description: 'An analogue camera with knurled ISO and shutter dials that change the viewfinder exposure, a mode switch, a chrome shutter and a film strip.',
-    controls: [
-
-    ],
-    fill: true,
-    preview: (p) => <SkeuCamera {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['SkeuCamera.jsx', 'ui/dial.js'],
-    deps: [],
-  },
-  {
-    slug: 'skeu-hifi',
-    name: 'Skeu Hi-Fi',
-    category: 'UI',
-    style: 'Skeuomorphism',
-    isNew: true,
-    description: 'A walnut hi-fi with a spinning record and swinging tonearm, glowing VU meters, chrome knobs, source push-buttons and a record crate.',
-    controls: [
-
-    ],
-    fill: true,
-    preview: (p) => <SkeuHifi {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['SkeuHifi.jsx', 'ui/dial.js', 'ui/onscreen.js'],
-    deps: [],
-  },
-  {
     slug: 'skeu-calendar',
     name: 'Skeu Calendar',
-    category: 'UI',
+    category: 'UI and Backgrounds',
     style: 'Skeuomorphism',
     isNew: true,
     description: 'A tear-off desk calendar with ring-binder Day/Week/Month tabs, a DONE rubber stamp and a corkboard of sticky notes.',
@@ -10817,21 +11757,6 @@ const ALL_COMPONENTS = [
     fill: true,
     preview: (p) => <SkeuCalendar {...p} style={{ position: 'absolute', inset: 0 }} />,
     files: ['SkeuCalendar.jsx'],
-    deps: [],
-  },
-  {
-    slug: 'skeu-console',
-    name: 'Skeu Console',
-    category: 'UI',
-    style: 'Skeuomorphism',
-    isNew: true,
-    description: 'An original retro handheld with a CRT menu, d-pad and A/B buttons that press down (keyboard too) and cartridges that slide in from a shelf.',
-    controls: [
-      { name: 'shell', type: 'color', default: '#8fcfc0' },
-    ],
-    fill: true,
-    preview: (p) => <SkeuConsole {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['SkeuConsole.jsx', 'ui/onscreen.js'],
     deps: [],
   },
   icon(HomeIcon, 'HomeIcon.jsx', 'home', 'Home', 'A house outline icon.'),
@@ -10860,7 +11785,7 @@ const ALL_COMPONENTS = [
 export const COMPONENTS = ALL_COMPONENTS.filter((c) => !HIDDEN_CATEGORIES.includes(c.category) && !HIDDEN_COMPONENTS.includes(c.slug))
 
 // Components that take children, so usage shows them as wrappers.
-export const WRAPPERS = ['TiltCard', 'DraftingGrid', 'LightSweep', 'Cyclorama', 'GradientSweep', 'SoftHorizon', 'SpringButton', 'MagneticButton']
+export const WRAPPERS = ['TiltCard', 'DraftingGrid', 'SpringButton', 'MagneticButton']
 
 // A component's files, from the cache ('' for any not loaded yet): call
 // loadSources(c) first, or use its result.

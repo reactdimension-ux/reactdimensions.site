@@ -13,26 +13,49 @@ const NAV = [
   'M10 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM10 2v2.5M10 15.5V18M2 10h2.5M15.5 10H18M4.3 4.3l1.8 1.8M13.9 13.9l1.8 1.8M4.3 15.7l1.8-1.8M13.9 6.1l1.8-1.8',
 ]
 
-const MONTHS = ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']
+// Kitebird Studio workspace, Monday 16 November 2026.
+const TASKS = [
+  ['Review homepage copy', 'Fernwood shop', 'Ines K.', '12:00'],
+  ['Finalise onboarding screens', 'Orbit app', 'Maya L.', '14:00'],
+  ['QA checkout flow on iOS', 'Fernwood shop', 'Theo B.', '16:30'],
+  ['Write 2.4.1 release notes', 'Orbit app', 'Sam O.', '17:00'],
+  ['Export icon set v3 for print', 'Lumen rebrand', 'Ines K.', '18:00'],
+]
+
+const MONTHS = ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct']
 const LINES = {
-  Visits: [46, 52, 30, 50, 66, 62, 82],
-  Views: [30, 40, 44, 36, 50, 58, 64],
+  Completed: [46, 52, 58, 50, 30, 66, 74],
+  Opened: [52, 55, 61, 49, 38, 71, 70],
 }
 
 const KPIS = [
-  ['Visitors today', '1,521', '', 'coral'],
-  ['Monthly visits', '32,211', '+10 %', 'teal'],
-  ['Page views', '351', '', 'yellow'],
-  ['Shares', '122', '+05 %', 'teal'],
+  ['Open tasks', '47', '5 due today', 'coral'],
+  ['Hours logged · Nov', '612 h', '+8 % vs Oct', 'teal'],
+  ['Files shared · Nov', '64', '', 'yellow'],
+  ['Team members', '9', '+1 new', 'teal'],
 ]
 
-const DOWNLOADS = [['Pack 3', '3,242'], ['Pack 1', '1,156'], ['Wallpaper 22', '921']]
+const DOWNLOADS = [
+  ['Lumen', '42', 'brand-guidelines-v3.pdf · client downloads · Nov 13'],
+  ['Orbit', '27', 'Orbit 2.4 TestFlight build · tester installs · Nov 14'],
+  ['Fernwood', '18', 'homepage-mockups.fig · review links opened · Nov 11'],
+  ['Lumen', '12', 'logo-pack-svg.zip · client downloads · Nov 9'],
+  ['Internal', '9', 'q4-roadmap.pdf · team views · Nov 4'],
+]
 
-const DONUT = [['Android', 38, 'teal'], ['Web', 30, 'blue'], ['iOS', 20, 'yellow'], ['Others', 12, 'coral']]
+const DONUT = [['Orbit app', 38, 'teal', 233], ['Fernwood', 30, 'blue', 184], ['Lumen', 20, 'yellow', 122], ['Internal', 12, 'coral', 73]]
+
+// 4-week calendar starting Mon 16 Nov; index 0 = Nov 16.
+const CAL_START = new Date(2026, 10, 16)
+const calDate = (i) => new Date(CAL_START.getFullYear(), CAL_START.getMonth(), CAL_START.getDate() + i)
 
 const EVENTS = [
-  ['12', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'],
-  ['18', 'Phasellus vehicula libero et dolor tempus.'],
+  ['Mon 16', '09:30', 'Studio standup (daily)'],
+  ['Wed 18', '14:00', 'Orbit client review, sprint 14'],
+  ['Fri 20', '16:00', 'Lumen brand handoff deadline'],
+  ['Wed 25', '11:00', 'Fernwood shop launch'],
+  ['Tue 1', '10:00', 'Orbit 2.5 sprint planning'],
+  ['Fri 4', '15:00', 'Orbit 2.5 App Store submission'],
 ]
 
 const Icon = ({ d }) => (
@@ -50,8 +73,8 @@ export default function FlatDashboardCards({
   style,
 }) {
   const [nav, setNav] = useState(1)
-  const [series, setSeries] = useState('Visits')
-  const [picked, setPicked] = useState(() => new Set([2, 5, 9, 14, 19]))
+  const [series, setSeries] = useState('Completed')
+  const [picked, setPicked] = useState(() => new Set([2, 4, 9, 15, 18]))
   const pts = LINES[series]
   const path = pts.map((v, i) => `${i ? 'L' : 'M'}${20 + i * 46} ${100 - v}`).join(' ')
   const col = { coral, teal, yellow, blue: '#2aa8d8' }
@@ -85,7 +108,7 @@ export default function FlatDashboardCards({
         .fc-kpi { grid-column: span 3; justify-content: center; }
         .fc-kpi small { font-size: 9px; letter-spacing: .06em; text-transform: uppercase; font-weight: 700; }
         .fc-kpi div { display: flex; align-items: baseline; justify-content: space-between; font-size: 22px; font-weight: 700; margin-top: 2px; }
-        .fc-kpi em { font-style: normal; font-size: 11px; font-weight: 500; }
+        .fc-kpi em { font-style: normal; font-family: inherit; color: inherit; opacity: .85; font-size: 11px; font-weight: 600; }
         .fc-down { grid-column: 1 / 6; }
         .fc-cal { grid-column: 6 / 13; }
         .fc-task { margin-bottom: 8px; }
@@ -139,37 +162,37 @@ export default function FlatDashboardCards({
 
       <div className="fc-grid">
         <section className="fc-card coral fc-tasks">
-          <h3 className="fc-t">Tasks</h3>
-          {[1, 2].map((n) => (
-            <div key={n} className="fc-task">
-              <b><i />Task {n}</b>
-              <p>Description: Lorem ipsum dolor sit amet, consectetur.</p>
+          <h3 className="fc-t"><span>Due today</span><span>Mon 16 Nov</span></h3>
+          {TASKS.map(([name, project, owner, due]) => (
+            <div key={name} className="fc-task">
+              <b><i />{name}</b>
+              <p>{project} · {owner} · due {due}</p>
             </div>
           ))}
         </section>
 
         <section className="fc-card fc-out fc-stats">
           <h3 className="fc-t">
-            <span>Statistics</span>
+            <span>Tasks per month · 2026</span>
             <span className="fc-seg">
               {Object.keys(LINES).map((k) => (
                 <button key={k} aria-pressed={k === series} onClick={() => setSeries(k)}>{k}</button>
               ))}
             </span>
           </h3>
-          <svg className="fc-chart" viewBox="0 0 330 120" preserveAspectRatio="none" role="img" aria-label={`${series} over time`}>
+          <svg className="fc-chart" viewBox="0 0 330 120" preserveAspectRatio="none" role="img" aria-label={`Tasks ${series.toLowerCase()} per month, April to October`}>
             <path d={path} fill="none" stroke={coral} strokeWidth="2" vectorEffect="non-scaling-stroke" />
             {pts.map((v, i) => <circle key={i} cx={20 + i * 46} cy={100 - v} r="3" fill={coral} />)}
           </svg>
           <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: '#4b5a66', padding: '4px 6px 0' }}>
-            {MONTHS.map((m) => <span key={m}>{m}</span>)}
+            {MONTHS.map((m, i) => <span key={m} style={{ textAlign: 'center' }}><b style={{ display: 'block', color: '#2b3a46' }}>{pts[i]}</b>{m}</span>)}
           </div>
         </section>
 
         <section className="fc-card teal fc-vis">
-          <h3 className="fc-t">Visitors</h3>
+          <h3 className="fc-t"><span>Hours by project</span><span>Nov</span></h3>
           <div className="fc-donut">
-            <svg viewBox="0 0 80 80" aria-hidden="true">
+            <svg viewBox="0 0 80 80" role="img" aria-label="612 hours logged in November, split by project">
               {DONUT.map(([name, pct, c]) => {
                 const len = (pct / 100) * C
                 const el = (
@@ -179,9 +202,11 @@ export default function FlatDashboardCards({
                 off += len
                 return el
               })}
+              <text x="40" y="40" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="700">612</text>
+              <text x="40" y="50" textAnchor="middle" fill="#fff" fontSize="7" letterSpacing=".5">HOURS</text>
             </svg>
             <ul className="fc-leg">
-              {DONUT.map(([name, , c]) => <li key={name}><i style={{ background: col[c] === teal ? '#fff' : col[c] }} />{name}</li>)}
+              {DONUT.map(([name, pct, c, h]) => <li key={name} style={{ whiteSpace: 'nowrap' }}><i style={{ background: col[c] === teal ? '#fff' : col[c] }} />{name}<span style={{ display: 'block', paddingLeft: 11, opacity: .85 }}>{h} h · {pct} %</span></li>)}
             </ul>
           </div>
         </section>
@@ -194,26 +219,30 @@ export default function FlatDashboardCards({
         ))}
 
         <section className="fc-card yellow fc-down">
-          <h3 className="fc-t">Downloads</h3>
+          <h3 className="fc-t"><span>Shared files · top this month</span><span>Downloads</span></h3>
           <ul className="fc-dl">
-            {DOWNLOADS.map(([n, v]) => (
-              <li key={n}><span>{n}</span><b>{v}</b><small>Lorem ipsum dolor sit amet.</small></li>
+            {DOWNLOADS.map(([n, v, note]) => (
+              <li key={note}><span>{n}</span><b>{v}</b><small>{note}</small></li>
             ))}
           </ul>
         </section>
 
         <section className="fc-card fc-out fc-cal">
-          <h3 className="fc-t"><span>Calendar</span><span style={{ color: coral }}>▾ June</span></h3>
+          <h3 className="fc-t"><span>Deadlines</span><span style={{ color: coral }}>▾ 16 Nov – 13 Dec</span></h3>
           <div className="fc-calbody">
             <div className="fc-days">
-              {Array.from({ length: 28 }, (_, i) => (
-                <button key={i} aria-label={`Day ${i + 1}`} aria-pressed={picked.has(i)}
-                  onClick={() => setPicked((s) => { const n = new Set(s); n.has(i) ? n.delete(i) : n.add(i); return n })} />
-              ))}
+              {Array.from({ length: 28 }, (_, i) => {
+                const d = calDate(i)
+                return (
+                  <button key={i} aria-label={`${d.toDateString()}${picked.has(i) ? ', deadline' : ''}`} aria-pressed={picked.has(i)}
+                    style={{ color: '#fff', fontSize: 9, fontWeight: 700 }}
+                    onClick={() => setPicked((s) => { const n = new Set(s); n.has(i) ? n.delete(i) : n.add(i); return n })}>{d.getDate()}</button>
+                )
+              })}
             </div>
             <div className="fc-ev">
-              <h5>Events</h5>
-              {EVENTS.map(([day, text]) => <p key={day}><b>{day}.</b><span>{text}</span></p>)}
+              <h5>Upcoming events</h5>
+              {EVENTS.map(([day, time, text]) => <p key={text}><b style={{ minWidth: 40 }}>{day}</b><b style={{ minWidth: 28, fontWeight: 400, opacity: .7 }}>{time}</b><span>{text}</span></p>)}
             </div>
           </div>
         </section>

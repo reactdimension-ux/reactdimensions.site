@@ -13,30 +13,47 @@ const RAIL = [
   'M10 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM10 2v2.5M10 15.5V18M2 10h2.5M15.5 10H18M4.3 4.3l1.8 1.8M13.9 13.9l1.8 1.8M4.3 15.7l1.8-1.8M13.9 6.1l1.8-1.8',
 ]
 
-const PINS = [[87, 'blue'], [76, 'cyan'], [54, 'purple'], [37, 'pink'], [18, 'red'], [9, 'orange']]
-const COLS = [[760, 70], [400, 36], [850, 82], [410, 40], [780, 74], [760, 66]]
+// Fictional company: Quillstack (B2B contract software). Today is mid-Q4 2026,
+// day 47 of 92. Six AEs, each carrying a $900k quarterly quota ($5.4M team).
+
+// Q4 quota attainment to date, per rep (team average 47% = $2.53M of $5.4M)
+const PINS = [[87, 'blue', 'Mei'], [76, 'cyan', 'Kofi'], [54, 'purple', 'Ana'], [37, 'pink', 'Ravi'], [18, 'red', 'Jonah'], [9, 'orange', 'Tomás']]
+// Q3 closed-won ARR per rep in $k; bar height = share of the $900k quota (sum $3.88M)
+const COLS = [['Ana', 760], ['Tomás', 400], ['Mei', 850], ['Jonah', 410], ['Kofi', 780], ['Ravi', 680]].map(([n, v]) => [n, v, Math.round((v / 900) * 100)])
+// Monthly bookings Jan-Oct, % of a $2,000k scale (x20 = $k). Jul-Sep 2026 = $3.88M.
 const AREAS = [
-  [20, 35, 30, 55, 45, 60, 70, 50, 62, 40],
+  [20, 35, 30, 55, 45, 60, 72, 52, 70, 65],
   [10, 25, 40, 30, 75, 20, 45, 55, 40, 30],
 ]
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct']
+// Win rate on qualified opportunities, % (bar width doubles it: 50% fills the row)
 const YEARS = [
-  ['2019', [[88, 'blue'], [70, 'blue2']]],
-  ['2018', [[0, 'blue'], [0, 'blue']]],
-  ['2017', [[46, 'pink'], [66, 'purple']]],
-  ['2016', [[0, 'blue'], [0, 'blue']]],
-  ['2015', [[44, 'red'], [74, 'orange'], [52, 'orange2']]],
+  ['2026', [[29, 'blue'], [47, 'orange']]],
+  ['2025', [[26, 'blue'], [43, 'orange']]],
+  ['2024', [[24, 'blue'], [44, 'orange']]],
+  ['2023', [[21, 'blue'], [41, 'orange']]],
+  ['2022', [[18, 'blue'], [38, 'orange']]],
 ]
-const WAVE = [{ x: 0, y: 30 }, { x: 1, y: 52 }, { x: 2, y: 82 }, { x: 3, y: 50 }, { x: 4, y: 86 }, { x: 5, y: 40 }, { x: 6, y: 58 }]
-const WAVE_B = [10, 30, 45, 20, 50, 25, 30]
+// Last week (Nov 8-14), team dials (pink) and connected calls (purple), 0-400 scale
+const WAVE = [{ x: 0, y: 6 }, { x: 1, y: 62 }, { x: 2, y: 82 }, { x: 3, y: 70 }, { x: 4, y: 86 }, { x: 5, y: 58 }, { x: 6, y: 8 }]
+const WAVE_B = [2, 22, 30, 26, 34, 20, 3]
 const DAYS = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa']
+// Largest open Q4 deals and their close probability
 const DONUTS = [45, 51, 64, 75]
+const DEALS = [
+  ['Ostrander Freight', '$310k', 'Negotiation', 'Mei'],
+  ['Brackwater Health', '$245k', 'Proposal', 'Kofi'],
+  ['Pellmore Foods', '$180k', 'Legal review', 'Ana'],
+  ['Varga Textiles', '$120k', 'Verbal yes', 'Ravi'],
+]
+// Ranked by Q3 closed-won; rating = customer CSAT out of 5
 const PEOPLE = [
-  ['Lorem Ipsum', 'Los Angeles', '4.7', 'lime', 'm'],
-  ['Lorem Ipsum', 'Los Angeles', '4.8', 'orange', 'f'],
-  ['Lorem Ipsum', 'Los Angeles', '5.0', 'purple', 'm'],
-  ['Lorem Ipsum', 'Los Angeles', '4.7', 'cyan', 'f'],
-  ['Dolor Amet', 'San Diego', '4.6', 'pink', 'm'],
-  ['Sit Consect', 'Seattle', '4.9', 'blue', 'f'],
+  ['Mei Lindqvist', 'Stockholm', '4.9', 'lime', 'f', 'Enterprise AE', 850],
+  ['Kofi Mensah', 'Toronto', '4.7', 'orange', 'm', 'Senior AE', 780],
+  ['Ana Reyes', 'Austin', '4.8', 'purple', 'f', 'Mid-Market AE', 760],
+  ['Ravi Menon', 'Singapore', '4.6', 'cyan', 'm', 'APAC AE', 680],
+  ['Jonah Feld', 'Chicago', '4.5', 'pink', 'm', 'SMB AE', 410],
+  ['Tomás Ibarra', 'Madrid', '4.4', 'blue', 'm', 'EMEA AE', 400],
 ]
 
 const Icon = ({ d, size = 18, sw = 1.6 }) => (
@@ -45,7 +62,7 @@ const Icon = ({ d, size = 18, sw = 1.6 }) => (
   </svg>
 )
 
-const Lorem = ({ children = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed nonummy' }) => <p className="fx-lorem">{children}</p>
+const Note = ({ children }) => <p className="fx-note">{children}</p>
 
 const poly = (arr, w, h, max = 100) => arr.map((v, i) => `${(i / (arr.length - 1)) * w},${h - (v / max) * h}`).join(' ')
 
@@ -115,7 +132,11 @@ export default function FlatDashboardProfiles({
         .fx-body { display: grid; grid-template-columns: minmax(0, 1fr) 200px; gap: 18px; padding: 18px; min-height: 0; min-width: 0; }
         .fx-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, minmax(0, 1fr)); gap: 18px; min-height: 0; min-width: 0; }
         .fx-c { background: #fff; border-radius: var(--r); padding: 12px 14px; min-width: 0; min-height: 0; overflow: hidden; display: flex; flex-direction: column; }
-        .fx-lorem { margin: 0; font-size: 7px; line-height: 1.5; color: #4b4f57; }
+        .fx-note { margin: 0; font-size: 7px; line-height: 1.5; color: #4b4f57; }
+        .fx-note b { color: #33373f; }
+        .fx-brand { font-weight: 700; font-size: 13px; color: #3b3f47; margin-left: -6px; white-space: nowrap; }
+        .fx-brand span { font-weight: 400; color: #8f949c; }
+        .fx-key { display: inline-block; width: 7px; height: 7px; border-radius: 2px; margin: 0 3px 0 8px; vertical-align: -1px; }
         .fx-h { margin: 0 0 8px; font-size: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: .03em; color: #33373f; }
         .fx-chart { flex: 1; min-height: 0; width: 100%; }
         .fx-ax { display: flex; justify-content: space-between; font-size: 7px; font-weight: 700; color: #33373f; }
@@ -125,6 +146,7 @@ export default function FlatDashboardProfiles({
         .fx-pin { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; }
         .fx-pin span { color: #fff; font-size: 7.5px; font-weight: 700; padding: 2px 4px; border-radius: 2px; position: relative; }
         .fx-pin span::after { content: ''; position: absolute; left: 50%; bottom: -4px; border: 4px solid transparent; border-bottom: 0; border-top-color: inherit; transform: translateX(-50%); }
+        .fx-pin em { font-family: inherit; font-style: normal; font-size: 7px; color: #6d727b; margin-bottom: -2px; }
         .fx-pin i { width: 9px; height: 9px; border-radius: 50%; background: #fff; border: 2.5px solid; }
         .fx-gears { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .fx-gears > div { display: flex; gap: 8px; align-items: flex-start; color: #b4b9c1; }
@@ -169,6 +191,7 @@ export default function FlatDashboardProfiles({
         .fx-loc svg { color: var(--lime); }
         .fx-rate { margin-left: auto; text-align: center; }
         .fx-rate b { display: block; font-size: 17px; font-weight: 600; }
+        .fx-rate small { display: block; font-size: 6.5px; color: #8f949c; text-transform: uppercase; letter-spacing: .04em; }
 
         @container (max-width: 1000px) {
           .fx-body { grid-template-columns: 1fr; }
@@ -189,13 +212,14 @@ export default function FlatDashboardProfiles({
       <button className="fx-burger" aria-label="Menu"><Icon d="M3 5h14M3 10h14M3 15h14" size={22} /></button>
 
       <header className="fx-top">
-        <div className="fx-logo">L</div>
-        <button className="fx-cta">Button</button>
+        <div className="fx-logo">Q</div>
+        <div className="fx-brand">Quillstack <span>· Sales</span></div>
+        <button className="fx-cta">New report</button>
         <div className="fx-icons">
           <Icon d="M2 5h16v11H2zM2 5l8 6 8-6" />
           <span className="fx-bell"><Icon d="M5 14V9a5 5 0 0 1 10 0v5l1.5 2h-13zM8.5 18h3" /><b>3</b></span>
         </div>
-        <div className="fx-user"><Avatar hair="#cfd4da" kind="m" /><span>Lorem Ipsum ▾</span></div>
+        <div className="fx-user"><Avatar hair="#cfd4da" kind="m" /><span>Dana Whitfield ▾</span></div>
       </header>
 
       <nav className="fx-rail" aria-label="Sections">
@@ -208,19 +232,24 @@ export default function FlatDashboardProfiles({
         <div className="fx-grid">
           {/* 1. percentage pins on a line */}
           <section className="fx-c">
+            <h3 className="fx-h">Q4 quota attainment by rep · day 47 of 92</h3>
             <div className="fx-pins">
-              {PINS.map(([v, c]) => (
+              {PINS.map(([v, c, who]) => (
                 <div key={v} className="fx-pin">
+                  <em>{who}</em>
                   <span style={{ background: col[c], borderColor: col[c] }}>{v}%</span>
                   <i style={{ borderColor: col[c] }} />
                 </div>
               ))}
             </div>
             <div className="fx-gears">
-              {[0, 1].map((i) => (
+              {[
+                <>Team at <b>47%</b> of the <b>$5.4M</b> Q4 quota; <b>$2.87M</b> still to close by Dec 31</>,
+                <>Quarter is 51% elapsed: <b>3 of 6</b> reps are on pace, 2 need a pipeline review</>,
+              ].map((t, i) => (
                 <div key={i}>
                   <Icon d="M10 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM10 2v2.5M10 15.5V18M2 10h2.5M15.5 10H18M4.3 4.3l1.8 1.8M13.9 13.9l1.8 1.8M4.3 15.7l1.8-1.8M13.9 6.1l1.8-1.8" size={20} />
-                  <Lorem>Lorem ipsum dolor sit amet, consectetuer lorem sit</Lorem>
+                  <Note>{t}</Note>
                 </div>
               ))}
             </div>
@@ -228,18 +257,20 @@ export default function FlatDashboardProfiles({
 
           {/* 2. column bars with selects */}
           <section className="fx-c">
+            <h3 className="fx-h">Closed-won ARR per rep, $k · grey = $900k quota</h3>
             <div className="fx-bars">
               <div className="fx-colw">
                 <div className="fx-cols">
-                  {COLS.map(([n, h]) => <div key={n + '' + h} className="fx-col"><i style={{ height: `${h}%` }} /></div>)}
+                  {COLS.map(([n, v, h]) => <div key={n} className="fx-col" title={`${n}: $${v}k of $900k`}><i style={{ height: `${h}%` }} /></div>)}
                 </div>
                 <div className="fx-ax" style={{ fontWeight: 400, fontSize: 7, marginTop: 4, display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', textAlign: 'center' }}>
-                  {COLS.map(([n], i) => <span key={i}>{n}</span>)}
+                  {COLS.map(([n, v]) => <span key={n}><b>${v}k</b><br />{n}</span>)}
                 </div>
               </div>
               <div className="fx-sels">
-                <select aria-label="Filter one" defaultValue="a"><option value="a">Lorem ipsum</option><option>Dolor sit</option><option>Amet</option></select>
-                <select aria-label="Filter two" defaultValue="a"><option value="a">Lorem ipsum</option><option>Consectetur</option><option>Elit</option></select>
+                <select aria-label="Period" defaultValue="q3"><option value="q3">Last quarter (Q3)</option><option value="q4">This quarter</option><option value="ytd">Year to date</option></select>
+                <select aria-label="Region" defaultValue="all"><option value="all">All regions</option><option>North America</option><option>EMEA</option><option>APAC</option></select>
+                <Note>Q3 total <b>$3.88M</b>, 72% of team quota</Note>
               </div>
             </div>
           </section>
@@ -247,16 +278,19 @@ export default function FlatDashboardProfiles({
           {/* 3. overlapping areas on a grid */}
           <section className="fx-c">
             <div className="fx-radios" role="radiogroup">
-              {[0, 1].map((i) => (
+              {[
+                <><b>2026 bookings</b>, $k per month · $10.1M Jan–Oct (+36%)</>,
+                <><b>2025 bookings</b>, $k per month · $7.4M Jan–Oct</>,
+              ].map((t, i) => (
                 <button key={i} role="radio" className="fx-radio" aria-checked={series === i} onClick={() => setSeries(i)}>
-                  <i /><Lorem />
+                  <i /><Note>{t}</Note>
                 </button>
               ))}
             </div>
-            <div className="fx-ax">{[100, 200, 300, 400, 500, 600, 700, 800, 900, 1000].map((n) => <span key={n}>{n}</span>)}</div>
-            <svg className="fx-chart" viewBox="0 0 300 80" preserveAspectRatio="none" role="img" aria-label="Two overlapping area series">
+            <div className="fx-ax">{MONTHS.map((n) => <span key={n}>{n}</span>)}</div>
+            <svg className="fx-chart" viewBox="0 0 300 80" preserveAspectRatio="none" role="img" aria-label="Monthly bookings 2026 vs 2025, gridlines every $500k up to $2,000k">
               {Array.from({ length: 10 }, (_, i) => <line key={`v${i}`} x1={i * 33.3} x2={i * 33.3} y1="0" y2="80" stroke="#e3e6ea" vectorEffect="non-scaling-stroke" />)}
-              {Array.from({ length: 4 }, (_, i) => <line key={`h${i}`} x1="0" x2="300" y1={i * 26.7} y2={i * 26.7} stroke="#e3e6ea" vectorEffect="non-scaling-stroke" />)}
+              {Array.from({ length: 5 }, (_, i) => <line key={`h${i}`} x1="0" x2="300" y1={i * 20} y2={i * 20} stroke="#e3e6ea" vectorEffect="non-scaling-stroke" />)}
               {[0, 1].map((k) => {
                 const c = k ? lime : blue
                 const on = k === series
@@ -272,23 +306,34 @@ export default function FlatDashboardProfiles({
 
           {/* 4. bars by year */}
           <section className="fx-c">
-            <h3 className="fx-h">Lorem ipsum dolor sit amet</h3>
+            <h3 className="fx-h">
+              Win rate on qualified opps, %
+              <span className="fx-key" style={{ background: col.blue }} /><span style={{ fontWeight: 400, textTransform: 'none' }}>New business</span>
+              <span className="fx-key" style={{ background: col.orange }} /><span style={{ fontWeight: 400, textTransform: 'none' }}>Expansion</span>
+            </h3>
             <div className="fx-years">
               {YEARS.map(([y, bars]) => (
                 <div key={y} className="fx-yr">
                   <span>{y}</span>
-                  <div>{bars.filter(([w]) => w).map(([w, c], i) => <i key={i} style={{ width: `${w}%`, background: col[c] }} />)}</div>
+                  <div>{bars.filter(([w]) => w).map(([w, c], i) => <i key={i} title={`${w}%`} style={{ width: `${w * 2}%`, background: col[c] }} />)}</div>
                 </div>
               ))}
+            </div>
+            <div className="fx-ax" style={{ fontWeight: 400, fontSize: 7, color: '#6d727b', paddingLeft: 34, marginTop: 4 }}>
+              {[0, 10, 20, 30, 40, 50].map((n) => <span key={n}>{n}%</span>)}
             </div>
           </section>
 
           {/* 5. dotted smooth area chart */}
           <section className="fx-c">
-            <h3 className="fx-h" style={{ textAlign: 'center' }}>Lorem ipsum dolor sit amet</h3>
+            <h3 className="fx-h" style={{ textAlign: 'center' }}>
+              Calls last week, Nov 8–14
+              <span className="fx-key" style={{ background: pink }} /><span style={{ fontWeight: 400, textTransform: 'none' }}>Dials (1,488)</span>
+              <span className="fx-key" style={{ background: purple }} /><span style={{ fontWeight: 400, textTransform: 'none' }}>Connects (548)</span>
+            </h3>
             <div style={{ display: 'grid', gridTemplateColumns: '20px 1fr', gap: 6, flex: 1, minHeight: 0 }}>
               <div className="fx-ax" style={{ flexDirection: 'column', fontWeight: 400, fontSize: 7 }}>{[400, 300, 200, 100, 0].map((n) => <span key={n}>{n}</span>)}</div>
-              <svg className="fx-chart" viewBox="0 0 300 100" preserveAspectRatio="none" role="img" aria-label="Weekly area chart">
+              <svg className="fx-chart" viewBox="0 0 300 100" preserveAspectRatio="none" style={{ height: '100%' }} role="img" aria-label="Team dials and connected calls per day last week, 0 to 400 calls">
                 <path d={`${smooth(WAVE_B, 300, 100)} L300 100 L0 100 Z`} fill={purple} opacity=".35" />
                 <path d={`${smooth(WAVE.map((p) => p.y), 300, 100)} L300 100 L0 100 Z`} fill={pink} opacity=".3" />
                 <path d={smooth(WAVE.map((p) => p.y), 300, 100)} fill="none" stroke={pink} strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
@@ -301,10 +346,11 @@ export default function FlatDashboardProfiles({
 
           {/* 6. numbered list with donuts */}
           <section className="fx-c">
+            <h3 className="fx-h">Largest open Q4 deals · close probability</h3>
             <div className="fx-steps">
               <div className="fx-list">
-                {[1, 2, 3, 4].map((n) => (
-                  <div key={n}><span className="fx-dia"><b>{n}</b></span><Lorem>Lorem ipsum dolor sit amet, consectetuer adipiscing</Lorem></div>
+                {DEALS.map(([co, amt, stage, owner], i) => (
+                  <div key={co}><span className="fx-dia"><b>{i + 1}</b></span><Note><b>{co}</b> · {amt}<br />{stage} · {owner} · {DONUTS[i]}%</Note></div>
                 ))}
               </div>
               <div className="fx-dgrid">
@@ -334,19 +380,20 @@ export default function FlatDashboardProfiles({
         {/* profile cards with up / down paging */}
         <aside className="fx-people" aria-label="Team">
           <button className="fx-arrow up" aria-label="Previous" disabled={first === 0} onClick={() => setFirst((f) => Math.max(0, f - 1))}><Icon d="M5 12l5-5 5 5" sw={2} /></button>
-          {PEOPLE.slice(first, first + shown).map(([name, city, rate, c, kind], i) => (
+          {PEOPLE.slice(first, first + shown).map(([name, city, rate, c, kind, role, won], i) => (
             <div key={first + i} className="fx-person">
-              <h3 className="fx-h">Lorem ipsum dolor sit amet</h3>
+              <h3 className="fx-h">#{first + i + 1} in Q3 · ${won}k closed</h3>
               <div className="fx-prow">
                 <Avatar hair={col[c]} kind={kind} />
                 <div style={{ minWidth: 0 }}>
                   <strong>{name}</strong>
-                  <small>Manager</small>
+                  <small>{role}</small>
                   <span className="fx-loc"><Icon d="M10 18s6-5.5 6-10a6 6 0 0 0-12 0c0 4.5 6 10 6 10zM10 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" size={9} sw={2} />{city}</span>
                 </div>
                 <div className="fx-rate">
                   <svg viewBox="0 0 20 20" width="14" height="14" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z" fill="#f6a623" /></svg>
                   <b>{rate}</b>
+                  <small>CSAT</small>
                 </div>
               </div>
             </div>
