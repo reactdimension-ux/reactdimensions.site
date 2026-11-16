@@ -371,6 +371,12 @@ import LowPolyTreehouseModel from '../lib/LowPolyTreehouseModel.jsx'
 import LowPolyFountainModel from '../lib/LowPolyFountainModel.jsx'
 import LowPolyHauntedHouseModel from '../lib/LowPolyHauntedHouseModel.jsx'
 import LowPolyTinyPlanetModel from '../lib/LowPolyTinyPlanetModel.jsx'
+import LowPolyCrabModel from '../lib/LowPolyCrabModel.jsx'
+import LowPolyOctopusModel from '../lib/LowPolyOctopusModel.jsx'
+import LowPolyFlamingoModel from '../lib/LowPolyFlamingoModel.jsx'
+import LowPolyHedgehogModel from '../lib/LowPolyHedgehogModel.jsx'
+import LowPolyParrotModel from '../lib/LowPolyParrotModel.jsx'
+import LowPolyDeerModel from '../lib/LowPolyDeerModel.jsx'
 import LowPolyBalloonModel from '../lib/LowPolyBalloonModel.jsx'
 import LowPolySailboatModel from '../lib/LowPolySailboatModel.jsx'
 import LowPolyHourglassModel from '../lib/LowPolyHourglassModel.jsx'
@@ -5529,6 +5535,120 @@ const ALL_COMPONENTS = [
     preview: (p) => <LowPolyTinyPlanetModel {...p} height="100%" />,
     fill: true,
     files: ['LowPolyTinyPlanetModel.jsx', 'lowpoly/TinyPlanet.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-crab',
+    name: 'Low Poly Crab',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly crab on a patch of beach: a broad shell, eyes on stalks, eight jointed legs and two big claws. It scuttles sideways and back, claws raised; tap it and it snaps both claws with a clack.',
+    controls: [
+      { name: 'look', type: 'select', options: ['red', 'blue', 'orange', 'sand'], default: 'red' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyCrabModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyCrabModel.jsx', 'lowpoly/Crab.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-octopus',
+    name: 'Low Poly Octopus',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly octopus over a sandy sea floor: a round head and eight tapering tentacles that wave in a rolling pattern. Tap it and it squirts a puff of ink and jets upward, tentacles trailing.',
+    controls: [
+      { name: 'look', type: 'select', options: ['coral', 'purple', 'teal', 'gold'], default: 'coral' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#16263a' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyOctopusModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyOctopusModel.jsx', 'lowpoly/Octopus.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-flamingo',
+    name: 'Low Poly Flamingo',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly flamingo standing on one leg in a shallow pool, S-curved neck and bent beak, swaying to keep its balance. Tap it and it swaps legs and flaps its wings.',
+    controls: [
+      { name: 'look', type: 'select', options: ['pink', 'coral', 'white', 'neon'], default: 'pink' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyFlamingoModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyFlamingoModel.jsx', 'lowpoly/Flamingo.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-hedgehog',
+    name: 'Low Poly Hedgehog',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly hedgehog on a mossy patch: a round body covered in cone spines, a pointed snout and a twitching nose. It snuffles about; tap it and it curls into a spiky ball and rolls, then uncurls.',
+    controls: [
+      { name: 'look', type: 'select', options: ['brown', 'grey', 'sandy', 'dark'], default: 'brown' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyHedgehogModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyHedgehogModel.jsx', 'lowpoly/Hedgehog.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-parrot',
+    name: 'Low Poly Parrot',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A bright low-poly parrot on a perch, with a hooked beak, folded wings and a long tail. It bobs its head and shuffles; tap it and it squawks, ruffling its feathers and spreading its wings.',
+    controls: [
+      { name: 'look', type: 'select', options: ['scarlet', 'blue', 'green', 'cockatoo'], default: 'scarlet' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyParrotModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyParrotModel.jsx', 'lowpoly/Parrot.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-deer',
+    name: 'Low Poly Deer',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly deer in a meadow, with slim long legs, antlers and a white tail. It grazes, lifts its head and flicks its ears; tap it and it lifts its head, bounds away across the meadow and trots back.',
+    controls: [
+      { name: 'look', type: 'select', options: ['red', 'fallow', 'white', 'reindeer'], default: 'red' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyDeerModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyDeerModel.jsx', 'lowpoly/Deer.jsx', 'lowpoly/kit.jsx'],
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
