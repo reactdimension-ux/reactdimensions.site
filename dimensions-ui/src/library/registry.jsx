@@ -106,6 +106,7 @@ import HeadParallax from '../lib/HeadParallax.jsx'
 import HotkeyHints from '../lib/HotkeyHints.jsx'
 import IdleAttract from '../lib/IdleAttract.jsx'
 import KeyCarousel from '../lib/KeyCarousel.jsx'
+import HaloCarousel from '../lib/HaloCarousel.jsx'
 import NudgePart from '../lib/NudgePart.jsx'
 import PinchTwist from '../lib/PinchTwist.jsx'
 import PresenceCursors from '../lib/PresenceCursors.jsx'
@@ -9517,6 +9518,55 @@ const ALL_COMPONENTS = [
     fill: true,
     preview: (p) => <KeyCarousel {...p} style={{ position: 'absolute', inset: 0 }} />,
     files: ['KeyCarousel.jsx'],
+    deps: [],
+  },
+  {
+    slug: 'halo-carousel',
+    name: 'Halo Carousel',
+    category: 'Animation',
+    isNew: true,
+    description: 'A ring of cards turning in 3D with plain CSS: cards bend round the ring, fade as they turn away and catch a sweep of light at the front, over a glossy floor that mirrors them. It drifts or steps on its own; drag or flick it and it glides with momentum, then settles on a card. Cylinder, orbit, wheel and panorama shapes, four entrances, prev/next buttons, dots, keyboard control and screen-reader announcements.',
+    controls: [
+      { name: 'preset', type: 'select', options: ['cylinder', 'orbit', 'wheel', 'panorama'], default: 'cylinder' },
+      { name: 'intro', type: 'select', options: ['rise', 'assemble', 'spin', 'none'], default: 'rise' },
+      { name: 'autoplay', type: 'select', options: ['drift', 'step', 'off'], default: 'drift' },
+      { name: 'direction', type: 'select', options: ['left', 'right'], default: 'left' },
+      { name: 'cardWidth', type: 'range', min: 120, max: 340, step: 10, default: 220, unit: 'px' },
+      { name: 'aspectRatio', type: 'range', min: 0.6, max: 1.8, step: 0.05, default: 1 },
+      { name: 'gap', type: 'range', min: 0, max: 80, step: 1, default: 25, unit: 'px' },
+      { name: 'speed', type: 'range', min: 2, max: 60, step: 1, default: 14 },
+      { name: 'depthFade', type: 'range', min: 0, max: 1, step: 0.05, default: 0.55 },
+      { name: 'sheen', type: 'range', min: 0, max: 1, step: 0.05, default: 0.6, description: 'Strength of the band of light that sweeps across a card as it turns to the front.' },
+      { name: 'reflection', type: 'toggle', default: true, description: 'Stands the ring on a glossy floor that mirrors it (cylinder and orbit).' },
+      { name: 'controls', type: 'toggle', default: true, description: 'Shows prev/next buttons and a row of dots.' },
+      { name: 'captions', type: 'toggle', default: true },
+      { name: 'accent', type: 'color', default: '#ff4d1a' },
+      { name: 'background', type: 'color', default: '#0b0b10' },
+    ],
+    fill: true,
+    // the demo shows thumbnails of the library's own 3D scenes; by default the component draws its own artwork
+    preview: (p) => (
+      <HaloCarousel
+        {...p}
+        fadeColor={p.background}
+        items={[
+          ['downtown', 'Downtown', '3D scene'],
+          ['river-valley', 'River Valley', '3D scene'],
+          ['companion-robot', 'Companion Robot', 'Gadget'],
+          ['low-poly-homestead', 'Homestead', 'Low poly'],
+          ['forest-valley', 'Forest Valley', '3D scene'],
+          ['low-poly-bear', 'Bear', 'Low poly'],
+          ['low-poly-steam-train', 'Steam Train', 'Low poly'],
+          ['low-poly-tiny-planet', 'Tiny Planet', 'Low poly'],
+          ['low-poly-haunted-house', 'Haunted House', 'Low poly'],
+          ['low-poly-lion', 'Lion', 'Low poly'],
+          ['low-poly-aurora-hills', 'Aurora Hills', 'Low poly'],
+          ['low-poly-space-station', 'Space Station', 'Low poly'],
+        ].map(([slug, title, subtitle]) => ({ src: `/previews/${slug}.jpg`, alt: `${title}, a React Dimensions component`, title, subtitle }))}
+        style={{ position: 'absolute', inset: 0 }}
+      />
+    ),
+    files: ['HaloCarousel.jsx'],
     deps: [],
   },
   {
