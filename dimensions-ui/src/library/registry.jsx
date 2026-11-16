@@ -356,6 +356,11 @@ import LowPolyWaterfallModel from '../lib/LowPolyWaterfallModel.jsx'
 import LowPolyDioramaModel from '../lib/LowPolyDioramaModel.jsx'
 import LowPolyHomesteadModel from '../lib/LowPolyHomesteadModel.jsx'
 import LowPolyBearModel from '../lib/LowPolyBearModel.jsx'
+import LowPolyLionModel from '../lib/LowPolyLionModel.jsx'
+import LowPolyBengalTigerModel from '../lib/LowPolyBengalTigerModel.jsx'
+import LowPolyLeopardModel from '../lib/LowPolyLeopardModel.jsx'
+import LowPolyDogModel from '../lib/LowPolyDogModel.jsx'
+import LowPolyCatModel from '../lib/LowPolyCatModel.jsx'
 import LowPolyBalloonModel from '../lib/LowPolyBalloonModel.jsx'
 import LowPolySailboatModel from '../lib/LowPolySailboatModel.jsx'
 import LowPolyHourglassModel from '../lib/LowPolyHourglassModel.jsx'
@@ -5229,6 +5234,101 @@ const ALL_COMPONENTS = [
     preview: (p) => <LowPolyBearModel {...p} height="100%" />,
     fill: true,
     files: ['LowPolyBearModel.jsx', 'lowpoly/Bear.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-lion',
+    name: 'Low Poly Lion',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly lion built the same way as the Low Poly Bear: a tawny body on stubby legs, a shaggy mane and a tufted tail on a patch of savanna. It breathes, sniffs, looks about and swings its tail; tap it and it throws its head back and roars.',
+    controls: [
+      { name: 'look', type: 'select', options: ['classic', 'golden', 'white', 'dark'], default: 'classic' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyLionModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyLionModel.jsx', 'lowpoly/Lion.jsx', 'lowpoly/quadruped.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-bengal-tiger',
+    name: 'Low Poly Bengal Tiger',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly tiger built the same way as the Low Poly Bear: an orange body wrapped in black stripes, a white muzzle with whiskers and a striped tail. It breathes, sniffs and swings its tail; tap it and it crouches, pounces, lands with a thud and pads back.',
+    controls: [
+      { name: 'look', type: 'select', options: ['orange', 'white', 'golden', 'siberian'], default: 'orange' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyBengalTigerModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyBengalTigerModel.jsx', 'lowpoly/BengalTiger.jsx', 'lowpoly/quadruped.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-leopard',
+    name: 'Low Poly Leopard',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A lean low-poly leopard built the same way as the Low Poly Bear: a spotted golden coat, amber eyes, whiskers and a long curling tail. It breathes, sniffs and swings its tail; tap it and it crouches, pounces, lands and pads back. Also as a snow leopard, jaguar and black panther.',
+    controls: [
+      { name: 'look', type: 'select', options: ['leopard', 'snow', 'jaguar', 'black'], default: 'leopard' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyLeopardModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyLeopardModel.jsx', 'lowpoly/Leopard.jsx', 'lowpoly/quadruped.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-dog',
+    name: 'Low Poly Dog',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A low-poly dog built the same way as the Low Poly Bear: floppy ears, a longer snout and a waggy tail on a meadow. It breathes, sniffs, looks about and wags; tap it and it bounces up in two happy hops, spinning and barking.',
+    controls: [
+      { name: 'look', type: 'select', options: ['golden', 'chocolate', 'dalmatian', 'husky'], default: 'golden' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyDogModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyDogModel.jsx', 'lowpoly/Dog.jsx', 'lowpoly/quadruped.jsx', 'lowpoly/kit.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'low-poly-cat',
+    name: 'Low Poly Cat',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A slender low-poly cat built the same way as the Low Poly Bear: pointed ears, slit-pupil eyes, whiskers and a tail curving up. It breathes, sniffs and swishes its tail; tap it and it arches its back, fur up and tail in the air, and hisses.',
+    controls: [
+      { name: 'look', type: 'select', options: ['ginger', 'black', 'tabby', 'calico'], default: 'ginger' },
+      { name: 'float', type: 'toggle', default: true },
+      { name: 'background', type: 'color', default: '#eceaf1' },
+      { name: 'autoRotate', type: 'toggle', default: true },
+    ],
+    replay: true,
+    preview: (p) => <LowPolyCatModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyCatModel.jsx', 'lowpoly/Cat.jsx', 'lowpoly/quadruped.jsx', 'lowpoly/kit.jsx'],
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
