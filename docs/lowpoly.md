@@ -23,6 +23,8 @@ level should add for the next:
 4. [Level 4, hard](lowpoly-level-4-hard.md)
 5. [Level 5, hardest (rigged animals)](lowpoly-level-5-hardest.md)
 
+The next 50 (items 51-100) are in [Low poly 2](lowpoly-2.md).
+
 ## Nature
 
 | # | Item | Idle | Tap |
