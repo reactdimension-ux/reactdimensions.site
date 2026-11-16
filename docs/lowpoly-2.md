@@ -138,4 +138,5 @@ The **Level** column uses the same scale as the first set:
 
 | Built | Component |
 | --- | --- |
-| | None yet |
+| ✓ | Level 1: Moon (57), Rubber Duck (73), Light Bulb (77), Mailbox (98) |
+| ✓ | Level 2: Bamboo Grove (53), Ringed Planet (58), Alarm Clock (72), Cupcake (74), Ice Cream Cone (75), Coffee Mug (76), Compass (79), Arcade Joystick (82), Rowboat (89), Igloo (92), Torii Gate (96) |
