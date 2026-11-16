@@ -21,7 +21,16 @@ const BASE_R = 1.12
 const BASE_H = 0.8
 const BODY_H = 2.5
 const NECK_Y = BASE_H + BODY_H + 0.06 // the pan/tilt joint
-const HEAD = { w: 3.5, h: 2.5, d: 0.5, r: 0.85, lift: 1.38 }
+const HEAD = { w: 3.5, h: 2.5, d: 0.5, r: 0.85 } // at screenSize 1, screenAspect 1.4
+
+// The head's outline for a screen size (a scale) and shape (width over
+// height). The area scales with the size; the shape trades width for height.
+function headDims(size, aspect) {
+  const k = Math.sqrt(aspect / 1.4)
+  const w = HEAD.w * size * k
+  const h = HEAD.h * size / k
+  return { w, h, d: HEAD.d, r: Math.min(HEAD.r * size, Math.min(w, h) * 0.34), lift: h / 2 + 0.13 }
+}
 const PAN = 1.05 // how far the head may turn either way (radians)
 const TILT = [-0.32, 0.42]
 
@@ -68,24 +77,34 @@ function knitTextures() {
 }
 
 // The screen: a canvas redrawn as the face animates.
+// Faces are designed on a 640 x 400 frame, fitted into the middle of
+// whatever shape the screen is; the background and rain fill all of it.
 const SW = 640
 const SH = 400
 
 function drawFace(g, face, t, look, accent, pulse) {
+  const W = g.canvas.width
+  const Hc = g.canvas.height
+  g.setTransform(1, 0, 0, 1, 0, 0)
   g.fillStyle = '#07090d'
-  g.fillRect(0, 0, SW, SH)
+  g.fillRect(0, 0, W, Hc)
   if (face === 'weather') {
-    // rain falling past a red umbrella
     g.strokeStyle = 'rgba(70, 110, 170, 0.55)'
     g.lineWidth = 2
-    for (let i = 0; i < 26; i++) {
-      const x0 = ((i * 97.3) % SW) + ((t * 140) % 80)
-      const y0 = ((i * 61.7 + t * 260) % (SH + 160)) - 120
+    const n = Math.round((26 * W * Hc) / (SW * SH))
+    for (let i = 0; i < n; i++) {
+      const x0 = ((i * 97.3) % W) + ((t * 140) % 80)
+      const y0 = ((i * 61.7 + t * 260) % (Hc + 160)) - 120
       g.beginPath()
       g.moveTo(x0, y0)
       g.lineTo(x0 - 26, y0 + 70)
       g.stroke()
     }
+  }
+  const u = Math.min(W / SW, Hc / SH)
+  g.setTransform(u, 0, 0, u, (W - SW * u) / 2, (Hc - SH * u) / 2)
+  if (face === 'weather') {
+    // a red umbrella in the rain
     const cx = SW / 2
     const cy = SH * 0.47
     const R = 118
@@ -237,34 +256,38 @@ function bodyGeometry() {
 
 // ---------------------------------------------------------------- the robot
 
-export default function Robot({ face = 'weather', follow = true, shellColor = '#f4f4f1', fabricColor = '#d9d9d6', accentColor = '#e8411f', onChange }) {
+export default function Robot({ face = 'weather', screenSize = 1, screenAspect = 1.4, follow = true, shellColor = '#f4f4f1', fabricColor = '#d9d9d6', accentColor = '#e8411f', onChange }) {
   const gl = useThree((s) => s.gl)
   const controls = useThree((s) => s.controls)
   const pan = useRef()
   const tilt = useRef()
   const ring = useRef()
 
+  const H = useMemo(() => headDims(screenSize, screenAspect), [screenSize, screenAspect])
   const geo = useMemo(() => {
-    const shell = new THREE.ExtrudeGeometry(headShape(HEAD.w - 0.24, HEAD.h - 0.24, HEAD.r), { depth: HEAD.d, bevelEnabled: true, bevelThickness: 0.16, bevelSize: 0.15, bevelSegments: 8, curveSegments: 24 })
-    shell.translate(0, 0, -HEAD.d / 2)
+    const shell = new THREE.ExtrudeGeometry(headShape(H.w - 0.24, H.h - 0.24, H.r), { depth: H.d, bevelEnabled: true, bevelThickness: 0.16, bevelSize: 0.15, bevelSegments: 8, curveSegments: 24 })
+    shell.translate(0, 0, -H.d / 2)
     shell.computeVertexNormals()
-    const glass = boxUV(new THREE.ShapeGeometry(headShape(HEAD.w - 0.52, HEAD.h - 0.6, HEAD.r - 0.25, 0.06), 24))
-    const screen = boxUV(new THREE.ShapeGeometry(headShape(HEAD.w - 0.74, HEAD.h - 0.8, HEAD.r - 0.36, 0.06), 24))
+    const glass = boxUV(new THREE.ShapeGeometry(headShape(H.w - 0.52, H.h - 0.6, Math.max(0.1, H.r - 0.25), 0.06), 24))
+    const screen = boxUV(new THREE.ShapeGeometry(headShape(H.w - 0.74, H.h - 0.8, Math.max(0.08, H.r - 0.36), 0.06), 24))
     return { shell, glass, screen, body: bodyGeometry() }
-  }, [])
+  }, [H])
   useEffect(() => () => Object.values(geo).forEach((g) => g.dispose()), [geo])
 
   const knit = useMemo(() => knitTextures(), [])
   useEffect(() => () => (knit.map.dispose(), knit.normalMap.dispose()), [knit])
 
   // the live screen
+  // drawn at the screen's own proportions, so faces never stretch
   const screen = useMemo(() => {
-    const c = Object.assign(document.createElement('canvas'), { width: SW, height: SH })
+    const sw = H.w - 0.74
+    const sh = H.h - 0.8
+    const c = Object.assign(document.createElement('canvas'), { width: SW, height: Math.round((SW * sh) / sw) })
     const tex = new THREE.CanvasTexture(c)
     tex.colorSpace = THREE.SRGBColorSpace
     tex.anisotropy = 8
     return { c, g: c.getContext('2d'), tex }
-  }, [])
+  }, [H])
   useEffect(() => () => screen.tex.dispose(), [screen])
 
   // neck motion: a damped spring on each axis
@@ -391,7 +414,7 @@ export default function Robot({ face = 'weather', follow = true, shellColor = '#
             <meshStandardMaterial color="#d9c6b0" metalness={1} roughness={0.3} />
           </mesh>
           <group
-            position={[0, HEAD.lift, -0.08]}
+            position={[0, H.lift, -0.08]}
             onPointerDown={onDown}
             onPointerOver={(e) => (e.stopPropagation(), (document.body.style.cursor = 'grab'))}
             onPointerOut={() => (document.body.style.cursor = '')}
@@ -400,15 +423,15 @@ export default function Robot({ face = 'weather', follow = true, shellColor = '#
               {shell}
             </mesh>
             {/* black glass, then the lit screen behind it */}
-            <mesh geometry={geo.glass} position-z={HEAD.d / 2 + 0.161}>
+            <mesh geometry={geo.glass} position-z={H.d / 2 + 0.161}>
               <meshPhysicalMaterial color="#030405" roughness={0.06} metalness={0} clearcoat={1} clearcoatRoughness={0.02} />
             </mesh>
-            <mesh geometry={geo.screen} position-z={HEAD.d / 2 + 0.164}>
+            <mesh geometry={geo.screen} position-z={H.d / 2 + 0.164}>
               <meshBasicMaterial map={screen.tex} toneMapped={false} transparent opacity={0.97} />
             </mesh>
             {/* camera eyes, and a sensor */}
             {[-0.09, 0.09].map((x) => (
-              <mesh key={x} position={[x, HEAD.h / 2 - 0.2, HEAD.d / 2 + 0.163]}>
+              <mesh key={x} position={[x, H.h / 2 - 0.2, H.d / 2 + 0.163]}>
                 <circleGeometry args={[0.035, 20]} />
                 <meshPhysicalMaterial color="#0c0d10" roughness={0.1} clearcoat={1} />
               </mesh>
