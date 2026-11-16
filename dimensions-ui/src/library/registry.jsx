@@ -6341,7 +6341,7 @@ const ALL_COMPONENTS = [
     category: '3D & Materials',
     style: 'Tech & gadgets',
     isNew: true,
-    description: 'A tabletop companion robot: a fabric speaker base, a glossy bell-shaped body and a tablet head on a pan-and-tilt neck. The head turns to follow the pointer and eases into place like a geared motor; drag it to pose it, and tap the screen to change the face (weather, clock, eyes, heart, music), each drawn live.',
+    description: 'A tabletop companion robot: a fabric speaker base, a glossy bell-shaped body and a tablet head on a pan-and-tilt neck. The head turns to follow the pointer and eases into place like a geared motor; drag it to pose it, and tap the screen to change the face (weather, clock, eyes, heart, music), each drawn live. The screen’s size and shape are adjustable.',
     controls: [
       {
         name: 'palette',
@@ -6354,6 +6354,8 @@ const ALL_COMPONENTS = [
         ],
       },
       { name: 'face', type: 'select', options: ['weather', 'clock', 'smile', 'heart', 'music'], default: 'weather' },
+      { name: 'screenSize', type: 'range', min: 0.7, max: 1.4, step: 0.05, default: 1, description: 'Size of the head and its screen; 1 is the standard model.' },
+      { name: 'screenAspect', type: 'range', min: 1, max: 1.9, step: 0.05, default: 1.4, description: 'Shape of the screen, width over height: lower is squarer, higher is wider.' },
       { name: 'follow', type: 'toggle', default: true },
       { name: 'shellColor', type: 'color', default: '#f4f4f1' },
       { name: 'fabricColor', type: 'color', default: '#d9d9d6' },
