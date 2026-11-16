@@ -140,3 +140,4 @@ The **Level** column uses the same scale as the first set:
 | --- | --- |
 | ✓ | Level 1: Moon (57), Rubber Duck (73), Light Bulb (77), Mailbox (98) |
 | ✓ | Level 2: Bamboo Grove (53), Ringed Planet (58), Alarm Clock (72), Cupcake (74), Ice Cream Cone (75), Coffee Mug (76), Compass (79), Arcade Joystick (82), Rowboat (89), Igloo (92), Torii Gate (96) |
+| ✓ | Level 3: Cherry Blossom (51), Autumn Maple (52), Lily Pond (54), Geyser (55), Tornado (56), Coral Reef (59), Butterfly (65), Robot (71), Lock and Key (78), Anchor (80), Umbrella (81), Submarine (84), UFO (85), Biplane (86), Tractor (87), Food Truck (88), Barn and Silo (91), Wishing Well (94), Pagoda (97) |
