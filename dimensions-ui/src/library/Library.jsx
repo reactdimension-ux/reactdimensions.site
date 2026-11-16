@@ -12,10 +12,9 @@ const CAT_ICON = {
   All: <path d="M4 4h5v5H4zM11 4h5v5h-5zM4 11h5v5H4zM11 11h5v5h-5z" />,
   Text: <path d="M4 5.5V4h12v1.5M10 4v12M7.5 16h5" />,
   Animation: <path d="m5 3.5 9 5.2-3.9 1.2 2.4 4.1-1.8 1-2.4-4.1-2.7 2.9z" />,
-  UI: <path d="M3 4.5h14v11H3zM3 7.5h14M6 11.5h4M13 11.5h1" />,
+  'UI and Backgrounds': <path d="M3 4.5h14v11H3zM3 7.5h14M6 11.5h4M13 11.5h1" />,
   'Phone UI': <path d="M6.5 2.5h7a1.5 1.5 0 0 1 1.5 1.5v12a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 5 16V4a1.5 1.5 0 0 1 1.5-1.5zM8.5 4.5h3M9.5 15h1" />,
   '3D & Materials': <path d="M10 2.5 16.5 6v8L10 17.5 3.5 14V6zM10 10 3.5 6M10 10l6.5-4M10 10v7.5" />,
-  Backgrounds: <path d="M3.500 3.500h13v13h-13zM3.500 8h13M3.500 12h13M8 3.500v13M12 3.500v13" />,
   // a ball moving with speed lines trailing behind it
   'Motion Graphics': <path d="M11.5 10a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0-7 0zM2.5 7h6M4.5 10h4.5M2.5 13h6" />,
   // a person: head and shoulders
@@ -64,7 +63,7 @@ function SourceFiles({ comp }) {
 }
 
 // Categories whose pages are split into sections.
-const SECTIONS = { UI: UI_STYLES, '3D & Materials': OBJECT_STYLES, 'Icons & Emojis': ICON_STYLES }
+const SECTIONS = { 'UI and Backgrounds': UI_STYLES, '3D & Materials': OBJECT_STYLES, 'Icons & Emojis': ICON_STYLES }
 
 const COMING_SOON = ['Characters', 'Icons & Emojis']
 
@@ -565,7 +564,8 @@ export function CategoryPage() {
     return () => window.removeEventListener('rd:sidebar', on)
   }, [])
 
-  if (!name) return <Navigate to="/library/c/all" replace />
+  // UI and Backgrounds were separate categories; keep their old links working
+  if (!name) return <Navigate to={cat === 'ui' || cat === 'backgrounds' ? '/library/c/ui-and-backgrounds' : '/library/c/all'} replace />
 
   const q = query.trim().toLowerCase()
   const items = COMPONENTS.filter((c) => (name === 'All' || c.category === name) && (style === 'All' || c.style === style) && (!q || c.name.toLowerCase().includes(q) || (c.style ?? '').toLowerCase().includes(q)))
@@ -704,7 +704,7 @@ export default function Library() {
   const typeOf = (c) => (c.type === 'range' ? 'number' : c.type === 'toggle' ? 'boolean' : c.type === 'select' ? c.options.map((o) => `'${o}'`).join(' | ') : 'string')
 
   return (
-    <div className={`lib${comp.category === 'UI' || comp.category === 'Phone UI' ? ' lib-wide' : ''}`}>
+    <div className={`lib${comp.category === 'UI and Backgrounds' || comp.category === 'Phone UI' ? ' lib-wide' : ''}`}>
       <Sidebar active={slug} open={drawer} onClose={() => setDrawer(false)} favs={favs} />
 
       <div className="lib-main">
@@ -785,7 +785,7 @@ export default function Library() {
         {tab === 'preview' ? (
           <>
             <div className="stage-shell" id="preview">
-              <div className={`lib-stage${comp.fill ? ' fill' : ''}${comp.category === 'UI' || comp.category === 'Phone UI' ? ' screen' : ''}`} style={{ maxWidth: WIDTHS[width] }}>
+              <div className={`lib-stage${comp.fill ? ' fill' : ''}${comp.category === 'UI and Backgrounds' || comp.category === 'Phone UI' ? ' screen' : ''}`} style={{ maxWidth: WIDTHS[width] }}>
                 <div className="lib-stage-inner" key={`${slug}-${reload}`} ref={stageRef}>
                   {comp.preview(props, (patch) => setValues((s) => ({ ...s, ...patch })))}
                 </div>

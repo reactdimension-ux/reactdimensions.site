@@ -4,37 +4,50 @@ import { useState } from 'react'
 // KPI tiles (orange / blue / green / purple), gauge, bar and area charts, and a
 // calendar rail with an event card. Solid fills only: no gradients or shadows.
 
+// Content: admin for "Bramblecup Roasters", a fictional small-batch coffee shop.
+// All figures are November month-to-date (Nov 1-16) and agree with each other:
+// 412 orders, $18,460 revenue, $44.80 average order.
+
 const TABS = [
-  ['Lorem', 'M10 3l7 4-7 4-7-4zM3 11l7 4 7-4'],
-  ['Ipsum', 'M4 12V9a6 6 0 0 1 12 0v3M3 12h3v5H3zM14 12h3v5h-3z'],
-  ['Dolor', 'M3 4h14v12H3zM3 8h14M8 8v8'],
-  ['Tempor', 'M2 10h4l2-5 3 10 2-5h5'],
-  ['Minim', 'M3 16l5-6 3 3 6-8M3 3v13h14'],
+  ['Overview', 'M10 3l7 4-7 4-7-4zM3 11l7 4 7-4'],
+  ['Support', 'M4 12V9a6 6 0 0 1 12 0v3M3 12h3v5H3zM14 12h3v5h-3z'],
+  ['Catalog', 'M3 4h14v12H3zM3 8h14M8 8v8'],
+  ['Live', 'M2 10h4l2-5 3 10 2-5h5'],
+  ['Analytics', 'M3 16l5-6 3 3 6-8M3 3v13h14'],
 ]
 
-const SIDE = ['Consectetur', 'Adipiscing', 'Incididunt', 'Exercitation', 'Reprehenderit']
+const SIDE = ['Orders', 'Products', 'Reports', 'Customers', 'Discounts', 'Settings']
 
+// [label, value, colour, prefix]
 const KPIS = [
-  ['Elit', '8,000', 'orange'],
-  ['Amet', '7,230', 'blue'],
-  ['Enim', '3,080', 'green'],
-  ['Sunt', '9,500', 'purple'],
+  ['Revenue · Nov', '18,460', 'orange', '$'],
+  ['Orders', '412', 'blue', ''],
+  ['Avg order', '44.80', 'green', '$'],
+  ['Refunds', '386', 'purple', '$'],
 ]
 
+// [name, percent, unit, colour, detail]
 const GAUGES = [
-  ['Duis', 77, 'Ullamco', 'orange'],
-  ['Enim', 29, 'Laboris', 'blue'],
-  ['Nisi', 86, 'Commodo', 'green'],
+  ['On time', 94, '% shipped', 'orange', '387 of 412 orders left the roastery within 48 hours.'],
+  ['Repeat', 38, '% of orders', 'blue', '157 orders came from returning customers.'],
+  ['In stock', 72, '% of SKUs', 'green', '31 of 43 SKUs are above their reorder point.'],
 ]
+const FULFIL = [['18', 'Open orders'], ['6', 'Awaiting pickup'], ['1.3', 'Avg days to ship']]
 
-const BARS = [['Jan', 8], ['Feb', 5], ['Mar', 6], ['Apr', 9], ['May', 8], ['Jun', 5]]
+// Monthly revenue in USD; each block = $2k. November is month-to-date.
+const BARS = [['Jun', 29180], ['Jul', 27640], ['Aug', 31050], ['Sep', 34310], ['Oct', 38240], ['Nov', 18460]]
+const BLOCK = 2000
 
-const AREA = [30, 55, 90, 50, 62, 40, 78, 48, 70, 35, 46, 28]
-const AREA_X = ['Elit', 'Amet', 'Nisi', 'Enim', 'Esse', 'Sunt', 'Duis']
+// Orders per day, Nov 3-16 (Nov 1-2 add 60 more for 412 total). Chart max = 40.
+const AREA = [22, 24, 31, 27, 19, 17, 28, 30, 33, 26, 21, 18, 29, 27]
+const AREA_MAX = 40
+const AREA_X = ['3', '5', '7', '9', '11', '13', '15']
 
-const HBARS = [['Lorem', 28.5, 58], ['Ipsum', 36.7, 74], ['Dolor', 11.4, 42], ['Irure', 56.9, 92], ['Minim', 41.2, 82]]
-const MINI = [['Magna', 25], ['Nulla', 46], ['Dulre', 82]]
-const RINGS = [85, 71, 68]
+// [product, % of November revenue]
+const HBARS = [['House', 31.4], ['Espresso', 22.8], ['Kenya AA', 14.6], ['Sampler', 9.7], ['Decaf', 6.2]]
+// Share of bags sold by size (sums to 100).
+const MINI = [['250 g bags sold', 46], ['500 g bags sold', 33], ['1 kg bags sold', 21]]
+const RINGS = [[68, 'Checkout rate'], [85, 'Paid by card'], [71, 'Mobile orders']]
 
 const Icon = ({ d, size = 18 }) => (
   <svg viewBox="0 0 20 20" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -68,14 +81,13 @@ const areaPath = (pts, w, h) => {
   return d
 }
 
-const CAL = [
-  [26, 27, 28, 29, 30, 1, 2],
-  [3, 4, 5, 6, 7, 8, 9],
-  [10, 11, 12, 13, 14, 15, 16],
-  [17, 18, 19, 20, 21, 22, 23],
-  [24, 25, 26, 27, 28, 29, 30],
-  [31, 1, 2, 3, 4, 5, 6],
-]
+// November 2026 (starts on a Sunday, 30 days), six rows like the original grid.
+const CAL = Array.from({ length: 6 }, (_, r) => Array.from({ length: 7 }, (_, c) => {
+  const i = r * 7 + c
+  return i < 30 ? i + 1 : i - 29
+}))
+// Black Friday sale week: Tue 24 to Sat 28 (row 3, columns 2-6).
+const SALE = { row: 3, from: 2, to: 6 }
 
 export default function FlatDashboardPanels({
   orange = '#f5a04a',
@@ -193,7 +205,7 @@ export default function FlatDashboardPanels({
       <header className="fp-bar">
         <div className="fp-user">
           <div className="fp-hex"><Icon d="M10 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM4 17c0-3.3 2.7-5 6-5s6 1.7 6 5" size={16} /></div>
-          <span>John Smith</span>
+          <span>Bramblecup</span>
         </div>
         <div className="fp-tabs" role="tablist">
           {TABS.map(([label, d], i) => (
@@ -211,46 +223,52 @@ export default function FlatDashboardPanels({
 
       <div className="fp-body">
         <aside className="fp-side">
-          <h2><Icon d="M3 4h14v12H3zM3 8h14M8 8v8" size={20} />Dolor</h2>
+          <h2><Icon d="M3 4h14v12H3zM3 8h14M8 8v8" size={20} />Shop</h2>
           {SIDE.map((s, i) => (
             <button key={s} className="fp-item" aria-current={i === side} onClick={() => setSide(i)}>{s}</button>
           ))}
-          <button className="fp-add">+ Add</button>
+          <button className="fp-add">+ Add product</button>
         </aside>
 
         <main className="fp-main">
           <section className="fp-kpis">
-            {KPIS.map(([label, val, c]) => (
+            {KPIS.map(([label, val, c, pre]) => (
               <div key={label} className="fp-kpi" style={{ background: col[c] }}>
                 <small>{label}<i><Icon d="M10 15V5M6 9l4-4 4 4" size={10} /></i></small>
-                <div><span>$</span>{val}</div>
+                <div>{pre && <span>{pre}</span>}{val}</div>
               </div>
             ))}
           </section>
 
           <section className="fp-card">
-            <h3 className="fp-h">Labore dolore <Icon d="M4 6h12M4 10h12M4 14h12" size={12} /></h3>
+            <h3 className="fp-h">Fulfilment &amp; stock · Nov 1–16 <Icon d="M4 6h12M4 10h12M4 14h12" size={12} /></h3>
             <div className="fp-gauges">
-              {GAUGES.map(([name, v, sub, c]) => (
+              {GAUGES.map(([name, v, sub, c, detail]) => (
                 <div key={name} className="fp-g">
                   <Gauge value={v} color={col[c]} size={72}><b>{v}</b><span>{sub}</span></Gauge>
                   <h5>{name}</h5>
-                  <p>Ut labore et dolore magna aliqua ullamco laboris nisi ut aliquip.</p>
+                  <p>{detail}</p>
                 </div>
+              ))}
+            </div>
+            <div className="fp-mini">
+              {FULFIL.map(([v, n]) => (
+                <div key={n}><b style={{ display: 'block', fontSize: 13 }}>{v}</b>{n}</div>
               ))}
             </div>
           </section>
 
           <section className="fp-card">
-            <h3 className="fp-h">Magna aliqua <Icon d="M4 4h12v12H4z" size={12} /></h3>
+            <h3 className="fp-h">Revenue by month · USD, ■ = $2k <Icon d="M4 4h12v12H4z" size={12} /></h3>
             <div className="fp-legend">
-              <div><span style={{ color: 'var(--orange)' }}>▼</span> Ullamco laboris<b>52602</b></div>
-              <div><span style={{ color: 'var(--green)' }}>▲</span> Minim veniam<b>63175</b></div>
+              <div><span style={{ color: 'var(--green)' }}>■</span> Best month · Oct<b>$38,240</b></div>
+              <div><span style={{ color: 'var(--purple)' }}>■</span> Nov to date<b>$18,460</b></div>
+              <div><span style={{ color: 'var(--green)' }}>▲</span> Oct vs Sep<b>+11.5%</b></div>
             </div>
             <div className="fp-cols">
-              {BARS.map(([m, n], i) => (
-                <div key={m} className="fp-col">
-                  {Array.from({ length: n }, (_, k) => <i key={k} style={{ background: i % 2 ? 'var(--purple)' : 'var(--green)' }} />)}
+              {BARS.map(([m, usd], i) => (
+                <div key={m} className="fp-col" title={`${m}: $${usd.toLocaleString('en-US')}`}>
+                  {Array.from({ length: Math.round(usd / BLOCK) }, (_, k) => <i key={k} style={{ background: i === BARS.length - 1 ? 'var(--purple)' : 'var(--green)' }} />)}
                 </div>
               ))}
             </div>
@@ -258,24 +276,27 @@ export default function FlatDashboardPanels({
           </section>
 
           <section className="fp-card">
-            <h3 className="fp-h">Velit esse <Icon d="M3 16l5-6 3 3 6-8" size={12} /></h3>
-            <svg className="fp-area" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" role="img" aria-label="Trend">
+            <h3 className="fp-h">Orders per day · Nov 3–16, grid = 10 <Icon d="M3 16l5-6 3 3 6-8" size={12} /></h3>
+            <svg className="fp-area" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" role="img" aria-label="Orders per day, November 3 to 16, between 17 and 33 orders">
               {[0, 1, 2, 3, 4].map((i) => <line key={i} x1="0" x2={W} y1={(H / 4) * i} y2={(H / 4) * i} stroke="#eceef4" vectorEffect="non-scaling-stroke" />)}
-              <path d={`${areaPath(AREA, W, H)} L${W} ${H} L0 ${H} Z`} fill="var(--orange)" opacity=".75" />
+              <path d={`${areaPath(AREA.map((n) => (n / AREA_MAX) * 100), W, H)} L${W} ${H} L0 ${H} Z`} fill="var(--orange)" opacity=".75" />
             </svg>
-            <div className="fp-xl" style={{ gridTemplateColumns: 'repeat(7, 1fr)', gap: 0 }}>{AREA_X.map((m) => <span key={m}>{m}</span>)}</div>
+            <div className="fp-xl" style={{ gridTemplateColumns: 'repeat(7, 1fr)', gap: 0 }}>{AREA_X.map((m) => <span key={m}>Nov {m}</span>)}</div>
             <div className="fp-rings">
-              {RINGS.map((v, i) => (
-                <Gauge key={i} value={v} color="var(--orange)" size={44} stroke={4}><b style={{ fontSize: 10 }}>{v}</b></Gauge>
+              {RINGS.map(([v, n]) => (
+                <div key={n} style={{ textAlign: 'center', fontSize: 6.5, textTransform: 'uppercase', color: '#8a90a4' }}>
+                  <Gauge value={v} color="var(--orange)" size={44} stroke={4}><b style={{ fontSize: 10 }}>{v}%</b></Gauge>
+                  <div style={{ marginTop: 4 }}>{n}</div>
+                </div>
               ))}
             </div>
           </section>
 
           <section className="fp-card">
-            <h3 className="fp-h">Lorem ipsum <Icon d="M10 3l2 5 5 .5-4 3.5 1.2 5L10 14l-4.2 3L7 12 3 8.5 8 8z" size={12} /></h3>
+            <h3 className="fp-h">Top products · % of Nov revenue <Icon d="M10 3l2 5 5 .5-4 3.5 1.2 5L10 14l-4.2 3L7 12 3 8.5 8 8z" size={12} /></h3>
             <ul className="fp-hb">
-              {HBARS.map(([n, v, w]) => (
-                <li key={n}><span>{n}</span><i><b style={{ width: `${w}%` }} /></i><span>{v}%</span></li>
+              {HBARS.map(([n, v]) => (
+                <li key={n}><span>{n}</span><i><b style={{ width: `${(v / 35) * 100}%` }} /></i><span>{v}%</span></li>
               ))}
             </ul>
             <div className="fp-mini">
@@ -292,34 +313,34 @@ export default function FlatDashboardPanels({
         <aside className="fp-rail">
           <div className="fp-cal">
             <header>
-              <div><h3>Calendar</h3><small>05 Mar, 2020</small></div>
+              <div><h3>Promotions</h3><small>Today · 16 Nov 2026</small></div>
               <div className="fp-sq"><Icon d="M4 4h12v12H4zM8 4v12" size={12} /></div>
             </header>
-            <div className="fp-mon"><span>‹</span><b>MAY</b><span>›</span></div>
+            <div className="fp-mon"><span>‹</span><b>NOV 2026</b><span>›</span></div>
             <div className="fp-cg">
               {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((d) => <span key={d} className="h">{d}</span>)}
               {CAL.flatMap((row, r) => row.map((n, c) => {
-                const other = (r === 0 && n > 20) || (r >= 4 && n < 10) || (r === 5 && n < 10)
-                const week = r === 3 && c <= 4
+                const other = r * 7 + c >= 30
+                const week = r === SALE.row && c >= SALE.from && c <= SALE.to
                 const sel = !other && n === picked
                 return (
                   <button key={`${r}-${c}`}
-                    className={`fp-d${other ? ' o' : ''}${week ? ' w' : ''}${week && c === 0 ? ' s' : ''}${week && c === 4 ? ' e' : ''}${sel && !week ? ' p' : ''}`}
+                    className={`fp-d${other ? ' o' : ''}${week ? ' w' : ''}${week && c === SALE.from ? ' s' : ''}${week && c === SALE.to ? ' e' : ''}${sel && !week ? ' p' : ''}`}
                     onClick={() => !other && setPicked(n)}>{n}</button>
                 )
               }))}
             </div>
           </div>
           <div className="fp-ev">
-            <small>Saturday, 23</small>
-            <strong>18:00 AM</strong>
-            <small>18:3V0 AM</small>
-            <button className="fp-btn">Send message to mom</button>
+            <small>Tuesday, 24 Nov · Black Friday week</small>
+            <strong>06:00 AM</strong>
+            <small>25% off all beans until Sat 28</small>
+            <button className="fp-btn">Edit discount</button>
           </div>
           <div className="fp-new">
-            <small><span>Monday, 25</span><span>+</span></small>
-            <strong>New event</strong>
-            <button className="fp-btn">Add</button>
+            <small><span>Monday, 30 · Cyber Monday</span><span>+</span></small>
+            <strong>Free shipping</strong>
+            <button className="fp-btn">Schedule promo</button>
           </div>
         </aside>
       </div>
