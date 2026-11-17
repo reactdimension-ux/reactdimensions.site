@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
-import { CATEGORIES, COMPONENTS, UI_STYLES, ICON_STYLES, OBJECT_STYLES, defaultsFor, loadSources, sourceFor, sourcesLoaded, usageFor, valueControls } from './registry.jsx'
+import { CATEGORIES, COMPONENTS, UI_STYLES, ICON_STYLES, OBJECT_STYLES, SCENE_STYLES, defaultsFor, loadSources, sourceFor, sourcesLoaded, usageFor, valueControls } from './registry.jsx'
 import { highlight } from './highlight.js'
 import { markdownFor, openPromptFor, promptFor, sourceText, typesFor } from './ai.js'
 import { Icon } from '../Nav.jsx'
@@ -19,6 +19,8 @@ const CAT_ICON = {
   'Motion Graphics': <path d="M11.5 10a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0-7 0zM2.5 7h6M4.5 10h4.5M2.5 13h6" />,
   // a person: head and shoulders
   Characters: <path d="M6.8 6.5a3.2 3.2 0 1 0 6.4 0a3.2 3.2 0 1 0-6.4 0zM3.5 17c0-3.400 2.900-5.600 6.500-5.600s6.500 2.200 6.500 5.600" />,
+  // a landscape: sun over two hills
+  'Scenes & Assets': <path d="M2.5 16h15M2.5 16l5-7 3.5 4.5 2-2.5 4.5 5M13 5.5a1.5 1.5 0 1 0 3 0a1.5 1.5 0 1 0-3 0z" />,
   'Icons & Emojis': <path d="M3.2 6.2a2.8 2.8 0 1 0 5.6 0a2.8 2.8 0 1 0-5.6 0zM11.5 3.4h5v5h-5zM10 11l4.5 6h-9z" />,
 }
 
@@ -63,7 +65,7 @@ function SourceFiles({ comp }) {
 }
 
 // Categories whose pages are split into sections.
-const SECTIONS = { 'UI and Backgrounds': UI_STYLES, '3D & Materials': OBJECT_STYLES, 'Icons & Emojis': ICON_STYLES }
+const SECTIONS = { 'UI and Backgrounds': UI_STYLES, '3D & Materials': OBJECT_STYLES, 'Scenes & Assets': SCENE_STYLES, 'Icons & Emojis': ICON_STYLES }
 
 const COMING_SOON = ['Characters', 'Icons & Emojis']
 
@@ -371,7 +373,7 @@ function Sidebar({ active, open, onClose, favs, category }) {
   const [edge, setEdge] = useState({ top: true, bottom: false })
   const scroller = useRef(null)
   const search = useRef(null)
-  const tabs = ['All', ...CATEGORIES]
+  const tabs = CATEGORIES
   const q = query.trim().toLowerCase()
   const catMatch = cat === 'All' ? CATEGORIES : [cat]
   const visible = CATEGORIES.map((c) => ({
@@ -413,8 +415,9 @@ function Sidebar({ active, open, onClose, favs, category }) {
             </svg>
             Browse all components
           </Link>
+          {/* "All" lives in the Browse all link above, so the picker holds only the categories. */}
           <div className="cat-picker" role="tablist" aria-label="Category" style={{ '--col': Math.max(0, tabs.indexOf(cat)) % 4, '--row': Math.floor(Math.max(0, tabs.indexOf(cat)) / 4) }}>
-            <span className="pill-bg" aria-hidden="true" />
+            {tabs.includes(cat) && <span className="pill-bg" aria-hidden="true" />}
             {tabs.map((t) => (
               <button key={t} role="tab" aria-selected={cat === t} aria-label={t} title={t} onClick={() => { onClose(); navigate(`/library/c/${catSlug(t)}`) }}>
                 <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
