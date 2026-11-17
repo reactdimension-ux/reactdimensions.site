@@ -401,6 +401,7 @@ import LowPolyAxolotlModel from '../lib/LowPolyAxolotlModel.jsx'
 import LowPolyRamenBowlModel from '../lib/LowPolyRamenBowlModel.jsx'
 import LowPolyPopcornMachineModel from '../lib/LowPolyPopcornMachineModel.jsx'
 import LowPolyMonsterTruckModel from '../lib/LowPolyMonsterTruckModel.jsx'
+import LowPolyRaceCarModel from '../lib/LowPolyRaceCarModel.jsx'
 import LowPolyPaddleSteamerModel from '../lib/LowPolyPaddleSteamerModel.jsx'
 import LowPolyLunarRoverModel from '../lib/LowPolyLunarRoverModel.jsx'
 import LowPolyObservatoryModel from '../lib/LowPolyObservatoryModel.jsx'
@@ -493,6 +494,7 @@ import ForestValleyModel from '../lib/ForestValleyModel.jsx'
 import RiverValleyModel from '../lib/RiverValleyModel.jsx'
 import DowntownModel from '../lib/DowntownModel.jsx'
 import CountrysideModel from '../lib/CountrysideModel.jsx'
+import RacingCircuitModel from '../lib/RacingCircuitModel.jsx'
 import DiceModel from '../lib/DiceModel.jsx'
 import PuzzleCubeModel from '../lib/PuzzleCubeModel.jsx'
 import RingModel from '../lib/RingModel.jsx'
@@ -569,7 +571,7 @@ export const HIDDEN_CATEGORIES = ['Icons & Emojis']
 // sidebar, the section pages, search and the generated registry files).
 export const HIDDEN_COMPONENTS = ['shirt', 'earbuds', 'gamepad', 'low-poly-runner', 'low-poly-tiger']
 
-const ALL_CATEGORIES = ['Text', 'Animation', 'UI and Backgrounds', 'Phone UI', '3D & Materials', 'Motion Graphics', 'Characters', 'Icons & Emojis']
+const ALL_CATEGORIES = ['Text', 'Animation', 'UI and Backgrounds', 'Phone UI', '3D & Materials', 'Motion Graphics', 'Characters', 'Scenes & Assets', 'Icons & Emojis']
 export const CATEGORIES = ALL_CATEGORIES.filter((c) => !HIDDEN_CATEGORIES.includes(c))
 
 // The UI and Backgrounds section is grouped by style, in this order.
@@ -578,7 +580,10 @@ export const UI_STYLES = ['Backgrounds', 'Flat', 'Glassmorphism', 'Neumorphism',
 export const ICON_STYLES = ['Icons', 'Emojis']
 
 // sections of the 3D & Materials category, in the order they are shown
-export const OBJECT_STYLES = ['Tech & gadgets', 'Music & audio', 'Sports & fitness', 'Fashion & wear', 'Desk & stationery', 'Tools & gear', 'Everyday objects', 'Physics & play', 'Vehicles', 'Nature & world', 'Scenes']
+export const OBJECT_STYLES = ['Tech & gadgets', 'Music & audio', 'Sports & fitness', 'Fashion & wear', 'Desk & stationery', 'Tools & gear', 'Everyday objects', 'Physics & play', 'Vehicles', 'Nature & world']
+
+// sections of the Scenes & Assets category: whole environments, then props for them
+export const SCENE_STYLES = ['Scenes', 'Assets']
 
 // Basic outline icons share one set of controls; each file is standalone.
 const icon = (Comp, file, slug, name, description) => ({
@@ -2961,7 +2966,7 @@ const ALL_COMPONENTS = [
     ],
     preview: (p) => <PickupModel {...p} height="100%" />,
     fill: true,
-    files: ['PickupModel.jsx', 'pickup/PickupScene.jsx', 'pickup/Pickup.jsx', 'pickup/geometry.js', 'pickup/textures.js', 'pickup/controls.js', 'pickup/Cones.jsx'],
+    files: ['PickupModel.jsx', 'pickup/PickupScene.jsx', 'pickup/Pickup.jsx', 'pickup/drive.js', 'pickup/geometry.js', 'pickup/textures.js', 'pickup/controls.js', 'pickup/Cones.jsx'],
     deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
   },
   {
@@ -6744,6 +6749,26 @@ const ALL_COMPONENTS = [
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
+    slug: 'low-poly-race-car',
+    name: 'Low Poly Race Car',
+    category: 'Motion Graphics',
+    style: 'Low poly',
+    isNew: true,
+    description: 'A full-size low-poly GT race car: faceted paint, dark glass, splitter, swan-neck wing, diffuser and door numbers. Drag to orbit, double-tap to bounce it, or switch on driving and take it round the cones with the Pickup drive rig.',
+    controls: [
+      { name: 'drivable', type: 'toggle', default: false },
+      { name: 'lightsOn', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: true },
+      { name: 'color', type: 'color', default: '#c8141e' },
+      { name: 'number', type: 'text', default: '07' },
+      { name: 'background', type: 'color', default: '#e4e0d8' },
+    ],
+    preview: (p) => <LowPolyRaceCarModel {...p} height="100%" />,
+    fill: true,
+    files: ['LowPolyRaceCarModel.jsx', 'racecar/RaceCarScene.jsx', 'racecar/RaceCar.jsx', 'racecar/geometry.js', 'pickup/drive.js', 'pickup/controls.js', 'pickup/Cones.jsx', 'pickup/textures.js'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
+  },
+  {
     slug: 'low-poly-paddle-steamer',
     name: 'Low Poly Paddle Steamer',
     category: 'Motion Graphics',
@@ -7530,7 +7555,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'cricket-pitch',
     name: 'Cricket Pitch',
-    category: '3D & Materials',
+    category: 'Scenes & Assets',
     style: 'Scenes',
     isNew: true,
     description: 'A full-size 22-yard pitch with real grass blades, painted creases, footmarks and cracks that grow with wear. Switch between drawing views or orbit down to the turf.',
@@ -7553,7 +7578,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'tennis-court',
     name: 'Tennis Court',
-    category: '3D & Materials',
+    category: 'Scenes & Assets',
     style: 'Scenes',
     isNew: true,
     description: 'A full-size hard court with sand-grit acrylic, razor-sharp lines and a real mesh net you can tighten with its crank. Switch between drawing views or zoom down to the paint.',
@@ -7588,7 +7613,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'badminton-court',
     name: 'Badminton Court',
-    category: '3D & Materials',
+    category: 'Scenes & Assets',
     style: 'Scenes',
     isNew: true,
     description: 'A full-size BWF court: a PVC mat with exact lines on a glossy maple floor, the net on weighted posts, shuttles on court. Switch between drawing views or zoom down to the mat.',
@@ -8349,8 +8374,8 @@ const ALL_COMPONENTS = [
   {
     slug: 'stadium-seat',
     name: 'Stadium Seat',
-    category: '3D & Materials',
-    style: 'Scenes',
+    category: 'Scenes & Assets',
+    style: 'Assets',
     isNew: true,
     description: 'A one-piece moulded stadium seat on steel brackets, built from its real dimensions down to the ribs underneath. Line up a row, or click a seat to lift the shell off its brackets.',
     controls: [
@@ -8571,7 +8596,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'ocean',
     name: 'Ocean',
-    category: '3D & Materials',
+    category: 'Scenes & Assets',
     style: 'Scenes',
     isNew: true,
     description: 'An open sea of Gerstner waves under a physical sky. Click the water to send the buoy there.',
@@ -8606,7 +8631,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'cloud',
     name: 'Cloud',
-    category: '3D & Materials',
+    category: 'Scenes & Assets',
     style: 'Scenes',
     isNew: true,
     description: 'A single cumulus raymarched as a true volume with sunlit billows and a silver lining. Fly around or into it.',
@@ -8641,7 +8666,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'cloud-sea',
     name: 'Cloud Sea',
-    category: '3D & Materials',
+    category: 'Scenes & Assets',
     style: 'Scenes',
     isNew: true,
     description: 'The view above the clouds: an endless cumulus deck rolling past below, the sun breaking through.',
@@ -8676,7 +8701,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'forest-valley',
     name: 'Forest Valley',
-    category: '3D & Materials',
+    category: 'Scenes & Assets',
     style: 'Scenes',
     isNew: true,
     description: 'A low-poly valley under a physical sky: a river winding between forested banks, mountains climbing on both sides to snow, rocks on the shore, clouds drifting over and shadowing the ground, a flock circling overhead and haze thickening to the far ridges. The river flows and mirrors the sky; the trees sway in the wind. Seasons change the woods, the water and the snowline; presets set the time of day.',
@@ -8712,7 +8737,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'river-valley',
     name: 'River Valley',
-    category: '3D & Materials',
+    category: 'Scenes & Assets',
     style: 'Scenes',
     isNew: true,
     description: 'A photoreal river valley seen from the water’s edge: a clear river running upstream between grassy banks and boulders, broadleaf woods and firs climbing the hills, and snowy peaks closing the valley under fair-weather cumulus. The river mirrors the world and shows its pebbled bed in the shallows, breaking white round the rocks; the grass and trees move in the wind; a physical sky lights everything and hazes the far range blue. Presets set the time of day.',
@@ -8748,7 +8773,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'downtown',
     name: 'Downtown',
-    category: '3D & Materials',
+    category: 'Scenes & Assets',
     style: 'Scenes',
     isNew: true,
     description: 'A photoreal city on a Manhattan-style grid: avenues and cross streets between brick walk-ups with fire escapes, limestone prewar blocks crowned with water tanks, stepped deco towers with spires and glass towers that mirror the sky, with a room behind every window. Signals cycle on every corner and the traffic obeys them, cabs, buses and trucks queueing at the reds and rolling up the avenues on a green wave, with people on the sidewalks. As the sun sets, the windows, shopfronts, street lamps and headlights come on.',
@@ -8781,7 +8806,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'countryside',
     name: 'Countryside',
-    category: '3D & Materials',
+    category: 'Scenes & Assets',
     style: 'Scenes',
     isNew: true,
     description: 'Photoreal rolling farmland seen from a hay meadow full of wild flowers: a patchwork of hedged fields (ripe wheat with tramlines, barley, oilseed rape, furrowed plough, mown hay with round bales, young crops, pasture with grazing sheep and woods) falls away to a vale and climbs to wooded hills and far downs. A gravel lane runs past a stone farmhouse and a tarred barn with smoke rising from the chimney. The wind runs through the wheat and grass; a physical sky lights it all and hazes the distance blue. Presets set the time of day.',
@@ -8814,9 +8839,45 @@ const ALL_COMPONENTS = [
     deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
   },
   {
+    slug: 'racing-circuit',
+    name: 'Racing Circuit',
+    category: 'Scenes & Assets',
+    style: 'Scenes',
+    isNew: true,
+    description: 'A low-poly racing circuit as a whole venue: 1.3 km of asphalt with a rubbered-in racing line, red and white kerbs, gravel traps, armco, tyre walls and sponsor boards; a pit lane with twelve garages and their crews, a start gantry whose lights count down, grandstands full of people, a paddock, car park, helipad and pond, set in woods and hills under a physical sky. A field of GT cars laps it on the racing line, braking for the corners and accelerating out. Ride behind the leader or cut between trackside cameras; presets set the time of day.',
+    controls: [
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Afternoon', values: { elevation: 30, azimuth: -50, exposure: 0.8, haze: 1 } },
+          { name: 'Noon', values: { elevation: 64, azimuth: -20, exposure: 0.62, haze: 0.8 } },
+          { name: 'Golden hour', values: { elevation: 9, azimuth: -72, exposure: 1.05, haze: 1.4 } },
+          { name: 'Dusk', values: { elevation: 3, azimuth: 150, exposure: 1.4, haze: 1.6 } },
+          { name: 'Morning mist', values: { elevation: 12, azimuth: 70, exposure: 0.95, haze: 2.6 } },
+        ],
+      },
+      { name: 'view', type: 'select', options: ['overview', 'chase', 'trackside'], default: 'overview' },
+      { name: 'elevation', type: 'range', min: 2, max: 90, step: 0.5, default: 30, unit: '°' },
+      { name: 'azimuth', type: 'range', min: -180, max: 180, step: 1, default: -50, unit: '°' },
+      { name: 'exposure', type: 'range', min: 0.1, max: 2, step: 0.01, default: 0.8 },
+      { name: 'haze', type: 'range', min: 0, max: 4, step: 0.05, default: 1 },
+      { name: 'cars', type: 'range', min: 0, max: 12, step: 1, default: 12 },
+      { name: 'speed', type: 'range', min: 0, max: 2, step: 0.05, default: 1 },
+      { name: 'trees', type: 'range', min: 0, max: 1.6, step: 0.05, default: 1 },
+      { name: 'crowd', type: 'toggle', default: true },
+      { name: 'clouds', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <RacingCircuitModel {...p} height="100%" />,
+    fill: true,
+    files: ['RacingCircuitModel.jsx', 'circuit/CircuitScene.jsx', 'circuit/Circuit.jsx', 'circuit/track.js', 'circuit/props.js', 'cloud/sun.js', 'lowpoly/kit.jsx', 'airliner/stage.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
+  },
+  {
     slug: 'desert',
     name: 'Desert',
-    category: '3D & Materials',
+    category: 'Scenes & Assets',
     style: 'Scenes',
     isNew: true,
     description: 'A sand sea of transverse dunes to the horizon under a physical sky: wind ripples, glittering grains, long shadows in the lee of every dune and sand streaming off the crests.',

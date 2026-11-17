@@ -3,7 +3,8 @@ import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import { vehicle } from './controls.js'
 
-// Truck footprint for collisions (half length / half width, metres)
+// Default footprint for collisions (the pickup's half length / half width,
+// metres); other vehicles pass their own as halfL / halfW.
 const HALF_L = 2.95
 const HALF_WIDTH = 1.1
 const CONE_R = 0.2
@@ -32,7 +33,7 @@ function coneMaterials() {
   return { orange, white, base }
 }
 
-export default function Cones({ reset = 0 }) {
+export default function Cones({ reset = 0, halfL = HALF_L, halfW = HALF_WIDTH }) {
   const start = useMemo(layout, [])
   const mats = useMemo(coneMaterials, [])
   const refs = useRef([])
@@ -68,8 +69,8 @@ export default function Cones({ reset = 0 }) {
       const dz = c.z - vehicle.z
       const lx = dx * fwd[0] + dz * fwd[1]
       const lz = dx * side[0] + dz * side[1]
-      const px = HALF_L + CONE_R - Math.abs(lx)
-      const pz = HALF_WIDTH + CONE_R - Math.abs(lz)
+      const px = halfL + CONE_R - Math.abs(lx)
+      const pz = halfW + CONE_R - Math.abs(lz)
       if (px > 0 && pz > 0) {
         // Push out along the shallowest axis and take the truck's velocity
         // plus a kick, like an elastic hit with a much heavier body.
