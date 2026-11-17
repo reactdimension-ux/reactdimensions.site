@@ -32,6 +32,6 @@ export const vehicle = {
 }
 
 export function resetVehicle() {
-  Object.assign(vehicle, START, { speed: 0, steer: 0 })
+  Object.assign(vehicle, START, { speed: 0, steer: 0, dir: undefined })
   vehicle.resetCount++
 }

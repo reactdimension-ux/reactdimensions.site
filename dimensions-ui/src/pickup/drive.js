@@ -9,6 +9,9 @@ import { readInput, vehicle } from './controls.js'
 // chase camera. Each vehicle passes its own dimensions and tuning in `cfg`:
 // { wheelbase, wheelR, maxSpeed, maxReverse, accel, reverseAccel, steerLock,
 //   arena, camHeight, camDist(aspect) }.
+// Optional cfg.surface(x, z) -> { y, grip, drag } puts the vehicle on uneven or
+// slippery ground: y lifts it, grip (0..1, default 1 = full grip) lets the
+// direction of travel lag behind where the nose points, drag slows it.
 
 const spring = (x, v, target, k, c, dt) => v + (-k * (x - target) - c * v) * dt
 
@@ -122,6 +125,12 @@ export function useDriveRig({ cfg, drivable, autoRotate, bounce, lightsOn, yawRe
     // Rolling resistance + aerodynamic drag
     accel -= Math.sign(speed) * (0.35 + 0.012 * speed * speed)
     if (brake) accel -= Math.sign(speed) * 16
+    const surf = cfg.surface ? cfg.surface(v.x, v.z) : null
+    const grip = surf?.grip ?? 1
+    if (surf) {
+      accel *= 0.35 + 0.65 * grip
+      if (surf.drag) accel -= Math.sign(speed) * surf.drag * (1 + Math.abs(speed) * 0.25)
+    }
     let next = speed + accel * dt
     // Friction and brakes stop the vehicle; they never push it backwards.
     if (!throttle && Math.sign(next) !== Math.sign(speed)) next = 0
@@ -132,8 +141,17 @@ export function useDriveRig({ cfg, drivable, autoRotate, bounce, lightsOn, yawRe
     v.steer += (steer * maxLock - v.steer) * (1 - Math.exp(-7 * dt))
     const yawRate = (v.speed / cfg.wheelbase) * Math.tan(v.steer)
     v.heading += yawRate * dt
-    v.x += Math.cos(v.heading) * v.speed * dt
-    v.z -= Math.sin(v.heading) * v.speed * dt
+    // With less than full grip the car keeps sliding along its old line while
+    // the nose turns; the line swings round to the nose at a rate set by grip.
+    let dir = v.heading
+    if (grip < 1) {
+      if (v.dir === undefined) v.dir = v.heading
+      const diff = Math.atan2(Math.sin(v.heading - v.dir), Math.cos(v.heading - v.dir))
+      v.dir += diff * (1 - Math.exp(-dt * 16 * grip * grip))
+      dir = v.dir
+    } else v.dir = v.heading
+    v.x += Math.cos(dir) * v.speed * dt
+    v.z -= Math.sin(dir) * v.speed * dt
     // Keep the vehicle within the studio
     const r = Math.hypot(v.x, v.z)
     if (r > cfg.arena) {
@@ -158,7 +176,8 @@ export function useDriveRig({ cfg, drivable, autoRotate, bounce, lightsOn, yawRe
     p.tilt += p.tiltVel * dt
 
     const g = yawRef.current
-    g.position.set(v.x, 0, v.z)
+    const gy = surf?.y ?? 0
+    g.position.set(v.x, gy, v.z)
     g.rotation.y = v.heading
     const b = bodyRef.current
     b.position.y = p.sy
@@ -201,7 +220,7 @@ export function useDriveRig({ cfg, drivable, autoRotate, bounce, lightsOn, yawRe
     // Distance fits the vehicle to the screen width, pulls back a bit with speed.
     const aspect = size.width / size.height
     const dist = cfg.camDist(aspect) + Math.abs(v.speed) * 0.08
-    p.camTarget.lerp(new THREE.Vector3(v.x, cfg.camHeight, v.z), 1 - Math.exp(-6 * dt))
+    p.camTarget.lerp(new THREE.Vector3(v.x, cfg.camHeight + gy, v.z), 1 - Math.exp(-6 * dt))
     const t = p.camTarget
     const h = Math.cos(p.pitch) * dist
     camera.position.set(t.x + Math.sin(p.camYaw) * h, t.y + Math.sin(p.pitch) * dist, t.z + Math.cos(p.camYaw) * h)

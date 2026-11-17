@@ -63,7 +63,11 @@ function smooth(a, r) {
   return out
 }
 
-function makeTrack() {
+// Builds a closed track from control points [x, z]. Options:
+//   start    [x, z] the start line is the sample nearest this point (default: first point)
+//   pitZone  (x, z) => bool, true where a pit lane replaces the infield barrier
+//   stands   [[x, z, length, rows, roof], ...] grandstands facing the track
+export function makeTrack(PTS, { start = PTS[0], pitZone = null, stands = [] } = {}) {
   const curve = new THREE.CatmullRomCurve3(PTS.map(([x, z]) => new THREE.Vector3(x, 0, z)), true, 'centripetal')
   curve.arcLengthDivisions = 6000
   const raw = curve.getSpacedPoints(N)
@@ -73,7 +77,7 @@ function makeTrack() {
   let s0 = 0
   let best = 1e9
   for (let i = 0; i < N; i++) {
-    const d = (raw[i].x - 40) ** 2 + (raw[i].z - 78) ** 2
+    const d = (raw[i].x - start[0]) ** 2 + (raw[i].z - start[1]) ** 2
     if (d < best) (best = d), (s0 = i)
   }
   const px = new Float32Array(N)
@@ -188,18 +192,10 @@ function makeTrack() {
     return c
   }
   // true along the pit straight, where the pit lane replaces the infield barrier
-  T.pitZone = (i) => pz[i] > 60 && px[i] > -150 && px[i] < 122
+  T.pitZone = (i) => (pitZone ? pitZone(px[i], pz[i]) : false)
 
   // grandstands, each facing the track from outside the barrier
-  T.stands = [
-    [-52, 78, 48, 12, false],
-    [4, 78, 48, 13, true],
-    [60, 78, 48, 12, false],
-    [-45, -130, 60, 10, false],
-    [168, 22, 40, 9, false],
-    [172, -100, 36, 9, false],
-    [-178, 30, 36, 8, false],
-  ].map(([x, z, len, rows, roof]) => {
+  T.stands = stands.map(([x, z, len, rows, roof]) => {
     const q = T.nearest(x, z)
     const depth = rows * 0.9 + 1.5
     const off = -(bR[q.i] + 7 + depth / 2)
@@ -208,7 +204,19 @@ function makeTrack() {
   return T
 }
 
-export const TRACK = makeTrack()
+export const TRACK = makeTrack(PTS, {
+  start: [40, 78],
+  pitZone: (x, z) => z > 60 && x > -150 && x < 122,
+  stands: [
+    [-52, 78, 48, 12, false],
+    [4, 78, 48, 13, true],
+    [60, 78, 48, 12, false],
+    [-45, -130, 60, 10, false],
+    [168, 22, 40, 9, false],
+    [172, -100, 36, 9, false],
+    [-178, 30, 36, 8, false],
+  ],
+})
 
 // Ground that has to stay level: under the pits and paddock, the main stands
 // and their car park, each of the other stands and the helipad.
@@ -249,7 +257,7 @@ export function groundAt(x, z) {
 
 // Collects flat-shaded, vertex-coloured geometry: quads, boxes turned about
 // y, ribbons that follow the track, extrusions and any three.js primitive.
-export function mesher() {
+export function mesher(trk = TRACK) {
   const P = []
   const C = []
   const I = []
@@ -306,7 +314,7 @@ export function mesher() {
         const row = n
         for (let j = 0; j < st.length; j++) {
           if (fn) color(q, j, out)
-          v(TRACK.px[q] + TRACK.nx[q] * st[j][0], st[j][1], TRACK.pz[q] + TRACK.nz[q] * st[j][0], k)
+          v(trk.px[q] + trk.nx[q] * st[j][0], st[j][1], trk.pz[q] + trk.nz[q] * st[j][0], k)
         }
         if (prev >= 0) for (let j = 0; j < st.length - 1; j++) I.push(prev + j, row + j, prev + j + 1, prev + j + 1, row + j, row + j + 1)
         prev = row
