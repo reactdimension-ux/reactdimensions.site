@@ -486,6 +486,8 @@ import LampModel from '../lib/LampModel.jsx'
 import CompanionRobotModel from '../lib/CompanionRobotModel.jsx'
 import TapeModel from '../lib/TapeModel.jsx'
 import ButterflyModel from '../lib/ButterflyModel.jsx'
+import LyricSync, { DEMO_LRC } from '../lib/LyricSync.jsx'
+import PosterLyrics, { DEMO_POSTER_LRC } from '../lib/PosterLyrics.jsx'
 import OceanModel from '../lib/OceanModel.jsx'
 import CloudModel from '../lib/CloudModel.jsx'
 import CloudSeaModel from '../lib/CloudSeaModel.jsx'
@@ -2830,6 +2832,75 @@ const ALL_COMPONENTS = [
     fill: true,
     preview: (p) => <ShatterText {...p} style={{ position: 'absolute', inset: 0 }} />,
     files: ['ShatterText.jsx'],
+    deps: [],
+  },
+  {
+    slug: 'lyric-sync',
+    name: 'Lyric Sync',
+    category: 'Text',
+    isNew: true,
+    description: 'Synced lyrics like Apple Music, Spotify and karaoke screens: the line being sung fills word by word and the rest glide up, soft and blurred by distance. Paste your own timed lyrics.',
+    controls: [
+      { name: 'look', type: 'select', options: ['Apple Music', 'Spotify', 'Karaoke'], default: 'Apple Music' },
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Violet', values: { bgColor: '#0e0f14', accentColor: '#7c5cff', textColor: '#ffffff' } },
+          { name: 'Sunset', values: { bgColor: '#1a0d12', accentColor: '#ff6a3d', textColor: '#ffffff' } },
+          { name: 'Ocean', values: { bgColor: '#06141a', accentColor: '#1fb6c9', textColor: '#ffffff' } },
+          { name: 'Forest', values: { bgColor: '#08160e', accentColor: '#1db954', textColor: '#ffffff' } },
+          { name: 'Rose', values: { bgColor: '#1a0b14', accentColor: '#e0508a', textColor: '#ffffff' } },
+        ],
+      },
+      { name: 'speed', type: 'range', min: 0.5, max: 2, step: 0.1, default: 1 },
+      { name: 'size', type: 'range', min: 0.7, max: 1.4, step: 0.05, default: 1 },
+      { name: 'depthBlur', type: 'toggle', default: true },
+      { name: 'loop', type: 'toggle', default: true },
+      { name: 'showPlayer', type: 'toggle', default: true },
+      { name: 'bgColor', type: 'color', default: '#0e0f14' },
+      { name: 'accentColor', type: 'color', default: '#7c5cff' },
+      { name: 'textColor', type: 'color', default: '#ffffff' },
+      { name: 'title', type: 'text', default: '', maxLength: 40 },
+      { name: 'artist', type: 'text', default: '', maxLength: 40 },
+      { name: 'lyrics', type: 'textarea', rows: 10, hint: 'timed lyrics, [mm:ss.xx] line, with <mm:ss.xx> before a word to time it exactly (or plain lyrics, which are timed for you)', default: DEMO_LRC },
+    ],
+    fill: true,
+    preview: (p) => <LyricSync {...p} style={{ position: 'absolute', inset: 0 }} />,
+    files: ['LyricSync.jsx', 'ui/onscreen.js', 'ui/color.js'],
+    deps: [],
+  },
+  {
+    slug: 'poster-lyrics',
+    name: 'Poster Lyrics',
+    category: 'Text',
+    isNew: true,
+    description: 'Lyric-video posters: each line becomes a flat three-colour scene with the words stretched to fill the frame, bent into an arch, laid on a road in perspective or split around a little drawing that moves with them.',
+    controls: [
+      { name: 'layout', type: 'select', options: ['auto', 'stack', 'arch', 'between', 'drive', 'perspective'], default: 'auto' },
+      { name: 'drawings', type: 'select', options: ['auto', 'matching', 'off'], default: 'auto' },
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Berry', values: { colorA: '#7a2b50', colorB: '#f5a44b', colorC: '#43898b' } },
+          { name: 'Navy', values: { colorA: '#1f2a52', colorB: '#f4e3b5', colorC: '#e2674a' } },
+          { name: 'Plum', values: { colorA: '#4a2a6b', colorB: '#ffd36b', colorC: '#4fc2a8' } },
+          { name: 'Tomato', values: { colorA: '#c8402f', colorB: '#fbe6c8', colorC: '#26413c' } },
+          { name: 'Forest', values: { colorA: '#1f4d3a', colorB: '#f2c75a', colorC: '#e0734e' } },
+        ],
+      },
+      { name: 'speed', type: 'range', min: 0.5, max: 2, step: 0.1, default: 1 },
+      { name: 'loop', type: 'toggle', default: true },
+      { name: 'showPlayer', type: 'toggle', default: true },
+      { name: 'colorA', type: 'color', default: '#7a2b50' },
+      { name: 'colorB', type: 'color', default: '#f5a44b' },
+      { name: 'colorC', type: 'color', default: '#43898b' },
+      { name: 'lyrics', type: 'textarea', rows: 10, hint: 'timed lyrics, [mm:ss.xx] line (or plain lyrics, which are timed for you). Start a line with {layout|drawing} to choose its look, e.g. {arch|moon}', default: DEMO_POSTER_LRC },
+    ],
+    fill: true,
+    preview: (p) => <PosterLyrics {...p} style={{ position: 'absolute', inset: 0 }} />,
+    files: ['PosterLyrics.jsx', 'LyricSync.jsx', 'ui/onscreen.js', 'ui/color.js'],
     deps: [],
   },
   {
