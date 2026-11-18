@@ -8,7 +8,7 @@ import { HALF, HELI, N, PIT, TRACK as T, WORLD, fbm, groundAt, hash, mesher, noi
 // geometry (plus lists of things the scene instances: people, tyres).
 
 export const TEAMS = ['#e23b2e', '#1f6fd6', '#f2b316', '#17a865', '#f26a1b', '#8c3fd1']
-const CROWD = ['#e8483c', '#2f7fe0', '#f4c531', '#f3f1ec', '#31b06a', '#f07d2a', '#3a3f4a', '#d85aa0', '#7fc4ee']
+export const CROWD = ['#e8483c', '#2f7fe0', '#f4c531', '#f3f1ec', '#31b06a', '#f07d2a', '#3a3f4a', '#d85aa0', '#7fc4ee']
 const WHITE = '#efece6'
 const GLASS = '#1b2a3a'
 
@@ -244,7 +244,7 @@ function boardMesher() {
   }
 }
 
-function stand(M, st, people, r, hue) {
+export function stand(M, st, people, r, hue) {
   const { x, z, rot, len, rows, roof, depth } = st
   const cs = Math.cos(rot)
   const sn = Math.sin(rot)

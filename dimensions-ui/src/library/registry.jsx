@@ -486,6 +486,8 @@ import LampModel from '../lib/LampModel.jsx'
 import CompanionRobotModel from '../lib/CompanionRobotModel.jsx'
 import TapeModel from '../lib/TapeModel.jsx'
 import ButterflyModel from '../lib/ButterflyModel.jsx'
+import LyricSync, { DEMO_LRC } from '../lib/LyricSync.jsx'
+import PosterLyrics, { DEMO_POSTER_LRC } from '../lib/PosterLyrics.jsx'
 import OceanModel from '../lib/OceanModel.jsx'
 import CloudModel from '../lib/CloudModel.jsx'
 import CloudSeaModel from '../lib/CloudSeaModel.jsx'
@@ -495,6 +497,7 @@ import RiverValleyModel from '../lib/RiverValleyModel.jsx'
 import DowntownModel from '../lib/DowntownModel.jsx'
 import CountrysideModel from '../lib/CountrysideModel.jsx'
 import RacingCircuitModel from '../lib/RacingCircuitModel.jsx'
+import AlpineIceCircuitModel from '../lib/AlpineIceCircuitModel.jsx'
 import DiceModel from '../lib/DiceModel.jsx'
 import PuzzleCubeModel from '../lib/PuzzleCubeModel.jsx'
 import RingModel from '../lib/RingModel.jsx'
@@ -529,6 +532,7 @@ import TennisBallModel from '../lib/TennisBallModel.jsx'
 import GamepadModel from '../lib/GamepadModel.jsx'
 import LadderModel from '../lib/LadderModel.jsx'
 import ShirtModel from '../lib/ShirtModel.jsx'
+import WigModel from '../lib/WigModel.jsx'
 import EarbudsModel from '../lib/EarbudsModel.jsx'
 import HomeIcon from '../lib/HomeIcon.jsx'
 import SearchIcon from '../lib/SearchIcon.jsx'
@@ -2831,6 +2835,75 @@ const ALL_COMPONENTS = [
     deps: [],
   },
   {
+    slug: 'lyric-sync',
+    name: 'Lyric Sync',
+    category: 'Text',
+    isNew: true,
+    description: 'Synced lyrics like Apple Music, Spotify and karaoke screens: the line being sung fills word by word and the rest glide up, soft and blurred by distance. Paste your own timed lyrics.',
+    controls: [
+      { name: 'look', type: 'select', options: ['Apple Music', 'Spotify', 'Karaoke'], default: 'Apple Music' },
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Violet', values: { bgColor: '#0e0f14', accentColor: '#7c5cff', textColor: '#ffffff' } },
+          { name: 'Sunset', values: { bgColor: '#1a0d12', accentColor: '#ff6a3d', textColor: '#ffffff' } },
+          { name: 'Ocean', values: { bgColor: '#06141a', accentColor: '#1fb6c9', textColor: '#ffffff' } },
+          { name: 'Forest', values: { bgColor: '#08160e', accentColor: '#1db954', textColor: '#ffffff' } },
+          { name: 'Rose', values: { bgColor: '#1a0b14', accentColor: '#e0508a', textColor: '#ffffff' } },
+        ],
+      },
+      { name: 'speed', type: 'range', min: 0.5, max: 2, step: 0.1, default: 1 },
+      { name: 'size', type: 'range', min: 0.7, max: 1.4, step: 0.05, default: 1 },
+      { name: 'depthBlur', type: 'toggle', default: true },
+      { name: 'loop', type: 'toggle', default: true },
+      { name: 'showPlayer', type: 'toggle', default: true },
+      { name: 'bgColor', type: 'color', default: '#0e0f14' },
+      { name: 'accentColor', type: 'color', default: '#7c5cff' },
+      { name: 'textColor', type: 'color', default: '#ffffff' },
+      { name: 'title', type: 'text', default: '', maxLength: 40 },
+      { name: 'artist', type: 'text', default: '', maxLength: 40 },
+      { name: 'lyrics', type: 'textarea', rows: 10, hint: 'timed lyrics, [mm:ss.xx] line, with <mm:ss.xx> before a word to time it exactly (or plain lyrics, which are timed for you)', default: DEMO_LRC },
+    ],
+    fill: true,
+    preview: (p) => <LyricSync {...p} style={{ position: 'absolute', inset: 0 }} />,
+    files: ['LyricSync.jsx', 'ui/onscreen.js', 'ui/color.js'],
+    deps: [],
+  },
+  {
+    slug: 'poster-lyrics',
+    name: 'Poster Lyrics',
+    category: 'Text',
+    isNew: true,
+    description: 'Lyric-video posters: each line becomes a flat three-colour scene with the words stretched to fill the frame, bent into an arch, laid on a road in perspective or split around a little drawing that moves with them.',
+    controls: [
+      { name: 'layout', type: 'select', options: ['auto', 'stack', 'arch', 'between', 'drive', 'perspective'], default: 'auto' },
+      { name: 'drawings', type: 'select', options: ['auto', 'matching', 'off'], default: 'auto' },
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Berry', values: { colorA: '#7a2b50', colorB: '#f5a44b', colorC: '#43898b' } },
+          { name: 'Navy', values: { colorA: '#1f2a52', colorB: '#f4e3b5', colorC: '#e2674a' } },
+          { name: 'Plum', values: { colorA: '#4a2a6b', colorB: '#ffd36b', colorC: '#4fc2a8' } },
+          { name: 'Tomato', values: { colorA: '#c8402f', colorB: '#fbe6c8', colorC: '#26413c' } },
+          { name: 'Forest', values: { colorA: '#1f4d3a', colorB: '#f2c75a', colorC: '#e0734e' } },
+        ],
+      },
+      { name: 'speed', type: 'range', min: 0.5, max: 2, step: 0.1, default: 1 },
+      { name: 'loop', type: 'toggle', default: true },
+      { name: 'showPlayer', type: 'toggle', default: true },
+      { name: 'colorA', type: 'color', default: '#7a2b50' },
+      { name: 'colorB', type: 'color', default: '#f5a44b' },
+      { name: 'colorC', type: 'color', default: '#43898b' },
+      { name: 'lyrics', type: 'textarea', rows: 10, hint: 'timed lyrics, [mm:ss.xx] line (or plain lyrics, which are timed for you). Start a line with {layout|drawing} to choose its look, e.g. {arch|moon}', default: DEMO_POSTER_LRC },
+    ],
+    fill: true,
+    preview: (p) => <PosterLyrics {...p} style={{ position: 'absolute', inset: 0 }} />,
+    files: ['PosterLyrics.jsx', 'LyricSync.jsx', 'ui/onscreen.js', 'ui/color.js'],
+    deps: [],
+  },
+  {
     slug: 'soap-bubbles',
     name: 'Soap Bubbles',
     category: 'Text',
@@ -3475,6 +3548,50 @@ const ALL_COMPONENTS = [
     preview: (p, set) => <HeadphonesModel {...p} onChange={set} height="100%" />,
     fill: true,
     files: ['HeadphonesModel.jsx', 'headphones/HeadphonesScene.jsx', 'headphones/Headphones.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'wig',
+    name: 'Wig',
+    category: '3D & Materials',
+    style: 'Fashion & wear',
+    isNew: true,
+    description: 'A realistic wig on a display head. The hair is real strands: about three thousand flat ribbons grown from roots on the scalp in locks, walked down from the root so they rest on and wrap round the head, neck and shoulders, then bent into waves or helical curls. Colour runs from a darker root through highlights to an optional ombre tip, and a glossy highlight runs along the strands the way it does on real hair. Set the length, wave, curl, volume, parting and fringe, or pick a ready-made look.',
+    controls: [
+      {
+        name: 'looks',
+        type: 'presets',
+        options: [
+          { name: 'Chestnut waves', values: { hairColor: '#5a3a26', highlightColor: '#a8794a', highlights: 0.35, tipColor: '#c79a68', ombre: 0, length: 45, wave: 0.45, curl: 0, volume: 0.6, part: 0.25, fringe: true } },
+          { name: 'Sleek black', values: { hairColor: '#14110f', highlightColor: '#3a332e', highlights: 0.2, tipColor: '#2a2420', ombre: 0, length: 52, wave: 0, curl: 0, volume: 0.25, part: 0, fringe: false } },
+          { name: 'Blonde bob', values: { hairColor: '#c9a35f', highlightColor: '#ecd59a', highlights: 0.5, tipColor: '#f1dfae', ombre: 0.3, length: 19, wave: 0.1, curl: 0, volume: 0.7, part: -0.3, fringe: true } },
+          { name: 'Auburn curls', values: { hairColor: '#7a2f1a', highlightColor: '#b5602d', highlights: 0.4, tipColor: '#d27a3a', ombre: 0.25, length: 34, wave: 0.2, curl: 0.85, volume: 1, part: 0.15, fringe: false } },
+          { name: 'Platinum', values: { hairColor: '#d8d4cc', highlightColor: '#f7f4ee', highlights: 0.45, tipColor: '#ffffff', ombre: 0, length: 40, wave: 0.3, curl: 0, volume: 0.5, part: 0, fringe: true } },
+          { name: 'Rose ombre', values: { hairColor: '#4b2a2f', highlightColor: '#8a4552', highlights: 0.3, tipColor: '#e9789a', ombre: 0.9, length: 48, wave: 0.55, curl: 0.15, volume: 0.7, part: 0.3, fringe: false } },
+          { name: 'Silver pixie', values: { hairColor: '#9b9da3', highlightColor: '#d9dbe0', highlights: 0.4, tipColor: '#e7e8ec', ombre: 0, length: 9, wave: 0.15, curl: 0, volume: 0.9, part: 0.4, fringe: true } },
+        ],
+      },
+      { name: 'hairColor', type: 'color', default: '#5a3a26' },
+      { name: 'highlightColor', type: 'color', default: '#a8794a' },
+      { name: 'highlights', type: 'range', min: 0, max: 1, step: 0.02, default: 0.35 },
+      { name: 'tipColor', type: 'color', default: '#c79a68' },
+      { name: 'ombre', type: 'range', min: 0, max: 1, step: 0.02, default: 0 },
+      { name: 'length', type: 'range', min: 6, max: 70, step: 1, default: 45, unit: 'cm' },
+      { name: 'wave', type: 'range', min: 0, max: 1, step: 0.02, default: 0.45 },
+      { name: 'curl', type: 'range', min: 0, max: 1, step: 0.02, default: 0 },
+      { name: 'volume', type: 'range', min: 0, max: 1, step: 0.02, default: 0.6 },
+      { name: 'part', type: 'range', min: -1, max: 1, step: 0.05, default: 0.25 },
+      { name: 'fringe', type: 'toggle', default: true },
+      { name: 'density', type: 'range', min: 0.4, max: 1.4, step: 0.05, default: 1 },
+      { name: 'shine', type: 'range', min: 0, max: 1.6, step: 0.02, default: 1 },
+      { name: 'sway', type: 'range', min: 0, max: 2, step: 0.05, default: 1 },
+      { name: 'display', type: 'select', options: ['bust', 'stand'], default: 'bust' },
+      { name: 'skin', type: 'color', default: '#ece9e3' },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <WigModel {...p} height="100%" />,
+    fill: true,
+    files: ['WigModel.jsx', 'wig/WigScene.jsx', 'wig/Wig.jsx', 'airliner/stage.jsx'],
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
@@ -8872,6 +8989,43 @@ const ALL_COMPONENTS = [
     preview: (p) => <RacingCircuitModel {...p} height="100%" />,
     fill: true,
     files: ['RacingCircuitModel.jsx', 'circuit/CircuitScene.jsx', 'circuit/Circuit.jsx', 'circuit/track.js', 'circuit/props.js', 'cloud/sun.js', 'lowpoly/kit.jsx', 'airliner/stage.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
+  },
+  {
+    slug: 'alpine-ice-circuit',
+    name: 'Alpine Ice Circuit',
+    category: 'Scenes & Assets',
+    style: 'Scenes',
+    isNew: true,
+    description: 'A racing circuit marked out on a frozen lake: clear blue ice with a polished racing line, deep-snow runoff on the outside of the corners, lumpy snowbanks along both edges, a timber chalet holding the pit garages, grandstands in winter coats, floodlight masts, snowy pines on the slopes and mountains all round. A field of GT cars laps it on the racing line; ride behind the leader, cut between trackside cameras, or switch on Drive to put the Low Poly Race Car on the grid and slide it round yourself: the ice is slippery, and the snowbanks push you back. Presets set the time of day and the snowfall.',
+    controls: [
+      {
+        name: 'palette',
+        type: 'presets',
+        options: [
+          { name: 'Clear morning', values: { elevation: 14, azimuth: -60, exposure: 1, haze: 0.8, snow: 0 } },
+          { name: 'Noon', values: { elevation: 52, azimuth: -20, exposure: 0.7, haze: 0.6, snow: 0 } },
+          { name: 'Snowfall', values: { elevation: 22, azimuth: 30, exposure: 1.05, haze: 3, snow: 1.6 } },
+          { name: 'Golden hour', values: { elevation: 5, azimuth: -80, exposure: 1.2, haze: 1.2, snow: 0.2 } },
+          { name: 'Night floodlights', values: { elevation: -8, azimuth: 150, exposure: 1.6, haze: 1.2, snow: 0.5 } },
+        ],
+      },
+      { name: 'view', type: 'select', options: ['overview', 'chase', 'trackside', 'drive'], default: 'overview' },
+      { name: 'drivable', type: 'toggle', default: false },
+      { name: 'elevation', type: 'range', min: -10, max: 90, step: 0.5, default: 14, unit: '°' },
+      { name: 'azimuth', type: 'range', min: -180, max: 180, step: 1, default: -60, unit: '°' },
+      { name: 'exposure', type: 'range', min: 0.1, max: 2, step: 0.01, default: 1 },
+      { name: 'haze', type: 'range', min: 0, max: 4, step: 0.05, default: 0.8 },
+      { name: 'cars', type: 'range', min: 0, max: 12, step: 1, default: 12 },
+      { name: 'speed', type: 'range', min: 0, max: 2, step: 0.05, default: 1 },
+      { name: 'trees', type: 'range', min: 0, max: 1.6, step: 0.05, default: 1 },
+      { name: 'snow', type: 'range', min: 0, max: 2, step: 0.05, default: 0.4 },
+      { name: 'crowd', type: 'toggle', default: true },
+      { name: 'autoRotate', type: 'toggle', default: false },
+    ],
+    preview: (p) => <AlpineIceCircuitModel {...p} height="100%" />,
+    fill: true,
+    files: ['AlpineIceCircuitModel.jsx', 'circuit-alpine/AlpineScene.jsx', 'circuit-alpine/Alpine.jsx', 'circuit-alpine/layout.js', 'circuit-alpine/world.js', 'circuit/Circuit.jsx', 'circuit/track.js', 'circuit/props.js', 'cloud/sun.js', 'lowpoly/kit.jsx', 'airliner/stage.jsx', 'racecar/RaceCar.jsx', 'racecar/geometry.js', 'pickup/drive.js', 'pickup/controls.js', 'pickup/textures.js'],
     deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
   },
   {

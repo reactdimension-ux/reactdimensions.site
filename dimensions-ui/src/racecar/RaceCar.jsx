@@ -107,6 +107,7 @@ export default function RaceCar({
   drivable = false,
   color = '#c8141e',
   number = '07',
+  drive, // optional overrides of the drive tuning, e.g. a bigger arena or a surface
 }) {
   const yawRef = useRef()
   const bodyRef = useRef()
@@ -158,7 +159,7 @@ export default function RaceCar({
   }, [])
 
   useDriveRig({
-    cfg: DRIVE,
+    cfg: drive ? { ...DRIVE, ...drive } : DRIVE,
     drivable,
     autoRotate,
     bounce,

@@ -17,7 +17,7 @@ import { POND, TRACK as T, WORLD, fbm, groundAt, sstep, wrap } from './track.js'
 const RACERS = 12
 
 // Instances placed from a list of { x, y, z, rot, s, c }.
-function Instances({ geometry, material, items, cast = true, tint = true }) {
+export function Instances({ geometry, material, items, cast = true, tint = true }) {
   const ref = useRef()
   useEffect(() => {
     const m = ref.current
@@ -42,7 +42,7 @@ function Instances({ geometry, material, items, cast = true, tint = true }) {
 
 // A flat-shaded material whose instances move: trees sway from the foot,
 // people bob on the spot.
-function useLiveMaterial(kind, color = '#ffffff') {
+export function useLiveMaterial(kind, color = '#ffffff') {
   const shader = useRef()
   const mat = useMemo(() => {
     const m = new THREE.MeshStandardMaterial({ color, flatShading: true, roughness: 0.85, metalness: 0, vertexColors: kind === 'people' })
