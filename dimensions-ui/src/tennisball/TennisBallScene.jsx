@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import TennisBall from './TennisBall.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 function Studio() {
   return (
@@ -106,14 +107,14 @@ export default function TennisBallScene({ background = '#d9d8d4', surface = 'har
         <OrbitControls makeDefault enablePan={false} target={[0, 0.032, 0]} autoRotate={autoRotate} autoRotateSpeed={0.6} minDistance={0.1} maxDistance={4} maxPolarAngle={1.5} />
       </Canvas>
 
-      <div style={{ position: 'absolute', top: 14, left: 0, right: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 10, pointerEvents: 'none', flexWrap: 'wrap' }}>
+      <ControlDock corner="tl">
         <button onClick={() => setHitKey((k) => k + 1)} style={{ ...btn, background: '#1c1a16', color: '#f4f1ea' }}>
           Hit
         </button>
         <button onClick={() => setDropKey((k) => k + 1)} style={{ ...btn, background: 'rgba(255,255,255,.9)', color: '#1c1a16' }}>
           Drop test
         </button>
-      </div>
+      </ControlDock>
       {report != null && (
         <div aria-live="polite" style={{ position: 'absolute', top: 62, left: 0, right: 0, textAlign: 'center', font: '500 12px/1.4 ui-monospace, Menlo, monospace', color: '#2a2925', pointerEvents: 'none' }}>
           From 254 cm it bounced to {Math.round(report * 100)} cm · {surface === 'hard' ? `${pass ? 'passes' : 'outside'} the ITF 135–147 cm` : `on ${surface} (the ITF tests on a rigid floor: 135–147 cm)`}

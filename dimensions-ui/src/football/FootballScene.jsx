@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Football from './Football.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 function Studio() {
   return (
@@ -41,7 +42,7 @@ export default function FootballScene({ background = '#d6d6d6', floor = '#cfcfcf
         <OrbitControls makeDefault enablePan={false} target={[0, 0.12, 0]} autoRotate={autoRotate} autoRotateSpeed={0.6} minDistance={0.5} maxDistance={6} maxPolarAngle={1.5} />
       </Canvas>
 
-      <div style={{ position: 'absolute', top: 14, left: 0, right: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 10, pointerEvents: 'none' }}>
+      <ControlDock corner="tl">
         <button onClick={() => setKickKey((k) => k + 1)} style={{ ...btn, background: '#1c1a16', color: '#f4f1ea' }}>
           Kick
         </button>
@@ -51,7 +52,7 @@ export default function FootballScene({ background = '#d6d6d6', floor = '#cfcfcf
         <div aria-live="polite" style={{ font: '500 13px/1 ui-monospace, Menlo, monospace', color: '#2a2925', minWidth: 120 }}>
           {speed ? `${Math.round(speed * 3.6)} km/h` : ''}
         </div>
-      </div>
+      </ControlDock>
       <InfoHint>
         Tap the ball to kick it: hit it off-centre to put spin on it and bend it in the air · drag it to pick it up and throw it · drag the floor to look around
       </InfoHint>

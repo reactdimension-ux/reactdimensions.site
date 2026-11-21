@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { ContactShadows, Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Racket from './Racket.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 function Studio() {
   return (
@@ -33,14 +34,14 @@ export default function RacketScene({ background = '#ecebe8', autoRotate = false
         <OrbitControls makeDefault enablePan={false} target={[0, 0.0, 0]} autoRotate={autoRotate} autoRotateSpeed={0.6} minDistance={0.08} maxDistance={2.6} />
       </Canvas>
 
-      <div style={{ position: 'absolute', top: 14, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 10, pointerEvents: 'none' }}>
+      <ControlDock corner="tl">
         <button onClick={() => setHitKey((k) => k + 1)} style={{ ...btn, background: '#1c1a16', color: '#f4f1ea' }}>
           Hit
         </button>
         <button onClick={() => setTwirlKey((k) => k + 1)} style={{ ...btn, background: 'rgba(255,255,255,.9)', color: '#1c1a16' }}>
           Twirl
         </button>
-      </div>
+      </ControlDock>
       <InfoHint>
         Tap anywhere on the strings (or press Hit for the sweet spot) and the bed dents and trampolines where it is struck; lower tension pockets deeper and pings lower · Twirl spins it in the hand · zoom right in to see the weave, the grommets and the stencil sitting only on the string · drag to look around
       </InfoHint>

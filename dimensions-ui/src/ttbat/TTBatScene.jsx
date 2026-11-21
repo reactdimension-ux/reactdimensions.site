@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { ContactShadows, Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import TTBat, { BAT_BOUNDS } from './TTBat.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 // a bright product studio: a broad soft box overhead and two tall strips,
 // so the rubber picks up long soft highlights
@@ -39,11 +40,11 @@ export default function TTBatScene({ background = '#ececea', autoRotate = false,
         <OrbitControls makeDefault enablePan={false} target={[0, 0, 0]} autoRotate={autoRotate} autoRotateSpeed={1.2} minDistance={0.3} maxDistance={1.6} />
       </Canvas>
 
-      <div style={{ position: 'absolute', top: 14, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 10, pointerEvents: 'none' }}>
+      <ControlDock corner="tl">
         <button onClick={() => setFlipKey((k) => k + 1)} style={{ ...btn, background: '#1c1a16', color: '#f4f1ea' }}>
           Flip
         </button>
-      </div>
+      </ControlDock>
       <InfoHint>Click the bat or press Flip to turn it over to the backhand rubber · drag to look around it · scroll to zoom in on the rubber and the handle</InfoHint>
     </div>
   )

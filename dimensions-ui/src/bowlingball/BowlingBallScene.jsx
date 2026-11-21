@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { Environment, Lightformer, MeshReflectorMaterial, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import BowlingBall from './BowlingBall.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 // A bowling centre's light: long strip lights overhead (they draw the long
 // highlights across the polished ball), soft fill from the sides.
@@ -87,14 +88,14 @@ export default function BowlingBallScene({ background = '#e2e0dc', reflections =
         <OrbitControls makeDefault enablePan={false} target={[0, 0.1085, 0]} autoRotate={autoRotate} autoRotateSpeed={0.6} minDistance={0.3} maxDistance={3} maxPolarAngle={1.5} />
       </Canvas>
 
-      <div style={{ position: 'absolute', top: 14, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 10, pointerEvents: 'none' }}>
+      <ControlDock corner="tl">
         <button type="button" onClick={() => setRollKey((k) => k + 1)} style={{ ...btn, background: '#1c1a16', color: '#f4f1ea' }}>
           Roll
         </button>
         <button type="button" onClick={() => setSpinKey((k) => k + 1)} style={{ ...btn, background: 'rgba(255,255,255,.9)', color: '#1c1a16' }}>
           Spin
         </button>
-      </div>
+      </ControlDock>
       <InfoHint>Roll sends it off skidding with side roll, and it hooks as the floor grips it · Spin (or tap the ball) twirls it on the spot · drag to look around, scroll to look into the holes</InfoHint>
     </div>
   )

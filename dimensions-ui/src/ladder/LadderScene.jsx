@@ -3,6 +3,7 @@ import { Canvas, useThree } from '@react-three/fiber'
 import { Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Ladder from './Ladder.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 const TARGET = [1.8, 2.6, 0]
 
@@ -69,7 +70,7 @@ export default function LadderScene({ autoRotate = false, wallColor = '#e6e4df',
         <OrbitControls makeDefault enablePan={false} target={TARGET} autoRotate={autoRotate} autoRotateSpeed={0.5} minDistance={6} maxDistance={36} minPolarAngle={0.25} maxPolarAngle={1.5} minAzimuthAngle={0.15} maxAzimuthAngle={Math.PI - 0.15} />
       </Canvas>
 
-      <div style={{ position: 'absolute', top: 14, left: 16, right: 16, display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 10, pointerEvents: 'none', font: '500 12px/1.3 ui-monospace, Menlo, monospace', color: '#2b2a26' }}>
+      <ControlDock corner="tl">
         {status && (
           <>
             <span style={{ padding: '6px 10px', borderRadius: 999, background: tone[status.state] ?? '#5a5852', color: '#fff', letterSpacing: '.06em' }}>{status.state}</span>
@@ -84,7 +85,7 @@ export default function LadderScene({ autoRotate = false, wallColor = '#e6e4df',
         >
           Stand it up
         </button>
-      </div>
+      </ControlDock>
       <InfoHint>
         Drag the foot out to lean it further · drag the top to tip it off the wall · click a rung to hang the can
       </InfoHint>

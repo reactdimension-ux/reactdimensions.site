@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { ContactShadows, Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Hourglass, { HOURGLASS_HEIGHT } from './Hourglass.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 function Studio() {
   return (
@@ -38,14 +39,14 @@ export default function HourglassScene({ background = '#e4e3e0', autoRotate = fa
         <Hourglass {...props} flipKey={flipKey} onTime={(t, run) => setLeft((p) => (p && Math.floor(p.t) === Math.floor(t) && p.run === run ? p : { t, run }))} />
         <OrbitControls makeDefault enablePan={false} target={[0, y, 0]} autoRotate={autoRotate} autoRotateSpeed={0.6} minDistance={0.25} maxDistance={1.6} maxPolarAngle={1.52} />
       </Canvas>
-      <div style={{ position: 'absolute', top: 14, left: 0, right: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 14, pointerEvents: 'none' }}>
+      <ControlDock corner="tl">
         <button onClick={() => setFlipKey((k) => k + 1)} style={btn}>
           Turn over
         </button>
         <div aria-live="off" style={{ font: '500 13px/1 ui-monospace, Menlo, monospace', color: '#2a2925', minWidth: 120 }}>
           {left ? (left.t > 0.05 ? `${fmt(left.t)} left` : 'Done') : ''}
         </div>
-      </div>
+      </ControlDock>
       <InfoHint>Click the hourglass (or Turn over) to turn it · drag to look around · the sand runs at a constant rate, so the time is set by the duration control</InfoHint>
     </div>
   )

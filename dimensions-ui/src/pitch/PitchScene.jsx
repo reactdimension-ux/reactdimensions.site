@@ -6,6 +6,7 @@ import { ToneMappingMode } from 'postprocessing'
 import * as THREE from 'three'
 import Pitch from './Pitch.jsx'
 import { LEN, OUTFIELD_TILE, PITCH, POPPING_Z, STUMP, STUMPS_Z, buildOutfield } from './textures.js'
+import ControlDock from '../controls/ControlDock.jsx'
 
 const STUDIO_BG = '#e6e7e9'
 const FOV = 30
@@ -262,7 +263,7 @@ export default function PitchScene({ wear = 0.45, grass = 0.6, sun = 34, stumpWo
         <Effects ao={ambientOcclusion} />
       </Canvas>
 
-      <div style={{ position: 'absolute', top: 12, left: 0, right: 0, display: 'flex', justifyContent: 'center', pointerEvents: 'none', padding: '0 12px' }}>
+      <ControlDock corner="tl">
         <div role="tablist" aria-label="Camera view" style={{ pointerEvents: 'auto', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 2, padding: 3, borderRadius: 18, background: 'rgba(255,255,255,0.88)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', boxShadow: '0 2px 10px rgba(0,0,0,.12), inset 0 0 0 1px rgba(0,0,0,.07)' }}>
           {PITCH_VIEWS.map((v) => (
             <button key={v} type="button" role="tab" aria-selected={view === v} style={segBtn(view === v)} onClick={() => setView(v)}>
@@ -270,7 +271,7 @@ export default function PitchScene({ wear = 0.45, grass = 0.6, sun = 34, stumpWo
             </button>
           ))}
         </div>
-      </div>
+      </ControlDock>
       <InfoHint>
         A regulation pitch at full size: 20.12 m between the stumps, 3.05 m wide, creases painted to the Laws · the grass is real blades, worn away where bowlers land and the ball pitches · raise wear to go from a green first morning to a cracked, footmarked fifth day · pick a view, or drag to orbit and scroll to get down to the turf
       </InfoHint>

@@ -3,6 +3,7 @@ import { Canvas, useThree } from '@react-three/fiber'
 import { ContactShadows, Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Bat from './Bat.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 const BG = '#e6e5e2'
 const TARGET = [0.05, 0.42, 0]
@@ -70,7 +71,7 @@ export default function BatScene({ autoRotate = false, ...props }) {
         <Rig />
         <OrbitControls makeDefault enablePan={false} target={TARGET} autoRotate={autoRotate} autoRotateSpeed={0.6} minDistance={0.5} maxDistance={7} minPolarAngle={0.1} maxPolarAngle={1.53} />
       </Canvas>
-      <div style={{ position: 'absolute', left: 12, bottom: 12, zIndex: 5, display: 'flex', gap: 8, flexWrap: 'wrap', maxWidth: 'calc(100% - 64px)' }}>
+      <ControlDock corner="bl">
         <button type="button" style={btn(true)} onClick={() => fire('topple')}>
           Knock over
         </button>
@@ -82,7 +83,7 @@ export default function BatScene({ autoRotate = false, ...props }) {
             Reset ball
           </button>
         )}
-      </div>
+      </ControlDock>
       <InfoHint>Drag the bat to pick it up and swing it, let go to drop or throw it · swing it through the ball · click it to knock it over, click again to stand it up</InfoHint>
     </div>
   )

@@ -4,6 +4,7 @@ import { OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import PlayingCards, { cardsExtent, layoutPoses } from './PlayingCards.jsx'
 import { CameraRig, Effects, FOV, InfoHint, KeyLight, Studio, TAN as T, ViewTabs, pill } from '../gameboard/stage.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 // The cards on a baize-covered table, in the shared tabletop studio (from
 // the board models). The scene is in metres; the cards are modelled in
@@ -122,14 +123,14 @@ export default function PlayingCardsScene({ suit = 'clubs', layout = 'rows', bac
         <Effects ao={ambientOcclusion} radius={0.01} />
       </Canvas>
       <ViewTabs main={['Top', 'Table', 'Low']} detail={['Ace', 'Court', 'Joker']} view={view} setView={setView} />
-      <div style={{ position: 'absolute', left: 12, bottom: 12, zIndex: 5, display: 'flex', gap: 8 }}>
+      <ControlDock corner="bl">
         <button type="button" style={btn} onClick={() => cards.current?.deal()}>
           Deal
         </button>
         <button type="button" style={{ ...btn, background: 'rgba(255,255,255,0.9)', color: '#1c1a16' }} onClick={() => cards.current?.flip()}>
           Flip all
         </button>
-      </div>
+      </ControlDock>
       <InfoHint>
         A full suit, ace to king, and a joker, on the Color Cards card: the same rounded coated stock, with traditional pips, corner indices, an ornamented ace and double-headed court cards · Deal to throw them out again · press and drag any card to pick it up and move it (it lands on top), click a card to turn it over · pick a suit, a layout and the back colour in the controls
       </InfoHint>

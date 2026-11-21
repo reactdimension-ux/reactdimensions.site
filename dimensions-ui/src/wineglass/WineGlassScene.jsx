@@ -5,6 +5,7 @@ import * as THREE from 'three'
 import WineGlass from './WineGlass.jsx'
 import { FOOT_R, H, RMAX, RRIM, Y0 } from './geometry.js'
 import { CameraRig, Dim, Effects, FOV, InfoHint, KeyLight, Studio, TAN as T, ViewTabs, pill } from '../gameboard/stage.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 // The wine glass on a pale studio table, as on a product reference sheet,
 // in the shared studio from the board models (its dark room and soft boxes
@@ -71,7 +72,7 @@ export default function WineGlassScene({ wine = 'red', fill = 0.35, sound = true
       </Canvas>
       <ViewTabs main={MAIN} detail={DETAIL} view={view} setView={setView} />
 
-      <div style={{ position: 'absolute', left: 12, bottom: 12, right: 56, zIndex: 5, display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
+      <ControlDock corner="bl">
         <button type="button" style={btn} onClick={() => glass.current?.swirl()} disabled={wine === 'empty'}>
           Swirl
         </button>
@@ -85,7 +86,7 @@ export default function WineGlassScene({ wine = 'red', fill = 0.35, sound = true
             <span>rings at {info.hz} Hz</span>
           </div>
         )}
-      </div>
+      </ControlDock>
       <InfoHint>
         A classic stemmed wine glass with a thin rolled rim, a thick lens of glass at the bottom of the bowl and a drawn stem · drag the glass to slide it on the table and watch the wine slosh, or press Swirl · click the glass (or Clink) to strike it: the more wine, the lower and shorter the ring · change the wine and how full it is in the controls
       </InfoHint>

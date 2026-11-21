@@ -3,6 +3,7 @@ import { Canvas, useThree } from '@react-three/fiber'
 import { ContactShadows, Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Ring from './Ring.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 // soft studio: a grey room with tall strip lights, which is what gives
 // polished metal its long, soft highlights
@@ -73,7 +74,7 @@ export default function RingScene({ background = '#e7e7e7', autoRotate = false, 
         <OrbitControls makeDefault enablePan={false} target={[0, radius * 0.9, 0]} autoRotate={autoRotate} autoRotateSpeed={0.6} minDistance={radius * 1.6} maxDistance={radius * 14} maxPolarAngle={1.52} />
       </Canvas>
 
-      <div style={{ position: 'absolute', top: 14, left: 0, right: 0, display: 'flex', justifyContent: 'center', pointerEvents: 'none' }}>
+      <ControlDock corner="tl">
         <button
           onClick={() => ring.current?.act()}
           disabled={busy}
@@ -81,7 +82,7 @@ export default function RingScene({ background = '#e7e7e7', autoRotate = false, 
         >
           {LABEL[mode]}
         </button>
-      </div>
+      </ControlDock>
       <InfoHint>
         Click the ring to spin it · drag it to turn, flick it to spin · drag the background to look, scroll to zoom in close
       </InfoHint>

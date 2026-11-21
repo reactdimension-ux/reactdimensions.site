@@ -4,6 +4,7 @@ import { ContactShadows, Environment, Lightformer, OrbitControls } from '@react-
 import * as THREE from 'three'
 import Guitar, { GUITAR_EXTENT } from './Guitar.jsx'
 import { CHORDS } from './strings.js'
+import ControlDock from '../controls/ControlDock.jsx'
 
 // a warm studio: big soft boxes, which give a gloss finish its long highlights
 function Studio() {
@@ -125,7 +126,7 @@ export default function GuitarScene({ background = '#e9e6e1', autoRotate = false
         <OrbitControls makeDefault enablePan={false} target={TARGET} autoRotate={autoRotate} autoRotateSpeed={0.5} minDistance={22} maxDistance={520} maxPolarAngle={1.55} />
       </Canvas>
 
-      <div style={{ position: 'absolute', top: 12, left: 12, right: 12, display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 6, pointerEvents: 'none' }}>
+      <ControlDock corner="tl">
         {Object.keys(CHORDS).map((name) => (
           <button key={name} onClick={() => guitar.current?.setChord(name)} style={chip(info?.chord === name)}>
             {name}
@@ -134,7 +135,7 @@ export default function GuitarScene({ background = '#e9e6e1', autoRotate = false
         <button onClick={() => guitar.current?.strum(true)} style={{ ...chip(true), background: '#b4451f', marginLeft: 6 }}>
           Strum
         </button>
-      </div>
+      </ControlDock>
       <div style={{ position: 'absolute', top: 52, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 6, pointerEvents: 'none' }}>
         <button onClick={() => guitar.current?.tune()} style={chip(false)}>
           Tune up

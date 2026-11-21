@@ -3,6 +3,7 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { ContactShadows, Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Mug from './Mug.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 // soft studio: a big overhead box and broad side strips, for a satin glaze
 function Studio() {
@@ -134,7 +135,7 @@ export default function MugScene({ background = '#e6e6e4', autoRotate = false, .
         <OrbitControls makeDefault enablePan={false} target={TARGET} autoRotate={autoRotate} autoRotateSpeed={0.5} minDistance={7} maxDistance={160} maxPolarAngle={1.5} mouseButtons={{ LEFT: THREE.MOUSE.ROTATE, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.ROTATE }} />
       </Canvas>
 
-      <div style={{ position: 'absolute', top: 14, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 8, pointerEvents: 'none' }}>
+      <ControlDock corner="tl">
         <button onClick={() => (info?.pouring ? mug.current?.stopPour() : mug.current?.pour())} style={btn(true)}>
           {info?.pouring ? 'Stop' : 'Pour'}
         </button>
@@ -147,7 +148,7 @@ export default function MugScene({ background = '#e6e6e4', autoRotate = false, .
         <button onClick={() => setInside((v) => !v)} style={btn(false)}>
           {inside ? 'Table view' : 'Look inside'}
         </button>
-      </div>
+      </ControlDock>
 
       {info && (
         <div style={{ position: 'absolute', left: 12, top: 14, padding: '9px 12px', borderRadius: 12, background: 'rgba(250,250,248,0.8)', backdropFilter: 'blur(6px)', font: '500 11px/1.5 ui-monospace, Menlo, monospace', color: '#2a2925', pointerEvents: 'none', minWidth: 112 }}>

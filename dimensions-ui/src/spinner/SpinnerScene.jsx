@@ -4,6 +4,7 @@ import { OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Spinner, { DIM } from './Spinner.jsx'
 import { CameraRig, Dim, Effects, FOV, InfoHint, KeyLight, Studio, TAN as T, Table, ViewTabs, pill } from '../gameboard/stage.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 // The spinner standing upright over a pale studio floor, as on a product
 // sheet, in the shared tabletop studio (from the board models).
@@ -82,7 +83,7 @@ export default function SpinnerScene({ bodyColor = '#1f2c4b', capColor = '#d6d9d
         <Effects ao={ambientOcclusion} radius={0.004} />
       </Canvas>
       <ViewTabs main={MAIN} detail={DETAIL} view={view} setView={setView} label={(v) => (v.length === 1 ? `View ${v}` : v)} />
-      <div style={{ position: 'absolute', left: 12, bottom: 12, zIndex: 5, display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center', maxWidth: 'calc(100% - 64px)' }}>
+      <ControlDock corner="bl">
         <button type="button" style={btn} onClick={() => spinner.current?.flick()}>
           Flick
         </button>
@@ -98,7 +99,7 @@ export default function SpinnerScene({ bodyColor = '#1f2c4b', capColor = '#d6d9d
             {mm}:{String(ss).padStart(2, '0')}
           </span>
         </div>
-      </div>
+      </ControlDock>
       <InfoHint>
         A three-arm spinner at real size (71 mm across, 9.7 mm thick): anodised aluminium with diamond-cut chamfers, three 608 bearings as weights, an open centre bearing whose eight balls orbit in their cage at half the body&apos;s speed, and turned finger caps held still on the inner race · drag the body round to spin it and let go to flick it, or press Flick · it runs down on the bearing&apos;s friction, a couple of minutes from a good flick · Caps off shows the bearing at work
       </InfoHint>

@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Shuttlecock from './Shuttlecock.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 function Studio() {
   return (
@@ -87,7 +88,7 @@ export default function ShuttlecockScene({ background = '#d9d9d6', floor = 'cour
         <OrbitControls makeDefault enablePan={false} target={[0, 0.045, 0]} autoRotate={autoRotate} autoRotateSpeed={0.6} minDistance={0.1} maxDistance={2} maxPolarAngle={1.52} />
       </Canvas>
 
-      <div style={{ position: 'absolute', top: 14, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 10, pointerEvents: 'none', flexWrap: 'wrap' }}>
+      <ControlDock corner="tl">
         <button onClick={() => setServeKey((k) => k + 1)} style={{ ...btn, background: '#1c1a16', color: '#f4f1ea' }}>
           Serve
         </button>
@@ -97,7 +98,7 @@ export default function ShuttlecockScene({ background = '#d9d9d6', floor = 'cour
         <button onClick={() => setStandKey((k) => k + 1)} style={light}>
           Stand
         </button>
-      </div>
+      </ControlDock>
       <InfoHint>
         Serve (or tap the shuttle) to hit it up: it flips cork-first, spins up on its feathers and falls at its terminal speed, then lands and topples onto its side · Drop lets it go cork-up so it turns over on the way down · Stand puts it back on its cork · lower Slow Motion to watch the flip · drag to look around
       </InfoHint>

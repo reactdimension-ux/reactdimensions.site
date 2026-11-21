@@ -6,6 +6,7 @@ import { ToneMappingMode } from 'postprocessing'
 import * as THREE from 'three'
 import Court from './Court.jsx'
 import { COURT, FX, FZ, MAT_T, MX, MZ, SLAB } from './textures.js'
+import ControlDock from '../controls/ControlDock.jsx'
 
 const FOV = 30
 const T = Math.tan(THREE.MathUtils.degToRad(FOV / 2))
@@ -236,7 +237,7 @@ export default function CourtScene({ matColor = '#2c7a4b', lineColor = '#f3f3ee'
         <Effects ao={ambientOcclusion} />
       </Canvas>
 
-      <div style={{ position: 'absolute', top: 12, left: 0, right: 0, display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 6, pointerEvents: 'none', padding: '0 12px' }}>
+      <ControlDock corner="tl">
         <div role="tablist" aria-label="Camera view" style={pill}>
           {MAIN.map((v) => (
             <button key={v} type="button" role="tab" aria-selected={view === v} style={segBtn(view === v)} onClick={() => setView(v)}>
@@ -251,7 +252,7 @@ export default function CourtScene({ matColor = '#2c7a4b', lineColor = '#f3f3ee'
             </button>
           ))}
         </div>
-      </div>
+      </ControlDock>
       <InfoHint>
         A BWF court at full size: 13.40 × 6.10 m, 40 mm lines measured to their outside edges · a PVC court mat in four welded rolls on a varnished maple floor that mirrors the hall lights · the net is 1.55 m at the posts and 1.524 m at the centre · raise wear for sole marks and dull patches · pick a view, or drag to orbit and scroll right down to a shuttle
       </InfoHint>

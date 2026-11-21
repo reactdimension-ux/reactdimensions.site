@@ -4,6 +4,7 @@ import { ContactShadows, Environment, Lightformer, OrbitControls } from '@react-
 import * as THREE from 'three'
 import Piano, { dynamic } from './Piano.jsx'
 import { FIRST_NOTE, LAST_NOTE, noteName } from './layout.js'
+import ControlDock from '../controls/ControlDock.jsx'
 
 // a concert-hall feel: a big soft light overhead and tall strips either side,
 // which is what makes black lacquer read as glossy rather than flat black
@@ -156,7 +157,7 @@ export default function PianoScene({ background = '#e6e4e0', autoRotate = false,
         <OrbitControls makeDefault enablePan={false} target={TARGET} autoRotate={autoRotate} autoRotateSpeed={0.4} minDistance={45} maxDistance={900} maxPolarAngle={1.5} />
       </Canvas>
 
-      <div style={{ position: 'absolute', top: 14, left: 12, right: 12, display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: 8, pointerEvents: 'none' }}>
+      <ControlDock corner="tl">
         <button onClick={() => piano.current?.toggleLid()} style={btn}>
           {lidOpen ? 'Close lid' : 'Open lid'}
         </button>
@@ -173,7 +174,7 @@ export default function PianoScene({ background = '#e6e4e0', autoRotate = false,
         <span aria-live="polite" style={{ font: '600 12px/1 ui-monospace, Menlo, monospace', color: '#1c1a16', background: last ? '#f4f1ea' : 'transparent', padding: '8px 10px', borderRadius: 8, minWidth: 90 }}>
           {last ? `${noteName(last.n)} · ${dynamic(last.v)}` : ''}
         </span>
-      </div>
+      </ControlDock>
       <InfoHint>
         {midi && (
           <>

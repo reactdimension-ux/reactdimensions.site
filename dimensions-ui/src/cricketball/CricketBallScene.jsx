@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import CricketBall from './CricketBall.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 function Studio() {
   return (
@@ -83,14 +84,14 @@ export default function CricketBallScene({ background = '#d9d6d2', autoRotate = 
         <OrbitControls makeDefault enablePan={false} target={[0, 0.036, 0]} autoRotate={autoRotate} autoRotateSpeed={0.6} minDistance={0.12} maxDistance={1.5} maxPolarAngle={1.5} />
       </Canvas>
 
-      <div style={{ position: 'absolute', top: 14, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 10, pointerEvents: 'none' }}>
+      <ControlDock corner="tl">
         <button onClick={() => setTossKey((k) => k + 1)} style={{ ...btn, background: '#1c1a16', color: '#f4f1ea' }}>
           Toss
         </button>
         <button onClick={() => setSpinKey((k) => k + 1)} style={{ ...btn, background: 'rgba(255,255,255,.9)', color: '#1c1a16' }}>
           Spin
         </button>
-      </div>
+      </ControlDock>
       <InfoHint>
         Toss (or tap the ball) to flick it up with backspin on an upright seam: it kicks back when it lands and settles into a roll · Spin twirls it on the spot until the seam drags it down · Wear scuffs one side and keeps the other shiny · drag to look around
       </InfoHint>

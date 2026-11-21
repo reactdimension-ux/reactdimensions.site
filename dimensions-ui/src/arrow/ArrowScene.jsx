@@ -4,6 +4,7 @@ import { OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Arrow, { ARROW } from './Arrow.jsx'
 import { CameraRig, Effects, FOV, InfoHint, KeyLight, Studio, TAN as T, Table, ViewTabs, pill } from '../gameboard/stage.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 // The arrow floating over a pale studio floor, in the shared tabletop studio
 // (from the board models). It lies along x, nock to the left.
@@ -55,11 +56,11 @@ export default function ArrowScene({ vaneColor = '#f2641c', cockColor = '#f1f1ee
         <Effects ao={ambientOcclusion} radius={0.008} />
       </Canvas>
       <ViewTabs main={['Side', '3/4']} detail={['Point', 'Fletching']} view={view} setView={setView} />
-      <div style={{ position: 'absolute', left: 12, bottom: 12, zIndex: 5 }}>
+      <ControlDock corner="bl">
         <button type="button" style={btn} onClick={() => arrow.current?.spin()}>
           Spin
         </button>
-      </div>
+      </ControlDock>
       <InfoHint>
         A target arrow at real size: a 72 cm carbon shaft in a fine twill weave, a steel field point with ring grooves, three vanes set with a slight helical offset (the white one is the cock vane), and a translucent nock with its string slot · Spin turns it about its axis, the way the vanes do in flight · pick a view, or drag to orbit and scroll right in
       </InfoHint>

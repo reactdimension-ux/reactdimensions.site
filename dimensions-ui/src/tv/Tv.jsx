@@ -5,6 +5,7 @@ import * as THREE from 'three'
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js'
 import Screen from './Screen.jsx'
 import Person from './Person.jsx'
+import TvTable from './TvTable.jsx'
 
 // Units are inches. A 16:9 screen of diagonal d is (0.8716 d) wide and (0.4903 d) tall.
 export const wOf = (d) => d * 0.87157
@@ -17,41 +18,43 @@ const BULGE_BACK = DEPTH / 2 + 0.55 + 0.7 // how far the electronics bulge reach
 const PLATE_T = 0.5 // wall bracket thickness
 const WALL_Z = -10
 const CONSOLE_Z = -2
-const CT = 20 // console top height
+export const CT = 20 // console top height
 const WALL_CENTER_Y = 56 // eye height, for wall mounting
+const FLOAT_CENTER_Y = 50 // where a floating TV hangs
 
 // The camera rig reads this to frame the TV as it changes size.
 export const tvView = { size: 55, cy: 40, w: wOf(55), h: hOf(55) }
 
 export default function Tv({
   size = 55,
-  mount = 'feet',
+  mount = 'float',
   content = 'home',
   frameColor = '#15161a',
   standColor = '#2b2d33',
   wallpaper = '#3a7bff',
   bezel = 0.45,
-  reference = true,
-  measure = true,
+  reference = false,
+  measure = false,
+  table = false,
   wallColor = '#e9e5dd',
   consoleColor = '#9a7550',
 }) {
+  const showFloor = table || reference || mount === 'feet' || mount === 'pedestal' || mount === 'wall'
+  const BASE_Y = table ? CT : 0
   const clamped = Math.min(Math.max(size, 32), 100)
 
   const slabGeo = useMemo(() => new RoundedBoxGeometry(W0, H0, DEPTH, 4, 0.28), [])
   const bulgeGeo = useMemo(() => new RoundedBoxGeometry(W0 * 0.5, H0 * 0.52, 1.4, 4, 0.3), [])
   const footGeo = useMemo(() => new RoundedBoxGeometry(3.2, 1.0, 11, 3, 0.25), [])
   const baseGeo = useMemo(() => new RoundedBoxGeometry(19, 0.9, 11, 3, 0.3), [])
-  const consoleGeo = useMemo(() => new RoundedBoxGeometry(118, 14, 16, 3, 0.35), [])
   useEffect(
     () => () => {
       slabGeo.dispose()
       bulgeGeo.dispose()
       footGeo.dispose()
       baseGeo.dispose()
-      consoleGeo.dispose()
     },
-    [slabGeo, bulgeGeo, footGeo, baseGeo, consoleGeo],
+    [slabGeo, bulgeGeo, footGeo, baseGeo],
   )
 
   const frameMat = useMemo(() => new THREE.MeshPhysicalMaterial({ color: frameColor, metalness: 0.55, roughness: 0.36, clearcoat: 0.3, clearcoatRoughness: 0.3, envMapIntensity: 1 }), [])
@@ -90,7 +93,7 @@ export default function Tv({
 
   const st = useRef({ d: clamped, v: 0, y: 40, z: CONSOLE_Z, feet: 1, ped: 0, wall: 0 })
   const want = useRef({})
-  want.current = { size: clamped, mount, measure }
+  want.current = { size: clamped, mount, measure, base: BASE_Y }
 
   useFrame((_, delta) => {
     const dt = Math.min(delta, 1 / 30)
@@ -105,18 +108,23 @@ export default function Tv({
     const H = hOf(d)
     const k = d / BASE
 
+    const by = w.base
     // where the panel sits for the chosen mount
     let bottom
     let zT
     if (w.mount === 'wall') {
-      bottom = Math.max(CT + 8, WALL_CENTER_Y - H / 2)
+      bottom = Math.max(by + 8, WALL_CENTER_Y - H / 2)
       // the bulge hangs just clear of the bracket, which is flat on the wall
       zT = WALL_Z + PLATE_T + BULGE_BACK + 0.05
     } else if (w.mount === 'pedestal') {
-      bottom = CT + 5.1
+      bottom = by + 5.1
+      zT = CONSOLE_Z
+    } else if (w.mount === 'feet') {
+      bottom = by + 3.7
       zT = CONSOLE_Z
     } else {
-      bottom = CT + 3.7
+      // suspended in the air: no stand at all, so it can be seen from every side
+      bottom = Math.max(by + 8, FLOAT_CENTER_Y - H / 2)
       zT = CONSOLE_Z
     }
     const yT = bottom + H / 2
@@ -133,10 +141,10 @@ export default function Tv({
     feet.current.scale.setScalar(Math.max(s.feet, 0.0001))
     pedestal.current.scale.setScalar(Math.max(s.ped, 0.0001))
     wallMount.current.scale.setScalar(Math.max(s.wall, 0.0001))
-    feet.current.position.set(0, CT, CONSOLE_Z)
+    feet.current.position.set(0, by, CONSOLE_Z)
     footL.current.position.x = -W * 0.36
     footR.current.position.x = W * 0.36
-    pedestal.current.position.set(0, CT, CONSOLE_Z)
+    pedestal.current.position.set(0, by, CONSOLE_Z)
     wallMount.current.position.set(0, s.y, WALL_Z + PLATE_T / 2)
 
     // measuring lines
@@ -188,45 +196,25 @@ export default function Tv({
 
   return (
     <group>
-      {/* room */}
-      <mesh position={[0, 70, WALL_Z - 0.2]} receiveShadow>
-        <planeGeometry args={[520, 160]} />
-        <meshStandardMaterial color={wallColor} roughness={0.95} />
-      </mesh>
-      <mesh rotation-x={-Math.PI / 2} receiveShadow>
-        <planeGeometry args={[520, 260]} />
-        <meshStandardMaterial color={floorColor} roughness={0.9} />
-      </mesh>
-      {/* skirting board */}
-      <mesh position={[0, 2.5, WALL_Z - 0.1]}>
-        <boxGeometry args={[520, 5, 0.4]} />
-        <meshStandardMaterial color="#f4f1ea" roughness={0.7} />
-      </mesh>
-
-      {/* media console */}
-      <group position={[0, 0, CONSOLE_Z]}>
-        <mesh geometry={consoleGeo} position={[0, 13, 0]} castShadow receiveShadow>
-          <meshStandardMaterial color={consoleColor} roughness={0.6} />
+      {showFloor && (
+        <mesh rotation-x={-Math.PI / 2} receiveShadow>
+          <planeGeometry args={[520, 260]} />
+          <meshStandardMaterial color={floorColor} roughness={0.9} />
         </mesh>
-        {[-1, 1].map((sx) =>
-          [-1, 1].map((sz) => (
-            <mesh key={`${sx}${sz}`} position={[sx * 55, 3, sz * 6]} castShadow>
-              <cylinderGeometry args={[1.1, 0.8, 6, 12]} />
-              <meshStandardMaterial color="#2a2623" roughness={0.6} />
-            </mesh>
-          )),
-        )}
-        {[-1, 1].map((sx) => (
-          <mesh key={sx} position={[sx * 29, 13, 8.05]}>
-            <boxGeometry args={[55, 10.5, 0.2]} />
-            <meshStandardMaterial color={consoleColor} roughness={0.5} metalness={0.05} />
+      )}
+      {table && <TvTable color={consoleColor} z={CONSOLE_Z} />}
+      {mount === 'wall' && (
+        <>
+          <mesh position={[0, 70, WALL_Z - 0.2]} receiveShadow>
+            <planeGeometry args={[520, 160]} />
+            <meshStandardMaterial color={wallColor} roughness={0.95} />
           </mesh>
-        ))}
-        <mesh position={[0, 13, 8.18]}>
-          <boxGeometry args={[0.5, 11, 0.2]} />
-          <meshStandardMaterial color="#1c1a18" roughness={0.6} />
-        </mesh>
-      </group>
+          <mesh position={[0, 2.5, WALL_Z - 0.1]}>
+            <boxGeometry args={[520, 5, 0.4]} />
+            <meshStandardMaterial color="#f4f1ea" roughness={0.7} />
+          </mesh>
+        </>
+      )}
 
       {/* the TV: panel, scaled to the chosen size */}
       <group ref={panel}>
@@ -289,9 +277,11 @@ export default function Tv({
           <boxGeometry args={[0.14, 1.8, 0.14]} />
           {dimMat}
         </mesh>
-        <Html center position={[0, 2.6, 0]} zIndexRange={[5, 0]} style={chip}>
-          <span ref={topText}>0″</span>
-        </Html>
+        {measure && (
+          <Html center position={[0, 2.6, 0]} zIndexRange={[5, 0]} style={chip}>
+            <span ref={topText}>0″</span>
+          </Html>
+        )}
       </group>
       <group ref={sideDim}>
         <mesh ref={sideBar}>
@@ -306,9 +296,11 @@ export default function Tv({
           <boxGeometry args={[1.8, 0.14, 0.14]} />
           {dimMat}
         </mesh>
-        <Html center position={[5.2, 0, 0]} zIndexRange={[5, 0]} style={chip}>
-          <span ref={sideText}>0″</span>
-        </Html>
+        {measure && (
+          <Html center position={[5.2, 0, 0]} zIndexRange={[5, 0]} style={chip}>
+            <span ref={sideText}>0″</span>
+          </Html>
+        )}
       </group>
 
       {reference && (

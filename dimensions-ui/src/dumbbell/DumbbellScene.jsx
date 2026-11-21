@@ -3,6 +3,7 @@ import { Canvas, useThree } from '@react-three/fiber'
 import { ContactShadows, Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Dumbbell from './Dumbbell.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 // soft studio, like a product shot: a big overhead box and two strip lights
 function Studio() {
@@ -81,7 +82,7 @@ export default function DumbbellScene({ background = '#e4e4e4', autoRotate = fal
         <OrbitControls makeDefault enablePan={false} target={TARGET} autoRotate={autoRotate} autoRotateSpeed={0.5} minDistance={0.3} maxDistance={4} maxPolarAngle={1.5} />
       </Canvas>
 
-      <div style={{ position: 'absolute', top: 14, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 8, pointerEvents: 'none' }}>
+      <ControlDock corner="tl">
         <button onClick={() => pair.current?.drop()} style={btn}>
           Drop
         </button>
@@ -91,7 +92,7 @@ export default function DumbbellScene({ background = '#e4e4e4', autoRotate = fal
         <button onClick={() => pair.current?.lay()} style={{ ...btn, background: 'rgba(255,255,255,0.78)', color: '#2a2925' }}>
           Lay down
         </button>
-      </div>
+      </ControlDock>
       <InfoHint>
         Drag a dumbbell to pick it up by that point, let go to drop or throw it · click one to roll it · drag the background to look
       </InfoHint>

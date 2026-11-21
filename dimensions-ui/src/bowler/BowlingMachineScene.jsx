@@ -3,6 +3,7 @@ import { Canvas, useThree } from '@react-three/fiber'
 import { ContactShadows, Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import BowlingMachine from './BowlingMachine.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 const BG = '#e4e6e2'
 const TARGET = [0.3, 0.88, 0]
@@ -153,14 +154,14 @@ export default function BowlingMachineScene({ autoRotate = false, ...props }) {
           <div>spinning up…</div>
         )}
       </div>
-      <div style={{ position: 'absolute', left: 12, bottom: 12, zIndex: 5, display: 'flex', gap: 8, flexWrap: 'wrap', maxWidth: 'calc(100% - 64px)' }}>
+      <ControlDock corner="bl">
         <button type="button" style={btn(true)} onClick={() => fire('feed')}>
           Feed a ball
         </button>
         <button type="button" style={btn(false)} onClick={() => fire('collect')}>
           Collect balls
         </button>
-      </div>
+      </ControlDock>
       <InfoHint>The spiral hopper feeds itself every few seconds (or click it, or Feed a ball) · click the switch on the motor to turn it off · tilt, aim and turn the head in the controls for length, line, swing and spin · balls are fetched back to the hopper</InfoHint>
     </div>
   )

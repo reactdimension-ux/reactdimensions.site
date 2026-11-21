@@ -3,6 +3,7 @@ import { Canvas, useThree } from '@react-three/fiber'
 import { ContactShadows, Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Sneaker from './Sneaker.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 // a soft grey studio, like a product shoot
 function Studio() {
@@ -66,14 +67,14 @@ export default function SneakerScene({ background = '#d2d2d2', autoRotate = fals
         <OrbitControls makeDefault enablePan={false} target={TARGET} autoRotate={autoRotate} autoRotateSpeed={0.6} minDistance={14} maxDistance={140} />
       </Canvas>
 
-      <div style={{ position: 'absolute', top: 14, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 10, pointerEvents: 'none' }}>
+      <ControlDock corner="tl">
         <button onClick={() => shoe.current?.hop()} style={btn}>
           Hop
         </button>
         <button onClick={() => shoe.current?.flex()} style={btn}>
           Flex
         </button>
-      </div>
+      </ControlDock>
       <InfoHint>
         Drag the toe up to flex the sole · click the shoe to make it hop · drag the background to look round, scroll to zoom
       </InfoHint>

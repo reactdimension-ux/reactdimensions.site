@@ -3,6 +3,7 @@ import { Canvas, useThree } from '@react-three/fiber'
 import { ContactShadows, Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import FaceBoard from './FaceBoard.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 const BG = '#e9e7e3'
 const MAX = 50 // the most frames a board can have (5 rows of 10)
@@ -164,7 +165,7 @@ export default function FaceBoardScene({ autoRotate = false, rows = 3, cols = 8,
       </Canvas>
 
       <input ref={input} type="file" accept="image/*" multiple hidden onChange={(e) => (place(e.target.files), (e.target.value = ''))} />
-      <div style={{ position: 'absolute', left: 12, bottom: 12, zIndex: 5, display: 'flex', gap: 8, flexWrap: 'wrap', maxWidth: 'calc(100% - 64px)' }}>
+      <ControlDock corner="bl">
         <button type="button" style={btn(true)} onClick={() => input.current?.click()}>
           Add photos
         </button>
@@ -188,7 +189,7 @@ export default function FaceBoardScene({ autoRotate = false, rows = 3, cols = 8,
             Clear
           </button>
         )}
-      </div>
+      </ControlDock>
       {(drag || note) && (
         <div style={{ position: 'absolute', left: '50%', top: 12, transform: 'translateX(-50%)', zIndex: 6, padding: '8px 14px', borderRadius: 12, background: 'rgba(28,26,22,0.88)', color: '#f4f1ea', font: '600 11px/1.4 ui-monospace, Menlo, monospace', letterSpacing: '0.03em', pointerEvents: 'none' }}>
           {drag ? 'Drop photos: onto a frame to put one there, anywhere else to fill the empty frames' : note}

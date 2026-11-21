@@ -67,10 +67,11 @@ function Rig({ fit }) {
 }
 
 // Big diagonal readout, in a corner of the stage.
-function Readout() {
+function Readout({ show }) {
   const a = useRef()
   const b = useRef()
   useEffect(() => {
+    if (!show) return
     let raf
     const tick = () => {
       const d = tvView.size
@@ -80,7 +81,8 @@ function Readout() {
     }
     tick()
     return () => cancelAnimationFrame(raf)
-  }, [])
+  }, [show])
+  if (!show) return null
   return (
     <div style={{ position: 'absolute', left: 16, top: 14, pointerEvents: 'none', userSelect: 'none' }}>
       <div ref={a} style={{ font: '400 56px/1 "Instrument Serif", Georgia, serif', color: '#15171a' }}>
@@ -93,6 +95,9 @@ function Readout() {
 }
 
 export default function TvScene({ autoRotate = false, fitCamera = false, ...props }) {
+  // a lone floating TV is framed tight; the room view is for when a table or person is shown
+  const room = props.table || props.reference || props.mount === 'wall'
+  const floor = room || props.mount === 'feet' || props.mount === 'pedestal'
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%', touchAction: 'none' }}>
       <Canvas
@@ -119,7 +124,7 @@ export default function TvScene({ autoRotate = false, fitCamera = false, ...prop
         />
         <Studio />
         <Tv {...props} />
-        <Rig fit={fitCamera} />
+        <Rig fit={fitCamera || !room} />
         <OrbitControls
           makeDefault
           enablePan={false}
@@ -127,13 +132,13 @@ export default function TvScene({ autoRotate = false, fitCamera = false, ...prop
           autoRotateSpeed={0.8}
           minDistance={40}
           maxDistance={420}
-          minPolarAngle={0.5}
-          maxPolarAngle={1.62}
-          minAzimuthAngle={-1.25}
-          maxAzimuthAngle={1.25}
+          minPolarAngle={0.3}
+          maxPolarAngle={floor ? 1.62 : Math.PI - 0.3}
+          minAzimuthAngle={props.mount === 'wall' ? -1.25 : -Infinity}
+          maxAzimuthAngle={props.mount === 'wall' ? 1.25 : Infinity}
         />
       </Canvas>
-      <Readout />
+      <Readout show={!!props.measure} />
     </div>
   )
 }

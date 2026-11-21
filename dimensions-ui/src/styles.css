@@ -294,7 +294,7 @@ em {
   0%, 100% { transform: rotate(var(--r, 0deg)) translateY(0); }
   50% { transform: rotate(var(--r, 0deg)) translateY(-10px); }
 }
-@media (max-width: 960px) { .floaters { display: none; } }
+@media (max-width: 960px) { .floaters { display: none; } .hero-lander .hero-copy { max-width: none; } }
 @media (prefers-reduced-motion: reduce) { .floater { animation: none; transform: rotate(var(--r, 0deg)); } }
 .hero-lander h1 {
   font: 400 clamp(42px, 5.4vw, 84px)/1.04 var(--lander-font);
@@ -311,6 +311,10 @@ em {
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
+.hero-lander .hero-copy { max-width: min(880px, 54vw); margin: 0 auto; }
+.hero-lander h1 { text-wrap: balance; }
+.hero-lander .actions { margin-top: 44px; }
+.hero-lander .btn { padding: 16px 28px; font-size: 16px; box-shadow: 0 10px 30px -10px var(--signal); }
 .hero-lander .btn { font-family: var(--lander-font); font-weight: 400; }
 .eyebrow {
   display: flex;

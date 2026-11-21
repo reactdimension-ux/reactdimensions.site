@@ -3,6 +3,7 @@ import { Canvas, useThree } from '@react-three/fiber'
 import { ContactShadows, Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Cricket from './Cricket.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 const BG = '#e6e5e2'
 const TARGET = [0, 0.36, -0.25]
@@ -82,14 +83,14 @@ export default function CricketScene({ autoRotate = false, ...props }) {
         <Rig />
         <OrbitControls makeDefault enablePan={false} target={TARGET} autoRotate={autoRotate} autoRotateSpeed={0.6} minDistance={0.8} maxDistance={9} minPolarAngle={0.15} maxPolarAngle={1.52} />
       </Canvas>
-      <div style={{ position: 'absolute', left: 12, bottom: 12, zIndex: 5, display: 'flex', gap: 8, flexWrap: 'wrap', maxWidth: 'calc(100% - 64px)' }}>
+      <ControlDock corner="bl">
         <button type="button" style={btn(true)} onClick={() => fire('bowl')}>
           Bowl
         </button>
         <button type="button" style={btn(false)} onClick={() => fire('reset')}>
           Reset
         </button>
-      </div>
+      </ControlDock>
       <InfoHint>Bowl (or click the stumps, or press B) · the ball takes the stumps and the bails fly · raise the pace to uproot one · drag a stump to pull it out of the ground and look at its spike · Reset (R) puts the wicket back</InfoHint>
     </div>
   )

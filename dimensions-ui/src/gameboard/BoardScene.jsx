@@ -5,6 +5,7 @@ import * as THREE from 'three'
 import Board, { PLAYERS } from './Board.jsx'
 import { CameraRig, Dim, Effects, FOV, InfoHint, KeyLight, Studio, TAN as T, Table, ViewTabs, pill } from './stage.jsx'
 import { BOARD, GRID, OUTER, cellCentre } from './textures.js'
+import ControlDock from '../controls/ControlDock.jsx'
 
 const V = (x, y, z) => new THREE.Vector3(x, y, z)
 const BG = '#5d5f63'
@@ -97,7 +98,7 @@ export default function BoardScene({ theme = 'classic', woodColor = '#8c4a24', d
       <ViewTabs main={MAIN} detail={DETAIL} view={view} setView={setView} label={(v) => (v.length === 1 ? `View ${v}` : v)} />
 
       {/* the game: whose turn, the last roll, and the button */}
-      <div style={{ position: 'absolute', left: 12, bottom: 12, zIndex: 5, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', maxWidth: 'calc(100% - 64px)' }}>
+      <ControlDock corner="bl">
         <div style={{ ...pill, padding: '0 12px 0 8px', height: 32, alignItems: 'center', gap: 8, font: '600 11px/1 ui-monospace, Menlo, monospace', letterSpacing: '0.04em', color: '#2a2925' }} aria-live="polite">
           <span style={{ width: 14, height: 14, borderRadius: '50%', background: who.color, boxShadow: 'inset 0 -2px 3px rgba(0,0,0,.25)' }} />
           {st.winner >= 0 ? `${who.name} wins!` : st.note === 'exact' && !busy ? `${PLAYERS[(st.turn + n - 1) % n].name} needs exactly ${100 - st.pos[(st.turn + n - 1) % n]} · ${who.name} to roll` : `${who.name} · ${busy ? (st.phase === 'rolling' ? 'rolling…' : `moves ${st.die}`) : `on ${st.pos?.[st.turn] ?? 1}`}`}
@@ -111,7 +112,7 @@ export default function BoardScene({ theme = 'classic', woodColor = '#8c4a24', d
             Roll
           </button>
         )}
-      </div>
+      </ControlDock>
       <InfoHint>
         A 10 × 10 race board, numbered 1 to 100 back and forth up the rows, printed and laminated in a mitred, lacquered hardwood frame · Roll (or click the die, or press R): the die tumbles onto the table and the pawn hops square by square; land exactly on 100 to win · pick a view, or drag to orbit and scroll in to the print and the joints
       </InfoHint>

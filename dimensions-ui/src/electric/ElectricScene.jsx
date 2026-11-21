@@ -6,6 +6,7 @@ import Electric from './Electric.jsx'
 import { CHORDS, TUNINGS } from './strings.js'
 import { JACK, KNOBS, NUT_Y, PICKUP_Y, SADDLE_Y, TOP } from './shapes.js'
 import { CameraRig, Dim, Effects, FOV, InfoHint, KeyLight, Studio, TAN as T, Table, ViewTabs, pill } from '../gameboard/stage.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 // The electric guitar standing upright over a pale studio floor, as on a
 // product sheet, in the shared tabletop studio (from the board models).
@@ -81,7 +82,7 @@ export default function ElectricScene({ finish = 'sunburst', guard = '#f1eee4', 
       </Canvas>
       <ViewTabs main={MAIN} detail={DETAIL} view={view} setView={setView} />
 
-      <div style={{ position: 'absolute', left: 12, bottom: 12, right: 56, zIndex: 5, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 6 }}>
+      <ControlDock corner="bl">
         <div style={{ ...pill, justifyContent: 'flex-start' }} role="group" aria-label="Chord">
           {Object.keys(CHORDS).map((c) => (
             <button key={c} type="button" style={chip(info?.chord === c)} onClick={() => guitar.current?.setChord(c)}>
@@ -114,7 +115,7 @@ export default function ElectricScene({ finish = 'sunburst', guard = '#f1eee4', 
             </div>
           )}
         </div>
-      </div>
+      </ControlDock>
       <InfoHint>
         A classic solid-body electric of our own design, playable: drag across the strings to strum (or click one to pluck), click the fretboard to fret a note or pick a chord · push the vibrato arm down to dive and let go to watch the bridge spring back · drag a tuner key to tune by ear, drag a knob for volume and tone, click the switch to step through the five pickup positions; the sound is what those pickups hear of each string · turn sound on and off in the controls
       </InfoHint>

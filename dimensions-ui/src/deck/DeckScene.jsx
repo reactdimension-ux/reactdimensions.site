@@ -3,6 +3,7 @@ import { Canvas, useThree } from '@react-three/fiber'
 import { ContactShadows, Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Deck, { deckView } from './Deck.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 // soft overhead key and two side strips, so the laminate catches a gentle
 // highlight as the cards turn
@@ -50,11 +51,11 @@ export default function DeckScene({ background = '#26282b', autoRotate = false, 
         <OrbitControls makeDefault enablePan={false} autoRotate={autoRotate} autoRotateSpeed={0.6} minDistance={6} maxDistance={80} />
       </Canvas>
       {layout !== 'single' && (
-        <div style={{ position: 'absolute', top: 14, left: 0, right: 0, display: 'flex', justifyContent: 'center', pointerEvents: 'none' }}>
+        <ControlDock corner="tl">
           <button type="button" style={pill} onClick={() => deck.current?.deal()}>
             Deal
           </button>
-        </div>
+        </ControlDock>
       )}
       <InfoHint>{layout === 'single' ? 'Move the pointer to tilt the card · click it to flip it over' : 'Hover a card to lift it out of the hand · click it to flip it · Deal for a new hand'}</InfoHint>
     </div>

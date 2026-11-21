@@ -3,6 +3,7 @@ import { Canvas, useThree } from '@react-three/fiber'
 import { ContactShadows, Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Cube from './Cube.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 function Studio() {
   return (
@@ -181,11 +182,11 @@ export default function CubeScene({
         <OrbitControls makeDefault enablePan={false} autoRotate={autoRotate} autoRotateSpeed={0.6} minDistance={n * 2.5} maxDistance={n * 12} />
       </Canvas>
 
-      <div style={{ position: 'absolute', top: 14, left: 12, right: 12, display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: 8, pointerEvents: 'none' }}>
+      <ControlDock corner="tl">
         <button onClick={scramble} disabled={busy} style={btn(true)}>Scramble</button>
         <button onClick={solve} disabled={busy || isSolved} style={btn(false, busy || isSolved)}>Solve</button>
         <button onClick={reset} disabled={busy} style={btn(false)}>Reset</button>
-      </div>
+      </ControlDock>
       <div
         aria-live="polite"
         style={{ position: 'absolute', top: 60, left: 0, right: 0, textAlign: 'center', pointerEvents: 'none', font: `${status === 'solved' ? 700 : 500} 13px/1 ui-monospace, Menlo, monospace`, color: '#2a2925' }}

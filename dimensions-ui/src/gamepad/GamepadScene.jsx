@@ -3,6 +3,7 @@ import { Canvas, useThree } from '@react-three/fiber'
 import { ContactShadows, Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Gamepad from './Gamepad.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 function Studio() {
   return (
@@ -81,7 +82,7 @@ export default function GamepadScene({ background = '#e4e4e4', autoRotate = fals
         <OrbitControls makeDefault enablePan={false} target={[0, 0.4, 0.4]} autoRotate={autoRotate} autoRotateSpeed={0.5} minDistance={7} maxDistance={60} />
       </Canvas>
 
-      <div style={{ position: 'absolute', top: 14, left: 12, right: 12, display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: 12, pointerEvents: 'none' }}>
+      <ControlDock corner="tl">
         <button
           onClick={() => pad.current?.rumble()}
           style={{ pointerEvents: 'auto', font: '600 12px/1 ui-monospace, Menlo, monospace', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '11px 18px', borderRadius: 999, border: 'none', background: '#1c1a16', color: '#f4f1ea', cursor: 'pointer' }}
@@ -91,7 +92,7 @@ export default function GamepadScene({ background = '#e4e4e4', autoRotate = fals
         <span aria-live="polite" style={{ font: '500 12px/1.3 ui-monospace, Menlo, monospace', color: '#2a2925', maxWidth: 360, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
           {connected ? `Mirroring: ${connected}` : 'Connect a controller to mirror it'}
         </span>
-      </div>
+      </ControlDock>
       <InfoHint>
         Press the buttons · drag a stick to tilt it, click it to click it · hold a trigger to pull it
         <br />

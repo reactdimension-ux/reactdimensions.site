@@ -3,6 +3,7 @@ import { Canvas, useThree } from '@react-three/fiber'
 import { ContactShadows, Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Shirt from './Shirt.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 const TARGET = [0, 0.68, 0]
 
@@ -59,14 +60,14 @@ export default function ShirtScene({ autoRotate = false, background = '#d9d9d8',
         <Rig />
         <OrbitControls makeDefault enablePan={false} target={TARGET} autoRotate={autoRotate} autoRotateSpeed={0.8} minDistance={1.6} maxDistance={8} minPolarAngle={0.3} maxPolarAngle={2.2} />
       </Canvas>
-      <div style={{ position: 'absolute', top: 14, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 8, pointerEvents: 'none' }}>
+      <ControlDock corner="tl">
         <button style={{ ...btn, background: buttoned ? '#1c1a16' : '#ffffffcc', color: buttoned ? '#f4f1ea' : '#1c1a16' }} onClick={() => setAll(true)}>
           Button all
         </button>
         <button style={{ ...btn, background: !buttoned ? '#1c1a16' : '#ffffffcc', color: !buttoned ? '#f4f1ea' : '#1c1a16' }} onClick={() => setAll(false)}>
           Unbutton all
         </button>
-      </div>
+      </ControlDock>
       <InfoHint>
         Click a button to do it up or undo it · drag the fabric to pull it · drag the background to turn
       </InfoHint>

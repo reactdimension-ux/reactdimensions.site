@@ -3,6 +3,7 @@ import { Canvas, useThree } from '@react-three/fiber'
 import { ContactShadows, Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import BowlingPin from './BowlingPin.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 const BG = '#e2e0dc'
 
@@ -74,14 +75,14 @@ export default function BowlingPinScene({ autoRotate = false, ...props }) {
         <Rig rack={rack} />
         <OrbitControls makeDefault enablePan={false} autoRotate={autoRotate} autoRotateSpeed={0.6} minDistance={0.35} maxDistance={6} minPolarAngle={0.1} maxPolarAngle={1.52} />
       </Canvas>
-      <div style={{ position: 'absolute', left: 12, bottom: 12, zIndex: 5, display: 'flex', gap: 8, flexWrap: 'wrap', maxWidth: 'calc(100% - 64px)' }}>
+      <ControlDock corner="bl">
         <button type="button" style={btn(true)} onClick={() => fire('bowl')}>
           Bowl
         </button>
         <button type="button" style={btn(false)} onClick={() => fire('reset')}>
           Set pins
         </button>
-      </div>
+      </ControlDock>
       <InfoHint>Tap a pin to make it wobble, press longer to knock it over · drag a pin to pick it up and throw it · Bowl sends a ball down the lane · Set pins stands them back up</InfoHint>
     </div>
   )

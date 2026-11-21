@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Basketball from './Basketball.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 function Studio() {
   return (
@@ -39,7 +40,7 @@ export default function BasketballScene({ background = '#d9d6d2', floor = '#b98d
         <OrbitControls makeDefault enablePan={false} target={[0, 0.4, 0]} autoRotate={autoRotate} autoRotateSpeed={0.6} minDistance={0.5} maxDistance={6} maxPolarAngle={1.5} />
       </Canvas>
 
-      <div style={{ position: 'absolute', top: 14, left: 0, right: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 10, pointerEvents: 'none' }}>
+      <ControlDock corner="tl">
         <button onClick={() => setDribble((d) => !d)} aria-pressed={dribble} style={{ ...btn, background: dribble ? '#c8582b' : '#1c1a16', color: '#f4f1ea' }}>
           {dribble ? 'Stop' : 'Dribble'}
         </button>
@@ -49,7 +50,7 @@ export default function BasketballScene({ background = '#d9d6d2', floor = '#b98d
         <button onClick={() => setSpinKey((k) => k + 1)} style={{ ...btn, background: 'rgba(255,255,255,.9)', color: '#1c1a16' }}>
           Spin
         </button>
-      </div>
+      </ControlDock>
       <InfoHint>
         Dribble to bounce it from the hand · tap the ball to slap it · drag it to pick it up and throw it (it leaves with backspin, like a shot) · Spin to twirl it · drag the floor to look around
       </InfoHint>

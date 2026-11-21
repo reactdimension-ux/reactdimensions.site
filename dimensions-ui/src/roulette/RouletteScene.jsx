@@ -5,6 +5,7 @@ import * as THREE from 'three'
 import { CameraRig, Dim, Effects, FOV, InfoHint, Studio, TAN as T, ViewTabs, pill } from '../gameboard/stage.jsx'
 import { INK, LAY, LAY_H, LAY_W, TABLE, WHEEL, colourOf } from './layout.js'
 import Roulette from './Roulette.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 // The roulette table on the board models' studio, at full size on a floor:
 // the views of the reference sheet, the game's read-out and the buttons.
@@ -115,7 +116,7 @@ export default function RouletteScene({ feltColor = '#0f6b3a', woodColor = '#6a3
       <ViewTabs main={MAIN} detail={DETAIL} view={view} setView={setView} />
 
       {/* the game: the last numbers, the call, the chips and the buttons */}
-      <div style={{ position: 'absolute', left: 12, bottom: 12, zIndex: 5, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 6, maxWidth: 'calc(100% - 64px)' }}>
+      <ControlDock corner="bl">
         {g.history.length > 1 && (
           <div style={{ ...pill, padding: 5, gap: 4, justifyContent: 'flex-start' }} aria-label="Previous numbers">
             {g.history.slice(1).map((h, i) => (
@@ -150,7 +151,7 @@ export default function RouletteScene({ feltColor = '#0f6b3a', woodColor = '#6a3
             </button>
           )}
         </div>
-      </div>
+      </ControlDock>
       <InfoHint>
         A full-size single-zero roulette table: baize printed with the layout, a padded leather rail, and a wheel that really works. Spin (or click the wheel, or press S): the rotor turns one way, the ball is flicked round the track the other, slows, peels off, strikes the deflectors and rattles over the separators into a pocket. Nothing is decided in advance · click a box on the cloth to bet a chip, right-click to take it back; a number pays 35 to 1, columns and dozens 2 to 1, the outside bets evens · pick a view, or drag to orbit and scroll in
       </InfoHint>

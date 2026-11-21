@@ -5,6 +5,7 @@ import { EffectComposer, N8AO, ToneMapping } from '@react-three/postprocessing'
 import { ToneMappingMode } from 'postprocessing'
 import * as THREE from 'three'
 import Pistol, { pistolView } from './Pistol.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 const V = pistolView
 const FLOOR_Y = V.minY - 0.45
@@ -103,11 +104,11 @@ export default function PistolScene({ background = '#e6e6e4', autoRotate = false
         </EffectComposer>
       </Canvas>
 
-      <div style={{ position: 'absolute', top: 14, left: 12, right: 12, display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 8, pointerEvents: 'none' }}>
+      <ControlDock corner="tl">
         <button type="button" style={pill} onClick={() => gun.current?.rack()}>Rack</button>
         <button type="button" style={pill} onClick={() => gun.current?.fire()}>Dry fire</button>
         <button type="button" style={pill} onClick={() => gun.current?.toggleMag()}>Magazine</button>
-      </div>
+      </ControlDock>
       <InfoHint>
         Drag the slide back and let go · click the trigger to dry-fire; it stays back until you rack · click the magazine release or baseplate
         <br />

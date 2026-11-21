@@ -5,6 +5,7 @@ import * as THREE from 'three'
 import Disc from './Disc.jsx'
 import { R, T } from './textures.js'
 import { CameraRig, Dim, Effects, FOV, InfoHint, KeyLight, Studio, TAN, ViewTabs, pill } from '../gameboard/stage.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 // The disc lying on a pale studio table, in the shared tabletop studio from
 // the board models: its dark room and soft boxes are what the mirror and the
@@ -78,7 +79,7 @@ export default function DiscScene({ brand = 'RD', capacity = '700', finish = 'si
       </Canvas>
       <ViewTabs main={MAIN} detail={DETAIL} view={view} setView={setView} />
 
-      <div style={{ position: 'absolute', left: 12, bottom: 12, right: 56, zIndex: 5, display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
+      <ControlDock corner="bl">
         <button type="button" style={btn} onClick={() => setSide((s) => (s === 'data' ? 'label' : 'data'))}>
           Flip
         </button>
@@ -91,7 +92,7 @@ export default function DiscScene({ brand = 'RD', capacity = '700', finish = 'si
             <span style={{ opacity: 0.6 }}>{info.mb} / 700 MB written</span>
           </div>
         )}
-      </div>
+      </ControlDock>
       <InfoHint>
         A recordable CD to the real dimensions: clear polycarbonate with the stacking ring under the hub, a dye and metal layer, a printed label on top · drag the disc to spin it · Flip to see the data side, where the 1.6 µm spiral track splits the studio lights into rainbows that move as you look round but not as it spins · Burn writes 700 MB from the middle out: the written part darkens, and a CD-R can only be written once
       </InfoHint>

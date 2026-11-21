@@ -6,6 +6,7 @@ import { ToneMappingMode } from 'postprocessing'
 import * as THREE from 'three'
 import Court from './Court.jsx'
 import { COURT, HX, HZ, LAWN_TILE, buildLawn } from './textures.js'
+import ControlDock from '../controls/ControlDock.jsx'
 
 const STUDIO_BG = '#e4e6e9'
 const FOV = 30
@@ -259,7 +260,7 @@ export default function CourtScene({ courtColor = '#21406f', surroundColor = '#3
         <Effects ao={ambientOcclusion} />
       </Canvas>
 
-      <div style={{ position: 'absolute', top: 12, left: 0, right: 0, display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 6, pointerEvents: 'none', padding: '0 12px' }}>
+      <ControlDock corner="tl">
         <div role="tablist" aria-label="Camera view" style={pill}>
           {MAIN.map((v) => (
             <button key={v} type="button" role="tab" aria-selected={view === v} style={segBtn(view === v)} onClick={() => setView(v)}>
@@ -274,7 +275,7 @@ export default function CourtScene({ courtColor = '#21406f', surroundColor = '#3
             </button>
           ))}
         </div>
-      </div>
+      </ControlDock>
       <InfoHint>
         A regulation hard court at full size: 23.77 × 10.97 m inside the lines, with the recommended run-off · the lines are exact and stay sharp however close you get · the net hangs 1.07 m at the posts and 0.914 m at the centre strap: click the crank on the winder post to tighten or slacken it · raise wear for rubber scuffs, ball marks and a faded baseline · pick a view, or drag to orbit and scroll down to the surface
       </InfoHint>

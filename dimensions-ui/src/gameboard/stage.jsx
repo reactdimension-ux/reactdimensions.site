@@ -130,22 +130,48 @@ export const segBtn = (on) => ({
 })
 export const pill = { pointerEvents: 'auto', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 2, padding: 3, borderRadius: 17, background: 'rgba(255,255,255,0.9)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', boxShadow: '0 2px 10px rgba(0,0,0,.18), inset 0 0 0 1px rgba(0,0,0,.07)' }
 
-// the view picker: one pill of main views and one of close-ups
+// the view picker: a small "Views" button in the corner that opens a tidy
+// panel (main views, then close-ups), so the controls never sit over the model
 export function ViewTabs({ main, detail, view, setView, label = (v) => v }) {
+  const [open, setOpen] = useState(false)
+  const groups = [
+    ['Camera view', main],
+    ['Close-ups', detail],
+  ]
   return (
-    <div style={{ position: 'absolute', top: 12, left: 0, right: 0, display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 6, pointerEvents: 'none', padding: '0 12px' }}>
-      {[
-        [main, 'Camera view'],
-        [detail, 'Close-ups'],
-      ].map(([list, aria]) => (
-        <div key={aria} role="tablist" aria-label={aria} style={pill}>
-          {list.map((v) => (
-            <button key={v} type="button" role="tab" aria-selected={view === v} style={segBtn(view === v)} onClick={() => setView(v)}>
-              {label(v)}
-            </button>
+    <div style={{ position: 'absolute', top: 12, left: 12, zIndex: 6, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 6, maxWidth: 'calc(100% - 24px)' }}>
+      <button
+        type="button"
+        aria-expanded={open}
+        onClick={() => setOpen((o) => !o)}
+        style={{ ...pill, border: 'none', cursor: 'pointer', height: 34, padding: '0 14px', alignItems: 'center', gap: 8, flexWrap: 'nowrap', font: '600 10.5px/1 ui-monospace, Menlo, monospace', letterSpacing: '0.06em', textTransform: 'uppercase', color: '#2a2925' }}
+      >
+        <span>View: {label(view)}</span>
+        <span aria-hidden="true" style={{ display: 'inline-block', transition: 'transform .2s', transform: open ? 'rotate(180deg)' : 'none' }}>▾</span>
+      </button>
+      {open && (
+        <div style={{ ...pill, flexDirection: 'column', justifyContent: 'flex-start', gap: 10, padding: 10, borderRadius: 14, pointerEvents: 'auto', maxHeight: 'calc(100% - 60px)', overflowY: 'auto' }}>
+          {groups.map(([aria, list]) => (
+            <div key={aria}>
+              <div style={{ margin: '0 0 6px 2px', font: '600 9px/1 ui-monospace, Menlo, monospace', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#7a776f' }}>{aria}</div>
+              <div role="tablist" aria-label={aria} style={{ display: 'flex', flexWrap: 'wrap', gap: 4, maxWidth: 300 }}>
+                {list.map((v) => (
+                  <button
+                    key={v}
+                    type="button"
+                    role="tab"
+                    aria-selected={view === v}
+                    style={{ ...segBtn(view === v), background: view === v ? '#1c1a16' : 'rgba(0,0,0,0.05)' }}
+                    onClick={() => (setView(v), setOpen(false))}
+                  >
+                    {label(v)}
+                  </button>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
-      ))}
+      )}
     </div>
   )
 }

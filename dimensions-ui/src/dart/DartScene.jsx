@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Dart from './Dart.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 function Studio() {
   return (
@@ -34,11 +35,11 @@ export default function DartScene({ background = '#d9d6d2', autoRotate = false, 
         <OrbitControls makeDefault enablePan={false} target={[0.01, 0.01, 0.07]} autoRotate={autoRotate} autoRotateSpeed={0.6} minDistance={0.15} maxDistance={2} minAzimuthAngle={-1.3} maxAzimuthAngle={1.3} />
       </Canvas>
 
-      <div style={{ position: 'absolute', top: 14, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 10, pointerEvents: 'none' }}>
+      <ControlDock corner="tl">
         <button onClick={() => setThrowKey((k) => k + 1)} style={{ ...btn, background: '#1c1a16', color: '#f4f1ea' }}>
           Throw
         </button>
-      </div>
+      </ControlDock>
       <InfoHint>
         Throw, or click the target where you want it to land · it flies in slow motion with the flights&apos; fish-tail wobble, goes in tail-up and shudders round the point · old holes close up · drag to look around
       </InfoHint>

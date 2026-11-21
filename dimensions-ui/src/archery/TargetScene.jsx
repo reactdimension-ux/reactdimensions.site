@@ -4,6 +4,7 @@ import { OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Target, { BOSS, FACE_CENTRE, FACE_NORMAL } from './Target.jsx'
 import { CameraRig, Effects, FOV, InfoHint, KeyLight, Studio, TAN as T, Table, ViewTabs, pill } from '../gameboard/stage.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 // The target on a pale studio floor, in the shared studio (from the board
 // models); arrows are the library's Arrow model.
@@ -56,7 +57,7 @@ export default function TargetScene({ standColor = '#d8ae72', spread = 0.07, van
         <Effects ao={ambientOcclusion} radius={0.05} />
       </Canvas>
       <ViewTabs main={['Front', '3/4', 'Side']} detail={['Face', 'Arrows', 'Stand']} view={view} setView={setView} />
-      <div style={{ position: 'absolute', left: 12, bottom: 12, zIndex: 5, display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap', maxWidth: 'calc(100% - 64px)' }}>
+      <ControlDock corner="bl">
         <button type="button" style={btn} onClick={() => target.current?.shoot()}>
           Shoot
         </button>
@@ -73,7 +74,7 @@ export default function TargetScene({ standColor = '#d8ae72', spread = 0.07, van
             <span style={{ marginLeft: 6 }}>= {total}</span>
           </div>
         )}
-      </div>
+      </ControlDock>
       <InfoHint>
         A field archery target: an 80 cm ten-ring face on an {Math.round(BOSS.r * 200)} cm straw boss, leaning back on a wooden tripod · Shoot sends one of the library's carbon arrows into it: it sticks in the straw, quivers and scores by ring (X is the inner ten) · Collect pulls them all out · pick a view, or drag to orbit
       </InfoHint>

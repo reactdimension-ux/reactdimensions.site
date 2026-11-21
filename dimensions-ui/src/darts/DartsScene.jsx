@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Dartboard, { BULL_Y, OCHE } from './Dartboard.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 function Studio() {
   return (
@@ -42,14 +43,14 @@ export default function DartsScene({ wall = '#c9c9c7', autoRotate = false, ...pr
         <Dartboard {...props} collectKey={collectKey} onScore={setScores} />
         <OrbitControls makeDefault enablePan={false} target={[0, BULL_Y, 0]} autoRotate={autoRotate} autoRotateSpeed={0.5} minDistance={0.5} maxDistance={4} maxAzimuthAngle={1.2} minAzimuthAngle={-1.2} minPolarAngle={0.6} maxPolarAngle={2.2} />
       </Canvas>
-      <div style={{ position: 'absolute', top: 14, left: 0, right: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 14, pointerEvents: 'none' }}>
+      <ControlDock corner="tl">
         <button onClick={() => setCollectKey((k) => k + 1)} style={btn}>
           Collect darts
         </button>
         <div aria-live="polite" style={{ font: '600 13px/1 ui-monospace, Menlo, monospace', color: '#1c1a16', minWidth: 160, padding: '9px 12px', borderRadius: 10, background: 'rgba(255,255,255,.85)' }}>
           {scores.length ? `${scores.map((s) => s.label).join(' · ')}  =  ${total}` : 'Click the board to throw'}
         </div>
-      </div>
+      </ControlDock>
       <InfoHint>Click where you want to aim to throw a dart from the oche · three darts, then Collect · your accuracy sets the scatter · darts can bounce out off the wire · drag to look around</InfoHint>
     </div>
   )

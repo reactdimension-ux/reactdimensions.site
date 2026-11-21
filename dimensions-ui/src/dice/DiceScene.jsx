@@ -3,6 +3,7 @@ import { Canvas, useThree } from '@react-three/fiber'
 import { ContactShadows, Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Dice, { TRAY } from './Dice.jsx'
+import ControlDock from '../controls/ControlDock.jsx'
 
 function Studio() {
   return (
@@ -66,7 +67,7 @@ export default function DiceScene({ autoRotate = false, background = '#cdcdcd', 
         <OrbitControls makeDefault enablePan={false} target={[0, 0, 0.3]} autoRotate={autoRotate} autoRotateSpeed={0.5} minDistance={6} maxDistance={30} minPolarAngle={0.1} maxPolarAngle={1.25} />
       </Canvas>
 
-      <div style={{ position: 'absolute', top: 14, left: 0, right: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 14, pointerEvents: 'none' }}>
+      <ControlDock corner="tl">
         <button
           onClick={roll}
           style={{ pointerEvents: 'auto', font: '600 12px/1 ui-monospace, Menlo, monospace', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '11px 18px', borderRadius: 999, border: 'none', background: '#1c1a16', color: '#f4f1ea', cursor: 'pointer', boxShadow: '0 6px 18px rgba(0,0,0,.18)' }}
@@ -76,7 +77,7 @@ export default function DiceScene({ autoRotate = false, background = '#cdcdcd', 
         <div aria-live="polite" style={{ font: '500 13px/1 ui-monospace, Menlo, monospace', color: '#2a2925', minWidth: 120 }}>
           {rolling ? 'Rolling…' : values.length > 1 ? `${values.join(' + ')} = ${total}` : values.length === 1 ? `Rolled ${values[0]}` : ''}
         </div>
-      </div>
+      </ControlDock>
       <InfoHint>
         Roll (or Space) to throw · drag a die to pick it up and fling it · click a die to flip it
       </InfoHint>
