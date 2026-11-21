@@ -262,7 +262,7 @@ function useFavs() {
   return [favs, toggle]
 }
 
-// "Copy for AI": prompt, Markdown or plain source, ready to paste into an assistant.
+// "Download for AI": prompt, Markdown or plain source as a .txt file to attach to an assistant.
 function AiMenu({ comp, props }) {
   const [open, setOpen] = useState(false)
   const [done, setDone] = useState('')
@@ -283,14 +283,24 @@ function AiMenu({ comp, props }) {
   useEffect(() => {
     if (open) loadSources(comp)
   }, [open, comp])
-  const copy = async (label, make) => {
+  // Whole components are too long to paste into most assistants, so each
+  // item saves a .txt file to attach instead of copying to the clipboard.
+  const download = async (label, suffix, make) => {
     if (!sourcesLoaded(comp)) await loadSources(comp)
     let ok = false
     try {
-      await navigator.clipboard.writeText(make())
+      const blob = new Blob([make()], { type: 'text/plain;charset=utf-8' })
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `${comp.slug}-${suffix}.txt`
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      setTimeout(() => URL.revokeObjectURL(url), 1000)
       ok = true
     } catch {}
-    setDone(ok ? label : 'Copy failed')
+    setDone(ok ? label : 'Download failed')
     setOpen(false)
     setTimeout(() => setDone(''), 1800)
   }
@@ -304,21 +314,21 @@ function AiMenu({ comp, props }) {
   return (
     <div className="ai-menu" ref={box}>
       <button className="tool-btn" aria-haspopup="menu" aria-expanded={open} onClick={() => setOpen((o) => !o)}>
-        {done ? `${done === 'Copy failed' ? '✕' : '✓'} ${done}` : '✦ Copy for AI ▾'}
+        {done ? `${done === 'Download failed' ? '✕' : '✓'} ${done}` : '✦ Download for AI ▾'}
       </button>
       {open && (
         <div className="ai-pop" role="menu">
-          <button role="menuitem" onClick={() => copy('Prompt copied', () => promptFor(comp, props))}>
-            <strong>Copy as prompt</strong>
-            <small>Usage, props table, full source and integration steps, ready to paste into an assistant</small>
+          <button role="menuitem" onClick={() => download('Prompt saved', 'prompt', () => promptFor(comp, props))}>
+            <strong>Download as prompt</strong>
+            <small>Usage, props table, full source and integration steps in a .txt file to attach to an assistant</small>
           </button>
-          <button role="menuitem" onClick={() => copy('Markdown copied', () => markdownFor(comp, props))}>
-            <strong>Copy as Markdown</strong>
-            <small>This page as a .md document</small>
+          <button role="menuitem" onClick={() => download('Docs saved', 'docs', () => markdownFor(comp, props))}>
+            <strong>Download as docs</strong>
+            <small>This page in Markdown, saved as a .txt file</small>
           </button>
-          <button role="menuitem" onClick={() => copy('Source copied', () => sourceText(comp))}>
-            <strong>Copy source only</strong>
-            <small>{comp.files.length} file{comp.files.length > 1 ? 's' : ''}, with file names as comments</small>
+          <button role="menuitem" onClick={() => download('Source saved', 'source', () => sourceText(comp))}>
+            <strong>Download source only</strong>
+            <small>{comp.files.length} file{comp.files.length > 1 ? 's' : ''} in one .txt, with file names as comments</small>
           </button>
           <div className="ai-sep" role="separator" />
           <button role="menuitem" className="ai-open" onClick={() => openIn('https://chatgpt.com/?q=')}>

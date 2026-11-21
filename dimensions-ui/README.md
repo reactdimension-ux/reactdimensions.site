@@ -29,7 +29,7 @@ The whole site follows the docs layout described in `../docs/reactbits-ui-resear
 - **Docs page**: title and meta chips, a Preview / Code switch with a sliding pill, preview width presets (desktop, tablet, mobile), reload, copy link; the stage, then Customize, Props and Dependencies; the Code tab has Install (npm, pnpm, yarn, bun), Usage that reflects your settings, and Source; then related components and previous/next.
 - **Hover preview**: hovering (or focusing) a sidebar item shows a thumbnail card of that component (`public/previews/*.jpg`, captured from the live previews). The same thumbnails appear on the related-component cards. Hidden on touch screens.
 - **Favourites**: the star in the toolbar saves a component to a *Favourites* group at the top of the sidebar (kept in localStorage).
-- **Copy for AI**: a menu that copies the page as a prompt (description, props table with your current settings, usage and the full source), as Markdown, or as source only.
+- **Download for AI**: a menu that saves the page as a `.txt` file to attach to an assistant: as a prompt (description, props table with your current settings, usage and the full source), as Markdown docs, or as source only. Open in ChatGPT / Claude still sends a short prompt that links to the registry JSON.
 - **JavaScript / TypeScript**: the Code tab can add a generated `.d.ts` (props typed from the controls) and the matching `@types` install line. The components themselves are plain JSX with inline styles, so there is no CSS/Tailwind variant.
 - The preview **stage stays light** in both themes, because the demos draw dark ink and studio backdrops.
 
