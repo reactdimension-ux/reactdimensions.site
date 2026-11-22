@@ -34,7 +34,6 @@ const SPORTS = [
   { slug: 'carrom-board', name: 'Carrom Board' },
   { slug: 'puzzle-cube', name: 'Puzzle Cube' },
   { slug: 'dumbbells', name: 'Dumbbells' },
-  { slug: 'gamepad', name: 'Gamepad' },
 ]
 
 function Strip({ items, reverse = false }) {
@@ -55,10 +54,10 @@ export default function Landing() {
       <section className="hero hero-lander">
         <div className="hero-copy">
           <h1 className="load" style={{ '--d': 0 }}>
-            3D components for React, built to be seen.
+            React components, built to be seen.
           </h1>
           <p className="lede load" style={{ '--d': 1 }}>
-            A growing library of 3D React components, from true-to-scale models to low-poly scenes. Preview them, make them yours, and drop them into your next project.
+            Text effects, animations, phone and web UI, characters, and a growing set of 3D and low-poly models. Preview them, make them yours, and drop them into your next project.
           </p>
           <div className="actions load" style={{ '--d': 2 }}>
             <Link className="btn" to="/library">
