@@ -4,7 +4,6 @@
 
 const group = (name, slugs, rest = false) => ({ name, slugs, rest })
 
-export const PHONE_STYLES = ['Flat', 'Glassmorphism', 'Dark']
 
 const ANIMATION = [
   group('Cards & carousels', ['tilt-card', 'peek-card', 'tilt-reveal', 'throw-cards', 'drag-cards', 'swipe-throw', 'depth-gallery', 'scroll-gallery', 'halo-carousel', 'key-carousel', 'snap-rail', 'testimonial-slider']),

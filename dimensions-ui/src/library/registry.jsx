@@ -1,6 +1,7 @@
 import { SECTION_NAMES, sectionOf } from './sections.js'
 import TiltCard from '../lib/TiltCard.jsx'
 import SpringButton from '../lib/SpringButton.jsx'
+import ThinkingIndicator from '../lib/ThinkingIndicator.jsx'
 import MagneticButton from '../lib/MagneticButton.jsx'
 import HandwritingText from '../lib/HandwritingText.jsx'
 import TypewriterText from '../lib/TypewriterText.jsx'
@@ -411,31 +412,6 @@ import LowPolyCometModel from '../lib/LowPolyCometModel.jsx'
 import LowPolyDandelionModel from '../lib/LowPolyDandelionModel.jsx'
 import LowPolyWatermelonModel from '../lib/LowPolyWatermelonModel.jsx'
 import LowPolyMetronomeModel from '../lib/LowPolyMetronomeModel.jsx'
-import GiraffeModel from '../lib/GiraffeModel.jsx'
-import HippoModel from '../lib/HippoModel.jsx'
-import ToyLionModel from '../lib/ToyLionModel.jsx'
-import BearModel from '../lib/BearModel.jsx'
-import ZebraModel from '../lib/ZebraModel.jsx'
-import RhinoModel from '../lib/RhinoModel.jsx'
-import ElephantModel from '../lib/ElephantModel.jsx'
-import FoxModel from '../lib/FoxModel.jsx'
-import TigerModel from '../lib/TigerModel.jsx'
-import WolfModel from '../lib/WolfModel.jsx'
-import GoldfishModel from '../lib/GoldfishModel.jsx'
-import ParrotModel from '../lib/ParrotModel.jsx'
-import GuineaPigModel from '../lib/GuineaPigModel.jsx'
-import BunnyModel from '../lib/BunnyModel.jsx'
-import BudgieModel from '../lib/BudgieModel.jsx'
-import PuppyModel from '../lib/PuppyModel.jsx'
-import CatModel from '../lib/CatModel.jsx'
-import HamsterModel from '../lib/HamsterModel.jsx'
-import FerretModel from '../lib/FerretModel.jsx'
-import TurtleModel from '../lib/TurtleModel.jsx'
-import PenguinModel from '../lib/PenguinModel.jsx'
-import BlockyPolarBearModel from '../lib/BlockyPolarBearModel.jsx'
-import BlockyPandaModel from '../lib/BlockyPandaModel.jsx'
-import ChickenModel from '../lib/ChickenModel.jsx'
-import BlockyPantherModel from '../lib/BlockyPantherModel.jsx'
 import FaceBoardModel from '../lib/FaceBoardModel.jsx'
 import SteeringWheelModel from '../lib/SteeringWheelModel.jsx'
 import SwordModel from '../lib/SwordModel.jsx'
@@ -539,16 +515,16 @@ const SOURCE_CACHE = new Map()
 
 // Categories kept in the code but not shown on the site. Their components and
 // files stay as they are; take a category out of this list to show it again.
-export const HIDDEN_CATEGORIES = ['Icons & Emojis']
+export const HIDDEN_CATEGORIES = ['Icons & Emojis', 'Animals']
 // Individual components kept in the code but left out of the site (the
 // sidebar, the section pages, search and the generated registry files).
 export const HIDDEN_COMPONENTS = ['shirt', 'earbuds', 'gamepad', 'low-poly-runner', 'low-poly-tiger']
 
-const ALL_CATEGORIES = ['Text', 'Animation', 'UI and Backgrounds', 'Phone UI', '3D & Materials', 'Low Poly 3D', 'Animals', 'Scenes & Assets', 'Icons & Emojis']
+const ALL_CATEGORIES = ['Text', 'Animation', 'Interfaces', 'AI Agents', '3D & Materials', 'Low Poly 3D', 'Animals', 'Scenes & Assets', 'Icons & Emojis']
 export const CATEGORIES = ALL_CATEGORIES.filter((c) => !HIDDEN_CATEGORIES.includes(c))
 
 // The UI and Backgrounds section is grouped by style, in this order.
-export const UI_STYLES = ['Backgrounds', 'Flat', 'Glassmorphism', 'Neumorphism', 'Liquid glass', 'Bento', 'Minimalism', 'Maximalism', 'Skeuomorphism']
+export const UI_STYLES = ['Backgrounds', 'Flat', 'Glassmorphism', 'Neumorphism', 'Liquid glass', 'Bento', 'Minimalism', 'Maximalism', 'Skeuomorphism', 'Phone apps']
 
 export const ICON_STYLES = ['Icons', 'Emojis']
 
@@ -651,6 +627,25 @@ const ALL_COMPONENTS = [
       </TiltCard>
     ),
     files: ['TiltCard.jsx'],
+    deps: [],
+  },
+  {
+    slug: 'thinking-indicator',
+    name: 'Thinking Indicator',
+    category: 'AI Agents',
+    description: 'The Claude-style working line: a growing and shrinking glyph and a shimmering status word.',
+    controls: [
+      { name: 'word', type: 'text', default: 'Marinating' },
+      { name: 'cycle', type: 'toggle', default: false },
+      { name: 'details', type: 'toggle', default: false },
+      { name: 'speed', type: 'range', min: 0.4, max: 3, step: 0.1, default: 1 },
+      { name: 'size', type: 'range', min: 12, max: 40, step: 1, default: 18, unit: 'px' },
+      { name: 'color', type: 'color', default: '#d77757' },
+      { name: 'textColor', type: 'color', default: '#d77757' },
+      { name: 'background', type: 'color', default: '#141414' },
+    ],
+    preview: (p) => <ThinkingIndicator {...p} />,
+    files: ['ThinkingIndicator.jsx'],
     deps: [],
   },
   {
@@ -5975,432 +5970,6 @@ const ALL_COMPONENTS = [
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
-    slug: 'giraffe',
-    name: 'Giraffe',
-    category: 'Animals',
-    isNew: true,
-    description: 'A clay-toy giraffe with a long leaning neck, a peach muzzle, bead eyes, knobbed horns, stuck-on oval spots and a tufted tail. It breathes, sways its neck, looks about, blinks, flicks its ears and swishes its tail. Tap it and it hops with squash and stretch.',
-    controls: [
-      { name: 'kind', type: 'select', options: ['sunny', 'peach', 'mint', 'lilac'], default: 'sunny' },
-      { name: 'spots', type: 'toggle', default: true },
-      { name: 'background', type: 'color', default: '#f6f4ef' },
-      { name: 'autoRotate', type: 'toggle', default: true },
-    ],
-    replay: true,
-    preview: (p) => <GiraffeModel {...p} height="100%" />,
-    fill: true,
-    files: ['GiraffeModel.jsx', 'giraffe/Giraffe.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'hippo',
-    name: 'Hippo',
-    category: 'Animals',
-    isNew: true,
-    description: 'A clay-toy hippo with a big egg of a body on stubby legs, a huge bulbous snout, glossy bead eyes, pink-lined ears and a stub of a tail. It breathes, sways its head, blinks, wiggles its ears and wags its tail. Tap it and it does a heavy hop with a big squashy landing.',
-    controls: [
-      { name: 'kind', type: 'select', options: ['slate', 'blush', 'lilac', 'moss'], default: 'slate' },
-      { name: 'background', type: 'color', default: '#f6f4ef' },
-      { name: 'autoRotate', type: 'toggle', default: true },
-    ],
-    replay: true,
-    preview: (p) => <HippoModel {...p} height="100%" />,
-    fill: true,
-    files: ['HippoModel.jsx', 'hippo/Hippo.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'toy-lion',
-    name: 'Toy Lion',
-    category: 'Animals',
-    isNew: true,
-    description: 'A clay-toy lion with a puffy ring of balloon-like mane lobes, a cream muzzle, a brown nose, cupped ears, chunky boot paws and a tufted tail. It breathes, looks about, blinks and swishes its tail. Tap it and it roars, the mane puffing out.',
-    controls: [
-      { name: 'kind', type: 'select', options: ['golden', 'sunset', 'cream', 'snow'], default: 'golden' },
-      { name: 'background', type: 'color', default: '#f6f4ef' },
-      { name: 'autoRotate', type: 'toggle', default: true },
-    ],
-    replay: true,
-    preview: (p) => <ToyLionModel {...p} height="100%" />,
-    fill: true,
-    files: ['ToyLionModel.jsx', 'toylion/ToyLion.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'bear',
-    name: 'Bear',
-    category: 'Animals',
-    isNew: true,
-    description: 'A clay-toy bear with a big round head, a cream muzzle, a button nose, round cupped ears, capsule legs and a pom-pom tail. It breathes, sways its head, blinks and wiggles its ears. Tap it and it rears up onto its hind legs and drops back with a squash.',
-    controls: [
-      { name: 'kind', type: 'select', options: ['brown', 'honey', 'panda', 'polar'], default: 'brown' },
-      { name: 'background', type: 'color', default: '#f6f4ef' },
-      { name: 'autoRotate', type: 'toggle', default: true },
-    ],
-    replay: true,
-    preview: (p) => <BearModel {...p} height="100%" />,
-    fill: true,
-    files: ['BearModel.jsx', 'bear/Bear.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'zebra',
-    name: 'Zebra',
-    category: 'Animals',
-    isNew: true,
-    description: 'A clay-toy zebra with raised black stripes, a dark muzzle, a blocky striped mane, little rounded ears, black hooves and a tufted tail. It breathes, nods, blinks, flicks its ears and swishes its tail. Tap it and it bucks with a kick of its back legs.',
-    controls: [
-      { name: 'kind', type: 'select', options: ['classic', 'pastel', 'candy', 'midnight'], default: 'classic' },
-      { name: 'background', type: 'color', default: '#f6f4ef' },
-      { name: 'autoRotate', type: 'toggle', default: true },
-    ],
-    replay: true,
-    preview: (p) => <ZebraModel {...p} height="100%" />,
-    fill: true,
-    files: ['ZebraModel.jsx', 'zebra/Zebra.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'rhino',
-    name: 'Rhino',
-    category: 'Animals',
-    isNew: true,
-    description: 'A clay-toy rhino with a long capsule body, a neck collar, a rounded snout with two ivory horns, upright ears, toed feet and a little tail. It breathes, sways its head, blinks, swivels its ears and flicks its tail. Tap it and it paws the ground and does a little charge.',
-    controls: [
-      { name: 'kind', type: 'select', options: ['slate', 'sand', 'sage', 'lilac'], default: 'slate' },
-      { name: 'background', type: 'color', default: '#f6f4ef' },
-      { name: 'autoRotate', type: 'toggle', default: true },
-    ],
-    replay: true,
-    preview: (p) => <RhinoModel {...p} height="100%" />,
-    fill: true,
-    files: ['RhinoModel.jsx', 'rhino/Rhino.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'elephant',
-    name: 'Elephant',
-    category: 'Animals',
-    isNew: true,
-    description: 'A clay-toy elephant with big round ears lined in pink, a long curling trunk, two small white tusks, bead eyes, thick column legs and a little tail. It breathes, flaps its ears, swings its trunk, blinks and flicks its tail. Tap it and it trumpets: the trunk curls up high and the ears flare wide.',
-    controls: [
-      { name: 'kind', type: 'select', options: ['slate', 'blush', 'mint', 'lavender'], default: 'slate' },
-      { name: 'background', type: 'color', default: '#f6f4ef' },
-      { name: 'autoRotate', type: 'toggle', default: true },
-    ],
-    replay: true,
-    preview: (p) => <ElephantModel {...p} height="100%" />,
-    fill: true,
-    files: ['ElephantModel.jsx', 'elephant/Elephant.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'fox',
-    name: 'Fox',
-    category: 'Animals',
-    isNew: true,
-    description: 'A clay-toy fox with a round head, a long pointed snout with a black nose and white underside, tall triangular ears, a white chest bib, capsule legs and a big upswept tail with a white tip. It breathes, cocks its head, blinks, flicks its ears and waves its tail. Tap it and it pounces: a crouch, a leap forward and a bouncy landing.',
-    controls: [
-      { name: 'kind', type: 'select', options: ['red', 'arctic', 'silver', 'cream'], default: 'red' },
-      { name: 'background', type: 'color', default: '#f6f4ef' },
-      { name: 'autoRotate', type: 'toggle', default: true },
-    ],
-    replay: true,
-    preview: (p) => <FoxModel {...p} height="100%" />,
-    fill: true,
-    files: ['FoxModel.jsx', 'fox/Fox.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'tiger',
-    name: 'Tiger',
-    category: 'Animals',
-    isNew: true,
-    description: 'A clay-toy tiger with an orange round head, a big cream two-puff muzzle with a dark nose, pink-lined ears, raised dark stripes on the brow, cheeks and back, cream paws and a dark-tipped tail. It breathes, looks about, blinks and swishes its tail. Tap it and it roars: a crouch, a head throw-back and a shake.',
-    controls: [
-      { name: 'kind', type: 'select', options: ['orange', 'white', 'golden', 'black'], default: 'orange' },
-      { name: 'background', type: 'color', default: '#f6f4ef' },
-      { name: 'autoRotate', type: 'toggle', default: true },
-    ],
-    replay: true,
-    preview: (p) => <TigerModel {...p} height="100%" />,
-    fill: true,
-    files: ['TigerModel.jsx', 'tiger/Tiger.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'wolf',
-    name: 'Wolf',
-    category: 'Animals',
-    isNew: true,
-    description: 'A clay-toy wolf in blue-grey with a tapered white-tipped muzzle, tall pointed ears, a white chest bib, straight slim legs with dark paw caps and a thick upswept tail. It breathes, turns its head, blinks, swivels its ears and wags its tail. Tap it and it howls: the head tips up, the body stretches and the tail lifts.',
-    controls: [
-      { name: 'kind', type: 'select', options: ['steel', 'timber', 'arctic', 'black'], default: 'steel' },
-      { name: 'background', type: 'color', default: '#f6f4ef' },
-      { name: 'autoRotate', type: 'toggle', default: true },
-    ],
-    replay: true,
-    preview: (p) => <WolfModel {...p} height="100%" />,
-    fill: true,
-    files: ['WolfModel.jsx', 'wolf/Wolf.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'goldfish',
-    name: 'Goldfish',
-    category: 'Animals',
-    isNew: true,
-    description: 'A clay-toy goldfish: a plump orange egg body with huge bulging white eyes, a tiny smile, a dorsal fin, two pectoral fins and a fan of tail fins, hovering over its shadow. It swims in place, bobbing and wagging its tail and fins, and its eyes roll about. Tap it and it does a quick barrel roll.',
-    controls: [
-      { name: 'kind', type: 'select', options: ['orange', 'white', 'black', 'calico'], default: 'orange' },
-      { name: 'background', type: 'color', default: '#f6f4ef' },
-      { name: 'autoRotate', type: 'toggle', default: true },
-    ],
-    replay: true,
-    preview: (p) => <GoldfishModel {...p} height="100%" />,
-    fill: true,
-    files: ['GoldfishModel.jsx', 'goldfish/Goldfish.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'parrot',
-    name: 'Parrot',
-    category: 'Animals',
-    isNew: true,
-    description: 'A clay-toy parrot: a red round head and body, an orange hooked beak, bead eyes, layered blue, yellow and green wing and tail feathers, and yellow feet gripping a wooden perch. It bobs, tilts its head, blinks and ruffles its wings. Tap it and it squawks: the beak opens and the wings flap wide.',
-    controls: [
-      { name: 'kind', type: 'select', options: ['scarlet', 'blue', 'green', 'sunset'], default: 'scarlet' },
-      { name: 'background', type: 'color', default: '#f6f4ef' },
-      { name: 'autoRotate', type: 'toggle', default: true },
-    ],
-    replay: true,
-    preview: (p) => <ParrotModel {...p} height="100%" />,
-    fill: true,
-    files: ['ParrotModel.jsx', 'parrot/Parrot.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'guinea-pig',
-    name: 'Guinea Pig',
-    category: 'Animals',
-    isNew: true,
-    description: 'A clay-toy guinea pig: a long rounded loaf of a body with brown, ginger and white patches, tiny pink-lined ears, bead eyes, a pink nose and four stubby white legs. It breathes, twitches its nose, blinks and wiggles its ears. Tap it and it popcorns: a sudden little jump with a twist and a squashy landing.',
-    controls: [
-      { name: 'kind', type: 'select', options: ['tricolour', 'ginger', 'cream', 'grey'], default: 'tricolour' },
-      { name: 'background', type: 'color', default: '#f6f4ef' },
-      { name: 'autoRotate', type: 'toggle', default: true },
-    ],
-    replay: true,
-    preview: (p) => <GuineaPigModel {...p} height="100%" />,
-    fill: true,
-    files: ['GuineaPigModel.jsx', 'guineapig/GuineaPig.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'bunny',
-    name: 'Bunny',
-    category: 'Animals',
-    isNew: true,
-    description: 'A clay-toy bunny sitting upright: a big round white head with tall pink-lined ears, bead eyes, a pink nose and blushing cheeks, a round body with a bow tie, stubby arms, big feet with pink pads and a cotton tail. It breathes, wiggles its nose, blinks and flops its ears. Tap it and it hops in place with a happy ear flap.',
-    controls: [
-      { name: 'kind', type: 'select', options: ['white', 'grey', 'brown', 'pink'], default: 'white' },
-      { name: 'background', type: 'color', default: '#f6f4ef' },
-      { name: 'autoRotate', type: 'toggle', default: true },
-    ],
-    replay: true,
-    preview: (p) => <BunnyModel {...p} height="100%" />,
-    fill: true,
-    files: ['BunnyModel.jsx', 'bunny/Bunny.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'budgie',
-    name: 'Budgie',
-    category: 'Animals',
-    isNew: true,
-    description: 'A clay-toy budgie: a yellow head shading into a green body, a small orange beak with a blue cere, blue cheek spots, bead eyes, layered blue wing and tail feathers, and peach feet on a forked perch. It bobs, tilts its head, blinks and preens. Tap it and it chirps: the head bobs quickly and the wings lift.',
-    controls: [
-      { name: 'kind', type: 'select', options: ['green', 'blue', 'yellow', 'white'], default: 'green' },
-      { name: 'background', type: 'color', default: '#f6f4ef' },
-      { name: 'autoRotate', type: 'toggle', default: true },
-    ],
-    replay: true,
-    preview: (p) => <BudgieModel {...p} height="100%" />,
-    fill: true,
-    files: ['BudgieModel.jsx', 'budgie/Budgie.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'puppy',
-    name: 'Puppy',
-    category: 'Animals',
-    isNew: true,
-    description: 'A clay-toy puppy sitting down: a round tan head with long floppy brown ears, glossy eyes, a cream muzzle with a brown nose and a little pink tongue, a red collar with a yellow tag, a cream belly, front legs planted and a cream-tipped tail. It breathes, tilts its head, blinks and pants. Tap it and it wags hard and gives a bark bounce.',
-    controls: [
-      { name: 'kind', type: 'select', options: ['tan', 'chocolate', 'golden', 'spotted'], default: 'tan' },
-      { name: 'background', type: 'color', default: '#f6f4ef' },
-      { name: 'autoRotate', type: 'toggle', default: true },
-    ],
-    replay: true,
-    preview: (p) => <PuppyModel {...p} height="100%" />,
-    fill: true,
-    files: ['PuppyModel.jsx', 'puppy/Puppy.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'cat',
-    name: 'Cat',
-    category: 'Animals',
-    isNew: true,
-    description: 'A clay-toy cat sitting down: an orange round head with pointed pink-lined ears, big glossy eyes, a pink nose over two cream muzzle puffs, a cream belly, front legs planted with cream paws and a cream-tipped tail curled up. It breathes, flicks its ears, blinks slowly and sways its tail. Tap it and it stretches up and kneads with its front paws.',
-    controls: [
-      { name: 'kind', type: 'select', options: ['ginger', 'grey', 'black', 'calico'], default: 'ginger' },
-      { name: 'background', type: 'color', default: '#f6f4ef' },
-      { name: 'autoRotate', type: 'toggle', default: true },
-    ],
-    replay: true,
-    preview: (p) => <CatModel {...p} height="100%" />,
-    fill: true,
-    files: ['CatModel.jsx', 'cat/Cat.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'hamster',
-    name: 'Hamster',
-    category: 'Animals',
-    isNew: true,
-    description: 'A clay-toy hamster standing up: a tall pear body with a cream belly, huge round cheek pouches, small cupped ears lined in pink, glossy eyes, a pink nose, stubby arms held in front and little feet. It breathes, twitches its nose, blinks and its cheeks puff. Tap it and it stuffs its cheeks: they swell up big and shrink back.',
-    controls: [
-      { name: 'kind', type: 'select', options: ['golden', 'cream', 'grey', 'white'], default: 'golden' },
-      { name: 'background', type: 'color', default: '#f6f4ef' },
-      { name: 'autoRotate', type: 'toggle', default: true },
-    ],
-    replay: true,
-    preview: (p) => <HamsterModel {...p} height="100%" />,
-    fill: true,
-    files: ['HamsterModel.jsx', 'hamster/Hamster.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'ferret',
-    name: 'Ferret',
-    category: 'Animals',
-    isNew: true,
-    description: 'A clay-toy ferret: a long tube body on short dark legs, a round head with a dark mask across the eyes, a cream muzzle with a dark nose, small cream-lined ears and a long tail that darkens to the tip. It breathes, weaves its head, blinks and curls its tail. Tap it and it does a weasel war dance: hopping sideways with a wiggle.',
-    controls: [
-      { name: 'kind', type: 'select', options: ['sable', 'albino', 'cinnamon', 'silver'], default: 'sable' },
-      { name: 'background', type: 'color', default: '#f6f4ef' },
-      { name: 'autoRotate', type: 'toggle', default: true },
-    ],
-    replay: true,
-    preview: (p) => <FerretModel {...p} height="100%" />,
-    fill: true,
-    files: ['FerretModel.jsx', 'ferret/Ferret.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'turtle',
-    name: 'Turtle',
-    category: 'Animals',
-    isNew: true,
-    description: 'A clay-toy turtle: a brown domed shell with raised plates and a rim, a pale belly plate, a green head on a bent neck with glossy eyes, blushing cheeks and a smile, four green legs and a little tail. It breathes, bobs its head, blinks and paddles its legs. Tap it and it ducks into its shell and pops back out.',
-    controls: [
-      { name: 'kind', type: 'select', options: ['green', 'teal', 'olive', 'pink'], default: 'green' },
-      { name: 'background', type: 'color', default: '#f6f4ef' },
-      { name: 'autoRotate', type: 'toggle', default: true },
-    ],
-    replay: true,
-    preview: (p) => <TurtleModel {...p} height="100%" />,
-    fill: true,
-    files: ['TurtleModel.jsx', 'turtle/Turtle.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'penguin',
-    name: 'Penguin',
-    category: 'Animals',
-    isNew: true,
-    description: 'A clay-toy penguin: one tall rounded egg of a body in glossy black, a big white face-and-belly oval, two bead eyes, a small orange cone beak, flat paddle flippers held out at the sides and two orange oval feet. It breathes, waddles side to side, blinks and flaps its flippers. Tap it and it does a happy hop with both flippers flapping.',
-    controls: [
-      { name: 'kind', type: 'select', options: ['classic', 'blue', 'emperor', 'pink'], default: 'classic' },
-      { name: 'background', type: 'color', default: '#f6f4ef' },
-      { name: 'autoRotate', type: 'toggle', default: true },
-    ],
-    replay: true,
-    preview: (p) => <PenguinModel {...p} height="100%" />,
-    fill: true,
-    files: ['PenguinModel.jsx', 'penguin/Penguin.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'blocky-polar-bear',
-    name: 'Blocky Polar Bear',
-    category: 'Animals',
-    isNew: true,
-    description: 'A blocky toy polar bear in matt white: a big pillowy box of a body on four round stubby legs, a soft cube head with a slate-grey snout and a dark nose, bead eyes, little open-loop ears and a tab of a tail. It breathes, looks around, blinks, twitches its ears, shifts its weight and wags its tail. Tap it and it does a chunky hop with a squashy landing and a head shake.',
-    controls: [
-      { name: 'kind', type: 'select', options: ['polar', 'honey', 'mint', 'blush'], default: 'polar' },
-      { name: 'background', type: 'color', default: '#f6f4ef' },
-      { name: 'autoRotate', type: 'toggle', default: true },
-    ],
-    replay: true,
-    preview: (p) => <BlockyPolarBearModel {...p} height="100%" />,
-    fill: true,
-    files: ['BlockyPolarBearModel.jsx', 'blocky/PolarBear.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'blocky-panda',
-    name: 'Blocky Panda',
-    category: 'Animals',
-    isNew: true,
-    description: 'A blocky toy panda in matt cream and black: a big soft box of a body with a black band round the shoulders, four stout black legs with rounded feet, a large cube head with slanted black eye patches and bright eye dots, a little muzzle with a black nose, two black ears and a stub of a tail. It breathes, looks around, blinks, twitches its ears, shifts its paws and wags its tail. Tap it and it does a heavy hop with a squashy landing and a head shake.',
-    controls: [
-      { name: 'kind', type: 'select', options: ['panda', 'mocha', 'sky', 'berry'], default: 'panda' },
-      { name: 'background', type: 'color', default: '#f6f4ef' },
-      { name: 'autoRotate', type: 'toggle', default: true },
-    ],
-    replay: true,
-    preview: (p) => <BlockyPandaModel {...p} height="100%" />,
-    fill: true,
-    files: ['BlockyPandaModel.jsx', 'blocky/Panda.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'chicken',
-    name: 'Chicken',
-    category: 'Animals',
-    isNew: true,
-    description: 'A clay-toy chicken in soft cream: a plump egg of a body, a round head with a glossy red comb of four bobbles, bead eyes, an orange cone beak and two red wattles, little teardrop wings, a fan of red, orange and yellow tail feathers and orange legs with three rounded toes. It breathes, bobs and pecks, blinks, shrugs its wings and wiggles its tail. Tap it and it flusters: a hop with fast flapping wings and a head shake.',
-    controls: [
-      { name: 'kind', type: 'select', options: ['cream', 'brown', 'snow', 'black'], default: 'cream' },
-      { name: 'background', type: 'color', default: '#f6f4ef' },
-      { name: 'autoRotate', type: 'toggle', default: true },
-    ],
-    replay: true,
-    preview: (p) => <ChickenModel {...p} height="100%" />,
-    fill: true,
-    files: ['ChickenModel.jsx', 'chicken/Chicken.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'blocky-panther',
-    name: 'Blocky Panther',
-    category: 'Animals',
-    isNew: true,
-    description: 'A blocky toy black panther: a long matt-black box of a body on four round cylinder legs, a faceted wedge head with amber eyes and a pointed muzzle, two triangular ears, a spiked collar at the neck and a long segmented tail curling up over its back. It breathes, looks around, blinks, flicks its ears, shifts its paws and sways its tail. Tap it and it crouches, pounces forward with a squashy landing and lashes its tail.',
-    controls: [
-      { name: 'kind', type: 'select', options: ['panther', 'graphite', 'midnight', 'plum'], default: 'panther' },
-      { name: 'background', type: 'color', default: '#f6f4ef' },
-      { name: 'autoRotate', type: 'toggle', default: true },
-    ],
-    replay: true,
-    preview: (p) => <BlockyPantherModel {...p} height="100%" />,
-    fill: true,
-    files: ['BlockyPantherModel.jsx', 'blocky/Panther.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
     slug: 'low-poly-runner',
     name: 'Low Poly Runner',
     category: 'Low Poly 3D',
@@ -11318,7 +10887,7 @@ const ALL_COMPONENTS = [
 ]
 
 // What the site shows: everything except the hidden categories.
-export const COMPONENTS = ALL_COMPONENTS.filter((c) => !HIDDEN_CATEGORIES.includes(c.category) && !HIDDEN_COMPONENTS.includes(c.slug)).map((c) => (SECTION_NAMES[c.category] ? { ...c, style: sectionOf(c) } : c))
+export const COMPONENTS = ALL_COMPONENTS.filter((c) => !HIDDEN_CATEGORIES.includes(c.category) && !HIDDEN_COMPONENTS.includes(c.slug)).map((c) => (c.category === 'Phone UI' ? { ...c, category: 'Interfaces', style: 'Phone apps' } : c.category === 'UI and Backgrounds' ? { ...c, category: 'Interfaces' } : SECTION_NAMES[c.category] ? { ...c, style: sectionOf(c) } : c))
 
 // Components that take children, so usage shows them as wrappers.
 export const WRAPPERS = ['TiltCard', 'DraftingGrid', 'SpringButton', 'MagneticButton']

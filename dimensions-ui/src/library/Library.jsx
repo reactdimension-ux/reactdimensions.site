@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
-import { PHONE_STYLES, SECTION_NAMES } from './sections.js'
+import { SECTION_NAMES } from './sections.js'
 import { CATEGORIES, COMPONENTS, UI_STYLES, ICON_STYLES, OBJECT_STYLES, SCENE_STYLES, defaultsFor, loadSources, sourceFor, sourcesLoaded, usageFor, valueControls } from './registry.jsx'
 import { highlight } from './highlight.js'
 import { markdownFor, openPromptFor, promptFor, sourceText, typesFor } from './ai.js'
@@ -13,8 +13,9 @@ const CAT_ICON = {
   All: <path d="M4 4h5v5H4zM11 4h5v5h-5zM4 11h5v5H4zM11 11h5v5h-5z" />,
   Text: <path d="M4 5.5V4h12v1.5M10 4v12M7.5 16h5" />,
   Animation: <path d="m5 3.5 9 5.2-3.9 1.2 2.4 4.1-1.8 1-2.4-4.1-2.7 2.9z" />,
-  'UI and Backgrounds': <path d="M3 4.5h14v11H3zM3 7.5h14M6 11.5h4M13 11.5h1" />,
-  'Phone UI': <path d="M6.5 2.5h7a1.5 1.5 0 0 1 1.5 1.5v12a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 5 16V4a1.5 1.5 0 0 1 1.5-1.5zM8.5 4.5h3M9.5 15h1" />,
+  // a four-point sparkle
+  'AI Agents': <path d="M10 2.5c.6 3.8 2.200 5.400 6 6-3.800.600-5.400 2.200-6 6-.600-3.800-2.200-5.400-6-6 3.800-.600 5.400-2.200 6-6zM15.500 13.500c.2 1.300.7 1.800 2 2-1.300.2-1.800.7-2 2-.2-1.300-.7-1.800-2-2 1.300-.2 1.800-.7 2-2z" />,
+  Interfaces: <path d="M3 4.5h14v11H3zM3 7.5h14M6 11.5h4M13 11.5h1" />,
   '3D & Materials': <path d="M10 2.5 16.5 6v8L10 17.5 3.5 14V6zM10 10 3.5 6M10 10l6.5-4M10 10v7.5" />,
   // a ball moving with speed lines trailing behind it
   'Low Poly 3D': <path d="M11.5 10a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0-7 0zM2.5 7h6M4.5 10h4.5M2.5 13h6" />,
@@ -66,9 +67,9 @@ function SourceFiles({ comp }) {
 }
 
 // Categories whose pages are split into sections.
-const SECTIONS = { 'UI and Backgrounds': UI_STYLES, 'Phone UI': PHONE_STYLES, '3D & Materials': OBJECT_STYLES, 'Scenes & Assets': SCENE_STYLES, 'Icons & Emojis': ICON_STYLES, ...SECTION_NAMES }
+const SECTIONS = { Interfaces: UI_STYLES, '3D & Materials': OBJECT_STYLES, 'Scenes & Assets': SCENE_STYLES, 'Icons & Emojis': ICON_STYLES, ...SECTION_NAMES }
 
-const COMING_SOON = ['Animals', 'Icons & Emojis']
+const COMING_SOON = ['Icons & Emojis']
 
 const PM = { npm: 'npm i', pnpm: 'pnpm add', yarn: 'yarn add', bun: 'bun add' }
 const WIDTHS = { desktop: '100%', tablet: '768px', mobile: '390px' }
@@ -578,7 +579,7 @@ export function CategoryPage() {
   }, [])
 
   // UI and Backgrounds were separate categories; keep their old links working
-  if (!name) return <Navigate to={cat === 'ui' || cat === 'backgrounds' ? '/library/c/ui-and-backgrounds' : '/library/c/all'} replace />
+  if (!name) return <Navigate to={cat === 'ui' || cat === 'backgrounds' ? '/library/c/interfaces' : '/library/c/all'} replace />
 
   const q = query.trim().toLowerCase()
   const items = COMPONENTS.filter((c) => (name === 'All' || c.category === name) && (style === 'All' || c.style === style) && (!q || c.name.toLowerCase().includes(q) || (c.style ?? '').toLowerCase().includes(q)))
@@ -719,7 +720,7 @@ export default function Library() {
   const typeOf = (c) => (c.type === 'range' ? 'number' : c.type === 'toggle' ? 'boolean' : c.type === 'select' ? c.options.map((o) => `'${o}'`).join(' | ') : 'string')
 
   return (
-    <div className={`lib${comp.category === 'UI and Backgrounds' || comp.category === 'Phone UI' ? ' lib-wide' : ''}`}>
+    <div className={`lib${comp.category === 'Interfaces' ? ' lib-wide' : ''}`}>
       <Sidebar active={slug} open={drawer} onClose={() => setDrawer(false)} favs={favs} />
 
       <div className="lib-main">
@@ -799,7 +800,7 @@ export default function Library() {
         {tab === 'preview' ? (
           <>
             <div className="stage-shell" id="preview">
-              <div className={`lib-stage${comp.fill ? ' fill' : ''}${comp.category === 'UI and Backgrounds' || comp.category === 'Phone UI' ? ' screen' : ''}`} style={{ maxWidth: WIDTHS[width] }}>
+              <div className={`lib-stage${comp.fill ? ' fill' : ''}${comp.category === 'Interfaces' ? ' screen' : ''}`} style={{ maxWidth: WIDTHS[width] }}>
                 <div className="lib-stage-inner" key={`${slug}-${reload}`} ref={stageRef}>
                   {comp.preview(props, (patch) => setValues((s) => ({ ...s, ...patch })))}
                 </div>
