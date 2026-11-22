@@ -14,6 +14,14 @@ const ANIMATION = [
   group('Interactive 3D', ['drag-model', 'tilt-orbit'], true),
 ]
 
+// groups match docs/ai-agent-components.md; empty ones stay hidden until they have components
+const AGENTS = [
+  group('Status & thinking', ['thinking-indicator', 'streaming-text', 'reasoning-panel', 'step-timeline', 'progress-checklist', 'token-counter', 'elapsed-timer', 'status-pill', 'context-meter']),
+  group('Conversation', ['chat-bubbles', 'typing-indicator', 'prompt-box', 'suggestion-chips', 'message-actions', 'citation-pills', 'voice-orb', 'attachment-chips', 'model-picker', 'conversation-list', 'feedback-bar']),
+  group('Agent at work', ['tool-call-card', 'terminal-log', 'code-diff', 'file-tree-activity', 'browser-agent', 'approval-prompt', 'sub-agent-graph', 'memory-recall', 'search-results-stream', 'plan-editor', 'run-history']),
+  group('Playful & 3D', [], true),
+]
+
 const ANIMALS = [
   group('Wild animals', ['giraffe', 'hippo', 'zebra', 'rhino', 'elephant', 'fox', 'tiger', 'wolf', 'bear']),
   group('Pets', ['puppy', 'cat', 'hamster', 'ferret', 'guinea-pig', 'bunny']),
@@ -33,6 +41,7 @@ const LOWPOLY = [
 
 export const SECTION_GROUPS = {
   Animation: ANIMATION,
+  'AI Agents': AGENTS,
   Animals: ANIMALS,
   'Low Poly 3D': LOWPOLY,
 }

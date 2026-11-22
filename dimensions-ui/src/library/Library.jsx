@@ -105,6 +105,92 @@ function CodeBlock({ title, code }) {
   )
 }
 
+// The site's own dropdown: a button that opens a list styled like the rest of the
+// controls. Arrow keys move, Enter picks, Escape or a click outside closes it.
+function Dropdown({ id, labelId, options, value, onChange }) {
+  const [open, setOpen] = useState(false)
+  const [hi, setHi] = useState(() => Math.max(0, options.indexOf(value)))
+  const root = useRef(null)
+  const list = useRef(null)
+
+  useEffect(() => {
+    if (!open) return
+    setHi(Math.max(0, options.indexOf(value)))
+    const away = (e) => !root.current?.contains(e.target) && setOpen(false)
+    document.addEventListener('pointerdown', away)
+    return () => document.removeEventListener('pointerdown', away)
+  }, [open])
+
+  // keep the highlighted option in view as it moves
+  useEffect(() => {
+    if (open) list.current?.children[hi]?.scrollIntoView({ block: 'nearest' })
+  }, [open, hi])
+
+  const pick = (o) => {
+    onChange(o)
+    setOpen(false)
+  }
+  const onKey = (e) => {
+    if (!open && ['ArrowDown', 'ArrowUp', 'Enter', ' '].includes(e.key)) {
+      e.preventDefault()
+      setOpen(true)
+      return
+    }
+    if (!open) return
+    if (e.key === 'ArrowDown') setHi((h) => Math.min(options.length - 1, h + 1))
+    else if (e.key === 'ArrowUp') setHi((h) => Math.max(0, h - 1))
+    else if (e.key === 'Home') setHi(0)
+    else if (e.key === 'End') setHi(options.length - 1)
+    else if (e.key === 'Enter' || e.key === ' ') pick(options[hi])
+    else if (e.key === 'Escape' || e.key === 'Tab') return setOpen(false)
+    else return
+    e.preventDefault()
+  }
+
+  return (
+    <div className={`dd${open ? ' open' : ''}`} ref={root}>
+      <button
+        type="button"
+        id={id}
+        className="dd-btn"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-labelledby={`${labelId} ${id}`}
+        aria-activedescendant={open ? `${id}-o${hi}` : undefined}
+        onClick={() => setOpen((o) => !o)}
+        onKeyDown={onKey}
+      >
+        <span>{value}</span>
+        <svg viewBox="0 0 12 12" aria-hidden="true">
+          <path d="M3 4.5 6 7.5 9 4.5" />
+        </svg>
+      </button>
+      {open && (
+        <ul className="dd-list" role="listbox" aria-labelledby={labelId} ref={list}>
+          {options.map((o, i) => (
+            <li
+              key={o}
+              id={`${id}-o${i}`}
+              role="option"
+              aria-selected={o === value}
+              className={`${o === value ? 'on' : ''}${i === hi ? ' hi' : ''}`}
+              onPointerEnter={() => setHi(i)}
+              onClick={() => pick(o)}
+            >
+              {o}
+              {o === value && (
+                <svg viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M2.5 6.2 5 8.5 9.5 3.5" />
+                </svg>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  )
+}
+
 function Control({ c, value, onChange, onPatch, current }) {
   const id = `ctl-${c.name}`
   if (c.type === 'presets') {
@@ -139,6 +225,17 @@ function Control({ c, value, onChange, onPatch, current }) {
         <input id={id} type="checkbox" checked={value} onChange={(e) => onChange(e.target.checked)} />
         <span className="switch" aria-hidden="true" />
       </label>
+    )
+  }
+  // a select marked `dropdown` shows as a menu instead of a row of chips
+  if (c.type === 'select' && c.dropdown) {
+    return (
+      <div className="ctl">
+        <span className="ctl-name" id={`${id}-label`}>
+          {c.name}
+        </span>
+        <Dropdown id={id} labelId={`${id}-label`} options={c.options} value={value} onChange={onChange} />
+      </div>
     )
   }
   if (c.type === 'select') {
@@ -606,6 +703,7 @@ export function CategoryPage() {
             </button>
             {SECTIONS[name].map((st) => {
               const n = COMPONENTS.filter((c) => c.category === name && c.style === st).length
+              if (!n) return null
               return (
                 <button key={st} aria-pressed={style === st} onClick={() => setStyle(st)}>
                   {st}<span>{n}</span>
