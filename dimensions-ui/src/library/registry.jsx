@@ -163,11 +163,9 @@ import OnboardingApp from '../lib/OnboardingApp.jsx'
 import MessengerApp from '../lib/MessengerApp.jsx'
 import BoardingPassApp from '../lib/BoardingPassApp.jsx'
 import BudgetApp from '../lib/BudgetApp.jsx'
-import DatingApp from '../lib/DatingApp.jsx'
 import EventApp from '../lib/EventApp.jsx'
 import HabitApp from '../lib/HabitApp.jsx'
 import HotelApp from '../lib/HotelApp.jsx'
-import KanbanApp from '../lib/KanbanApp.jsx'
 import MeditationApp from '../lib/MeditationApp.jsx'
 import NotesApp from '../lib/NotesApp.jsx'
 import NotificationsApp from '../lib/NotificationsApp.jsx'
@@ -175,11 +173,8 @@ import ReservationApp from '../lib/ReservationApp.jsx'
 import SavingsApp from '../lib/SavingsApp.jsx'
 import SleepApp from '../lib/SleepApp.jsx'
 import SocialApp from '../lib/SocialApp.jsx'
-import StoryApp from '../lib/StoryApp.jsx'
 import WaterApp from '../lib/WaterApp.jsx'
 import WeatherApp from '../lib/WeatherApp.jsx'
-import CameraApp from '../lib/CameraApp.jsx'
-import ComposerApp from '../lib/ComposerApp.jsx'
 import GalleryApp from '../lib/GalleryApp.jsx'
 import CalendarApp from '../lib/CalendarApp.jsx'
 import CarApp from '../lib/CarApp.jsx'
@@ -200,8 +195,6 @@ import StocksApp from '../lib/StocksApp.jsx'
 import TransitApp from '../lib/TransitApp.jsx'
 import TripApp from '../lib/TripApp.jsx'
 import VaultApp from '../lib/VaultApp.jsx'
-import VideoCallApp from '../lib/VideoCallApp.jsx'
-import VideoFeedApp from '../lib/VideoFeedApp.jsx'
 import VoiceNotesApp from '../lib/VoiceNotesApp.jsx'
 import WalletApp from '../lib/WalletApp.jsx'
 import WatchApp from '../lib/WatchApp.jsx'
@@ -551,7 +544,7 @@ export const HIDDEN_CATEGORIES = ['Icons & Emojis']
 // sidebar, the section pages, search and the generated registry files).
 export const HIDDEN_COMPONENTS = ['shirt', 'earbuds', 'gamepad', 'low-poly-runner', 'low-poly-tiger']
 
-const ALL_CATEGORIES = ['Text', 'Animation', 'UI and Backgrounds', 'Phone UI', '3D & Materials', 'Low Poly 3D', 'Characters', 'Scenes & Assets', 'Icons & Emojis']
+const ALL_CATEGORIES = ['Text', 'Animation', 'UI and Backgrounds', 'Phone UI', '3D & Materials', 'Low Poly 3D', 'Animals', 'Scenes & Assets', 'Icons & Emojis']
 export const CATEGORIES = ALL_CATEGORIES.filter((c) => !HIDDEN_CATEGORIES.includes(c))
 
 // The UI and Backgrounds section is grouped by style, in this order.
@@ -5984,7 +5977,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'giraffe',
     name: 'Giraffe',
-    category: 'Characters',
+    category: 'Animals',
     isNew: true,
     description: 'A clay-toy giraffe with a long leaning neck, a peach muzzle, bead eyes, knobbed horns, stuck-on oval spots and a tufted tail. It breathes, sways its neck, looks about, blinks, flicks its ears and swishes its tail. Tap it and it hops with squash and stretch.',
     controls: [
@@ -6002,7 +5995,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'hippo',
     name: 'Hippo',
-    category: 'Characters',
+    category: 'Animals',
     isNew: true,
     description: 'A clay-toy hippo with a big egg of a body on stubby legs, a huge bulbous snout, glossy bead eyes, pink-lined ears and a stub of a tail. It breathes, sways its head, blinks, wiggles its ears and wags its tail. Tap it and it does a heavy hop with a big squashy landing.',
     controls: [
@@ -6019,7 +6012,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'toy-lion',
     name: 'Toy Lion',
-    category: 'Characters',
+    category: 'Animals',
     isNew: true,
     description: 'A clay-toy lion with a puffy ring of balloon-like mane lobes, a cream muzzle, a brown nose, cupped ears, chunky boot paws and a tufted tail. It breathes, looks about, blinks and swishes its tail. Tap it and it roars, the mane puffing out.',
     controls: [
@@ -6036,7 +6029,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'bear',
     name: 'Bear',
-    category: 'Characters',
+    category: 'Animals',
     isNew: true,
     description: 'A clay-toy bear with a big round head, a cream muzzle, a button nose, round cupped ears, capsule legs and a pom-pom tail. It breathes, sways its head, blinks and wiggles its ears. Tap it and it rears up onto its hind legs and drops back with a squash.',
     controls: [
@@ -6053,7 +6046,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'zebra',
     name: 'Zebra',
-    category: 'Characters',
+    category: 'Animals',
     isNew: true,
     description: 'A clay-toy zebra with raised black stripes, a dark muzzle, a blocky striped mane, little rounded ears, black hooves and a tufted tail. It breathes, nods, blinks, flicks its ears and swishes its tail. Tap it and it bucks with a kick of its back legs.',
     controls: [
@@ -6070,7 +6063,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'rhino',
     name: 'Rhino',
-    category: 'Characters',
+    category: 'Animals',
     isNew: true,
     description: 'A clay-toy rhino with a long capsule body, a neck collar, a rounded snout with two ivory horns, upright ears, toed feet and a little tail. It breathes, sways its head, blinks, swivels its ears and flicks its tail. Tap it and it paws the ground and does a little charge.',
     controls: [
@@ -6087,7 +6080,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'elephant',
     name: 'Elephant',
-    category: 'Characters',
+    category: 'Animals',
     isNew: true,
     description: 'A clay-toy elephant with big round ears lined in pink, a long curling trunk, two small white tusks, bead eyes, thick column legs and a little tail. It breathes, flaps its ears, swings its trunk, blinks and flicks its tail. Tap it and it trumpets: the trunk curls up high and the ears flare wide.',
     controls: [
@@ -6104,7 +6097,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'fox',
     name: 'Fox',
-    category: 'Characters',
+    category: 'Animals',
     isNew: true,
     description: 'A clay-toy fox with a round head, a long pointed snout with a black nose and white underside, tall triangular ears, a white chest bib, capsule legs and a big upswept tail with a white tip. It breathes, cocks its head, blinks, flicks its ears and waves its tail. Tap it and it pounces: a crouch, a leap forward and a bouncy landing.',
     controls: [
@@ -6121,7 +6114,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'tiger',
     name: 'Tiger',
-    category: 'Characters',
+    category: 'Animals',
     isNew: true,
     description: 'A clay-toy tiger with an orange round head, a big cream two-puff muzzle with a dark nose, pink-lined ears, raised dark stripes on the brow, cheeks and back, cream paws and a dark-tipped tail. It breathes, looks about, blinks and swishes its tail. Tap it and it roars: a crouch, a head throw-back and a shake.',
     controls: [
@@ -6138,7 +6131,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'wolf',
     name: 'Wolf',
-    category: 'Characters',
+    category: 'Animals',
     isNew: true,
     description: 'A clay-toy wolf in blue-grey with a tapered white-tipped muzzle, tall pointed ears, a white chest bib, straight slim legs with dark paw caps and a thick upswept tail. It breathes, turns its head, blinks, swivels its ears and wags its tail. Tap it and it howls: the head tips up, the body stretches and the tail lifts.',
     controls: [
@@ -6155,7 +6148,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'goldfish',
     name: 'Goldfish',
-    category: 'Characters',
+    category: 'Animals',
     isNew: true,
     description: 'A clay-toy goldfish: a plump orange egg body with huge bulging white eyes, a tiny smile, a dorsal fin, two pectoral fins and a fan of tail fins, hovering over its shadow. It swims in place, bobbing and wagging its tail and fins, and its eyes roll about. Tap it and it does a quick barrel roll.',
     controls: [
@@ -6172,7 +6165,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'parrot',
     name: 'Parrot',
-    category: 'Characters',
+    category: 'Animals',
     isNew: true,
     description: 'A clay-toy parrot: a red round head and body, an orange hooked beak, bead eyes, layered blue, yellow and green wing and tail feathers, and yellow feet gripping a wooden perch. It bobs, tilts its head, blinks and ruffles its wings. Tap it and it squawks: the beak opens and the wings flap wide.',
     controls: [
@@ -6189,7 +6182,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'guinea-pig',
     name: 'Guinea Pig',
-    category: 'Characters',
+    category: 'Animals',
     isNew: true,
     description: 'A clay-toy guinea pig: a long rounded loaf of a body with brown, ginger and white patches, tiny pink-lined ears, bead eyes, a pink nose and four stubby white legs. It breathes, twitches its nose, blinks and wiggles its ears. Tap it and it popcorns: a sudden little jump with a twist and a squashy landing.',
     controls: [
@@ -6206,7 +6199,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'bunny',
     name: 'Bunny',
-    category: 'Characters',
+    category: 'Animals',
     isNew: true,
     description: 'A clay-toy bunny sitting upright: a big round white head with tall pink-lined ears, bead eyes, a pink nose and blushing cheeks, a round body with a bow tie, stubby arms, big feet with pink pads and a cotton tail. It breathes, wiggles its nose, blinks and flops its ears. Tap it and it hops in place with a happy ear flap.',
     controls: [
@@ -6223,7 +6216,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'budgie',
     name: 'Budgie',
-    category: 'Characters',
+    category: 'Animals',
     isNew: true,
     description: 'A clay-toy budgie: a yellow head shading into a green body, a small orange beak with a blue cere, blue cheek spots, bead eyes, layered blue wing and tail feathers, and peach feet on a forked perch. It bobs, tilts its head, blinks and preens. Tap it and it chirps: the head bobs quickly and the wings lift.',
     controls: [
@@ -6240,7 +6233,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'puppy',
     name: 'Puppy',
-    category: 'Characters',
+    category: 'Animals',
     isNew: true,
     description: 'A clay-toy puppy sitting down: a round tan head with long floppy brown ears, glossy eyes, a cream muzzle with a brown nose and a little pink tongue, a red collar with a yellow tag, a cream belly, front legs planted and a cream-tipped tail. It breathes, tilts its head, blinks and pants. Tap it and it wags hard and gives a bark bounce.',
     controls: [
@@ -6257,7 +6250,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'cat',
     name: 'Cat',
-    category: 'Characters',
+    category: 'Animals',
     isNew: true,
     description: 'A clay-toy cat sitting down: an orange round head with pointed pink-lined ears, big glossy eyes, a pink nose over two cream muzzle puffs, a cream belly, front legs planted with cream paws and a cream-tipped tail curled up. It breathes, flicks its ears, blinks slowly and sways its tail. Tap it and it stretches up and kneads with its front paws.',
     controls: [
@@ -6274,7 +6267,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'hamster',
     name: 'Hamster',
-    category: 'Characters',
+    category: 'Animals',
     isNew: true,
     description: 'A clay-toy hamster standing up: a tall pear body with a cream belly, huge round cheek pouches, small cupped ears lined in pink, glossy eyes, a pink nose, stubby arms held in front and little feet. It breathes, twitches its nose, blinks and its cheeks puff. Tap it and it stuffs its cheeks: they swell up big and shrink back.',
     controls: [
@@ -6291,7 +6284,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'ferret',
     name: 'Ferret',
-    category: 'Characters',
+    category: 'Animals',
     isNew: true,
     description: 'A clay-toy ferret: a long tube body on short dark legs, a round head with a dark mask across the eyes, a cream muzzle with a dark nose, small cream-lined ears and a long tail that darkens to the tip. It breathes, weaves its head, blinks and curls its tail. Tap it and it does a weasel war dance: hopping sideways with a wiggle.',
     controls: [
@@ -6308,7 +6301,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'turtle',
     name: 'Turtle',
-    category: 'Characters',
+    category: 'Animals',
     isNew: true,
     description: 'A clay-toy turtle: a brown domed shell with raised plates and a rim, a pale belly plate, a green head on a bent neck with glossy eyes, blushing cheeks and a smile, four green legs and a little tail. It breathes, bobs its head, blinks and paddles its legs. Tap it and it ducks into its shell and pops back out.',
     controls: [
@@ -6325,7 +6318,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'penguin',
     name: 'Penguin',
-    category: 'Characters',
+    category: 'Animals',
     isNew: true,
     description: 'A clay-toy penguin: one tall rounded egg of a body in glossy black, a big white face-and-belly oval, two bead eyes, a small orange cone beak, flat paddle flippers held out at the sides and two orange oval feet. It breathes, waddles side to side, blinks and flaps its flippers. Tap it and it does a happy hop with both flippers flapping.',
     controls: [
@@ -6342,7 +6335,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'blocky-polar-bear',
     name: 'Blocky Polar Bear',
-    category: 'Characters',
+    category: 'Animals',
     isNew: true,
     description: 'A blocky toy polar bear in matt white: a big pillowy box of a body on four round stubby legs, a soft cube head with a slate-grey snout and a dark nose, bead eyes, little open-loop ears and a tab of a tail. It breathes, looks around, blinks, twitches its ears, shifts its weight and wags its tail. Tap it and it does a chunky hop with a squashy landing and a head shake.',
     controls: [
@@ -6359,7 +6352,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'blocky-panda',
     name: 'Blocky Panda',
-    category: 'Characters',
+    category: 'Animals',
     isNew: true,
     description: 'A blocky toy panda in matt cream and black: a big soft box of a body with a black band round the shoulders, four stout black legs with rounded feet, a large cube head with slanted black eye patches and bright eye dots, a little muzzle with a black nose, two black ears and a stub of a tail. It breathes, looks around, blinks, twitches its ears, shifts its paws and wags its tail. Tap it and it does a heavy hop with a squashy landing and a head shake.',
     controls: [
@@ -6376,7 +6369,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'chicken',
     name: 'Chicken',
-    category: 'Characters',
+    category: 'Animals',
     isNew: true,
     description: 'A clay-toy chicken in soft cream: a plump egg of a body, a round head with a glossy red comb of four bobbles, bead eyes, an orange cone beak and two red wattles, little teardrop wings, a fan of red, orange and yellow tail feathers and orange legs with three rounded toes. It breathes, bobs and pecks, blinks, shrugs its wings and wiggles its tail. Tap it and it flusters: a hop with fast flapping wings and a head shake.',
     controls: [
@@ -6393,7 +6386,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'blocky-panther',
     name: 'Blocky Panther',
-    category: 'Characters',
+    category: 'Animals',
     isNew: true,
     description: 'A blocky toy black panther: a long matt-black box of a body on four round cylinder legs, a faceted wedge head with amber eyes and a pointed muzzle, two triangular ears, a spiked collar at the neck and a long segmented tail curling up over its back. It breathes, looks around, blinks, flicks its ears, shifts its paws and sways its tail. Tap it and it crouches, pounces forward with a squashy landing and lashes its tail.',
     controls: [
@@ -10509,40 +10502,6 @@ const ALL_COMPONENTS = [
     deps: [],
   },
   {
-    slug: 'camera-app',
-    name: 'Camera App',
-    category: 'Phone UI',
-    style: 'Dark',
-    isNew: true,
-    description: 'A phone camera with an animated SVG live viewfinder: drag the Photo/Portrait/Video/Pano carousel, tap to focus, toggle flash/timer/grid, pick filters, and shoot. The capture flashes and flies into the library, where you can favourite, restyle or delete it; video mode runs a recording timer.',
-    controls: [
-      { name: 'startScreen', type: 'select', options: ['viewfinder','gallery','detail','filters','settings'], default: 'viewfinder' },
-      { name: 'accent', type: 'color', default: '#ffd23f' },
-      { name: 'frame', type: 'toggle', default: true },
-    ],
-    fill: true,
-    preview: (p) => <CameraApp {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['CameraApp.jsx'],
-    deps: [],
-  },
-  {
-    slug: 'composer-app',
-    name: 'Stories Composer',
-    category: 'Phone UI',
-    style: 'Dark',
-    isNew: true,
-    description: 'A stories composer: shoot a drawn backdrop, then drag, pinch-scale and rotate text and stickers, draw with pen/marker/neon brushes, drag items to the bin, share with audience options to a success screen, and save and reopen drafts.',
-    controls: [
-      { name: 'startScreen', type: 'select', options: ['camera','edit','stickers','share','drafts'], default: 'camera' },
-      { name: 'accent', type: 'color', default: '#ff4f8b' },
-      { name: 'frame', type: 'toggle', default: true },
-    ],
-    fill: true,
-    preview: (p) => <ComposerApp {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['ComposerApp.jsx'],
-    deps: [],
-  },
-  {
     slug: 'gallery-app',
     name: 'Gallery App',
     category: 'Phone UI',
@@ -10885,40 +10844,6 @@ const ALL_COMPONENTS = [
     deps: [],
   },
   {
-    slug: 'video-call-app',
-    name: 'Video Call App',
-    category: 'Phone UI',
-    style: 'Glassmorphism',
-    isNew: true,
-    description: 'A group video-call prototype: pre-join lobby, SVG-avatar tiles with speaking rings that slide into new slots as the simulated active speaker changes, a grid that adapts to 2, 3, 4+ people, a drag-to-corner self-view, a floating controls bar, host controls, in-call chat and a leave screen.',
-    controls: [
-      { name: 'startScreen', type: 'select', options: ['lobby','call','participants','chat','settings'], default: 'lobby' },
-      { name: 'accent', type: 'color', default: '#6d6bff' },
-      { name: 'frame', type: 'toggle', default: true },
-    ],
-    fill: true,
-    preview: (p) => <VideoCallApp {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['VideoCallApp.jsx'],
-    deps: [],
-  },
-  {
-    slug: 'video-feed-app',
-    name: 'Video Feed App',
-    category: 'Phone UI',
-    style: 'Dark',
-    isNew: true,
-    description: 'A short-video feed prototype: snap-scroll animated SVG videos with a progress bar and auto-advance, tap to pause, double-tap to like with a burst heart, a comments sheet you can post in, follow buttons, creator profiles and an upload flow that adds to the feed and your profile.',
-    controls: [
-      { name: 'startScreen', type: 'select', options: ['foryou','following','comments','profile','upload'], default: 'foryou' },
-      { name: 'accent', type: 'color', default: '#ff2d6f' },
-      { name: 'frame', type: 'toggle', default: true },
-    ],
-    fill: true,
-    preview: (p) => <VideoFeedApp {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['VideoFeedApp.jsx'],
-    deps: [],
-  },
-  {
     slug: 'voice-notes-app',
     name: 'Voice Notes App',
     category: 'Phone UI',
@@ -11022,23 +10947,6 @@ const ALL_COMPONENTS = [
     deps: [],
   },
   {
-    slug: 'dating-app',
-    name: 'Dating App',
-    category: 'Phone UI',
-    style: 'Flat',
-    isNew: true,
-    description: 'A dating deck: drag cards with LIKE and NOPE stamps or use the buttons, get matches from mutual likes, chat with replies, and tune age, distance and interest filters.',
-    controls: [
-      { name: 'startScreen', type: 'select', options: ['discover','matches','chat','profile','filters'], default: 'discover' },
-      { name: 'accent', type: 'color', default: '#ff4d6d' },
-      { name: 'frame', type: 'toggle', default: true },
-    ],
-    fill: true,
-    preview: (p) => <DatingApp {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['DatingApp.jsx'],
-    deps: [],
-  },
-  {
     slug: 'event-app',
     name: 'Event App',
     category: 'Phone UI',
@@ -11087,23 +10995,6 @@ const ALL_COMPONENTS = [
     fill: true,
     preview: (p) => <HotelApp {...p} style={{ position: 'absolute', inset: 0 }} />,
     files: ['HotelApp.jsx'],
-    deps: [],
-  },
-  {
-    slug: 'kanban-app',
-    name: 'Kanban App',
-    category: 'Phone UI',
-    style: 'Flat',
-    isNew: true,
-    description: 'A dark kanban board on a phone: open a board, scroll its columns sideways, drag cards between columns or use Move to, edit card details and checklists, add cards, and filter by team member.',
-    controls: [
-      { name: 'startScreen', type: 'select', options: ['boards','board','card','add','team'], default: 'boards' },
-      { name: 'accent', type: 'color', default: '#6c7bff' },
-      { name: 'frame', type: 'toggle', default: true },
-    ],
-    fill: true,
-    preview: (p) => <KanbanApp {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['KanbanApp.jsx'],
     deps: [],
   },
   {
@@ -11224,23 +11115,6 @@ const ALL_COMPONENTS = [
     fill: true,
     preview: (p) => <SocialApp {...p} style={{ position: 'absolute', inset: 0 }} />,
     files: ['SocialApp.jsx'],
-    deps: [],
-  },
-  {
-    slug: 'story-app',
-    name: 'Story App',
-    category: 'Phone UI',
-    style: 'Dark',
-    isNew: true,
-    description: 'A stories viewer: segmented bars auto-advance, hold to pause, tap the edges to go back or forward, send replies that show Sent then Seen, and create a story that joins your ring.',
-    controls: [
-      { name: 'startScreen', type: 'select', options: ['feed','player','reply','profile','create'], default: 'feed' },
-      { name: 'accent', type: 'color', default: '#ec4899' },
-      { name: 'frame', type: 'toggle', default: true },
-    ],
-    fill: true,
-    preview: (p) => <StoryApp {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['StoryApp.jsx'],
     deps: [],
   },
   {

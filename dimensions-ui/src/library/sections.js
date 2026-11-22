@@ -15,7 +15,7 @@ const ANIMATION = [
   group('Interactive 3D', ['drag-model', 'tilt-orbit'], true),
 ]
 
-const CHARACTERS = [
+const ANIMALS = [
   group('Wild animals', ['giraffe', 'hippo', 'zebra', 'rhino', 'elephant', 'fox', 'tiger', 'wolf', 'bear']),
   group('Pets', ['puppy', 'cat', 'hamster', 'ferret', 'guinea-pig', 'bunny']),
   group('Birds & water', ['parrot', 'budgie', 'chicken', 'penguin', 'goldfish', 'turtle']),
@@ -34,7 +34,7 @@ const LOWPOLY = [
 
 export const SECTION_GROUPS = {
   Animation: ANIMATION,
-  Characters: CHARACTERS,
+  Animals: ANIMALS,
   'Low Poly 3D': LOWPOLY,
 }
 

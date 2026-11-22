@@ -19,7 +19,7 @@ const CAT_ICON = {
   // a ball moving with speed lines trailing behind it
   'Low Poly 3D': <path d="M11.5 10a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0-7 0zM2.5 7h6M4.5 10h4.5M2.5 13h6" />,
   // a person: head and shoulders
-  Characters: <path d="M6.8 6.5a3.2 3.2 0 1 0 6.4 0a3.2 3.2 0 1 0-6.4 0zM3.5 17c0-3.400 2.900-5.600 6.500-5.600s6.500 2.200 6.500 5.600" />,
+  Animals: <path d="M3.7 9a1.3 1.3 0 1 0 2.6 0a1.3 1.3 0 1 0-2.6 0zM6.7 5.6a1.3 1.3 0 1 0 2.6 0a1.3 1.3 0 1 0-2.6 0zM10.7 5.6a1.3 1.3 0 1 0 2.6 0a1.3 1.3 0 1 0-2.6 0zM13.7 9a1.3 1.3 0 1 0 2.6 0a1.3 1.3 0 1 0-2.6 0zM10 11c-2.200 0-4 1.900-4 3.500 0 1.200 1.100 1.700 2.300 1.700.600 0 1.100-.300 1.700-.300s1.100.300 1.700.300c1.200 0 2.300-.500 2.300-1.700 0-1.600-1.800-3.500-4-3.500z" />,
   // a landscape: sun over two hills
   'Scenes & Assets': <path d="M2.5 16h15M2.5 16l5-7 3.5 4.5 2-2.5 4.5 5M13 5.5a1.5 1.5 0 1 0 3 0a1.5 1.5 0 1 0-3 0z" />,
   'Icons & Emojis': <path d="M3.2 6.2a2.8 2.8 0 1 0 5.6 0a2.8 2.8 0 1 0-5.6 0zM11.5 3.4h5v5h-5zM10 11l4.5 6h-9z" />,
@@ -68,7 +68,7 @@ function SourceFiles({ comp }) {
 // Categories whose pages are split into sections.
 const SECTIONS = { 'UI and Backgrounds': UI_STYLES, 'Phone UI': PHONE_STYLES, '3D & Materials': OBJECT_STYLES, 'Scenes & Assets': SCENE_STYLES, 'Icons & Emojis': ICON_STYLES, ...SECTION_NAMES }
 
-const COMING_SOON = ['Characters', 'Icons & Emojis']
+const COMING_SOON = ['Animals', 'Icons & Emojis']
 
 const PM = { npm: 'npm i', pnpm: 'pnpm add', yarn: 'yarn add', bun: 'bun add' }
 const WIDTHS = { desktop: '100%', tablet: '768px', mobile: '390px' }
