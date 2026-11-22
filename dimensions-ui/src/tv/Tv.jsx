@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useRef } from 'react'
-import { useFrame } from '@react-three/fiber'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { useFrame, useThree } from '@react-three/fiber'
 import { Html } from '@react-three/drei'
 import * as THREE from 'three'
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js'
@@ -24,6 +24,49 @@ const FLOAT_CENTER_Y = 50 // where a floating TV hangs
 
 // The camera rig reads this to frame the TV as it changes size.
 export const tvView = { size: 55, cy: 40, w: wOf(55), h: hOf(55) }
+
+// The 5'9" reference person: drag them across the floor to compare with the TV.
+// Orbiting is paused while they are held, so the two gestures never fight.
+function DraggablePerson() {
+  const controls = useThree((st) => st.controls)
+  const [pos, setPos] = useState([74, 3])
+  const [held, setHeld] = useState(false)
+  const plane = useMemo(() => new THREE.Plane(new THREE.Vector3(0, 1, 0), 0), [])
+  const hit = useMemo(() => new THREE.Vector3(), [])
+  useEffect(() => {
+    document.body.style.cursor = held ? 'grabbing' : ''
+    return () => {
+      document.body.style.cursor = ''
+    }
+  }, [held])
+  return (
+    <group
+      position={[pos[0], 0, pos[1]]}
+      onPointerOver={() => !held && (document.body.style.cursor = 'grab')}
+      onPointerOut={() => !held && (document.body.style.cursor = '')}
+      onPointerDown={(e) => {
+        e.stopPropagation()
+        e.target.setPointerCapture(e.pointerId)
+        setHeld(true)
+        if (controls) controls.enabled = false
+      }}
+      onPointerUp={(e) => {
+        e.target.releasePointerCapture(e.pointerId)
+        setHeld(false)
+        if (controls) controls.enabled = true
+      }}
+      onPointerMove={(e) => {
+        if (!held || !e.ray.intersectPlane(plane, hit)) return
+        setPos([THREE.MathUtils.clamp(hit.x, -200, 200), THREE.MathUtils.clamp(hit.z, -40, 140)])
+      }}
+    >
+      <Person />
+      <Html center position={[0, 74, 0]} zIndexRange={[5, 0]} style={{ whiteSpace: 'nowrap', pointerEvents: 'none', userSelect: 'none', padding: '3px 8px', border: '1px solid #b8b3a8', background: '#efece4', color: '#5a6068', borderRadius: 3, font: '500 12px/1 ui-monospace, Menlo, monospace', letterSpacing: '0.06em' }}>
+        5′9″ person · drag me
+      </Html>
+    </group>
+  )
+}
 
 export default function Tv({
   size = 55,
@@ -303,14 +346,7 @@ export default function Tv({
         )}
       </group>
 
-      {reference && (
-        <group position={[74, 0, 3]}>
-          <Person />
-          <Html center position={[0, 74, 0]} zIndexRange={[5, 0]} style={{ ...chip, color: '#5a6068', border: '1px solid #b8b3a8', background: '#efece4' }}>
-            5′9″ person
-          </Html>
-        </group>
-      )}
+      {reference && <DraggablePerson />}
       <pointLight position={[0, 40, 40]} intensity={content === 'off' ? 0 : clamped * clamped * 0.18} distance={160} decay={2} color={wallpaper} />
     </group>
   )

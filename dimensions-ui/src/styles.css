@@ -273,11 +273,14 @@ em {
 .floaters { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
 .floater {
   position: absolute;
-  width: clamp(120px, 12vw, 176px);
+  --fw: clamp(92px, 9.5vw, 144px);
+  width: var(--fw);
+  /* centred on x, but never past the edge of the hero, so no card is cut off */
+  left: clamp(calc(var(--fw) / 2 + 14px), var(--x), calc(100% - var(--fw) / 2 - 14px));
   translate: -50% -50%;
   pointer-events: auto;
   display: block;
-  padding: 6px 6px 8px;
+  padding: 5px;
   border: 1px solid var(--line-strong);
   border-radius: 14px;
   background: var(--paper-2);
@@ -288,7 +291,6 @@ em {
   transition: border-color 0.2s, color 0.2s;
 }
 .floater img { display: block; width: 100%; height: auto; border-radius: 9px; }
-.floater span { display: block; margin-top: 7px; font: 500 11px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; }
 .floater:hover { border-color: var(--signal); color: var(--ink); }
 @keyframes floaty {
   0%, 100% { transform: rotate(var(--r, 0deg)) translateY(0); }

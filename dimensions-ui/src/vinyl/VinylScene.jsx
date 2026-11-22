@@ -1,5 +1,6 @@
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { Environment, Lightformer } from '@react-three/drei'
+import { useEffect } from 'react'
+import { Canvas, useThree } from '@react-three/fiber'
+import { Environment, Lightformer, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 import Vinyl from './Vinyl.jsx'
 
@@ -18,8 +19,8 @@ function Studio() {
 
 // Keeps the record (and its sleeve) centred and fully in view.
 function Rig({ sleeve, pullOut }) {
-  const { camera, size } = useThree()
-  useFrame(() => {
+  const { camera, size, controls } = useThree()
+  useEffect(() => {
     const aspect = size.width / size.height
     const top = sleeve ? Math.max(2.9, pullOut * 3.2 - 0.1 + 2.9) : 2.9
     const bottom = sleeve ? -2.98 : -2.9
@@ -30,7 +31,11 @@ function Rig({ sleeve, pullOut }) {
     const cy = (top + bottom) / 2
     camera.position.set(0, cy, dist)
     camera.lookAt(0, cy, 0)
-  })
+    if (controls) {
+      controls.target.set(0, cy, 0)
+      controls.update()
+    }
+  }, [camera, size.width, size.height, controls, sleeve, pullOut])
   return null
 }
 
@@ -63,6 +68,7 @@ export default function VinylScene({ sleeve = false, pullOut = 0.55, ...props })
           <planeGeometry args={[60, 60]} />
           <shadowMaterial transparent opacity={0.13} />
         </mesh>
+        <OrbitControls makeDefault enablePan={false} minDistance={6} maxDistance={40} />
         <Rig sleeve={sleeve} pullOut={pullOut} />
       </Canvas>
     </div>

@@ -6,6 +6,7 @@ import { ToneMappingMode } from 'postprocessing'
 import * as THREE from 'three'
 import { InfoHint } from '../airliner/stage.jsx'
 import Circuit from './Circuit.jsx'
+import Walker from './Walker.jsx'
 import { N, TRACK as T, groundAt } from './track.js'
 
 const HOME = [150, 150, 250]
@@ -32,7 +33,7 @@ function Rig({ view, lead }) {
   useEffect(() => {
     st.current.fresh = true
     st.current.cam = -1
-    camera.fov = view === 'chase' ? 62 : view === 'trackside' ? 20 : FOV
+    camera.fov = view === 'chase' ? 62 : view === 'trackside' ? 20 : view === 'walk' ? 55 : FOV
     camera.updateProjectionMatrix()
     if (view === 'overview') {
       camera.position.set(...HOME)
@@ -45,7 +46,7 @@ function Rig({ view, lead }) {
   useFrame((_, dt) => {
     const L = lead.current
     const s = st.current
-    if (view === 'overview' || !L) return
+    if (view === 'overview' || view === 'walk' || !L) return
     const ease = s.fresh ? 1 : 1 - Math.exp(-Math.min(dt, 0.1) * 6)
     if (view === 'chase') {
       s.want.set(L.x - L.dx * 9.5, 3.4, L.z - L.dz * 9.5)
@@ -78,15 +79,16 @@ export default function CircuitScene({ autoRotate = false, view = 'overview', ..
       <Canvas shadows dpr={[1, 1.5]} camera={{ position: HOME, fov: FOV, near: 1, far: 20000 }} gl={{ antialias: false, toneMapping: THREE.ACESFilmicToneMapping }}>
         <Circuit {...props} lead={lead} />
         <Rig view={view} lead={lead} />
+        <Walker active={view === 'walk'} />
         <EffectComposer disableNormalPass multisampling={0}>
           <Bloom luminanceThreshold={1.05} luminanceSmoothing={0.3} intensity={0.45} mipmapBlur />
           <Vignette eskil={false} offset={0.2} darkness={0.42} />
           <SMAA />
           <ToneMapping mode={ToneMappingMode.ACES_FILMIC} />
         </EffectComposer>
-        <OrbitControls makeDefault enabled={view === 'overview'} target={TARGET} autoRotate={autoRotate && view === 'overview'} autoRotateSpeed={0.3} minDistance={10} maxDistance={720} minPolarAngle={0.1} maxPolarAngle={1.5} screenSpacePanning={false} />
+        <OrbitControls makeDefault enabled={view === 'overview' || view === 'walk'} enablePan={view !== 'walk'} target={TARGET} autoRotate={autoRotate && view === 'overview'} autoRotateSpeed={0.3} minDistance={view === 'walk' ? 2.5 : 10} maxDistance={view === 'walk' ? 40 : 720} minPolarAngle={0.1} maxPolarAngle={view === 'walk' ? 1.45 : 1.5} screenSpacePanning={false} />
       </Canvas>
-      <InfoHint>Drag to look round the circuit · scroll to fly in · right-drag to pan along the track · View rides behind the leading car or cuts between the trackside cameras · the Palette presets set the time of day</InfoHint>
+      <InfoHint>Walk view puts a person on the ground: W A S D or the arrow keys to walk, Shift to run, drag to look round · Drag to look round the circuit · scroll to fly in · right-drag to pan along the track · View rides behind the leading car or cuts between the trackside cameras · the Palette presets set the time of day</InfoHint>
     </div>
   )
 }

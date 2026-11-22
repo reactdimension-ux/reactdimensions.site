@@ -8975,7 +8975,7 @@ const ALL_COMPONENTS = [
           { name: 'Morning mist', values: { elevation: 12, azimuth: 70, exposure: 0.95, haze: 2.6 } },
         ],
       },
-      { name: 'view', type: 'select', options: ['overview', 'chase', 'trackside'], default: 'overview' },
+      { name: 'view', type: 'select', options: ['overview', 'chase', 'trackside', 'walk'], default: 'overview' },
       { name: 'elevation', type: 'range', min: 2, max: 90, step: 0.5, default: 30, unit: '°' },
       { name: 'azimuth', type: 'range', min: -180, max: 180, step: 1, default: -50, unit: '°' },
       { name: 'exposure', type: 'range', min: 0.1, max: 2, step: 0.01, default: 0.8 },
@@ -8989,7 +8989,7 @@ const ALL_COMPONENTS = [
     ],
     preview: (p) => <RacingCircuitModel {...p} height="100%" />,
     fill: true,
-    files: ['RacingCircuitModel.jsx', 'circuit/CircuitScene.jsx', 'circuit/Circuit.jsx', 'circuit/track.js', 'circuit/props.js', 'cloud/sun.js', 'lowpoly/kit.jsx', 'airliner/stage.jsx'],
+    files: ['RacingCircuitModel.jsx', 'circuit/CircuitScene.jsx', 'circuit/Circuit.jsx', 'circuit/Walker.jsx', 'circuit/track.js', 'circuit/props.js', 'cloud/sun.js', 'lowpoly/kit.jsx', 'airliner/stage.jsx'],
     deps: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing', 'postprocessing'],
   },
   {

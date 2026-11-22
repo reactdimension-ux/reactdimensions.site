@@ -4,12 +4,20 @@ import { Link } from 'react-router-dom'
 // thumbnails are the library's own preview images. x / y are the card's
 // centre as a percentage of the hero; r is a small tilt; t sets the float delay.
 const FLOATERS = [
-  { slug: 'watch', name: 'Watch', x: 9, y: 20, r: -5, t: 0 },
-  { slug: 'laptop', name: 'Laptop', x: 91, y: 20, r: 4, t: 1.2 },
-  { slug: 'turntable', name: 'Turntable', x: 5, y: 50, r: 3, t: 2.4 },
-  { slug: 'headphones', name: 'Headphones', x: 95, y: 50, r: -4, t: 0.6 },
-  { slug: 'sunglasses', name: 'Sunglasses', x: 12, y: 80, r: 5, t: 1.8 },
-  { slug: 'glass-bottle', name: 'Glass Bottle', x: 88, y: 80, r: -3, t: 3 },
+  { slug: 'watch', name: 'Watch', x: 6.5, y: 15, r: -5, t: 0 },
+  { slug: 'low-poly-fox', name: 'Low-poly fox', x: 15, y: 32, r: 4, t: 1.4 },
+  { slug: 'turntable', name: 'Turntable', x: 6.5, y: 49, r: 3, t: 2.4 },
+  { slug: 'low-poly-rocket', name: 'Low-poly rocket', x: 15, y: 66, r: -4, t: 0.8 },
+  { slug: 'sunglasses', name: 'Sunglasses', x: 7, y: 83, r: 5, t: 1.8 },
+  { slug: 'laptop', name: 'Laptop', x: 93.5, y: 15, r: 4, t: 1.2 },
+  { slug: 'low-poly-robot', name: 'Low-poly robot', x: 85, y: 32, r: -4, t: 2 },
+  { slug: 'headphones', name: 'Headphones', x: 93.5, y: 49, r: -4, t: 0.6 },
+  { slug: 'low-poly-owl', name: 'Low-poly owl', x: 85, y: 66, r: 3, t: 2.8 },
+  { slug: 'glass-bottle', name: 'Glass bottle', x: 93, y: 83, r: -3, t: 3 },
+  { slug: 'low-poly-ufo', name: 'Low-poly UFO', x: 38, y: 9, r: -3, t: 1 },
+  { slug: 'low-poly-rubber-duck', name: 'Low-poly rubber duck', x: 62, y: 9, r: 3, t: 2.2 },
+  { slug: 'low-poly-penguin', name: 'Low-poly penguin', x: 38, y: 91, r: 3, t: 0.4 },
+  { slug: 'low-poly-ice-cream', name: 'Low-poly ice cream', x: 62, y: 91, r: -3, t: 1.6 },
 ]
 
 export default function Landing() {
@@ -22,10 +30,10 @@ export default function Landing() {
               key={f.slug}
               to={`/library/${f.slug}`}
               className="floater"
-              style={{ left: `${f.x}%`, top: `${f.y}%`, '--r': `${f.r}deg`, '--t': `${f.t}s` }}
+              aria-label={f.name}
+              style={{ '--x': `${f.x}%`, top: `${f.y}%`, '--r': `${f.r}deg`, '--t': `${f.t}s` }}
             >
-              <img src={`/previews/${f.slug}.jpg`} alt="" width="608" height="380" loading="lazy" />
-              <span>{f.name}</span>
+              <img src={`/previews/${f.slug}.jpg`} alt={f.name} width="608" height="380" loading="lazy" />
             </Link>
           ))}
         </div>
