@@ -13,7 +13,6 @@ const SHOWCASE = [
   { slug: 'chessboard', name: 'Chessboard' },
   { slug: 'pickup', name: 'Pickup' },
   { slug: 'compact-disc', name: 'Compact Disc' },
-  { slug: 'city-bus', name: 'City Bus' },
 ]
 
 // Sports, courts and games for the second strip.

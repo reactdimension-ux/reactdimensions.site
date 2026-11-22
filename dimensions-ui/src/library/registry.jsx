@@ -455,7 +455,6 @@ import AirlinerModel from '../lib/AirlinerModel.jsx'
 import SuvModel from '../lib/SuvModel.jsx'
 import HelicopterModel from '../lib/HelicopterModel.jsx'
 import FighterModel from '../lib/FighterModel.jsx'
-import BusModel from '../lib/BusModel.jsx'
 import ETrikeModel from '../lib/ETrikeModel.jsx'
 import StadiumSeatModel from '../lib/StadiumSeatModel.jsx'
 import DrinksCanModel from '../lib/DrinksCanModel.jsx'
@@ -510,7 +509,6 @@ import TennisBallModel from '../lib/TennisBallModel.jsx'
 import GamepadModel from '../lib/GamepadModel.jsx'
 import LadderModel from '../lib/LadderModel.jsx'
 import ShirtModel from '../lib/ShirtModel.jsx'
-import WigModel from '../lib/WigModel.jsx'
 import EarbudsModel from '../lib/EarbudsModel.jsx'
 import HomeIcon from '../lib/HomeIcon.jsx'
 import SearchIcon from '../lib/SearchIcon.jsx'
@@ -3409,50 +3407,6 @@ const ALL_COMPONENTS = [
     preview: (p, set) => <HeadphonesModel {...p} onChange={set} height="100%" />,
     fill: true,
     files: ['HeadphonesModel.jsx', 'headphones/HeadphonesScene.jsx', 'headphones/Headphones.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'wig',
-    name: 'Wig',
-    category: '3D & Materials',
-    style: 'Fashion & wear',
-    isNew: true,
-    description: 'A realistic wig on a display head. The hair is real strands: about three thousand flat ribbons grown from roots on the scalp in locks, walked down from the root so they rest on and wrap round the head, neck and shoulders, then bent into waves or helical curls. Colour runs from a darker root through highlights to an optional ombre tip, and a glossy highlight runs along the strands the way it does on real hair. Set the length, wave, curl, volume, parting and fringe, or pick a ready-made look.',
-    controls: [
-      {
-        name: 'looks',
-        type: 'presets',
-        options: [
-          { name: 'Chestnut waves', values: { hairColor: '#5a3a26', highlightColor: '#a8794a', highlights: 0.35, tipColor: '#c79a68', ombre: 0, length: 45, wave: 0.45, curl: 0, volume: 0.6, part: 0.25, fringe: true } },
-          { name: 'Sleek black', values: { hairColor: '#14110f', highlightColor: '#3a332e', highlights: 0.2, tipColor: '#2a2420', ombre: 0, length: 52, wave: 0, curl: 0, volume: 0.25, part: 0, fringe: false } },
-          { name: 'Blonde bob', values: { hairColor: '#c9a35f', highlightColor: '#ecd59a', highlights: 0.5, tipColor: '#f1dfae', ombre: 0.3, length: 19, wave: 0.1, curl: 0, volume: 0.7, part: -0.3, fringe: true } },
-          { name: 'Auburn curls', values: { hairColor: '#7a2f1a', highlightColor: '#b5602d', highlights: 0.4, tipColor: '#d27a3a', ombre: 0.25, length: 34, wave: 0.2, curl: 0.85, volume: 1, part: 0.15, fringe: false } },
-          { name: 'Platinum', values: { hairColor: '#d8d4cc', highlightColor: '#f7f4ee', highlights: 0.45, tipColor: '#ffffff', ombre: 0, length: 40, wave: 0.3, curl: 0, volume: 0.5, part: 0, fringe: true } },
-          { name: 'Rose ombre', values: { hairColor: '#4b2a2f', highlightColor: '#8a4552', highlights: 0.3, tipColor: '#e9789a', ombre: 0.9, length: 48, wave: 0.55, curl: 0.15, volume: 0.7, part: 0.3, fringe: false } },
-          { name: 'Silver pixie', values: { hairColor: '#9b9da3', highlightColor: '#d9dbe0', highlights: 0.4, tipColor: '#e7e8ec', ombre: 0, length: 9, wave: 0.15, curl: 0, volume: 0.9, part: 0.4, fringe: true } },
-        ],
-      },
-      { name: 'hairColor', type: 'color', default: '#5a3a26' },
-      { name: 'highlightColor', type: 'color', default: '#a8794a' },
-      { name: 'highlights', type: 'range', min: 0, max: 1, step: 0.02, default: 0.35 },
-      { name: 'tipColor', type: 'color', default: '#c79a68' },
-      { name: 'ombre', type: 'range', min: 0, max: 1, step: 0.02, default: 0 },
-      { name: 'length', type: 'range', min: 6, max: 70, step: 1, default: 45, unit: 'cm' },
-      { name: 'wave', type: 'range', min: 0, max: 1, step: 0.02, default: 0.45 },
-      { name: 'curl', type: 'range', min: 0, max: 1, step: 0.02, default: 0 },
-      { name: 'volume', type: 'range', min: 0, max: 1, step: 0.02, default: 0.6 },
-      { name: 'part', type: 'range', min: -1, max: 1, step: 0.05, default: 0.25 },
-      { name: 'fringe', type: 'toggle', default: true },
-      { name: 'density', type: 'range', min: 0.4, max: 1.4, step: 0.05, default: 1 },
-      { name: 'shine', type: 'range', min: 0, max: 1.6, step: 0.02, default: 1 },
-      { name: 'sway', type: 'range', min: 0, max: 2, step: 0.05, default: 1 },
-      { name: 'display', type: 'select', options: ['bust', 'stand'], default: 'bust' },
-      { name: 'skin', type: 'color', default: '#ece9e3' },
-      { name: 'autoRotate', type: 'toggle', default: false },
-    ],
-    preview: (p) => <WigModel {...p} height="100%" />,
-    fill: true,
-    files: ['WigModel.jsx', 'wig/WigScene.jsx', 'wig/Wig.jsx', 'airliner/stage.jsx'],
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
@@ -8273,41 +8227,6 @@ const ALL_COMPONENTS = [
     preview: (p, set) => <FighterModel {...p} onChange={set} height="100%" />,
     fill: true,
     files: ['FighterModel.jsx', 'fighter/FighterScene.jsx', 'fighter/Fighter.jsx', 'fighter/geometry.js', 'fighter/textures.js', 'airliner/geometry.js', 'airliner/textures.js', 'airliner/stage.jsx', 'helicopter/geometry.js'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'city-bus',
-    name: 'City Bus',
-    category: '3D & Materials',
-    style: 'Vehicles',
-    isNew: true,
-    description: 'A 12 m low-floor city bus at real size, built from its own dimensions with real glass over a furnished saloon. Open the plug doors, switch the lights and displays, and fly the camera round the views of a reference sheet.',
-    controls: [
-      {
-        name: 'palette',
-        type: 'presets',
-        options: [
-          { name: 'Navy', values: { paint: '#1e3a8a', trim: '#f2f3f4' } },
-          { name: 'Red', values: { paint: '#b4261f', trim: '#f4f2ee' } },
-          { name: 'Green', values: { paint: '#1f7a4a', trim: '#eef0ea' } },
-          { name: 'Yellow', values: { paint: '#e8b413', trim: '#1c1e22' } },
-          { name: 'Teal', values: { paint: '#17707a', trim: '#e9eef0' } },
-          { name: 'Graphite', values: { paint: '#2e3238', trim: '#e04a2e' } },
-        ],
-      },
-      { name: 'view', type: 'select', options: ['front-left', 'front-right', 'front', 'rear', 'side', 'side-right', 'roof', 'underside', 'rear-left', 'rear-right', 'front-wheel', 'rear-wheel', 'headlights', 'tail-lights', 'doors', 'mirror', 'windscreen', 'roof-grille'], default: 'front-left' },
-      { name: 'doors', type: 'toggle', default: false },
-      { name: 'lights', type: 'toggle', default: true },
-      { name: 'paint', type: 'color', default: '#1e3a8a' },
-      { name: 'trim', type: 'color', default: '#f2f3f4' },
-      { name: 'route', type: 'text', default: '12  CENTRAL STATION', maxLength: 24 },
-      { name: 'plate', type: 'text', default: 'RD 2026', maxLength: 10 },
-      { name: 'autoRotate', type: 'toggle', default: false },
-    ],
-    // `set` lets the scene update the controls (clicking works the doors and the lights).
-    preview: (p, set) => <BusModel {...p} onChange={set} height="100%" />,
-    fill: true,
-    files: ['BusModel.jsx', 'bus/BusScene.jsx', 'bus/Bus.jsx', 'bus/geometry.js', 'bus/textures.js', 'airliner/geometry.js', 'airliner/textures.js', 'airliner/stage.jsx', 'helicopter/geometry.js', 'lorry/textures.js'],
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {

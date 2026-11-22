@@ -124,15 +124,15 @@ function Interior({ geo, mat }) {
       {[1, -1].map((side) =>
         [AXLES.front, AXLES.rear].map((ax) => (
           <group key={`${side}${ax}`}>
-            <mesh position={[ax, BOX_TOP - 0.03, side * 0.93]} material={mat.grey}>
-              <boxGeometry args={[ARCH_R * 2 + 0.3, 0.06, 0.66]} />
+            <mesh position={[ax, BOX_TOP - 0.03, side * 0.88]} material={mat.grey}>
+              <boxGeometry args={[ARCH_R * 2 + 0.3, 0.06, 0.56]} />
             </mesh>
             <mesh position={[ax, (FLOOR + BOX_TOP) / 2, side * 0.6]} material={mat.grey}>
               <boxGeometry args={[ARCH_R * 2 + 0.3, BOX_TOP - FLOOR, 0.03]} />
             </mesh>
             {[-1, 1].map((e) => (
-              <mesh key={e} position={[ax + e * (ARCH_R + 0.15), (FLOOR + BOX_TOP) / 2, side * 0.93]} material={mat.grey}>
-                <boxGeometry args={[0.03, BOX_TOP - FLOOR, 0.66]} />
+              <mesh key={e} position={[ax + e * (ARCH_R + 0.15), (FLOOR + BOX_TOP) / 2, side * 0.88]} material={mat.grey}>
+                <boxGeometry args={[0.03, BOX_TOP - FLOOR, 0.56]} />
               </mesh>
             ))}
           </group>

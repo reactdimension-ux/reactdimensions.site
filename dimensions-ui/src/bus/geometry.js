@@ -100,33 +100,39 @@ export function facePoint(front, u, v) {
 
 // ---------------------------------------------------------------- openings
 // A wheel arch: the half tube behind the opening and the wall at its inner end.
+// The tube flares out where it meets the skin, wider than the opening cut in
+// the side, so from outside no edge of the cut-out ever shows the saloon behind.
 export function archGeometry() {
   const N = 40
-  const zOut = HALF + 0.02
+  const zOut = HALF - 0.02
+  const zFlare = HALF - 0.1
   const zIn = 0.62
-  const ring = (z) => {
+  const rOut = ARCH_R + 0.32
+  const rMid = ARCH_R + 0.04
+  const rIn = ARCH_R + 0.04
+  const ring = (z, r) => {
     const row = []
     for (let j = 0; j <= N; j++) {
       const a = Math.PI * (j / N)
-      row.push({ p: V(Math.cos(a) * ARCH_R, WHEEL.R + Math.sin(a) * ARCH_R, z), u: j / N, v: z })
+      row.push({ p: V(Math.cos(a) * r, WHEEL.R + Math.sin(a) * r, z), u: j / N, v: z })
     }
     return row
   }
-  const tube = loft([ring(zOut), ring(zIn)], { flip: true })
-  const inner = ring(zIn)
-  inner.push({ p: V(-ARCH_R, SKIRT - 0.02, zIn) }, { p: V(ARCH_R, SKIRT - 0.02, zIn) })
+  const tube = loft([ring(zOut, rOut), ring(zFlare, rMid), ring(zIn, rIn)], { flip: true })
+  const inner = ring(zIn, rIn)
+  inner.push({ p: V(-rIn, SKIRT - 0.02, zIn) }, { p: V(rIn, SKIRT - 0.02, zIn) })
   const c = V(0, WHEEL.R, zIn)
   const wall = loft([inner.map(() => ({ p: c })), inner])
   // the end plates, from the ends of the arch down to the skirt, so the well is closed
-  const plate = (x, back) =>
+  const plate = (sign) =>
     loft(
       [
-        [{ p: V(x, WHEEL.R, zOut) }, { p: V(x, WHEEL.R, zIn) }],
-        [{ p: V(x, SKIRT - 0.02, zOut) }, { p: V(x, SKIRT - 0.02, zIn) }],
+        [{ p: V(sign * rMid, WHEEL.R, zOut) }, { p: V(sign * rMid, WHEEL.R, zFlare) }, { p: V(sign * rIn, WHEEL.R, zIn) }],
+        [{ p: V(sign * rMid, SKIRT - 0.02, zOut) }, { p: V(sign * rMid, SKIRT - 0.02, zFlare) }, { p: V(sign * rIn, SKIRT - 0.02, zIn) }],
       ],
-      { flip: back },
+      { flip: sign > 0 },
     )
-  return join([tube, wall, plate(ARCH_R, true), plate(-ARCH_R, false)])
+  return join([tube, wall, plate(1), plate(-1)])
 }
 
 // a steel wheel: the dish with its hand holes, and the nuts round the hub
