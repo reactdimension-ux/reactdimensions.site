@@ -280,7 +280,7 @@ export default function Bus({ paint = '#1e3a8a', trim = '#f2f3f4', route = '12  
       leafGlass: new THREE.MeshPhysicalMaterial({ ...glass, alphaMap: leafTex.glass, alphaTest: 0.5, side: THREE.DoubleSide }),
       plain: new THREE.MeshPhysicalMaterial({ ...coat, color: paint }),
       white: new THREE.MeshPhysicalMaterial({ ...coat, color: '#e6e8ea' }),
-      arch: new THREE.MeshStandardMaterial({ color: '#1a1b1e', roughness: 0.95 }),
+      arch: new THREE.MeshStandardMaterial({ color: '#1a1b1e', roughness: 0.95, side: THREE.DoubleSide }),
       tyre: new THREE.MeshStandardMaterial({ color: '#141516', roughness: 0.92 }),
       rim: new THREE.MeshStandardMaterial({ color: '#c3c7cc', metalness: 0.85, roughness: 0.35 }),
       steel: new THREE.MeshStandardMaterial({ color: '#5d6168', metalness: 0.8, roughness: 0.45 }),

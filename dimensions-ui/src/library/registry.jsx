@@ -1,3 +1,4 @@
+import { SECTION_NAMES, sectionOf } from './sections.js'
 import TiltCard from '../lib/TiltCard.jsx'
 import SpringButton from '../lib/SpringButton.jsx'
 import MagneticButton from '../lib/MagneticButton.jsx'
@@ -102,9 +103,7 @@ import MorphCursor from '../lib/MorphCursor.jsx'
 import TiltReveal from '../lib/TiltReveal.jsx'
 import AxisLockDrag from '../lib/AxisLockDrag.jsx'
 import CompareSlider from '../lib/CompareSlider.jsx'
-import HeadParallax from '../lib/HeadParallax.jsx'
 import HotkeyHints from '../lib/HotkeyHints.jsx'
-import IdleAttract from '../lib/IdleAttract.jsx'
 import KeyCarousel from '../lib/KeyCarousel.jsx'
 import HaloCarousel from '../lib/HaloCarousel.jsx'
 import MeltingGlow from '../lib/MeltingGlow.jsx'
@@ -113,11 +112,7 @@ import DepthGallery from '../lib/DepthGallery.jsx'
 import DragCards from '../lib/DragCards.jsx'
 import BenchmarkBars from '../lib/BenchmarkBars.jsx'
 import TestimonialSlider from '../lib/TestimonialSlider.jsx'
-import NudgePart from '../lib/NudgePart.jsx'
-import PinchTwist from '../lib/PinchTwist.jsx'
 import PresenceCursors from '../lib/PresenceCursors.jsx'
-import RecordReplay from '../lib/RecordReplay.jsx'
-import ShakeReset from '../lib/ShakeReset.jsx'
 import SpacePause from '../lib/SpacePause.jsx'
 import SwipeThrow from '../lib/SwipeThrow.jsx'
 import TiltOrbit from '../lib/TiltOrbit.jsx'
@@ -132,16 +127,11 @@ import InertiaSnap from '../lib/InertiaSnap.jsx'
 import ThrowCards from '../lib/ThrowCards.jsx'
 import DragModel from '../lib/DragModel.jsx'
 import RopeSway from '../lib/RopeSway.jsx'
-import IsolatePart from '../lib/IsolatePart.jsx'
-import HotspotNotes from '../lib/HotspotNotes.jsx'
-import ScrollAssembly from '../lib/ScrollAssembly.jsx'
-import StickyColor from '../lib/StickyColor.jsx'
 import ReadingRing from '../lib/ReadingRing.jsx'
 import ScrollRotate from '../lib/ScrollRotate.jsx'
 import ScrollGallery from '../lib/ScrollGallery.jsx'
 import ScrollSkew from '../lib/ScrollSkew.jsx'
 import SnapRail from '../lib/SnapRail.jsx'
-import ScrollExplode from '../lib/ScrollExplode.jsx'
 import TapRipple from '../lib/TapRipple.jsx'
 import PresetCycle from '../lib/PresetCycle.jsx'
 import DoubleTapLike from '../lib/DoubleTapLike.jsx'
@@ -156,21 +146,16 @@ import MeasureText from '../lib/MeasureText.jsx'
 import DecodeText from '../lib/DecodeText.jsx'
 import DraftingGrid from '../lib/DraftingGrid.jsx'
 import FluidLogin from '../lib/FluidLogin.jsx'
-import SkeuCalendar from '../lib/SkeuCalendar.jsx'
 import SkeuDelay from '../lib/SkeuDelay.jsx'
 import MinDashboard from '../lib/MinDashboard.jsx'
 import MinCheckout from '../lib/MinCheckout.jsx'
 import MinPortfolio from '../lib/MinPortfolio.jsx'
 import MinTodo from '../lib/MinTodo.jsx'
 import MinReader from '../lib/MinReader.jsx'
-import MaxProfile from '../lib/MaxProfile.jsx'
 import MaxKids from '../lib/MaxKids.jsx'
 import MaxEditorial from '../lib/MaxEditorial.jsx'
-import MaxDrop from '../lib/MaxDrop.jsx'
 import MaxFestival from '../lib/MaxFestival.jsx'
-import BentoSpecs from '../lib/BentoSpecs.jsx'
 import BentoHome from '../lib/BentoHome.jsx'
-import AiLanding from '../lib/AiLanding.jsx'
 import SmartHomeApp from '../lib/SmartHomeApp.jsx'
 import FoodTrackerApp from '../lib/FoodTrackerApp.jsx'
 import BankingApp from '../lib/BankingApp.jsx'
@@ -222,11 +207,8 @@ import WalletApp from '../lib/WalletApp.jsx'
 import WatchApp from '../lib/WatchApp.jsx'
 import WorkoutApp from '../lib/WorkoutApp.jsx'
 import BentoAnalytics from '../lib/BentoAnalytics.jsx'
-import BentoPortfolio from '../lib/BentoPortfolio.jsx'
 import BentoFeatures from '../lib/BentoFeatures.jsx'
 import LiquidHero from '../lib/LiquidHero.jsx'
-import LiquidMedia from '../lib/LiquidMedia.jsx'
-import LiquidLens from '../lib/LiquidLens.jsx'
 import LiquidTabBar from '../lib/LiquidTabBar.jsx'
 import NeuSettings from '../lib/NeuSettings.jsx'
 import NeuMixer from '../lib/NeuMixer.jsx'
@@ -235,9 +217,6 @@ import NeuCalc from '../lib/NeuCalc.jsx'
 import NeuHome from '../lib/NeuHome.jsx'
 import GlassDashboard from '../lib/GlassDashboard.jsx'
 import GlassDesktop from '../lib/GlassDesktop.jsx'
-import GlassFinance from '../lib/GlassFinance.jsx'
-import GlassLogin from '../lib/GlassLogin.jsx'
-import GlassPlayer from '../lib/GlassPlayer.jsx'
 import FlatDocs from '../lib/FlatDocs.jsx'
 import FlatDashboard from '../lib/FlatDashboard.jsx'
 import FlatDashboardCards from '../lib/FlatDashboardCards.jsx'
@@ -247,7 +226,6 @@ import FlatDashboardProfiles from '../lib/FlatDashboardProfiles.jsx'
 import ClearcoatCard from '../lib/ClearcoatCard.jsx'
 import PickupModel from '../lib/PickupModel.jsx'
 import SnakeModel from '../lib/SnakeModel.jsx'
-import LionModel from '../lib/LionModel.jsx'
 import TurntableModel from '../lib/TurntableModel.jsx'
 import VinylRecord from '../lib/VinylRecord.jsx'
 import CompactDiscModel from '../lib/CompactDiscModel.jsx'
@@ -575,7 +553,7 @@ export const HIDDEN_CATEGORIES = ['Icons & Emojis']
 // sidebar, the section pages, search and the generated registry files).
 export const HIDDEN_COMPONENTS = ['shirt', 'earbuds', 'gamepad', 'low-poly-runner', 'low-poly-tiger']
 
-const ALL_CATEGORIES = ['Text', 'Animation', 'UI and Backgrounds', 'Phone UI', '3D & Materials', 'Motion Graphics', 'Characters', 'Scenes & Assets', 'Icons & Emojis']
+const ALL_CATEGORIES = ['Text', 'Animation', 'UI and Backgrounds', 'Phone UI', '3D & Materials', 'Low Poly 3D', 'Characters', 'Scenes & Assets', 'Icons & Emojis']
 export const CATEGORIES = ALL_CATEGORIES.filter((c) => !HIDDEN_CATEGORIES.includes(c))
 
 // The UI and Backgrounds section is grouped by style, in this order.
@@ -1187,28 +1165,6 @@ const ALL_COMPONENTS = [
     deps: [],
   },
   {
-    slug: 'scroll-explode',
-    name: 'Scroll Explode',
-    category: 'Animation',
-    style: 'Interactive 3D',
-    isNew: true,
-    description: 'Scroll down and the phone comes apart into labelled layers without any part touching another; scroll back up and it snaps together again.',
-    controls: [
-      { name: 'spacing', type: 'range', min: 0.2, max: 1.4, step: 0.05, default: 0.8 },
-      { name: 'smoothing', type: 'range', min: 0, max: 20, step: 1, default: 6 },
-      { name: 'length', type: 'range', min: 1, max: 6, step: 0.5, default: 3 },
-      { name: 'labels', type: 'toggle', default: true },
-      { name: 'bodyColor', type: 'color', default: '#2b2d31' },
-      { name: 'frameColor', type: 'color', default: '#b9bcc2' },
-      { name: 'accent', type: 'color', default: '#ff4d1a' },
-      { name: 'background', type: 'color', default: '#d9d4cb' },
-    ],
-    preview: (p) => <ScrollExplode {...p} height="100%" />,
-    fill: true,
-    files: ['ScrollExplode.jsx', 'ix/ScrollExplode.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
     slug: 'drag-model',
     name: 'Drag Model',
     category: 'Animation',
@@ -1245,64 +1201,6 @@ const ALL_COMPONENTS = [
     preview: (p) => <RopeSway {...p} height="100%" />,
     fill: true,
     files: ['RopeSway.jsx', 'ix/RopeSway.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'isolate-part',
-    name: 'Isolate Part',
-    category: 'Animation',
-    style: 'Interactive 3D',
-    isNew: true,
-    description: 'Tap any part of an exploded camera to isolate and label it while the rest fade to ghosts. Press Escape to restore.',
-    controls: [
-      { name: 'bodyColor', type: 'color', default: '#e9e4da' },
-      { name: 'accentColor', type: 'color', default: '#26272b' },
-      { name: 'labelColor', type: 'color', default: '#d84a2b' },
-      { name: 'floorColor', type: 'color', default: '#d9d4cb' },
-      { name: 'autoRotate', type: 'toggle', default: false },
-    ],
-    preview: (p) => <IsolatePart {...p} height="100%" />,
-    fill: true,
-    files: ['IsolatePart.jsx', 'ix/IsolatePart.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'hotspot-notes',
-    name: 'Hotspot Notes',
-    category: 'Animation',
-    style: 'Interactive 3D',
-    isNew: true,
-    description: 'A smart speaker with pulsing hotspots: click one to open its note as the camera turns to face it.',
-    controls: [
-      { name: 'fabricColor', type: 'color', default: '#7d8a96' },
-      { name: 'accentColor', type: 'color', default: '#e9e5dd' },
-      { name: 'lightColor', type: 'color', default: '#7fd3ff' },
-      { name: 'hotspotColor', type: 'color', default: '#ff5a36' },
-      { name: 'floorColor', type: 'color', default: '#d9d4cb' },
-      { name: 'autoRotate', type: 'toggle', default: false },
-    ],
-    preview: (p) => <HotspotNotes {...p} height="100%" />,
-    fill: true,
-    files: ['HotspotNotes.jsx', 'ix/HotspotNotes.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'scroll-assembly',
-    name: 'Scroll Assembly',
-    category: 'Animation',
-    style: 'Interactive 3D',
-    isNew: true,
-    description: 'Scroll and a little robot builds itself part by part, with captions and a progress rail for each stage.',
-    controls: [
-      { name: 'bodyColor', type: 'color', default: '#f0ece4' },
-      { name: 'accentColor', type: 'color', default: '#3d6f8f' },
-      { name: 'glowColor', type: 'color', default: '#5ff2c4' },
-      { name: 'floorColor', type: 'color', default: '#d9d4cb' },
-      { name: 'autoRotate', type: 'toggle', default: false },
-    ],
-    preview: (p) => <ScrollAssembly {...p} height="100%" />,
-    fill: true,
-    files: ['ScrollAssembly.jsx', 'ix/ScrollAssembly.jsx'],
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
@@ -3081,44 +2979,6 @@ const ALL_COMPONENTS = [
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
-    slug: 'lion',
-    name: 'Lion',
-    category: '3D & Materials',
-    style: 'Nature & world',
-    isNew: true,
-    description: 'A furred, maned 3D lion you walk around with WASD or the arrow keys.',
-    controls: [
-      {
-        name: 'palette',
-        type: 'presets',
-        options: [
-          { name: 'African', values: { coat: '#c08a4a', belly: '#ead7b4', maneColor: '#7a4a22', maneTip: '#2a1710', dark: '#1a110c', eye: '#c98a1e' } },
-          { name: 'Kalahari', values: { coat: '#cf9d5e', belly: '#f1e2c4', maneColor: '#2e1a10', maneTip: '#0e0806', dark: '#140c08', eye: '#d29a2a' } },
-          { name: 'Golden', values: { coat: '#d6a456', belly: '#f4e4bf', maneColor: '#c27b2c', maneTip: '#7a3f16', dark: '#1e130b', eye: '#d9a12c' } },
-          { name: 'Asiatic', values: { coat: '#b88552', belly: '#e3cfae', maneColor: '#8a5a32', maneTip: '#4a2c18', dark: '#1a110c', eye: '#b57a1c' } },
-          { name: 'White', values: { coat: '#e9dfcb', belly: '#f8f3e8', maneColor: '#e2d2b2', maneTip: '#b9a47e', dark: '#5a4436', eye: '#8fb0c4' } },
-          { name: 'Melanistic', values: { coat: '#3b2b1f', belly: '#6b5440', maneColor: '#1c130d', maneTip: '#070504', dark: '#080605', eye: '#d6a52e' } },
-        ],
-      },
-      { name: 'mane', type: 'toggle', default: true },
-      { name: 'autoWalk', type: 'toggle', default: false },
-      { name: 'coat', type: 'color', default: '#c08a4a' },
-      { name: 'belly', type: 'color', default: '#ead7b4' },
-      { name: 'maneColor', type: 'color', default: '#7a4a22' },
-      { name: 'maneTip', type: 'color', default: '#2a1710' },
-      { name: 'dark', type: 'color', default: '#1a110c' },
-      { name: 'eye', type: 'color', default: '#c98a1e' },
-      { name: 'furShells', type: 'range', min: 0, max: 32, step: 1, default: 14 },
-      { name: 'furLength', type: 'range', min: 0.3, max: 2, step: 0.05, default: 1 },
-      { name: 'walkSpeed', type: 'range', min: 0.6, max: 2, step: 0.05, default: 1.2 },
-      { name: 'runSpeed', type: 'range', min: 2, max: 5, step: 0.1, default: 3.4 },
-    ],
-    preview: (p) => <LionModel {...p} height="100%" />,
-    fill: true,
-    files: ['LionModel.jsx', 'lion/LionScene.jsx', 'lion/Lion.jsx', 'lion/anatomy.js', 'lion/sculpt.js', 'lion/hair.js', 'lion/materials.js', 'lion/rig.js', 'lion/world.js'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
     slug: 'turntable',
     name: 'Turntable',
     category: '3D & Materials',
@@ -3975,11 +3835,11 @@ const ALL_COMPONENTS = [
     files: ['BowlingBallModel.jsx', 'bowlingball/BowlingBallScene.jsx', 'bowlingball/BowlingBall.jsx'],
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
-  // ---- Motion Graphics: a low-poly set, sharing lowpoly/kit.jsx ----
+  // ---- Low Poly 3D: a low-poly set, sharing lowpoly/kit.jsx ----
   {
     slug: 'low-poly-pine',
     name: 'Low Poly Pine',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A faceted low-poly pine that springs in and sways in the wind, each tier a beat behind the one below. Tap it to give it a shake.',
@@ -3999,7 +3859,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-fox',
     name: 'Low Poly Fox',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A faceted low-poly fox, sitting. It breathes, blinks, glances about, twitches its ears and swishes its tail. Tap it and it cocks its head and wags.',
@@ -4018,7 +3878,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-chest',
     name: 'Low Poly Treasure Chest',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A gold-bound low-poly treasure chest. The lid springs open on its hinge, gold light spills out and coins burst up and tumble back in.',
@@ -4038,7 +3898,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-grass-tile',
     name: 'Low Poly Grass Tile',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly ground tile of layered soil and lumpy turf with pebbles and swaying grass. Tap it and it squashes, springs back and the pebbles hop.',
@@ -4057,7 +3917,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-crystal-rock',
     name: 'Low Poly Crystal Rock',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly boulder with glowing crystals at its foot, each pulsing on its own beat, and a shard floating above. Tap it and the crystals flare.',
@@ -4076,7 +3936,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-gem',
     name: 'Low Poly Gem',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A faceted low-poly cut gem with a deep pavilion and flat table. It turns above the floor with three shards in orbit while its inner glow breathes. Tap it and it flashes, whirls and throws sparkles.',
@@ -4095,7 +3955,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-moon',
     name: 'Low Poly Moon',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A faceted low-poly moon pressed with craters. It turns through its phases on its own, waxing from a sliver to full and waning again, with stars twinkling round it. Tap it and a meteor streaks in and strikes, throwing up a puff of dust.',
@@ -4114,7 +3974,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-rubber-duck',
     name: 'Low Poly Rubber Duck',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly rubber duck afloat on a little pond. It rides the ripples, rising, falling and tilting with the water as it slowly turns. Tap it for a squeeze: it squashes and springs back, rings spread across the water and drops fly.',
@@ -4133,7 +3993,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-light-bulb',
     name: 'Low Poly Light Bulb',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly light bulb on its screw base, with a coiled filament on two wires inside a faceted glass globe. The filament smoulders on its own; tap it to switch it on with a flash and a spray of light, and again to switch it off.',
@@ -4152,7 +4012,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-mailbox',
     name: 'Low Poly Mailbox',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly roadside mailbox on a wooden post, with an arched top, a door hinged at its foot and a flag on the side that twitches in the breeze. Tap it and the door drops open, a letter pops out and flutters down, and the flag swings up.',
@@ -4171,7 +4031,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-bamboo',
     name: 'Low Poly Bamboo Grove',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A clump of low-poly bamboo: segmented stalks with blade leaves, swaying out of step in the breeze. Tap it and the stalks knock together, clacking, and settle.',
@@ -4190,7 +4050,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-ringed-planet',
     name: 'Low Poly Ringed Planet',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A banded low-poly planet with a tilted ring of tumbling rocks. The ring rocks orbit on their own; tap it and a small moon swings round the planet.',
@@ -4209,7 +4069,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-alarm-clock',
     name: 'Low Poly Alarm Clock',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A twin-bell low-poly alarm clock whose hands tick round. Tap it and it rings: the hammer rattles between the bells and the clock judders across the floor.',
@@ -4228,7 +4088,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-cupcake',
     name: 'Low Poly Cupcake',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly cupcake in a fluted case, a swirl of icing and a lit candle whose flame flickers. Tap it and a burst of sprinkles flies out.',
@@ -4247,7 +4107,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-ice-cream',
     name: 'Low Poly Ice Cream Cone',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A waffle cone with stacked low-poly scoops. A drip runs slowly down the side; tap it and the top scoop wobbles and nearly topples.',
@@ -4266,7 +4126,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-coffee-mug',
     name: 'Low Poly Coffee Mug',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly coffee mug with steam curling up from the cup. Tap it and a spoon stirs the coffee into a swirl.',
@@ -4285,7 +4145,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-compass',
     name: 'Low Poly Compass',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly pocket compass: the needle seeks and settles on north. Tap it and the needle spins wildly, then swings back to point north.',
@@ -4304,7 +4164,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-arcade-joystick',
     name: 'Low Poly Arcade Joystick',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly arcade stick: a ball-top lever and a row of buttons on a box base. The stick wiggles and the buttons light in turn; tap it and every button flashes.',
@@ -4323,7 +4183,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-rowboat',
     name: 'Low Poly Rowboat',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly rowboat with two oars, rocking on a little pond. Tap it and the oars pull a stroke and the boat glides.',
@@ -4342,7 +4202,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-igloo',
     name: 'Low Poly Igloo',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly igloo of snow blocks with a tunnel entrance, snow falling around it. Tap it and a penguin pokes its head out of the tunnel.',
@@ -4361,7 +4221,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-torii-gate',
     name: 'Low Poly Torii Gate',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly torii gate with paper lanterns swaying beneath its curved beams. Tap it and a swirl of petals blows through.',
@@ -4380,7 +4240,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-cherry-blossom',
     name: 'Low Poly Cherry Blossom',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly cherry tree with a twisted trunk and a cloud of pink blossom. Petals drift down on their own; tap it and a gust sends a swirl of petals off the branches.',
@@ -4399,7 +4259,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-autumn-maple',
     name: 'Low Poly Autumn Maple',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly maple in full autumn colour, its crown of orange and red blobs over a sturdy trunk and a scatter of fallen leaves. A leaf falls now and then; tap it and it shakes out a flurry of leaves.',
@@ -4418,7 +4278,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-lily-pond',
     name: 'Low Poly Lily Pond',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A small low-poly pond ringed with stones, lily pads afloat and one lotus bud. The pads bob and ripples spread across the water; tap it and the lotus opens.',
@@ -4437,7 +4297,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-geyser',
     name: 'Low Poly Geyser',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly geyser: a hot pool in a ring of rock, steam curling up off the water. Tap it and it erupts in a tall column of water and spray.',
@@ -4456,7 +4316,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-tornado',
     name: 'Low Poly Tornado',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly tornado: a funnel of stacked spinning rings that sways and wanders over the ground. Tap it and it picks up debris, whirls it round and flings it out.',
@@ -4475,7 +4335,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-coral-reef',
     name: 'Low Poly Coral Reef',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly patch of reef on sand: branching corals, fan corals and an anemone whose fronds sway. Tap it and tiny fish dart out and back.',
@@ -4494,7 +4354,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-butterfly',
     name: 'Low Poly Butterfly',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly butterfly resting on a flower, opening and closing its wings slowly. Tap it and it flies a figure-eight and lands again.',
@@ -4513,7 +4373,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-robot',
     name: 'Low Poly Robot',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A boxy low-poly robot with a screen face and an antenna whose light blinks while its head turns to look around. Tap it and it waves.',
@@ -4532,7 +4392,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-lock-and-key',
     name: 'Low Poly Lock and Key',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly padlock with its key hovering beside it, turning slowly. Tap it and the key slides in, turns, and the shackle pops up open.',
@@ -4551,7 +4411,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-anchor',
     name: 'Low Poly Anchor',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly ship\'s anchor hanging on a chain of links above the sea floor, swaying gently. Tap it and it drops, thuds into the sand and kicks up a puff.',
@@ -4570,7 +4430,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-umbrella',
     name: 'Low Poly Umbrella',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly umbrella with a faceted canopy and a curved handle, rain running off its edge. Tap it and it opens wide and spins, flinging the drops off.',
@@ -4589,7 +4449,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-submarine',
     name: 'Low Poly Submarine',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly submarine with a capsule hull, a conning tower and a periscope that turns, rising and sinking gently. Tap it and it dives with a trail of bubbles.',
@@ -4608,7 +4468,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-ufo',
     name: 'Low Poly UFO',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly flying saucer hovering over a patch of grass, rim lights chasing round. Tap it and a beam lifts a cow up and drops it gently back.',
@@ -4627,7 +4487,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-biplane',
     name: 'Low Poly Biplane',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly biplane with two wings, struts and a spinning propeller, banking gently as it flies. Tap it and it does a barrel roll.',
@@ -4646,7 +4506,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-tractor',
     name: 'Low Poly Tractor',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly farm tractor with big rear wheels, a cab and an exhaust that puffs as the wheels turn. Tap it and it pops a wheelie.',
@@ -4665,7 +4525,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-food-truck',
     name: 'Low Poly Food Truck',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly food truck with a striped awning that flaps in the breeze. Tap it and the serving hatch swings open and a sign pops up.',
@@ -4684,7 +4544,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-barn',
     name: 'Low Poly Barn and Silo',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly barn with a gable roof, a silo beside it and a weathervane that turns in the wind. Tap it and the barn doors swing open.',
@@ -4703,7 +4563,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-wishing-well',
     name: 'Low Poly Wishing Well',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly wishing well: a ring of stones, a little roof and a bucket bobbing on its rope. Tap it and a coin drops in and splashes.',
@@ -4722,7 +4582,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-pagoda',
     name: 'Low Poly Pagoda',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly pagoda of stacked tiers with upturned eaves, wind chimes swinging from the corners. Tap it and lights glow tier by tier up to the spire.',
@@ -4741,7 +4601,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-heart',
     name: 'Low Poly Heart',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A chunky faceted heart that beats lub-dub, glowing on each beat. Tap it for one big beat, rings across the floor and a spray of little hearts.',
@@ -4761,7 +4621,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-star',
     name: 'Low Poly Star',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A plump five-point star with a ridge down every arm. It spins slowly and shimmers. Tap it and it whirls and bursts into a spray of little stars.',
@@ -4781,7 +4641,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-flower',
     name: 'Low Poly Flower',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A faceted flower in a clay pot. Its eight petals open and close a beat apart and the stem sways. Tap it and the bloom spins and sheds a few petals.',
@@ -4800,7 +4660,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-rainbow',
     name: 'Low Poly Rainbow',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'Six faceted bands arching between two puffy clouds, with a ripple running across them so the arc seems to breathe. Tap it and the bands flare one after another.',
@@ -4819,7 +4679,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-lantern',
     name: 'Low Poly Lantern',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'An iron lantern hanging from a wooden post, its flame flickering behind glowing panes and lighting the post. Tap it and it swings on its hook and settles.',
@@ -4838,7 +4698,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-map-pin',
     name: 'Low Poly Map Pin',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A faceted map pin bouncing on the spot, squashing as it lands, with rings spreading from its point. Tap it and it leaps, spins once and lands with a splash.',
@@ -4857,7 +4717,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-trophy',
     name: 'Low Poly Trophy',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A faceted trophy cup with looped handles and a star, on a two-step plinth. It turns slowly as a gleam sweeps the metal. Tap it and it whirls, flashes and throws sparkles.',
@@ -4876,7 +4736,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-stump',
     name: 'Low Poly Tree Stump',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A faceted tree stump on splayed roots with moss and a sapling. A glow runs out through its growth rings, ring by ring. Tap it and leaves pop off the top and flutter down.',
@@ -4895,7 +4755,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-mushrooms',
     name: 'Low Poly Mushrooms',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'Three spotted toadstools on a mossy mound, each cap breathing and glowing on its own beat. Tap them and the caps puff out clouds of spores that drift up and fade.',
@@ -4914,7 +4774,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-palm',
     name: 'Low Poly Palm Tree',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A palm on a sandy islet: a curving trunk of ringed segments that sways as a lag chain, drooping two-part fronds and a bunch of coconuts. Tap it and a shake runs up the trunk and a coconut drops, bounces, rolls and grows back.',
@@ -4934,7 +4794,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-cactus',
     name: 'Low Poly Cactus',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A ribbed saguaro in a terracotta pot with two elbowed arms, white spines, a sleepy blinking face and a flower on top that slowly blooms and closes. Tap it and it wobbles like jelly on its base.',
@@ -4954,7 +4814,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-sunflower',
     name: 'Low Poly Sunflower',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A tall sunflower with two rings of petals round a golden-angle seed spiral. Its head turns to follow your cursor and the stem sways. Tap it and the petals shake.',
@@ -4973,7 +4833,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-bonsai',
     name: 'Low Poly Bonsai',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A bonsai in a shallow glazed tray: an S-curved trunk, two side branches and cloud-pruned canopy pads that sway a beat apart. Tap it and the canopy shivers and drops petals or leaves.',
@@ -4992,7 +4852,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-windmill',
     name: 'Low Poly Windmill',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A tower windmill on a round of grass with a conical cap and four lattice sails. The sails turn with the wind and the cap creaks round to face it. Tap it and a gust whirls the sails and blows leaves past.',
@@ -5012,7 +4872,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-lighthouse',
     name: 'Low Poly Lighthouse',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A striped lighthouse on a rocky islet in a pool of sea, with a railed gallery and a glowing lantern room. Twin beams sweep round and rings spread over the water. Tap it and the lamp flashes and a wave rolls out.',
@@ -5032,7 +4892,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-street-lamp',
     name: 'Low Poly Street Lamp',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A Victorian street lamp on a patch of cobbles. Its light pours down in a soft cone, flickers now and then, and two moths circle it. Tap it to switch it off, and again to switch it back on with a stutter.',
@@ -5051,7 +4911,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-snowman',
     name: 'Low Poly Snowman',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A snowman on a drift with coal eyes, a carrot nose, stick arms, a top hat and a knitted scarf whose tails flutter. Snow falls round him. Tap him and he wobbles on his base, head last.',
@@ -5071,7 +4931,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-pumpkin',
     name: 'Low Poly Pumpkin',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: "A jack-o'-lantern of eight faceted lobes with a twisted stem and a carved face that glows and flickers like a candle. Tap it and it hops and pulls a new face: happy, spooky, then surprised.",
@@ -5090,7 +4950,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-gift',
     name: 'Low Poly Gift Box',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A gift box tied with crossing ribbons and a big bow, with its lid on a hinge. The bow bounces and the box hops now and then. Tap it and the lid springs open, confetti bursts out and a glowing star rises.',
@@ -5109,7 +4969,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-campfire',
     name: 'Low Poly Campfire',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A ring of stones and a teepee of logs round a flickering flame that lights the ground, with embers rising and smoke curling away. Tap it and it flares and throws a shower of sparks.',
@@ -5129,7 +4989,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-cloud',
     name: 'Low Poly Cloud',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A plump cloud of faceted puffs that drifts and breathes. Tap it and it rains for a few seconds, with splashes rippling across the floor; a storm cloud also flashes and throws a bolt of lightning.',
@@ -5148,7 +5008,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-mountain',
     name: 'Low Poly Mountain',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A rugged faceted peak and shoulder banded from forest to rock to snow, ringed by pines. Glints twinkle on the snow and two little clouds circle the summit. Tap it and an avalanche slides off.',
@@ -5167,7 +5027,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-island',
     name: 'Low Poly Island',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A sand-and-grass islet with a leaning palm and a little sailboat, afloat on a round of rolling sea. It bobs and tilts on the swell. Tap it and it dips, splashes and sends rings across the water.',
@@ -5186,7 +5046,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-iceberg',
     name: 'Low Poly Iceberg',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A jagged iceberg in a clear pool of sea, its bigger mass visible below the surface, with a penguin on a ledge. It floats and tilts. Tap it and it rocks hard, the penguin hops and the sea splashes.',
@@ -5205,7 +5065,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-castle-tower',
     name: 'Low Poly Castle Tower',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A round keep on a grassy knoll with arrow slits, battlements, a stub of curtain wall and a flag rippling on its pole. Tap it and the cannon fires: it kicks back, flashes, smokes and lobs a ball.',
@@ -5224,7 +5084,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-campsite',
     name: 'Low Poly Campsite',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A ridge tent with guy ropes and a stirring door flap, a small fire with rising embers, a log seat and pines. Tap it to light the lantern on its stake, and again to put it out.',
@@ -5243,7 +5103,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-cottage',
     name: 'Low Poly Cottage',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A cottage with a steep roof, a brick chimney, glowing windows with flower boxes, a picket fence and a stepping-stone path. Smoke curls from the chimney. Tap it and the door swings open, spilling light.',
@@ -5262,7 +5122,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-rocket',
     name: 'Low Poly Rocket',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A rocket on its launch pad beside a lattice gantry, idling with a fluttering flame. Tap it and it rumbles, roars off with a smoke trail, flies out of sight, then drops back and lands on the pad.',
@@ -5281,7 +5141,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-paper-plane',
     name: 'Low Poly Paper Plane',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A folded paper dart gliding a figure of eight among three small clouds, banking into every turn, with a dotted trail. Tap it and it pulls up into a full loop and carries on.',
@@ -5301,7 +5161,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-ferris-wheel',
     name: 'Low Poly Ferris Wheel',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A 20 m fairground wheel with a working mechanism: A-frames, a wide hub, spoked twin rims and tyre drives pressing on the rim. It runs on real rotor physics: the governed drive soft-starts and holds speed under load, the brake stops and holds it, and a loaded wheel left to coast rocks until its heavy side settles. Every gondola is a damped pendulum that swings when the wheel speeds up or brakes. Tap a gondola to add riders and watch the load torque change.',
@@ -5325,7 +5185,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-volcano',
     name: 'Low Poly Volcano',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A faceted volcano with a glowing lava pool in its crater, lava creeping down two channels and a plume of smoke. Tap it to erupt: the ground shudders, lava fountains and glowing bombs fly on ballistic arcs, land on the slope where they hit it and cool from orange to black.',
@@ -5344,7 +5204,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-waterfall',
     name: 'Low Poly Waterfall',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A stream runs across a flat-topped cliff and pours down the face into a pool of rolling water ringed by boulders, its sheet threaded with streaks that flow on a loop, mist rising where it lands. Tap it for a big splash.',
@@ -5364,7 +5224,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-diorama',
     name: 'Low Poly Diorama',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A floating slab of meadow on a block of earth: a river wells up under a white crag, winds past a bear and a campsite and spills off the edge as a waterfall. A goat watches from the crag, birds circle it, the fire flickers and a fish leaps every few seconds. Tap it to make the fish jump and the fire flare.',
@@ -5384,7 +5244,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-homestead',
     name: 'Low Poly Homestead',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A floating low-poly diorama: a cottage with a red gable roof, a smoking chimney and a porch under a striped awning, on an L-shaped plot of grass with a split-rail fence, a log pile, chopping blocks, rocks and pines, and a stream crossed by a plank bridge to a little islet. Clouds drift over. Tap it and the axe splits the log on the chopping block while the chimney puffs.',
@@ -5403,7 +5263,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-bear',
     name: 'Low Poly Bear',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'The bear from the Low Poly Diorama on its own: a faceted bear on a patch of meadow that breathes, sniffs the grass, looks about, blinks and flicks its ears. Tap it and it rears up on its hind legs and roars, then drops back down with a thud and a puff of dust.',
@@ -5422,7 +5282,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-lion',
     name: 'Low Poly Lion',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly lion built the same way as the Low Poly Bear: a tawny body on stubby legs, a shaggy mane and a tufted tail on a patch of savanna. It breathes, sniffs, looks about and swings its tail; tap it and it throws its head back and roars.',
@@ -5441,7 +5301,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-bengal-tiger',
     name: 'Low Poly Bengal Tiger',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly tiger built the same way as the Low Poly Bear: an orange body wrapped in black stripes, a white muzzle with whiskers and a striped tail. It breathes, sniffs and swings its tail; tap it and it crouches, pounces, lands with a thud and pads back.',
@@ -5460,7 +5320,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-leopard',
     name: 'Low Poly Leopard',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A lean low-poly leopard built the same way as the Low Poly Bear: a spotted golden coat, amber eyes, whiskers and a long curling tail. It breathes, sniffs and swings its tail; tap it and it crouches, pounces, lands and pads back. Also as a snow leopard, jaguar and black panther.',
@@ -5479,7 +5339,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-dog',
     name: 'Low Poly Dog',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly dog built the same way as the Low Poly Bear: floppy ears, a longer snout and a waggy tail on a meadow. It breathes, sniffs, looks about and wags; tap it and it bounces up in two happy hops, spinning and barking.',
@@ -5498,7 +5358,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-cat',
     name: 'Low Poly Cat',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A slender low-poly cat built the same way as the Low Poly Bear: pointed ears, slit-pupil eyes, whiskers and a tail curving up. It breathes, sniffs and swishes its tail; tap it and it arches its back, fur up and tail in the air, and hisses.',
@@ -5517,7 +5377,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-aurora-hills',
     name: 'Low Poly Aurora Hills',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'Faceted low-poly hills under a night sky, with ribbons of aurora rippling across it and stars twinkling. Tap it and the ribbons flare bright and surge.',
@@ -5536,7 +5396,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-jellyfish',
     name: 'Low Poly Jellyfish',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A translucent low-poly jellyfish: a glowing bell trailing ribbon tentacles, pulsing as it drifts up and sinks back. Tap it and it glows bright and pulses fast.',
@@ -5555,7 +5415,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-snail',
     name: 'Low Poly Snail',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly snail with a spiral shell, gliding over a leaf with its eye stalks wobbling and a glistening trail behind. Tap it and it pulls into its shell, then peeks back out.',
@@ -5574,7 +5434,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-hummingbird',
     name: 'Low Poly Hummingbird',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly hummingbird hovering on a blur of buzzing wings beside a flower. Tap it and it zips to the flower, sips, and darts back.',
@@ -5593,7 +5453,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-steam-train',
     name: 'Low Poly Steam Train',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly steam locomotive and tender chugging round a ring of track, wheels and rods turning and smoke puffing from the stack. Tap it and it whistles a burst of steam.',
@@ -5612,7 +5472,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-space-station',
     name: 'Low Poly Space Station',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly space station: a core module with a turning ring and solar panels that track the light, over a starfield. Tap it and a capsule flies in and docks.',
@@ -5631,7 +5491,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-treehouse',
     name: 'Low Poly Treehouse',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly treehouse: a hut on a platform in a leafy tree, with a rope swing that sways and leaves that rustle. Tap it and the windows light up and a rope ladder drops.',
@@ -5650,7 +5510,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-fountain',
     name: 'Low Poly Fountain',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A tiered low-poly fountain: stone basins one above another, water arcing from the top and falling from tier to tier. Tap it and the jets surge higher.',
@@ -5669,7 +5529,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-haunted-house',
     name: 'Low Poly Haunted House',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A crooked low-poly haunted house with a bare tree and a broken fence, its windows glowing. A ghost peeks from a window now and then; tap it and bats burst from the roof.',
@@ -5688,7 +5548,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-tiny-planet',
     name: 'Low Poly Tiny Planet',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A tiny low-poly planet with a little house and trees on top, turning slowly under them as clouds circle. Tap it and day flips to night: the sky darkens, the windows light and the stars come out.',
@@ -5707,7 +5567,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-crab',
     name: 'Low Poly Crab',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly crab on a patch of beach: a broad shell, eyes on stalks, eight jointed legs and two big claws. It scuttles sideways and back, claws raised; tap it and it snaps both claws with a clack.',
@@ -5726,7 +5586,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-octopus',
     name: 'Low Poly Octopus',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly octopus over a sandy sea floor: a round head and eight tapering tentacles that wave in a rolling pattern. Tap it and it squirts a puff of ink and jets upward, tentacles trailing.',
@@ -5745,7 +5605,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-flamingo',
     name: 'Low Poly Flamingo',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly flamingo standing on one leg in a shallow pool, S-curved neck and bent beak, swaying to keep its balance. Tap it and it swaps legs and flaps its wings.',
@@ -5764,7 +5624,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-hedgehog',
     name: 'Low Poly Hedgehog',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly hedgehog on a mossy patch: a round body covered in cone spines, a pointed snout and a twitching nose. It snuffles about; tap it and it curls into a spiky ball and rolls, then uncurls.',
@@ -5783,7 +5643,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-parrot',
     name: 'Low Poly Parrot',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A bright low-poly parrot on a perch, with a hooked beak, folded wings and a long tail. It bobs its head and shuffles; tap it and it squawks, ruffling its feathers and spreading its wings.',
@@ -5802,7 +5662,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-deer',
     name: 'Low Poly Deer',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly deer in a meadow, with slim long legs, antlers and a white tail. It grazes, lifts its head and flicks its ears; tap it and it lifts its head, bounds away across the meadow and trots back.',
@@ -5821,7 +5681,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-balloon',
     name: 'Low Poly Hot Air Balloon',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A twelve-gore balloon over a patchwork of fields, flying on real buoyancy: lift comes from how much warmer the air inside is, the envelope cools, and an autopilot burns in short blasts to hold height, with a live readout. Tap it for a long burn: it climbs, then cools and sinks back.',
@@ -5841,7 +5701,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-sailboat',
     name: 'Low Poly Sailboat',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A sloop at anchor in a round of rolling sea, with bellied sails and a pennant. It rides the very waves the sea draws: height, pitch and roll come from the surface sampled at bow, stern and beam, smoothed by the hull\'s inertia, and the wind heels it. Tap it and a gust fills the sails.',
@@ -5861,7 +5721,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-hourglass',
     name: 'Low Poly Hourglass',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'An hourglass in a turned wooden frame whose sand is a volume, not a picture: each bulb\'s share becomes a level through the bulb\'s own shape, the sand always lies at the low end, and it runs at a steady rate as real sand does. Tap it to flip it over on a spring.',
@@ -5881,7 +5741,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-potion',
     name: 'Low Poly Potion',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A round flask half full of a glowing brew with bubbles rising through it. The brew stays level in the world and sloshes: its surface is a damped pendulum driven by how the bottle moves. Tap it to shake it: the brew sloshes hard, fizzes and the cork pops.',
@@ -5901,7 +5761,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-instant-camera',
     name: 'Low Poly Instant Camera',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A chunky instant camera with a striped face, a stepped lens and a six-blade iris that breathes as if metering. Tap it to take a picture: the iris snaps, the flash fires and lights the floor, the body kicks and a print slides out, drops and develops.',
@@ -5920,7 +5780,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-headphones',
     name: 'Low Poly Headphones',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'Over-ear headphones on a cable to a jack, all driven by one beat clock: the cups pump, the band bounces, equaliser bars jump to a made-up spectrum and notes drift up. Tap it and the beat doubles for a few bars.',
@@ -5940,7 +5800,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-coin-stack',
     name: 'Low Poly Coin Stack',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'Three stacks of reeded coins with stars struck on both faces. The top coins take turns to hop and flip, and a gleam runs over the metal. Tap it and every coin hops out in turn into a fan, each leaning on the one before, then back home in reverse order.',
@@ -5959,7 +5819,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-cube-buddy',
     name: 'Low Poly Cube Buddy',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A cube character with stubby arms and cartoon eyes that follow your cursor. It hops with squash and stretch: it squashes in anticipation, stretches on take-off and fall, and lands in a wobbling squash, pivoting at its feet so the face never breaks. Tap it for a big spinning jump.',
@@ -5979,7 +5839,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-penguin',
     name: 'Low Poly Penguin',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A plump penguin on an ice floe that waddles on the spot: its body rocks from foot to foot, each foot lifting as the weight comes off it, its flippers swing for balance and it glances about. Tap it and it flaps excitedly and hops.',
@@ -5998,7 +5858,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-owl',
     name: 'Low Poly Owl',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'An owl on a mossy branch with a chevroned breast, folded wings, ear tufts and huge eyes with slow, heavy blinks. Its head swivels about and now and then turns right round over its shoulder. Tap it and it puffs up, spreads its wings and hoots.',
@@ -6017,7 +5877,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-bunny',
     name: 'Low Poly Bunny',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A rabbit in the grass beside a carrot. It breathes, blinks, wiggles its nose in bursts and flicks each long ear on its own beat. Tap it and it hops: a crouch, a stretch into the air with its ears streaming back, and a squashy landing.',
@@ -6036,7 +5896,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-fishbowl',
     name: 'Low Poly Fishbowl',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A fish in a round glass bowl with level water, coloured pebbles, swaying weed and rising bubbles. It swims a figure of eight round the bowl, banking into its turns, body and tail swinging as it goes. Tap it and it darts.',
@@ -6055,7 +5915,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-turtle',
     name: 'Low Poly Tortoise',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A tortoise with a domed shell of raised hexagonal scutes that plods on the spot in a real four-legged walk: feet lift in the order left hind, left fore, right hind, right fore, the shell rocks and the head bobs. Tap it and it pulls into its shell, peeks out and carries on.',
@@ -6075,7 +5935,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-bee',
     name: 'Low Poly Bee',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A striped, fuzzy bee with buzzing glassy wings hovering round a big flower on a looping path, bobbing and banking into its turns, leaving a faint trail. Tap it and it pulls a loop and pollen bursts from the flower.',
@@ -6094,7 +5954,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-whale',
     name: 'Low Poly Whale',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A whale basking in a round of rolling sea. Like a real whale it swims by beating its tail up and down, its body a lag chain ending in wide flukes, and it takes a small breath now and then. Tap it and it blows a tall spout.',
@@ -6113,7 +5973,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-frog',
     name: 'Low Poly Frog',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A frog on a lily pad in a pond whose pads ride the ripples. Its throat pulses as it breathes and swells right out every few seconds as it croaks. Tap it and it leaps to the other pad with its legs kicked out straight and lands with a squash.',
@@ -6132,7 +5992,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-elephant',
     name: 'Low Poly Elephant',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'An elephant at a waterhole with big flapping ears, curved tusks, a tufted tail and a trunk built as a lag chain. It shifts its weight, fans its ears, swings its trunk and swishes its tail. Tap it and it raises its trunk and sprays a fountain of water.',
@@ -6151,7 +6011,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-dino',
     name: 'Low Poly Dinosaur',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A tyrannosaur among ferns with back plates, tiny arms, a hinged jaw full of teeth and a long balancing tail that sways as a lag chain. It breathes, shifts its weight and looks about. Tap it and it roars: head dips, throws back with the jaw wide and shakes.',
@@ -6596,7 +6456,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-runner',
     name: 'Low Poly Runner',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A faceted low-poly man at full sprint in a red, orange and yellow top, blue and violet legs and bright trainers. He runs on a procedural cycle: legs drive, arms pump, hips bob and shoulders twist. Tap him and he leaps; turn Run off and he freezes in a hero lunge.',
@@ -6617,7 +6477,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-tiger',
     name: 'Low Poly Tiger',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A faceted, striped tiger at real size that you drive with the keys or a pad. It walks on a real mechanism: a gait clock, feet planted on the ground, IK legs and a body that bobs, leans and turns. Skeleton shows the joints and footfalls.',
@@ -6641,7 +6501,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-chameleon',
     name: 'Low Poly Chameleon',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly chameleon gripping a branch, its turret eyes rolling about each on its own and its curled tail breathing as it rocks and takes the odd slow step; tap it and both eyes lock on a fly, the tongue shoots out to snatch it and its skin flushes another colour before easing back.',
@@ -6660,7 +6520,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-sloth',
     name: 'Low Poly Sloth',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly sloth hanging under a leafy branch by its hooked claws, swaying, blinking and turning its head very slowly to look at you; tap it and it lets go with one arm to wave, then grips back on as a few leaves drift down.',
@@ -6679,7 +6539,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-peacock',
     name: 'Low Poly Peacock',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly peacock on a grass patch that walks, pecks at seed and bobs its crested head, its long train trailing; tap it and it turns to you as the train lifts and fans into a full semicircle of eyed feathers that rattle and shimmer before folding away.',
@@ -6698,7 +6558,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-red-panda',
     name: 'Low Poly Red Panda',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly red panda on a mossy log that shuffles about, sniffs the moss, flicks its ears and curls its ringed tail; tap it and it rears up on its hind legs with its arms flung wide, then drops back down with a bounce.',
@@ -6717,7 +6577,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-mech-walker',
     name: 'Low Poly Mech Walker',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly two-legged mech walker on a rocky patch that shifts its weight from leg to leg while its cockpit swivels to scan; tap it and it stomps three heavy steps out and three back, each footfall kicking up dust and thumping the ground.',
@@ -6736,7 +6596,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-sea-stack',
     name: 'Low Poly Sea Stack',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly tall sea stack in the surf where waves break at its base and gulls circle overhead; tap it and the gulls scatter, then settle back on the ledges.',
@@ -6755,7 +6615,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-rice-terraces',
     name: 'Low Poly Rice Terraces',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'Low-poly rice paddies curving and stepping down a hillside, ripples drifting across each one; tap it and water spills down the steps one terrace at a time.',
@@ -6774,7 +6634,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-manta-ray',
     name: 'Low Poly Manta Ray',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly manta ray gliding over a patch of reef, slow waves rolling out along its wide wings; tap it and it does a barrel roll.',
@@ -6793,7 +6653,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-axolotl',
     name: 'Low Poly Axolotl',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly axolotl in a little pebble tank, its frilly gills waving as its tail sways; tap it and it grins and swims a little loop.',
@@ -6812,7 +6672,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-ramen-bowl',
     name: 'Low Poly Ramen Bowl',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly steaming bowl of ramen on a tray, with egg, chashu, nori and noodles; tap it and the chopsticks lift a stretching pull of noodles and drop it back with a splash.',
@@ -6831,7 +6691,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-popcorn-machine',
     name: 'Low Poly Popcorn Machine',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly glass popcorn cart where kernels pop now and then; tap it and the kettle tips, popcorn overflows onto the heap and spills out of the door.',
@@ -6850,7 +6710,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-monster-truck',
     name: 'Low Poly Monster Truck',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly monster truck on huge treaded tyres and coil-over shocks in a dirt arena; it revs and bounces on its springs, and a tap sends it up the ramp to jump, land with a squash and a cloud of dust, then reverse home.',
@@ -6869,7 +6729,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-race-car',
     name: 'Low Poly Race Car',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A full-size low-poly GT race car: faceted paint, dark glass, splitter, swan-neck wing, diffuser and door numbers. Drag to orbit, double-tap to bounce it, or switch on driving and take it round the cones with the Pickup drive rig.',
@@ -6889,7 +6749,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-paddle-steamer',
     name: 'Low Poly Paddle Steamer',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly paddle steamer with twin chimneys and churning side wheels, bobbing on the swell; tap it to sound the horn with a steam jet and a big smoke ring from each chimney.',
@@ -6908,7 +6768,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-lunar-rover',
     name: 'Low Poly Lunar Rover',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly lunar rover creeping over a cratered patch, each mesh wheel riding the bumps on its own strut; tap it and the dish swings round to the Earth and beams a pulsing signal home.',
@@ -6927,7 +6787,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-observatory',
     name: 'Low Poly Observatory',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly hilltop observatory whose dome slowly turns under twinkling stars; tap it and the shutter slides back, the telescope tilts out and a shooting star streaks past.',
@@ -6946,7 +6806,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-stone-bridge',
     name: 'Low Poly Stone Bridge',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly hump-backed stone bridge over a flowing stream between grassy banks, with petals, leaves or snow drifting down; tap it and a little boat floats in, slips under the arch and drifts away downstream.',
@@ -6965,7 +6825,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-drive-in-cinema',
     name: 'Low Poly Drive-in Cinema',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly drive-in with a flickering cartoon on the big screen, a shimmering projector beam and a few parked cars; tap it and headlights flash, the cars hop as they honk and the film changes.',
@@ -6984,7 +6844,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-sewing-machine',
     name: 'Low Poly Sewing Machine',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly sewing machine with its needle bobbing, wheel turning and thread wiggling; tap it and the fabric feeds through, leaving a stitched seam.',
@@ -7003,7 +6863,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-wizard-tower',
     name: 'Low Poly Wizard Tower',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly crooked wizard tower on a floating island, its windows pulsing and a crystal turning beside it; tap it and sparks spiral up into fireworks.',
@@ -7022,7 +6882,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-black-hole',
     name: 'Low Poly Black Hole',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly black hole whose swirling accretion disk bends up over it, the inner edge racing fastest; tap it and a passing asteroid spirals in, stretches and vanishes in a flare.',
@@ -7041,7 +6901,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-venus-flytrap',
     name: 'Low Poly Venus Flytrap',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly Venus flytrap in a pot, three toothed traps slowly breathing open and closed; tap it and a fly buzzes into the nearest trap, which snaps shut on it and reopens after a moment.',
@@ -7060,7 +6920,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-snowy-pines',
     name: 'Low Poly Snowy Pine Patch',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly patch of three snow-capped pines under light snowfall; tap a tree and snow slides off a branch in a puff, the branch springs up and the snow slowly settles back.',
@@ -7079,7 +6939,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-mangrove',
     name: 'Low Poly Mangrove',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly mangrove on arched prop roots, water lapping in rings around them and the canopy swaying; tap it and a fish leaps between the roots with a splash.',
@@ -7098,7 +6958,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-pufferfish',
     name: 'Low Poly Pufferfish',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly pufferfish hovering over a sandy patch with fluttering fins; tap it and it gulps water and puffs into a spiky ball, then slowly deflates.',
@@ -7117,7 +6977,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-seahorse',
     name: 'Low Poly Seahorse',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly seahorse bobbing beside its seagrass, tail curling and uncurling and dorsal fin fluttering; tap it and it spirals round the strand, then settles.',
@@ -7136,7 +6996,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-stag-beetle',
     name: 'Low Poly Stag Beetle',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly stag beetle on a mossy log, antennae twitching, mandibles opening slowly and a step now and then; tap it and it rears up and clacks its mandibles twice.',
@@ -7155,7 +7015,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-toaster',
     name: 'Low Poly Toaster',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly toaster on a cutting board, its slots glowing and heat shimmering up; tap it and the lever snaps up, the toast pops high, tumbles and drops back in.',
@@ -7174,7 +7034,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-teapot',
     name: 'Low Poly Teapot',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly teapot on a tray with a cup and saucer, steam curling from its spout; tap it and it lifts, tilts and pours a stream of tea into the cup, then sets back down with a rattle of its lid.',
@@ -7193,7 +7053,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-gramophone',
     name: 'Low Poly Gramophone',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly gramophone with its record spinning and music notes floating out of the flared horn; tap it and the needle lifts and drops back onto the record with a sparkle and a burst of notes.',
@@ -7212,7 +7072,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-scooter',
     name: 'Low Poly Scooter',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly retro scooter idling on a cobbled street with a little shake and exhaust puffs; tap it and it pulls a wheelie, rolls forward and rolls back to its spot.',
@@ -7231,7 +7091,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-hovercraft',
     name: 'Low Poly Hovercraft',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly hovercraft riding on its air skirt with spray and spinning fans; tap it and it spins on the spot.',
@@ -7250,7 +7110,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-bullet-train',
     name: 'Low Poly Bullet Train',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly bullet train humming at a platform between two tunnels, its lights pulsing and pantograph sparking; tap it and it shoots off in a blur into the far tunnel and glides back out of the near one.',
@@ -7269,7 +7129,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-cable-car',
     name: 'Low Poly Cable Car',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly cable car gliding between two lattice towers over a little alpine valley, its cabin swinging gently on the hanger arm; tap it and it brakes mid-span, the cabin swings like a pendulum, then carries on.',
@@ -7288,7 +7148,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-canal-gondola',
     name: 'Low Poly Canal Gondola',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly Venetian canal: a gondolier in a striped shirt rows a long black gondola as it rocks on the swell; tap it and the gondola straightens up and glides under the little stone bridge (he ducks) and back. The night look reads best on a dark background.',
@@ -7307,7 +7167,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-music-box',
     name: 'Low Poly Music Box',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly music box with its lid open a crack and a tiny ballerina turning on her spring; tap it and the lid swings back, she springs up and spins in a flurry of notes, then the tune winds down.',
@@ -7326,7 +7186,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-clock-tower',
     name: 'Low Poly Clock Tower',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly clock tower on a little town square, with four clock faces whose hands tick round, an open belfry, a weather vane and pigeons on the ledges; tap it and the bell swings and rings out in rings of sound while the pigeons flutter up and circle.',
@@ -7345,7 +7205,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-bakery',
     name: 'Low Poly Bakery',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly bakery shopfront with a striped awning, a window of bread and cakes, warm smoke from the chimney and glowing windows; tap it and the door opens and a fresh loaf slides out on a peel and hops in a puff of flour.',
@@ -7364,7 +7224,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-dragon-egg',
     name: 'Low Poly Dragon Egg Nest',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly spotted dragon egg in a twig nest on a crystal ledge that rocks and glows from within; tap it and it cracks open, the shell lifts away and a tiny dragon pops out, blinks and puffs sparks, then tucks back in.',
@@ -7383,7 +7243,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-fern',
     name: 'Low Poly Fern',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly fern on a mossy mound, its young frond slowly unrolling from a fiddlehead while the others sway; tap it and every frond curls into a spiral, then opens again.',
@@ -7402,7 +7262,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-rock-arch',
     name: 'Low Poly Desert Rock Arch',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly desert rock arch of stacked boulders and a bowed slab, its shadow sweeping across the sand as the sun swings overhead; tap it and a tumbleweed bounces through the gap, kicking up dust.',
@@ -7421,7 +7281,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-ladybug',
     name: 'Low Poly Ladybug',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly ladybug crawling in a slow circle on a big leaf; tap it and its spotted shell opens, its wings buzz, and it flies a loop before landing back.',
@@ -7440,7 +7300,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-pancake-stack',
     name: 'Low Poly Pancake Stack',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly pancake stack on a plate with butter melting on top and syrup dripping down the side; tap it and the top pancake flips high with a spin and lands back with a squash.',
@@ -7459,7 +7319,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-sushi-plate',
     name: 'Low Poly Sushi Plate',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly sushi plate of nigiri, maki rolls, wasabi, ginger and a soy dish that turns slowly; tap it and the chopsticks pick up a piece, dip it in the soy and put it back.',
@@ -7478,7 +7338,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-desk-fan',
     name: 'Low Poly Desk Fan',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly desk fan with spinning blades and a sweeping head beside a stack of papers that ruffle in its breeze; tap it and it kicks up to full speed and the top sheet flies off and flutters back down.',
@@ -7497,7 +7357,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-water-tower',
     name: 'Low Poly Water Tower',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly water tower on four braced legs with a ladder and a slow drip into a puddle; tap it and the tank sloshes while a leak sprays out in an arc.',
@@ -7516,7 +7376,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-beach-huts',
     name: 'Low Poly Beach Huts',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly row of three striped beach huts on the sand by a lapping sea edge, pennants fluttering on their roofs; tap a hut and its door swings open on its hinges, then closes.',
@@ -7535,7 +7395,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-comet',
     name: 'Low Poly Comet',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly comet with a faceted icy head and glowing coma, looping slowly through the stars with curving dust and ion tails; tap it and the tails flare bright and long with a burst of sparkles.',
@@ -7554,7 +7414,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-dandelion',
     name: 'Low Poly Dandelion',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly dandelion clock swaying in a light breeze; tap it and its seeds blow off and drift away on the wind, then a new seed head grows back. The night look glows best on a dark background.',
@@ -7573,7 +7433,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-watermelon',
     name: 'Low Poly Watermelon Slice',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly watermelon slice gently rocking on its rind on a plate; tap it and a scalloped bite vanishes with a squash and a few drops of juice, then it fills back in.',
@@ -7592,7 +7452,7 @@ const ALL_COMPONENTS = [
   {
     slug: 'low-poly-metronome',
     name: 'Low Poly Metronome',
-    category: 'Motion Graphics',
+    category: 'Low Poly 3D',
     style: 'Low poly',
     isNew: true,
     description: 'A low-poly metronome whose arm ticks side to side with a little flash at each end; tap it and the weight slides down to quicken the beat, then slides back and settles.',
@@ -9768,25 +9628,6 @@ const ALL_COMPONENTS = [
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {
-    slug: 'sticky-color',
-    name: 'Sticky Color',
-    category: 'Animation',
-    style: 'Interactive 3D',
-    isNew: true,
-    description: "Copy scrolls past while the pinned bottle takes on each block's colourway, blending smoothly as you go, with the backdrop tinted to match.",
-    controls: [
-      { name: 'colors', type: 'text', default: '#8fa58a, #c4704f, #2f3b52, #e2b33c, #e8e3d8' },
-      { name: 'names', type: 'text', default: 'Sage, Clay, Ink, Sun, Chalk' },
-      { name: 'tint', type: 'range', min: 0, max: 0.6, step: 0.02, default: 0.22 },
-      { name: 'background', type: 'color', default: '#f4f1ea' },
-      { name: 'ink', type: 'color', default: '#1c1a16' },
-    ],
-    preview: (p) => <StickyColor {...p} height="100%" />,
-    fill: true,
-    files: ['StickyColor.jsx', 'ix/StickyColor.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
     slug: 'reading-ring',
     name: 'Reading Ring',
     category: 'Animation',
@@ -10006,58 +9847,6 @@ const ALL_COMPONENTS = [
     deps: [],
   },
   {
-    slug: 'glass-player',
-    name: 'Glass Player',
-    category: 'UI and Backgrounds',
-    style: 'Glassmorphism',
-    isNew: true,
-    description: 'A frosted music player over its own blurred album art, with a glass queue.',
-    controls: [
-      { name: 'blur', type: 'range', min: 4, max: 40, step: 1, default: 18, unit: 'px' },
-      { name: 'frost', type: 'range', min: 0.04, max: 0.4, step: 0.02, default: 0.16 },
-      { name: 'autoplay', type: 'toggle', default: false },
-    ],
-    fill: true,
-    preview: (p) => <GlassPlayer {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['GlassPlayer.jsx'],
-    deps: [],
-  },
-  {
-    slug: 'glass-login',
-    name: 'Glass Login',
-    category: 'UI and Backgrounds',
-    style: 'Glassmorphism',
-    isNew: true,
-    description: 'A frosted sign-in card over a drifting Swiss-style poster.',
-    controls: [
-      { name: 'poster', type: 'select', options: ['vermillion', 'ultramarine', 'mint'], default: 'vermillion' },
-      { name: 'blur', type: 'range', min: 4, max: 40, step: 1, default: 22, unit: 'px' },
-      { name: 'frost', type: 'range', min: 0.04, max: 0.4, step: 0.02, default: 0.18 },
-    ],
-    fill: true,
-    preview: (p) => <GlassLogin {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['GlassLogin.jsx', 'ui/onscreen.js'],
-    deps: [],
-  },
-  {
-    slug: 'glass-finance',
-    name: 'Glass Finance',
-    category: 'UI and Backgrounds',
-    style: 'Glassmorphism',
-    isNew: true,
-    description: 'A dark glass banking app lit by amber and teal light leaks.',
-    controls: [
-      { name: 'glowA', type: 'color', default: '#ffb547' },
-      { name: 'glowB', type: 'color', default: '#2dd4bf' },
-      { name: 'blur', type: 'range', min: 4, max: 40, step: 1, default: 20, unit: 'px' },
-      { name: 'frost', type: 'range', min: 0.02, max: 0.3, step: 0.02, default: 0.08 },
-    ],
-    fill: true,
-    preview: (p) => <GlassFinance {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['GlassFinance.jsx', 'ui/onscreen.js'],
-    deps: [],
-  },
-  {
     slug: 'glass-desktop',
     name: 'Glass Desktop',
     category: 'UI and Backgrounds',
@@ -10251,39 +10040,6 @@ const ALL_COMPONENTS = [
     deps: [],
   },
   {
-    slug: 'liquid-lens',
-    name: 'Liquid Lens',
-    category: 'UI and Backgrounds',
-    style: 'Liquid glass',
-    isNew: true,
-    description: 'A product viewer with a draggable glass lens, glass colour beads and a thick glass spec panel.',
-    controls: [
-      { name: 'zoom', type: 'range', min: 1.1, max: 3, step: 0.1, default: 1.8, unit: '×' },
-      { name: 'strength', type: 'range', min: 0, max: 180, step: 5, default: 90 },
-      { name: 'lensSize', type: 'range', min: 90, max: 240, step: 10, default: 150, unit: 'px' },
-    ],
-    fill: true,
-    preview: (p) => <LiquidLens {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['LiquidLens.jsx', 'liquid/lens.js'],
-    deps: [],
-  },
-  {
-    slug: 'liquid-media',
-    name: 'Liquid Media Controls',
-    category: 'UI and Backgrounds',
-    style: 'Liquid glass',
-    isNew: true,
-    description: 'Glass bubble video controls with a droplet scrubber over a living scene.',
-    controls: [
-      { name: 'strength', type: 'range', min: 0, max: 140, step: 5, default: 70 },
-      { name: 'autoHide', type: 'toggle', default: true },
-    ],
-    fill: true,
-    preview: (p) => <LiquidMedia {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['LiquidMedia.jsx', 'liquid/lens.js'],
-    deps: [],
-  },
-  {
     slug: 'liquid-hero',
     name: 'Liquid Hero',
     category: 'UI and Backgrounds',
@@ -10319,22 +10075,6 @@ const ALL_COMPONENTS = [
     deps: [],
   },
   {
-    slug: 'bento-portfolio',
-    name: 'Bento Portfolio',
-    category: 'UI and Backgrounds',
-    style: 'Bento',
-    isNew: true,
-    description: 'A link-in-bio bento: portrait, bio, project, now playing, map and socials.',
-    controls: [
-      { name: 'name', type: 'text', default: 'Lena Ortiz' },
-      { name: 'accent', type: 'color', default: '#ff7a45' },
-    ],
-    fill: true,
-    preview: (p) => <BentoPortfolio {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['BentoPortfolio.jsx', 'ui/onscreen.js'],
-    deps: [],
-  },
-  {
     slug: 'bento-analytics',
     name: 'Bento Analytics',
     category: 'UI and Backgrounds',
@@ -10363,43 +10103,6 @@ const ALL_COMPONENTS = [
     fill: true,
     preview: (p) => <BentoHome {...p} style={{ position: 'absolute', inset: 0 }} />,
     files: ['BentoHome.jsx'],
-    deps: [],
-  },
-  {
-    slug: 'ai-landing',
-    name: 'AI Landing Page',
-    category: 'UI and Backgrounds',
-    style: 'Glassmorphism',
-    isNew: true,
-    description: 'A complete landing page for a fictional AI studio, in one scrolling component: a melting glow behind a headline that sharpens out of blur, a glass prompt box that types out ideas and "generates" artwork, a statement that lights up as you scroll, a depth gallery whose cards drift and blur in and out of focus, draggable steps, benchmark bars that count up, a testimonial slider, pricing with a monthly/yearly switch, an FAQ and a waitlist form.',
-    controls: [
-      { name: 'brand', type: 'text', default: 'Lumo' },
-      { name: 'theme', type: 'select', options: ['dark', 'light'], default: 'dark' },
-      { name: 'accent', type: 'color', default: '#7c5cff' },
-    ],
-    fill: true,
-    // the demo's gallery shows the library's own scenes; by default the page draws its own artwork
-    preview: (p) => (
-      <AiLanding
-        {...p}
-        images={[
-          ['river-valley', 'Valley'],
-          ['downtown', 'Downtown'],
-          ['low-poly-aurora-hills', 'Aurora'],
-          ['companion-robot', 'Companion'],
-          ['low-poly-tiny-planet', 'Tiny Planet'],
-          ['low-poly-homestead', 'Homestead'],
-          ['low-poly-space-station', 'Orbit'],
-          ['forest-valley', 'Forest'],
-          ['low-poly-haunted-house', 'Haunted'],
-          ['low-poly-jellyfish', 'Jellyfish'],
-          ['low-poly-steam-train', 'Steam Train'],
-          ['low-poly-lion', 'Lion'],
-        ].map(([slug, title]) => ({ src: `/previews/${slug}.jpg`, alt: `${title}, a React Dimensions scene`, title }))}
-        style={{ position: 'absolute', inset: 0 }}
-      />
-    ),
-    files: ['AiLanding.jsx'],
     deps: [],
   },
   {
@@ -10533,26 +10236,6 @@ const ALL_COMPONENTS = [
     deps: [],
   },
   {
-    slug: 'head-parallax',
-    name: 'Head Parallax',
-    category: 'Animation',
-    isNew: true,
-    description: 'A layered window scene whose view shifts with your viewpoint, driven by the pointer by default. An optional Use camera button tracks your head on-device (nothing recorded or sent) for a real parallax window.',
-    controls: [
-      { name: 'strength', type: 'range', min: 0.2, max: 2.5, step: 0.1, default: 1 },
-      { name: 'smoothing', type: 'range', min: 0, max: 0.97, step: 0.01, default: 0.85 },
-      { name: 'mirror', type: 'toggle', default: false },
-      { name: 'skyColor', type: 'color', default: '#f6c58f' },
-      { name: 'farColor', type: 'color', default: '#c98a8f' },
-      { name: 'nearColor', type: 'color', default: '#2b3a55' },
-      { name: 'accent', type: 'color', default: '#ff4d1a' },
-    ],
-    fill: true,
-    preview: (p) => <HeadParallax {...p} style={{ position: 'absolute', inset: 0, height: 'auto' }} />,
-    files: ['HeadParallax.jsx'],
-    deps: [],
-  },
-  {
     slug: 'hotkey-hints',
     name: 'Hotkey Hints',
     category: 'Animation',
@@ -10566,23 +10249,6 @@ const ALL_COMPONENTS = [
     fill: true,
     preview: (p) => <HotkeyHints {...p} style={{ position: 'absolute', inset: 0 }} />,
     files: ['HotkeyHints.jsx'],
-    deps: [],
-  },
-  {
-    slug: 'idle-attract',
-    name: 'Idle Attract',
-    category: 'Animation',
-    isNew: true,
-    description: 'A retro gadget with a knob, lid and button. Leave it alone and it performs a short demo with a hopping highlight ring; any input hands control back and the parts ease to your settings.',
-    controls: [
-      { name: 'idleSeconds', type: 'range', min: 2, max: 30, step: 1, default: 5, unit: 's' },
-      { name: 'speed', type: 'range', min: 0.5, max: 2.5, step: 0.1, default: 1, unit: 'x' },
-      { name: 'showCountdown', type: 'toggle', default: true },
-      { name: 'accent', type: 'color', default: '#ff4d1a' },
-    ],
-    fill: true,
-    preview: (p) => <IdleAttract {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['IdleAttract.jsx'],
     deps: [],
   },
   {
@@ -10786,46 +10452,6 @@ const ALL_COMPONENTS = [
     deps: [],
   },
   {
-    slug: 'nudge-part',
-    name: 'Nudge Part',
-    category: 'Animation',
-    style: 'Interactive 3D',
-    isNew: true,
-    description: 'Select a part of a toy robot and nudge it with the keyboard: arrows for X/Z, PageUp/PageDown for Y, Shift for five units, Backspace to reset. A readout shows the part and its position in units.',
-    controls: [
-      { name: 'unit', type: 'range', min: 0.05, max: 0.5, step: 0.05, default: 0.25 },
-      { name: 'bodyColor', type: 'color', default: '#e8e4da' },
-      { name: 'accentColor', type: 'color', default: '#ff4d1a' },
-      { name: 'highlightColor', type: 'color', default: '#22c1ff' },
-      { name: 'showGrid', type: 'toggle', default: true },
-      { name: 'autoRotate', type: 'toggle', default: false },
-    ],
-    preview: (p) => <NudgePart {...p} height="100%" />,
-    fill: true,
-    files: ['NudgePart.jsx', 'ix/NudgePart.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
-    slug: 'pinch-twist',
-    name: 'Pinch Twist',
-    category: 'Animation',
-    style: 'Interactive 3D',
-    isNew: true,
-    description: 'Pinch two fingers to zoom a smart speaker and twist them to rotate it. Mouse wheel, drag and on-screen +/- and rotate buttons cover desktop; double-tap resets.',
-    controls: [
-      { name: 'bodyColor', type: 'color', default: '#6f7c93' },
-      { name: 'accentColor', type: 'color', default: '#d9a441' },
-      { name: 'glowColor', type: 'color', default: '#ff4d1a' },
-      { name: 'floorColor', type: 'color', default: '#d9d4cb' },
-      { name: 'minZoom', type: 'range', min: 0.3, max: 1, step: 0.1, default: 0.5 },
-      { name: 'maxZoom', type: 'range', min: 1.5, max: 4, step: 0.5, default: 2.5 },
-    ],
-    preview: (p) => <PinchTwist {...p} height="100%" />,
-    fill: true,
-    files: ['PinchTwist.jsx', 'ix/PinchTwist.jsx'],
-    deps: ['three', '@react-three/fiber', '@react-three/drei'],
-  },
-  {
     slug: 'presence-cursors',
     name: 'Presence Cursors',
     category: 'Animation',
@@ -10840,41 +10466,6 @@ const ALL_COMPONENTS = [
     fill: true,
     preview: (p) => <PresenceCursors {...p} style={{ position: 'absolute', inset: 0 }} />,
     files: ['PresenceCursors.jsx'],
-    deps: [],
-  },
-  {
-    slug: 'record-replay',
-    name: 'Record Replay',
-    category: 'Animation',
-    isNew: true,
-    description: 'Record a short clip of interactions (ball drags, toggles, colour picks), then replay it with a ghost cursor at 0.5x/1x/2x, loop it, scrub the timeline, and copy or paste the clip as JSON.',
-    controls: [
-      { name: 'maxSeconds', type: 'range', min: 2, max: 30, step: 1, default: 10, unit: 's' },
-      { name: 'defaultSpeed', type: 'select', options: ['0.5x', '1x', '2x'], default: '1x' },
-      { name: 'accent', type: 'color', default: '#ff4d1a' },
-      { name: 'showGhost', type: 'toggle', default: true },
-    ],
-    fill: true,
-    preview: (p) => <RecordReplay {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['RecordReplay.jsx'],
-    deps: [],
-  },
-  {
-    slug: 'shake-reset',
-    name: 'Shake Reset',
-    category: 'Animation',
-    isNew: true,
-    description: 'A snow globe that swirls when you shake your phone, shake the mouse, press S or hit Shake, then settles. Three settings beside it glide back to their defaults on every shake.',
-    controls: [
-      { name: 'flakes', type: 'range', min: 40, max: 400, step: 10, default: 160 },
-      { name: 'sensitivity', type: 'range', min: 0.5, max: 2, step: 0.1, default: 1 },
-      { name: 'accent', type: 'color', default: '#ff4d1a' },
-      { name: 'snowColor', type: 'color', default: '#ffffff' },
-      { name: 'bgColor', type: 'color', default: '#1d2b4f' },
-    ],
-    fill: true,
-    preview: (p) => <ShakeReset {...p} style={{ position: 'absolute', inset: 0, height: 'auto' }} />,
-    files: ['ShakeReset.jsx'],
     deps: [],
   },
   {
@@ -11770,22 +11361,6 @@ const ALL_COMPONENTS = [
     deps: [],
   },
   {
-    slug: 'bento-specs',
-    name: 'Bento Specs',
-    category: 'UI and Backgrounds',
-    style: 'Bento',
-    isNew: true,
-    description: 'A product spec bento with animated numbers, model switcher and compare drawer.',
-    controls: [
-      { name: 'product', type: 'text', default: 'Nova' },
-      { name: 'accent', type: 'color', default: '#ff9f43' },
-    ],
-    fill: true,
-    preview: (p) => <BentoSpecs {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['BentoSpecs.jsx'],
-    deps: [],
-  },
-  {
     slug: 'max-festival',
     name: 'Max Festival',
     category: 'UI and Backgrounds',
@@ -11801,23 +11376,6 @@ const ALL_COMPONENTS = [
     fill: true,
     preview: (p) => <MaxFestival {...p} style={{ position: 'absolute', inset: 0 }} />,
     files: ['MaxFestival.jsx', 'ui/onscreen.js'],
-    deps: [],
-  },
-  {
-    slug: 'max-drop',
-    name: 'Max Drop',
-    category: 'UI and Backgrounds',
-    style: 'Maximalism',
-    isNew: true,
-    description: 'A streetwear drop page with a countdown, loud size grid and a shaking cop button.',
-    controls: [
-      { name: 'product', type: 'text', default: 'NO SLEEP HOODIE' },
-      { name: 'price', type: 'range', min: 40, max: 400, step: 5, default: 140, unit: '$' },
-      { name: 'startsIn', type: 'range', min: 0, max: 60, step: 1, default: 12, unit: 's' },
-    ],
-    fill: true,
-    preview: (p) => <MaxDrop {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['MaxDrop.jsx', 'ui/onscreen.js'],
     deps: [],
   },
   {
@@ -11849,22 +11407,6 @@ const ALL_COMPONENTS = [
     fill: true,
     preview: (p) => <MaxKids {...p} style={{ position: 'absolute', inset: 0 }} />,
     files: ['MaxKids.jsx'],
-    deps: [],
-  },
-  {
-    slug: 'max-profile',
-    name: 'Max Profile',
-    category: 'UI and Backgrounds',
-    style: 'Maximalism',
-    isNew: true,
-    description: 'An early-web style creator page with links, guestbook, top friends and a visitor counter.',
-    controls: [
-      { name: 'handle', type: 'text', default: 'pixiewav' },
-      { name: 'bg', type: 'color', default: '#160b2e' },
-    ],
-    fill: true,
-    preview: (p) => <MaxProfile {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['MaxProfile.jsx', 'ui/onscreen.js'],
     deps: [],
   },
   {
@@ -11960,21 +11502,6 @@ const ALL_COMPONENTS = [
     files: ['SkeuDelay.jsx', 'ui/dial.js'],
     deps: [],
   },
-  {
-    slug: 'skeu-calendar',
-    name: 'Skeu Calendar',
-    category: 'UI and Backgrounds',
-    style: 'Skeuomorphism',
-    isNew: true,
-    description: 'A tear-off desk calendar with ring-binder Day/Week/Month tabs, a DONE rubber stamp and a corkboard of sticky notes.',
-    controls: [
-
-    ],
-    fill: true,
-    preview: (p) => <SkeuCalendar {...p} style={{ position: 'absolute', inset: 0 }} />,
-    files: ['SkeuCalendar.jsx'],
-    deps: [],
-  },
   icon(HomeIcon, 'HomeIcon.jsx', 'home', 'Home', 'A house outline icon.'),
   icon(SearchIcon, 'SearchIcon.jsx', 'search', 'Search', 'A magnifying-glass search icon.'),
   icon(HeartIcon, 'HeartIcon.jsx', 'heart', 'Heart', 'A heart outline icon.'),
@@ -11998,7 +11525,7 @@ const ALL_COMPONENTS = [
 ]
 
 // What the site shows: everything except the hidden categories.
-export const COMPONENTS = ALL_COMPONENTS.filter((c) => !HIDDEN_CATEGORIES.includes(c.category) && !HIDDEN_COMPONENTS.includes(c.slug))
+export const COMPONENTS = ALL_COMPONENTS.filter((c) => !HIDDEN_CATEGORIES.includes(c.category) && !HIDDEN_COMPONENTS.includes(c.slug)).map((c) => (SECTION_NAMES[c.category] ? { ...c, style: sectionOf(c) } : c))
 
 // Components that take children, so usage shows them as wrappers.
 export const WRAPPERS = ['TiltCard', 'DraftingGrid', 'SpringButton', 'MagneticButton']

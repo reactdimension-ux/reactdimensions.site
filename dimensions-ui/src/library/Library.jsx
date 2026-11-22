@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
+import { PHONE_STYLES, SECTION_NAMES } from './sections.js'
 import { CATEGORIES, COMPONENTS, UI_STYLES, ICON_STYLES, OBJECT_STYLES, SCENE_STYLES, defaultsFor, loadSources, sourceFor, sourcesLoaded, usageFor, valueControls } from './registry.jsx'
 import { highlight } from './highlight.js'
 import { markdownFor, openPromptFor, promptFor, sourceText, typesFor } from './ai.js'
@@ -16,7 +17,7 @@ const CAT_ICON = {
   'Phone UI': <path d="M6.5 2.5h7a1.5 1.5 0 0 1 1.5 1.5v12a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 5 16V4a1.5 1.5 0 0 1 1.5-1.5zM8.5 4.5h3M9.5 15h1" />,
   '3D & Materials': <path d="M10 2.5 16.5 6v8L10 17.5 3.5 14V6zM10 10 3.5 6M10 10l6.5-4M10 10v7.5" />,
   // a ball moving with speed lines trailing behind it
-  'Motion Graphics': <path d="M11.5 10a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0-7 0zM2.5 7h6M4.5 10h4.5M2.5 13h6" />,
+  'Low Poly 3D': <path d="M11.5 10a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0-7 0zM2.5 7h6M4.5 10h4.5M2.5 13h6" />,
   // a person: head and shoulders
   Characters: <path d="M6.8 6.5a3.2 3.2 0 1 0 6.4 0a3.2 3.2 0 1 0-6.4 0zM3.5 17c0-3.400 2.900-5.600 6.500-5.600s6.500 2.200 6.500 5.600" />,
   // a landscape: sun over two hills
@@ -65,7 +66,7 @@ function SourceFiles({ comp }) {
 }
 
 // Categories whose pages are split into sections.
-const SECTIONS = { 'UI and Backgrounds': UI_STYLES, '3D & Materials': OBJECT_STYLES, 'Scenes & Assets': SCENE_STYLES, 'Icons & Emojis': ICON_STYLES }
+const SECTIONS = { 'UI and Backgrounds': UI_STYLES, 'Phone UI': PHONE_STYLES, '3D & Materials': OBJECT_STYLES, 'Scenes & Assets': SCENE_STYLES, 'Icons & Emojis': ICON_STYLES, ...SECTION_NAMES }
 
 const COMING_SOON = ['Characters', 'Icons & Emojis']
 
@@ -460,7 +461,6 @@ function Sidebar({ active, open, onClose, favs, category }) {
                   onBlur={() => setHover(null)}
                 >
                   {c.name}
-                  {c.isNew && <span className="badge">New</span>}
                 </Link>
               ))}
                 </div>
@@ -627,7 +627,6 @@ export function CategoryPage() {
               )}
               <strong>
                 {c.name}
-                {c.isNew && <span className="badge">New</span>}
               </strong>
               {c.category !== 'Icons & Emojis' && <small>{c.style ? `${c.category} · ${c.style}` : c.category}</small>}
             </Link>
@@ -705,8 +704,11 @@ export default function Library() {
   // Values from the previous component can linger for one render after navigation.
   const props = { ...defaultsFor(comp), ...Object.fromEntries(Object.entries(values).filter(([k]) => valueControls(comp).some((c) => c.name === k))) }
   const vc = valueControls(comp)
-  const prev = COMPONENTS[index - 1]
-  const next = COMPONENTS[index + 1]
+  // previous / next stay inside this component's own section, in library order
+  const section = COMPONENTS.filter((c) => c.category === comp.category)
+  const at = section.findIndex((c) => c.slug === comp.slug)
+  const prev = section[at - 1]
+  const next = section[at + 1]
   const changed = vc.some((c) => props[c.name] !== c.default)
   const related = [...COMPONENTS.filter((c) => c.category === comp.category && c.slug !== slug), ...COMPONENTS.filter((c) => c.category !== comp.category && c.slug !== slug)].slice(0, 3)
   const ts = lang === 'ts'
@@ -745,7 +747,6 @@ export default function Library() {
         </div>
         <h1 className="lib-title">
           {comp.name}
-          {comp.isNew && <span className="badge badge-lg">New</span>}
         </h1>
         <p className="lib-desc">{comp.description}</p>
 
@@ -907,7 +908,6 @@ export default function Library() {
                 <span className="rel-cat">{c.category}</span>
                 <strong>
                   {c.name}
-                  {c.isNew && <span className="badge">New</span>}
                 </strong>
                 <small>{c.description.length > 96 ? `${c.description.slice(0, 96)}…` : c.description}</small>
               </Link>

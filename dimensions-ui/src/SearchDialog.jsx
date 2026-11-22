@@ -73,7 +73,6 @@ export default function SearchDialog({ open, onClose }) {
                         {c.name}
                         <small>{c.description.length > 86 ? `${c.description.slice(0, 86)}…` : c.description}</small>
                       </span>
-                      {c.isNew && <span className="badge">New</span>}
                     </button>
                   )
                 })}
