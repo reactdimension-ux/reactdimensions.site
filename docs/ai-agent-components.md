@@ -1,6 +1,21 @@
 # AI Agents: Component Ideas and How to Build Them
 
-A plan for the **AI Agents** section of the library. The first component, **Thinking Indicator**, is already built (`dimensions-ui/src/lib/ThinkingIndicator.jsx`). This file lists 40 more, then explains how to build one, step by step.
+A plan for the **AI Agents** section of the library. **42 components are built and registered** (see Status below). This file lists the 40 planned ideas, marks which are done, then explains how to build one, step by step.
+
+## Status
+
+**Built (all 40, plus one extra):**
+
+| Group | Built |
+|-------|-------|
+| Status & thinking | Thinking Indicator (#1), Streaming Text (#2), Reasoning Panel (#4), Step Timeline (#5), Progress Checklist (#6), Token Counter (#7), Elapsed Timer (#8), Status Pill (#9), Context Meter (#10) |
+| Conversation | Chat Bubbles (#11), Prompt Box (#12), Suggestion Chips (#13), Message Actions (#14), Citation Pills (#15), Voice Orb (#16), Attachment Chips (#17), Model Picker (#18), Conversation List (#19), Feedback Bar (#20), Typing Indicator (extra, not in the list) |
+| Agent at work | **Agent Console** (the combined demo), Tool Call Card (#3), Terminal Log (#21), Code Diff (#22), File Tree Activity (#23), Browser Agent (#24), Approval Prompt (#25), Sub-agent Graph (#26), Memory Recall (#27), Search Results Stream (#28), Plan Editor (#29), Run History (#30) |
+| Playful & 3D | Agent Avatar (#31), Neural Pulse (#32), Robot Helper (#33), Thought Bubbles (#34), Orbiting Tools (#35), Loading Skeleton (#36), Error Recovery (#37), Confidence Gauge (#38), Handoff Banner (#39), Agent Roster (#40) |
+
+All live in `dimensions-ui/src/lib/` and are registered in `src/library/registry.jsx` under `category: 'AI Agents'`. The sidebar is already split into the four groups in `src/library/sections.js`; empty groups stay hidden.
+
+Every idea in the list is now built, and so is the **Agent Console** demo that combines several of them (`AgentConsole.jsx`, first in the Agent at work group). Ideas for what to add next: more variants of the busiest components (Thinking Indicator, Tool Call Card), or putting the console on the landing page carousel.
 
 Each idea has a one-line **What**, and where it helps, a **Build note** on the one thing that is tricky about it.
 
@@ -13,70 +28,70 @@ Each idea has a one-line **What**, and where it helps, a **Build note** on the o
 | # | Component | What | Build note |
 |---|-----------|------|------------|
 | 1 | **Thinking Indicator** (built) | Glyph that grows and shrinks beside a shimmering word: "Marinating…" | `setInterval` over glyph frames; background-clip text for the shimmer |
-| 2 | **Streaming Text** | A reply typed out word by word with a blinking cursor | Reveal tokens on a timer; keep the cursor as its own element so it never reflows |
-| 3 | **Tool Call Card** | "Running search…" row that turns into a tick or cross | A `status` prop: `running`, `done`, `error`; animate the icon swap |
-| 4 | **Reasoning Panel** | Collapsible "Thought for 8s" box that opens to show the steps | Animate height with `grid-template-rows: 0fr → 1fr`, no measuring needed |
-| 5 | **Step Timeline** | A plan of steps ticking off one by one, current step pulsing | Array of steps plus an `active` index; draw the connector line with a pseudo-element |
-| 6 | **Progress Checklist** | A todo list that updates live as the agent works | Controlled list; strike-through animates with a growing background gradient |
-| 7 | **Token Counter** | A number that counts up with a small cost readout | `requestAnimationFrame` easing; format with `Intl.NumberFormat` |
-| 8 | **Elapsed Timer** | "12s · esc to interrupt" that ticks while working | One interval; stop it when `running` is false |
-| 9 | **Status Pill** | Idle / Thinking / Working / Done as a small pill with a colour dot | Map status to colour in one object; pulse the dot only while active |
-| 10 | **Context Meter** | A bar showing how much of the context window is used | Threshold colours: green, amber, red; animate width with a transition |
+| 2 | **Streaming Text** (built) | A reply typed out word by word with a blinking cursor | Reveal tokens on a timer; keep the cursor as its own element so it never reflows |
+| 3 | **Tool Call Card** (built) | "Running search…" row that turns into a tick or cross | A `status` prop: `running`, `done`, `error`; animate the icon swap |
+| 4 | **Reasoning Panel** (built) | Collapsible "Thought for 8s" box that opens to show the steps | Animate height with `grid-template-rows: 0fr → 1fr`, no measuring needed |
+| 5 | **Step Timeline** (built) | A plan of steps ticking off one by one, current step pulsing | Array of steps plus an `active` index; draw the connector line with a pseudo-element |
+| 6 | **Progress Checklist** (built) | A todo list that updates live as the agent works | Controlled list; strike-through animates with a growing background gradient |
+| 7 | **Token Counter** (built) | A number that counts up with a small cost readout | `requestAnimationFrame` easing; format with `Intl.NumberFormat` |
+| 8 | **Elapsed Timer** (built) | "12s · esc to interrupt" that ticks while working | One interval; stop it when `running` is false |
+| 9 | **Status Pill** (built) | Idle / Thinking / Working / Done as a small pill with a colour dot | Map status to colour in one object; pulse the dot only while active |
+| 10 | **Context Meter** (built) | A bar showing how much of the context window is used | Threshold colours: green, amber, red; animate width with a transition |
 
 ### B. Conversation
 
 | # | Component | What | Build note |
 |---|-----------|------|------------|
-| 11 | **Chat Bubbles** | User and agent messages with a "typing…" bubble | Three dots with staggered `animation-delay`; align by role |
-| 12 | **Prompt Box** | Text input with send, attach and mic, and a slash-command menu | Auto-growing `textarea`; open the menu when the line starts with `/` |
-| 13 | **Suggestion Chips** | Quick replies that appear under a message | Stagger entrance with an index-based delay |
-| 14 | **Message Actions** | Copy, regenerate, thumbs up and down, shown on hover | Show on `:hover` and `:focus-within` so keyboard users get them too |
-| 15 | **Citation Pills** | Numbered source links inline, with a preview card on hover | Render the text as parts; position the card with CSS anchor or a small portal |
-| 16 | **Voice Orb** | A pulsing orb that reacts to speaking or listening | Drive scale from an `amplitude` prop; fake it with noise when there is no audio |
-| 17 | **Attachment Chips** | Files added to a prompt, with a remove button and a progress ring | SVG circle with `stroke-dashoffset` for the ring |
-| 18 | **Model Picker** | A dropdown of models with speed and cost tags | Native `select` styled, or a listbox with arrow-key support |
-| 19 | **Conversation List** | A sidebar of past chats with search and a new-chat button | Filter in memory; group by Today / Yesterday / Earlier |
-| 20 | **Feedback Bar** | "Was this helpful?" that expands into a reason picker | Two-step state: `idle → reasons → thanks` |
+| 11 | **Chat Bubbles** (built) | User and agent messages with a "typing…" bubble | Three dots with staggered `animation-delay`; align by role |
+| 12 | **Prompt Box** (built) | Text input with send, attach and mic, and a slash-command menu | Auto-growing `textarea`; open the menu when the line starts with `/` |
+| 13 | **Suggestion Chips** (built) | Quick replies that appear under a message | Stagger entrance with an index-based delay |
+| 14 | **Message Actions** (built) | Copy, regenerate, thumbs up and down, shown on hover | Show on `:hover` and `:focus-within` so keyboard users get them too |
+| 15 | **Citation Pills** (built) | Numbered source links inline, with a preview card on hover | Render the text as parts; position the card with CSS anchor or a small portal |
+| 16 | **Voice Orb** (built) | A pulsing orb that reacts to speaking or listening | Drive scale from an `amplitude` prop; fake it with noise when there is no audio |
+| 17 | **Attachment Chips** (built) | Files added to a prompt, with a remove button and a progress ring | SVG circle with `stroke-dashoffset` for the ring |
+| 18 | **Model Picker** (built) | A dropdown of models with speed and cost tags | Native `select` styled, or a listbox with arrow-key support |
+| 19 | **Conversation List** (built) | A sidebar of past chats with search and a new-chat button | Filter in memory; group by Today / Yesterday / Earlier |
+| 20 | **Feedback Bar** (built) | "Was this helpful?" that expands into a reason picker | Two-step state: `idle → reasons → thanks` |
 
 ### C. The agent at work
 
 | # | Component | What | Build note |
 |---|-----------|------|------------|
-| 21 | **Terminal Log** | A scrolling command log with coloured output | Append lines on a timer; keep scrolled to the bottom unless the user scrolls up |
-| 22 | **Code Diff** | Added and removed lines animating in, with Accept and Reject | Split lines by prefix `+` / `-`; fade each line in with a stagger |
-| 23 | **File Tree Activity** | Files lighting up as the agent reads or edits them | Nested list; a `events` prop of `{path, type}` flashes the matching row |
-| 24 | **Browser Agent** | A mock browser where a cursor clicks and types by itself | Script of `{x, y, action}` steps; animate the cursor with CSS transitions |
-| 25 | **Approval Prompt** | "Allow this action?" with Allow, Deny, Always allow | A real `dialog`; return the choice through an `onChoose` callback |
-| 26 | **Sub-agent Graph** | Nodes for several agents that light up as work passes between them | SVG nodes and edges; animate a dot along each edge with `offset-path` |
-| 27 | **Memory Recall** | Small "remembered" cards fading in beside a message | Absolutely positioned cards with a delayed fade and small drift |
-| 28 | **Search Results Stream** | Result cards that appear one at a time as the agent finds them | Append to an array; use `layout` animation or a simple translate-in |
-| 29 | **Plan Editor** | An editable plan: reorder, remove, add steps before running | Drag-to-reorder with pointer events; reuse the `Drag Reorder` component's logic |
-| 30 | **Run History** | A list of past runs with duration, status and cost | Table with sortable columns; status uses the Status Pill |
+| 21 | **Terminal Log** (built) | A scrolling command log with coloured output | Append lines on a timer; keep scrolled to the bottom unless the user scrolls up |
+| 22 | **Code Diff** (built) | Added and removed lines animating in, with Accept and Reject | Split lines by prefix `+` / `-`; fade each line in with a stagger |
+| 23 | **File Tree Activity** (built) | Files lighting up as the agent reads or edits them | Nested list; a `events` prop of `{path, type}` flashes the matching row |
+| 24 | **Browser Agent** (built) | A mock browser where a cursor clicks and types by itself | Script of `{x, y, action}` steps; animate the cursor with CSS transitions |
+| 25 | **Approval Prompt** (built) | "Allow this action?" with Allow, Deny, Always allow | A real `dialog`; return the choice through an `onChoose` callback |
+| 26 | **Sub-agent Graph** (built) | Nodes for several agents that light up as work passes between them | SVG nodes and edges; animate a dot along each edge with `offset-path` |
+| 27 | **Memory Recall** (built) | Small "remembered" cards fading in beside a message | Absolutely positioned cards with a delayed fade and small drift |
+| 28 | **Search Results Stream** (built) | Result cards that appear one at a time as the agent finds them | Append to an array; use `layout` animation or a simple translate-in |
+| 29 | **Plan Editor** (built) | An editable plan: reorder, remove, add steps before running | Drag-to-reorder with pointer events; reuse the `Drag Reorder` component's logic |
+| 30 | **Run History** (built) | A list of past runs with duration, status and cost | Table with sortable columns; status uses the Status Pill |
 
 ### D. Playful and 3D
 
 | # | Component | What | Build note |
 |---|-----------|------|------------|
-| 31 | **Agent Avatar** | A face or orb that changes between idle, thinking and done | One SVG; swap eye and mouth paths per state with a transition |
-| 32 | **Neural Pulse** | A node network with light travelling through it | Canvas 2D; nodes in a grid, pulses move along random edges |
-| 33 | **Robot Helper (3D)** | A low-poly robot that nods while thinking and waves when done | Reuse the Low Poly 3D scene setup; drive limbs from `state` in `useFrame` |
-| 34 | **Thought Bubbles** | Little bubbles rising from an avatar while it thinks | Spawn and remove bubbles with CSS animation and an `animationend` handler |
-| 35 | **Orbiting Tools** | Tool icons orbiting a central agent; the active tool glows | Rotate a wrapper; counter-rotate each icon so it stays upright |
-| 36 | **Loading Skeleton** | Placeholder lines shaped like an agent reply | Gradient sweep, same trick as the Thinking Indicator shimmer |
-| 37 | **Error Recovery** | "That didn't work, trying another way…" with a retry counter | State machine: `trying → failed → retrying → ok` |
-| 38 | **Confidence Gauge** | A dial showing how sure the agent is | SVG arc with `stroke-dasharray`; needle eased with a spring |
-| 39 | **Handoff Banner** | "Passing you to a human" with a connecting animation | Two avatars and an animated line between them |
-| 40 | **Agent Roster** | A grid of agent cards with role, status and a tiny sparkline | Card grid; sparkline is a single SVG polyline |
+| 31 | **Agent Avatar** (built) | A face or orb that changes between idle, thinking and done | One SVG; swap eye and mouth paths per state with a transition |
+| 32 | **Neural Pulse** (built) | A node network with light travelling through it | Canvas 2D; nodes in a grid, pulses move along random edges |
+| 33 | **Robot Helper (3D)** (built) | A low-poly robot that nods while thinking and waves when done | Reuse the Low Poly 3D scene setup; drive limbs from `state` in `useFrame` |
+| 34 | **Thought Bubbles** (built) | Little bubbles rising from an avatar while it thinks | Spawn and remove bubbles with CSS animation and an `animationend` handler |
+| 35 | **Orbiting Tools** (built) | Tool icons orbiting a central agent; the active tool glows | Rotate a wrapper; counter-rotate each icon so it stays upright |
+| 36 | **Loading Skeleton** (built) | Placeholder lines shaped like an agent reply | Gradient sweep, same trick as the Thinking Indicator shimmer |
+| 37 | **Error Recovery** (built) | "That didn't work, trying another way…" with a retry counter | State machine: `trying → failed → retrying → ok` |
+| 38 | **Confidence Gauge** (built) | A dial showing how sure the agent is | SVG arc with `stroke-dasharray`; needle eased with a spring |
+| 39 | **Handoff Banner** (built) | "Passing you to a human" with a connecting animation | Two avatars and an animated line between them |
+| 40 | **Agent Roster** (built) | A grid of agent cards with role, status and a tiny sparkline | Card grid; sparkline is a single SVG polyline |
 
 ### Best first batch
 
 Pick these five first. They look good on a page, and each shows a different part of what an agent does:
 
-1. **Streaming Text** (the thing everyone expects)
-2. **Tool Call Card** (shows work being done)
-3. **Step Timeline** (shows a plan)
-4. **Approval Prompt** (shows control)
-5. **Voice Orb** (the most eye-catching)
+1. **Streaming Text** (built)
+2. **Tool Call Card** (built)
+3. **Step Timeline** (built)
+4. **Approval Prompt** (built)
+5. **Voice Orb** (built)
 
 ### Suggested sections inside AI Agents
 
@@ -283,4 +298,4 @@ So the AI Agents components feel like one family:
 5. Agent Avatar, Neural Pulse (for the playful end)
 6. Robot Helper (3D), Sub-agent Graph (the showpieces)
 
-Once five or six exist, add an **Agent Console** demo that combines them (prompt box, streaming reply, tool calls, step timeline and approval prompt in one window). It is the best single thing to put on the landing page carousel for this section.
+The **Agent Console** is built: one self-contained file that plays a whole session on a loop (task typed into a prompt box, thinking line, step timeline, tool calls, an approval prompt you can click, and a streamed reply, with status pill, timer and token count in the header). It is the best single thing to put on the landing page carousel for this section.

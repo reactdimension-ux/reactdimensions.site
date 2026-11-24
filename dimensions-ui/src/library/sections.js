@@ -18,7 +18,7 @@ const ANIMATION = [
 const AGENTS = [
   group('Status & thinking', ['thinking-indicator', 'streaming-text', 'reasoning-panel', 'step-timeline', 'progress-checklist', 'token-counter', 'elapsed-timer', 'status-pill', 'context-meter']),
   group('Conversation', ['chat-bubbles', 'typing-indicator', 'prompt-box', 'suggestion-chips', 'message-actions', 'citation-pills', 'voice-orb', 'attachment-chips', 'model-picker', 'conversation-list', 'feedback-bar']),
-  group('Agent at work', ['tool-call-card', 'terminal-log', 'code-diff', 'file-tree-activity', 'browser-agent', 'approval-prompt', 'sub-agent-graph', 'memory-recall', 'search-results-stream', 'plan-editor', 'run-history']),
+  group('Agent at work', ['agent-console', 'tool-call-card', 'terminal-log', 'code-diff', 'file-tree-activity', 'browser-agent', 'approval-prompt', 'sub-agent-graph', 'memory-recall', 'search-results-stream', 'plan-editor', 'run-history']),
   group('Playful & 3D', [], true),
 ]
 
