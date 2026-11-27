@@ -138,7 +138,7 @@ export function useKick(decay = 2.5) {
   )
 }
 
-// ---- Shared parts for the level 1 set (see docs/lowpoly-level-1-easy.md) ----
+// ---- Shared parts for the level 1 set (see docs/lowpoly/lowpoly-level-1-easy.md) ----
 
 export const TAU = Math.PI * 2
 
@@ -254,7 +254,7 @@ export function Spin({ tap, rate = 0.5, boost = 9, axis = 'y', children, ...prop
   )
 }
 
-// ---- Shared parts for the level 2 set (see docs/lowpoly-level-2-simple.md) ----
+// ---- Shared parts for the level 2 set (see docs/lowpoly/lowpoly-level-2-simple.md) ----
 
 // The angle of link i in a swaying chain: each link a beat behind the one
 // below it, so a trunk, frond or scarf bends like a whip.
@@ -375,7 +375,7 @@ export function Face({ spacing = 0.12, size = 0.035, color = '#1b1a22', mouth = 
   )
 }
 
-// ---- Shared parts for the level 3 set (see docs/lowpoly-level-3-medium.md) ----
+// ---- Shared parts for the level 3 set (see docs/lowpoly/lowpoly-level-3-medium.md) ----
 
 const read = (v) => (typeof v === 'function' ? v() : v)
 
@@ -605,7 +605,7 @@ export function followPath(obj, fn, t, bank = 1, dt = 0.02) {
   obj.rotateZ(Math.max(-1.1, Math.min(1.1, turn * 0.35 * bank)))
 }
 
-// ---- Shared parts for the level 4 set (see docs/lowpoly-level-4-hard.md) ----
+// ---- Shared parts for the level 4 set (see docs/lowpoly/lowpoly-level-4-hard.md) ----
 
 // The height of the Water surface at (x, z): the same waves Water draws, so
 // a boat or a float can ride them.
@@ -853,7 +853,7 @@ export function fillHeight(profile, f, fromTop = false) {
   return heightForVolume(profile, volumeTable(profile), f, fromTop)
 }
 
-// ---- Shared parts for the level 5 set (see docs/lowpoly-level-5-hardest.md) ----
+// ---- Shared parts for the level 5 set (see docs/lowpoly/lowpoly-level-5-hardest.md) ----
 
 // A tapering chain of faceted links pointing back along -z: a tail, a
 // trunk, a neck. Each link sways a beat behind the one before (a lag chain

@@ -1,7 +1,7 @@
 /* =====================================================================
    Library: fixed glass sidebar, docs column, "On this page" panel.
    Structure borrowed from the React Bits docs layout (see
-   docs/reactbits-ui-research.md); the look uses our own tokens.
+   docs/research/reactbits-ui-research.md); the look uses our own tokens.
    ===================================================================== */
 .links a.active { color: var(--ink); }
 
@@ -230,7 +230,13 @@
   gap: 8px;
 }
 .lib-style h5::after { content: ''; flex: 1; height: 1px; background: var(--line); margin-right: 8px; }
-.style-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: -8px 0 22px; }
+.style-chips { display: flex; flex-direction: column; gap: 10px; margin: -8px 0 22px; }
+.style-chip-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.style-chip-row .style-chip-group {
+  min-width: 64px; margin-right: 4px;
+  font: 500 11px/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-3); opacity: 1;
+}
 .style-chips button {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 7px 12px; border-radius: 999px;

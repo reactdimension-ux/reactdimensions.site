@@ -3,7 +3,7 @@
 The next 50, continuing from [lowpoly.md](lowpoly.md) (1-50),
 [lowpoly-2.md](lowpoly-2.md) (51-100) and [lowpoly-3.md](lowpoly-3.md)
 (101-150), all built. None repeats an existing component or an item from those
-lists or from [3d-ideas.md](3d-ideas.md). They follow the same pattern:
+lists or from [3d-ideas.md](../3d/3d-ideas.md). They follow the same pattern:
 faceted primitives built with `facet`, `Flat`, `Stage`, `useGeo` and `useKick`
 from `src/lowpoly/kit.jsx`, and each has:
 
