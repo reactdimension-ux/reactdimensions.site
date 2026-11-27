@@ -4,7 +4,7 @@ A third version of the charts, after the premium 2D set and the Doodle and Flat 
 
 Only charts that gain something from depth get a 3D version. Section 4 lists the ones that should stay 2D, and why.
 
-Eight are built and sit in **Charts → 3D charts**: **3D Pie Chart** (`Pie3DChart.jsx`), **3D Bar Chart** (`Bar3DChart.jsx`), **3D Pyramid Chart** (`Pyramid3DChart.jsx`), **3D Scatter Plot** (`Scatter3DChart.jsx`), **3D Surface Plot** (`Surface3DChart.jsx`), **3D Waffle Chart** (`Waffle3DChart.jsx`), **3D Gauge** (`Gauge3DChart.jsx`) and **3D Cylinders** (`Cylinders3DChart.jsx`). The pie set the pattern described here.
+Thirteen are built and sit in **Charts → 3D charts**: **3D Pie Chart** (`Pie3DChart.jsx`), **3D Bar Chart** (`Bar3DChart.jsx`), **3D Pyramid Chart** (`Pyramid3DChart.jsx`), **3D Scatter Plot** (`Scatter3DChart.jsx`), **3D Surface Plot** (`Surface3DChart.jsx`), **3D Waffle Chart** (`Waffle3DChart.jsx`), **3D Gauge** (`Gauge3DChart.jsx`), **3D Cylinders** (`Cylinders3DChart.jsx`), **3D Ribbon Chart** (`Ribbon3DChart.jsx`), **3D Stacked Area** (`Stack3DChart.jsx`), **3D Treemap** (`Treemap3DChart.jsx`), **3D Radar Chart** (`Radar3DChart.jsx`) and **3D Bar Grid** (`BarGrid3DChart.jsx`). The pie set the pattern described here.
 
 ---
 
@@ -96,22 +96,22 @@ Each chart is one self-contained file in `src/lib/`, like every other component.
 | `Pie3DChart` | Pie & Donut | Extruded wedges, a tilted camera and the smallest slice exploded. `innerRadius` makes a donut and `heightBy: 'value'` makes bigger slices taller. Floating % labels; click to explode a slice. | ✅ |
 | `Pyramid3DChart` | Flat Pyramid / Funnel | Stacked frustum layers (a cone cut into bands), or a square pyramid with `shape: 'pyramid'`, with gaps between layers. Layers drop in from the bottom up, and each has its number on the front. Big values sit in a right-hand column on dotted leader lines, which bend when thin layers would crowd their labels. `inverted` gives a funnel, `mode: 'value'` sizes bands by value, and a hovered layer slides out. | ✅ |
 | `Waffle3DChart` | Waffle Chart | A 10×10 grid of rounded cubes. Each category's cubes rise in a wave and the remainder stays as flat tiles. | ✅ |
-| `Treemap3DChart` | Treemap | Extruded tiles whose height also follows value, with groups separated by a gap and a lifted group label. | ⚪ |
+| `Treemap3DChart` | Treemap | Extruded tiles whose height also follows value, with groups separated by a gap and a lifted group label. | ✅ |
 
 ### Comparing categories
 
 | 3D component | Twin | 3D treatment | Status |
 |---|---|---|---|
 | `Bar3DChart` | Bar Chart | Rounded boxes or cylinders on a soft floor with a back-wall value scale. Several series can be grouped, stacked, or set in depth rows. Bars grow up one after another, and values float above with a halo so they stay readable over taller neighbours. Three-quarter camera with `tilt` and `turn`. | ✅ |
-| `BarGrid3DChart` | Heatmap / Bar | Two category axes (e.g. month × region) give a "city" of bars, each with its height and colour set by value. Hover shows the row and column. | ⚪ |
-| `Radar3DChart` | Radar Chart | The series polygon extruded into a slab over a flat web, with the second series as a second slab at a different height. | ⚪ |
+| `BarGrid3DChart` | Heatmap / Bar | Two category axes (e.g. month × region) give a "city" of bars, each with its height and colour set by value. Hover shows the row and column. | ✅ |
+| `Radar3DChart` | Radar Chart | The series polygon extruded into a slab over a flat web, with the second series as a second slab at a different height. | ✅ |
 
 ### Change over time
 
 | 3D component | Twin | 3D treatment | Status |
 |---|---|---|---|
-| `Ribbon3DChart` | Line / Area | Each series is an extruded ribbon running along x. Series sit one behind another in z, like a ridgeline in depth. | ⚪ |
-| `Stack3DChart` | Area (stacked) | Stacked area layers as solid slabs that build upward over time. | ⚪ |
+| `Ribbon3DChart` | Line / Area | Each series is an extruded ribbon running along x. Series sit one behind another in z, like a ridgeline in depth. | ✅ |
+| `Stack3DChart` | Area (stacked) | Stacked area layers as solid slabs that build upward over time. | ✅ |
 
 ### Relationships and distribution
 
@@ -156,7 +156,7 @@ These would get harder to read in 3D, with no gain:
 2. **Bar3DChart** ✅, then **Pyramid3DChart** ✅: the two most-requested infographic shapes.
 3. **Scatter3DChart** ✅ and **Surface3DChart** ✅: the analytical ones that need a 3D axis box. Each file carries an inline `AxisBox`: a floor and two back walls with grid lines and `<Html>` tick labels. The walls move to whichever sides face away from the camera, checked each frame, so they never hide the data while orbiting.
 4. **Waffle** ✅, **Gauge** ✅ and **Cylinders** ✅: quick wins that reuse the bar and pie geometry.
-5. **Ribbon, Stack, Treemap, Radar, BarGrid, Histogram.**
+5. **Ribbon** ✅, **Stack** ✅, **Treemap** ✅, **Radar** ✅, **BarGrid** ✅, **Histogram**.
 6. **Globe and PrismMap** last, after the 2D map charts settle the data format.
 
 Each chart is done when:
