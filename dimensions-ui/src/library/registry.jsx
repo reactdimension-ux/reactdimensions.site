@@ -280,6 +280,7 @@ const Stack3DChart = lazy(() => import('../lib/Stack3DChart.jsx'))
 const Treemap3DChart = lazy(() => import('../lib/Treemap3DChart.jsx'))
 const Radar3DChart = lazy(() => import('../lib/Radar3DChart.jsx'))
 const BarGrid3DChart = lazy(() => import('../lib/BarGrid3DChart.jsx'))
+const Histogram3DChart = lazy(() => import('../lib/Histogram3DChart.jsx'))
 const CylinderText = lazy(() => import('../lib/CylinderText.jsx'))
 const RibbonText = lazy(() => import('../lib/RibbonText.jsx'))
 import PeekCard from '../lib/PeekCard.jsx'
@@ -6256,6 +6257,67 @@ const ALL_COMPONENTS = [
       </Suspense>
     ),
     files: ['BarGrid3DChart.jsx'],
+    deps: ['three', '@react-three/fiber', '@react-three/drei'],
+  },
+  {
+    slug: 'histogram-3d-chart',
+    name: '3D Histogram',
+    category: 'Charts',
+    isNew: true,
+    description: 'A bivariate histogram: glossy bars on an x/y bin grid, rising to show where two measures cluster together.',
+    controls: [
+      // HISTOGRAM CONTROLS START
+      { name: 'data', type: 'text', default: '' },
+      { name: 'preset', type: 'select', options: ['height-weight', 'correlated', 'clusters', 'ring', 'skewed'], default: 'height-weight' },
+      { name: 'points', type: 'range', min: 50, max: 10000, step: 50, default: 1500 },
+      { name: 'seed', type: 'range', min: 1, max: 99, step: 1, default: 23 },
+      { name: 'bins', type: 'range', min: 2, max: 40, step: 1, default: 14 },
+      { name: 'binsX', type: 'range', min: 0, max: 40, step: 1, default: 0 },
+      { name: 'binsY', type: 'range', min: 0, max: 40, step: 1, default: 0 },
+      { name: 'normalize', type: 'toggle', default: false },
+      { name: 'title', type: 'text', default: 'Height and weight' },
+      { name: 'subtitle', type: 'text', default: '1,500 adults binned by height and weight. Hover a column, drag to orbit' },
+      { name: 'xLabel', type: 'text', default: 'Height (cm)' },
+      { name: 'yLabel', type: 'text', default: 'Weight (kg)' },
+      { name: 'countLabel', type: 'text', default: 'Adults' },
+      { name: 'palette', type: 'select', options: ['custom', 'sunset', 'ocean', 'viridis', 'magma', 'mono'], default: 'custom' },
+      { name: 'colorLow', type: 'color', default: '#ffd98a' },
+      { name: 'colorMid', type: 'color', default: '#ff7a3d' },
+      { name: 'colorHigh', type: 'color', default: '#a93ce0' },
+      { name: 'wave', type: 'select', options: ['center', 'diagonal', 'rows', 'none'], default: 'center' },
+      { name: 'labels', type: 'select', options: ['peak', 'none'], default: 'peak' },
+      { name: 'labelColor', type: 'select', options: ['slice', 'text'], default: 'slice' },
+      { name: 'showWalls', type: 'toggle', default: true },
+      { name: 'floorGrid', type: 'toggle', default: true },
+      { name: 'showLegend', type: 'toggle', default: true },
+      { name: 'tilt', type: 'range', min: 10, max: 80, step: 1, default: 32, unit: 'deg' },
+      { name: 'turn', type: 'range', min: -180, max: 180, step: 1, default: 32, unit: 'deg' },
+      { name: 'boxHeight', type: 'range', min: 0.8, max: 4, step: 0.1, default: 2 },
+      { name: 'gap', type: 'range', min: 0, max: 0.6, step: 0.02, default: 0.16 },
+      { name: 'bevel', type: 'range', min: 0, max: 0.1, step: 0.005, default: 0.03 },
+      { name: 'gloss', type: 'range', min: 0, max: 1, step: 0.05, default: 0.6 },
+      { name: 'hoverLift', type: 'range', min: 0, max: 0.8, step: 0.05, default: 0.25 },
+      { name: 'autoRotate', type: 'toggle', default: false },
+      { name: 'interactive', type: 'toggle', default: true },
+      { name: 'animate', type: 'toggle', default: true },
+      { name: 'duration', type: 'range', min: 300, max: 4000, step: 100, default: 1800, unit: 'ms' },
+      { name: 'decimals', type: 'range', min: 0, max: 3, step: 1, default: 0 },
+      { name: 'prefix', type: 'text', default: '' },
+      { name: 'suffix', type: 'text', default: '' },
+      { name: 'background', type: 'color', default: '#f2f2f3' },
+      { name: 'wallColor', type: 'color', default: '#ffffff' },
+      { name: 'gridColor', type: 'color', default: '#e3e5eb' },
+      { name: 'textColor', type: 'color', default: '#2b2f3a' },
+      { name: 'mutedColor', type: 'color', default: '#8a90a0' },
+      // HISTOGRAM CONTROLS END
+    ],
+    fill: true,
+    preview: (p) => (
+      <Suspense fallback={null}>
+        <Histogram3DChart {...p} style={{ position: 'absolute', inset: 0 }} />
+      </Suspense>
+    ),
+    files: ['Histogram3DChart.jsx'],
     deps: ['three', '@react-three/fiber', '@react-three/drei'],
   },
   {

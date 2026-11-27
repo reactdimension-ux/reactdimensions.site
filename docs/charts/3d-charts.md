@@ -4,7 +4,7 @@ A third version of the charts, after the premium 2D set and the Doodle and Flat 
 
 Only charts that gain something from depth get a 3D version. Section 4 lists the ones that should stay 2D, and why.
 
-Thirteen are built and sit in **Charts → 3D charts**: **3D Pie Chart** (`Pie3DChart.jsx`), **3D Bar Chart** (`Bar3DChart.jsx`), **3D Pyramid Chart** (`Pyramid3DChart.jsx`), **3D Scatter Plot** (`Scatter3DChart.jsx`), **3D Surface Plot** (`Surface3DChart.jsx`), **3D Waffle Chart** (`Waffle3DChart.jsx`), **3D Gauge** (`Gauge3DChart.jsx`), **3D Cylinders** (`Cylinders3DChart.jsx`), **3D Ribbon Chart** (`Ribbon3DChart.jsx`), **3D Stacked Area** (`Stack3DChart.jsx`), **3D Treemap** (`Treemap3DChart.jsx`), **3D Radar Chart** (`Radar3DChart.jsx`) and **3D Bar Grid** (`BarGrid3DChart.jsx`). The pie set the pattern described here.
+Fourteen are built and sit in **Charts → 3D charts**: **3D Pie Chart** (`Pie3DChart.jsx`), **3D Bar Chart** (`Bar3DChart.jsx`), **3D Pyramid Chart** (`Pyramid3DChart.jsx`), **3D Scatter Plot** (`Scatter3DChart.jsx`), **3D Surface Plot** (`Surface3DChart.jsx`), **3D Waffle Chart** (`Waffle3DChart.jsx`), **3D Gauge** (`Gauge3DChart.jsx`), **3D Cylinders** (`Cylinders3DChart.jsx`), **3D Ribbon Chart** (`Ribbon3DChart.jsx`), **3D Stacked Area** (`Stack3DChart.jsx`), **3D Treemap** (`Treemap3DChart.jsx`), **3D Radar Chart** (`Radar3DChart.jsx`), **3D Bar Grid** (`BarGrid3DChart.jsx`) and **3D Histogram** (`Histogram3DChart.jsx`). The pie set the pattern described here.
 
 ---
 
@@ -119,7 +119,7 @@ Each chart is one self-contained file in `src/lib/`, like every other component.
 |---|---|---|---|
 | `Scatter3DChart` | Scatter / Bubble | Glossy balls (drei `<Instances>`) in a true x/y/z axis box, with drop lines and soft shadows on the floor. A fourth value sets the size and an optional fifth names the group. Hovering draws dashed guide lines to all three walls. The demo data is clustered groups. It turns slowly by default, because orbiting is how depth gets read. | ✅ |
 | `Surface3DChart` | Heatmap | A height-mapped terrain from a grid of values (`data` rows, or a preset: peaks, ripple, saddle, waves, hills). The colour ramp is sequential, diverging (automatic when values cross zero) or stepped into flat bands (`steps`). It has grid lines on the surface and a faint heatmap of itself on the floor. Hovering reads the value at the pointer. | ✅ |
-| `Histogram3DChart` | Histogram (2D bins) | A bivariate histogram: bars on an x/y bin grid. | ⚪ |
+| `Histogram3DChart` | Histogram (2D bins) | A bivariate histogram: bars on an x/y bin grid. | ✅ |
 
 ### Single values and progress
 
@@ -156,7 +156,7 @@ These would get harder to read in 3D, with no gain:
 2. **Bar3DChart** ✅, then **Pyramid3DChart** ✅: the two most-requested infographic shapes.
 3. **Scatter3DChart** ✅ and **Surface3DChart** ✅: the analytical ones that need a 3D axis box. Each file carries an inline `AxisBox`: a floor and two back walls with grid lines and `<Html>` tick labels. The walls move to whichever sides face away from the camera, checked each frame, so they never hide the data while orbiting.
 4. **Waffle** ✅, **Gauge** ✅ and **Cylinders** ✅: quick wins that reuse the bar and pie geometry.
-5. **Ribbon** ✅, **Stack** ✅, **Treemap** ✅, **Radar** ✅, **BarGrid** ✅, **Histogram**.
+5. **Ribbon** ✅, **Stack** ✅, **Treemap** ✅, **Radar** ✅, **BarGrid** ✅, **Histogram** ✅.
 6. **Globe and PrismMap** last, after the 2D map charts settle the data format.
 
 Each chart is done when:
