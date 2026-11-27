@@ -31,7 +31,7 @@ const CHARTS = [
   group('Relationships', ['scatter-plot', 'bubble-chart', 'heatmap', 'hexbin-plot', 'correlation-matrix']),
   group('Flow and connections', ['sankey-diagram', 'alluvial-diagram', 'chord-diagram', 'network-graph', 'funnel-chart', 'tree-chart']),
   group('More charts', ['waterfall-chart', 'pareto-chart', 'slope-chart', 'population-pyramid', 'parallel-coordinates', 'word-cloud'], true),
-  group('3D charts', ['pie-3d-chart', 'bar-3d-chart', 'pyramid-3d-chart', 'scatter-3d-chart', 'surface-3d-chart', 'waffle-3d-chart', 'gauge-3d-chart', 'cylinders-3d-chart']),
+  group('3D charts', ['pie-3d-chart', 'bar-3d-chart', 'pyramid-3d-chart', 'scatter-3d-chart', 'surface-3d-chart', 'waffle-3d-chart', 'gauge-3d-chart', 'cylinders-3d-chart', 'ribbon-3d-chart', 'stack-3d-chart', 'treemap-3d-chart', 'radar-3d-chart', 'bar-grid-3d-chart']),
   group('Flat · Comparing', ['flat-bar-chart', 'flat-lollipop-chart', 'flat-dot-plot', 'flat-bullet-chart', 'flat-radar-chart', 'flat-slope-chart', 'flat-population-pyramid']),
   group('Flat · Change over time', ['flat-line-chart', 'flat-area-chart', 'flat-step-chart', 'flat-sparklines', 'flat-candlestick-chart', 'flat-gantt-chart', 'flat-streamgraph']),
   group('Flat · Parts of a whole', ['flat-donut-chart', 'flat-treemap', 'flat-sunburst', 'flat-dot-matrix', 'flat-pictogram', 'flat-share-bar']),
