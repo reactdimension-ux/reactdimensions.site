@@ -15,6 +15,8 @@ const CAT_ICON = {
   Animation: <path d="m5 3.5 9 5.2-3.9 1.2 2.4 4.1-1.8 1-2.4-4.1-2.7 2.9z" />,
   // a four-point sparkle
   'AI Agents': <path d="M10 2.5c.6 3.8 2.200 5.400 6 6-3.800.600-5.400 2.200-6 6-.600-3.800-2.200-5.400-6-6 3.800-.600 5.400-2.200 6-6zM15.500 13.500c.2 1.300.7 1.800 2 2-1.300.2-1.800.7-2 2-.2-1.300-.7-1.800-2-2 1.300-.2 1.800-.7 2-2z" />,
+  // three rising bars on a baseline
+  Charts: <path d="M3.5 16.5h13M5.5 16.5v-5h2.5v5M8.75 16.5v-9h2.5v9M12 16.5v-12h2.5v12" />,
   Interfaces: <path d="M3 4.5h14v11H3zM3 7.5h14M6 11.5h4M13 11.5h1" />,
   '3D & Materials': <path d="M10 2.5 16.5 6v8L10 17.5 3.5 14V6zM10 10 3.5 6M10 10l6.5-4M10 10v7.5" />,
   // a ball moving with speed lines trailing behind it
@@ -698,16 +700,33 @@ export function CategoryPage() {
         </header>
         {SECTIONS[name] && (
           <div className="style-chips" role="group" aria-label="Filter by style">
-            <button aria-pressed={style === 'All'} onClick={() => setStyle('All')}>
-              All components<span>{COMPONENTS.filter((c) => c.category === name).length}</span>
-            </button>
-            {SECTIONS[name].map((st) => {
-              const n = COMPONENTS.filter((c) => c.category === name && c.style === st).length
-              if (!n) return null
+            {/* "Flat · Comparing" style names are grouped into a labelled row per prefix */}
+            {Object.entries(
+              SECTIONS[name].reduce((acc, st) => {
+                const i = st.indexOf(' · ')
+                const group = i < 0 ? '' : st.slice(0, i)
+                ;(acc[group] ??= []).push({ st, label: i < 0 ? st : st.slice(i + 3) })
+                return acc
+              }, { '': [] })
+            ).map(([group, list]) => {
+              const chips = list
+                .map((x) => ({ ...x, n: COMPONENTS.filter((c) => c.category === name && c.style === x.st).length }))
+                .filter((x) => x.n)
+              if (group && !chips.length) return null
               return (
-                <button key={st} aria-pressed={style === st} onClick={() => setStyle(st)}>
-                  {st}<span>{n}</span>
-                </button>
+                <div className="style-chip-row" key={group || 'default'}>
+                  {group && <span className="style-chip-group">{group}</span>}
+                  {!group && (
+                    <button aria-pressed={style === 'All'} onClick={() => setStyle('All')}>
+                      All components<span>{COMPONENTS.filter((c) => c.category === name).length}</span>
+                    </button>
+                  )}
+                  {chips.map(({ st, label, n }) => (
+                    <button key={st} aria-pressed={style === st} onClick={() => setStyle(st)}>
+                      {label}<span>{n}</span>
+                    </button>
+                  ))}
+                </div>
               )
             })}
           </div>

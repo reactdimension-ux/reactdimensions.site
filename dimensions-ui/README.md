@@ -20,7 +20,7 @@ npm run dev
 
 ## Site design
 
-The whole site follows the docs layout described in `../docs/reactbits-ui-research.md`, with its own colours and type:
+The whole site follows the docs layout described in `../docs/research/reactbits-ui-research.md`, with its own colours and type:
 
 - **Dark by default**, with a light theme (header toggle, remembered, applied before first paint so there is no flash). All colours are CSS variables in `src/styles.css`.
 - **60px frosted header** with the logo, links, a search button (press `/` or Ctrl/Cmd+K), theme toggle and a GitHub link. On small screens it gains a menu button that opens the component list.
@@ -51,7 +51,7 @@ A component browser in the style of React Bits. Sidebar with search (press `/`),
 | 3D & Materials | Clear-coat Card (three.js), Pickup (three.js, optionally drivable), Snake (three.js, procedural), Turntable (three.js, playable), Vinyl Record (three.js), Sunglasses (three.js, parametric), Watch (three.js, analog and smart), Laptop (three.js), Glass Bottle (three.js), TV (three.js), Phone (three.js), Headphones (three.js), Mechanical Keyboard (three.js, type on it), Typewriter (three.js, types onto paper) |
 | Backgrounds | Drafting Grid, Light Sweep, Cyclorama, Gradient Sweep, Soft Horizon |
 
-The **Phone UI** apps are full multi-screen click-through prototypes, each drawn at an iPhone's 390 × 844 px and scaled to fit its box. Every tab, row and button leads somewhere: tapping a row opens its detail screen with a back button, flows such as Banking's send-money or Hotel's booking carry their state through (the balance changes, the booking appears under Trips), and drag, swipe, hold and pinch gestures are real. Each one has a **startScreen** control that opens it on any of its five pages, an **accent** colour, and a **frame** toggle for the device bezel. They are self-contained components (React only, every picture drawn in SVG or CSS), so a single file copies out on its own. The build lists are in `../docs/phone-ui-phase-one.md` and `../docs/phone-ui-phase-two.md`.
+The **Phone UI** apps are full multi-screen click-through prototypes, each drawn at an iPhone's 390 × 844 px and scaled to fit its box. Every tab, row and button leads somewhere: tapping a row opens its detail screen with a back button, flows such as Banking's send-money or Hotel's booking carry their state through (the balance changes, the booking appears under Trips), and drag, swipe, hold and pinch gestures are real. Each one has a **startScreen** control that opens it on any of its five pages, an **accent** colour, and a **frame** toggle for the device bezel. They are self-contained components (React only, every picture drawn in SVG or CSS), so a single file copies out on its own. The build lists are in `../docs/phone-ui/phone-ui-phase-one.md` and `../docs/phone-ui/phone-ui-phase-two.md`.
 
 The **Snake** is built entirely in code (no model file): a tube along a spring-driven spine, with an overlapping-scale texture drawn on a canvas from your colours. Colour presets set several colours at once and every colour stays editable. In *rear* mode the head follows the pointer; in *slither* mode it crawls after it along the floor with a travelling body wave.
 
